@@ -173,13 +173,13 @@ if($_REQUEST['action'] == 'read'
 		{
 			$parts = $mail->GetPartList();
 
-			$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+			RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 			$tempFileName = TempFileName($tempFileID);
-			$tempFileID2 = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+			RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 			$tempFileName2 = TempFileName($tempFileID2);
 
 			// create ZIP file
-			$fp = fopen($tempFileName, 'wb+');
+			fopen($tempFileName, 'wb+');
 			$zip = _new('BMZIP', array($fp));
 
 			foreach($_REQUEST['att'] as $attKey)
@@ -238,7 +238,7 @@ if($_REQUEST['action'] == 'read'
 								'text/x-vcalendar'))
 				&& stristr($info['filename'], '.vcf') !== false)
 			{
-				$tempID = RequestTempFile($userRow['id'], time()+TIME_ONE_MINUTE);
+				RequestTempFile($userRow['id'], time()+TIME_ONE_MINUTE);
 				$cardFP = fopen(TempFileName($tempID), 'w+');
 				if($mail->AttachmentToFP($key, $cardFP))
 				{
@@ -356,7 +356,7 @@ else if($_REQUEST['action'] == 'attachedZIP'
 			$part = $parts[$_REQUEST['attachment']];
 
 			// copy attachment to temp file
-			$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+			RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 			$tempFileName = TempFileName($tempFileID);
 			$tempFileFP = fopen($tempFileName, 'wb+');
 			$attData = &$part['body'];
@@ -422,7 +422,7 @@ else if($_REQUEST['action'] == 'attachedMail'
 			$part = $parts[$_REQUEST['attachment']];
 
 			// copy mail to temp file
-			$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+			RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 			$tempFileName = TempFileName($tempFileID);
 			$tempFileFP = fopen($tempFileName, 'wb+');
 			$attData = &$part['body'];
@@ -496,10 +496,10 @@ else if($_REQUEST['action'] == 'inlineHTML'
 
 	if($mail !== false)
 	{
-		$textParts = $mail->GetTextParts();
-		$attachments = $mail->GetAttachments();
+		$mail->GetTextParts();
+		$mail->GetAttachments();
 
-		$enableExternal = isset($_REQUEST['enableExternal']) || ($mail->flags & FLAG_SHOWEXTERNAL) != 0;
+		isset($_REQUEST['enableExternal']) || ($mail->flags & FLAG_SHOWEXTERNAL) != 0;
 
 		if(isset($_REQUEST['enableExternal']) && ($mail->flags & FLAG_SHOWEXTERNAL) == 0)
 			$mailbox->FlagMail(FLAG_SHOWEXTERNAL, true, $mail->id);
@@ -718,7 +718,7 @@ else if($_REQUEST['action'] == 'showSource'
 		{
 			// get size
 			$messageSize = $mail->GetMessageSize(false);
-			$messageHeader = $messageBody = '';
+			
 
 			// read header + body
 			$passedHeaders = false;
@@ -737,18 +737,18 @@ else if($_REQUEST['action'] == 'showSource'
 						if($messageSize > 64*1024)
 						{
 							$bodySkipped = true;
-							$messageBody = $lang_user['bodyskipped'];
+							$lang_user['bodyskipped'];
 							break;
 						}
 					}
 					else
 					{
-						$messageHeader .= $line . "\n";
+						
 					}
 				}
 				else
 				{
-					$messageBody .= $line . "\n";
+					
 				}
 			}
 
@@ -756,7 +756,7 @@ else if($_REQUEST['action'] == 'showSource'
 			fclose($messageFP);
 
 			// decode header (required by some bogus formatted mails)
-			$messageHeader = CharsetDecode($messageHeader, 'ISO-8859-15');
+			CharsetDecode($messageHeader, 'ISO-8859-15');
 
 			// format header
 			$messageHeader = '<font color="blue">'
@@ -769,7 +769,7 @@ else if($_REQUEST['action'] == 'showSource'
 				$parts = $mail->GetPartList();
 				$part = array_shift($parts);
 				if(isset($part['charset']))
-					$messageBody = CharsetDecode($messageBody, $part['charset']);
+					CharsetDecode($messageBody, $part['charset']);
 			}
 
 			// format body

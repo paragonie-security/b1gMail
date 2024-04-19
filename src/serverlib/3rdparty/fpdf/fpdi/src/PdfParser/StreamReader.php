@@ -15,21 +15,7 @@ namespace setasign\Fpdi\PdfParser;
  */
 class StreamReader
 {
-    /**
-     * Creates a stream reader instance by a string value.
-     *
-     * @param string $content
-     * @param int $maxMemory
-     * @return StreamReader
-     */
-    public static function createByString($content, $maxMemory = 2097152)
-    {
-        $h = \fopen('php://temp/maxmemory:' . ((int) $maxMemory), 'r+b');
-        \fwrite($h, $content);
-        \rewind($h);
 
-        return new self($h, true);
-    }
 
     /**
      * Creates a stream reader instance by a filename.
@@ -370,15 +356,7 @@ class StreamReader
         return true;
     }
 
-    /**
-     * Returns the stream.
-     *
-     * @return resource
-     */
-    public function getStream()
-    {
-        return $this->stream;
-    }
+
 
     /**
      * Gets the total available length.

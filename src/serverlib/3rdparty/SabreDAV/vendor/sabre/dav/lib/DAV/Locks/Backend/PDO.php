@@ -30,16 +30,7 @@ class PDO extends AbstractBackend {
      */
     protected $pdo;
 
-    /**
-     * Constructor
-     *
-     * @param PDO $pdo
-     */
-    function __construct(\PDO $pdo) {
 
-        $this->pdo = $pdo;
-
-    }
 
     /**
      * Returns a list of Sabre\DAV\Locks\LockInfo objects

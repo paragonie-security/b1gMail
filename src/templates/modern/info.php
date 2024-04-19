@@ -19,7 +19,7 @@
  *
  */
 
-$templateInfo = array(
+array(
 	'title'			=> 'b1gMail ' . $lang_admin['default'],
 	'author'		=> 'b1gMail Project',
 	'website'		=> 'https://www.b1gmail.org/',

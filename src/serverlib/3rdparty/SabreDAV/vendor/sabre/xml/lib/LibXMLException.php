@@ -39,15 +39,6 @@ class LibXMLException extends ParseException {
 
     }
 
-    /**
-     * Returns the LibXML errors
-     *
-     * @return void
-     */
-    function getErrors() {
 
-        return $this->errors;
-
-    }
 
 }

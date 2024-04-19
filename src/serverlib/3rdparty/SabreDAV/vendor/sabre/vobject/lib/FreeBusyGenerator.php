@@ -67,15 +67,17 @@ class FreeBusyGenerator {
     protected $timeZone;
 
     /**
+     *
      * Creates the generator.
      *
      * Check the setTimeRange and setObjects methods for details about the
      * arguments.
      *
-     * @param DateTime $start
-     * @param DateTime $end
+     * @param \DateTime|null $start
+     * @param \DateTime|null $end
      * @param mixed $objects
      * @param DateTimeZone $timeZone
+     *
      * @return void
      */
     public function __construct(\DateTime $start = null, \DateTime $end = null, $objects = null, DateTimeZone $timeZone = null) {
@@ -143,12 +145,14 @@ class FreeBusyGenerator {
     }
 
     /**
+     *
      * Sets the time range
      *
      * Any freebusy object falling outside of this time range will be ignored.
      *
-     * @param DateTime $start
-     * @param DateTime $end
+     * @param \DateTime|null $start
+     * @param \DateTime|null $end
+     *
      * @return void
      */
     public function setTimeRange(\DateTime $start = null, \DateTime $end = null): void {

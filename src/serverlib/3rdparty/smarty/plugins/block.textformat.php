@@ -6,11 +6,12 @@
  * @subpackage PluginsBlock
  */
 /**
+ *
  * Smarty {textformat}{/textformat} block plugin
  * Type:     block function
  * Name:     textformat
  * Purpose:  format text a certain way with preset styles
- *           or custom wrap/indent settings
+ * or custom wrap/indent settings
  * Params:
  *
  * - style         - string (email)
@@ -20,7 +21,7 @@
  * - indent_char   - string (" ")
  * - wrap_boundary - boolean (true)
  *
- * @link   http://www.smarty.net/manual/en/language.function.textformat.php {textformat}
+ * @link http://www.smarty.net/manual/en/language.function.textformat.php {textformat}
  *         (Smarty online manual)
  *
  * @param array                    $params   parameters
@@ -28,8 +29,10 @@
  * @param Smarty_Internal_Template $template template object
  * @param boolean                  &$repeat  repeat flag
  *
- * @return string content re-formatted
+ * @return null|string content re-formatted
+ *
  * @author Monte Ohrt <monte at ohrt dot com>
+ *
  * @throws \SmartyException
  */
 function smarty_block_textformat($params, $content, Smarty_Internal_Template $template, &$repeat)

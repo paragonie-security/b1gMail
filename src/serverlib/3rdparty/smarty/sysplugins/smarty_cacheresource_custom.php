@@ -188,7 +188,7 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource
     public function readCachedContent(Smarty_Internal_Template $_template)
     {
         $content = $_template->cached->content ? $_template->cached->content : null;
-        $timestamp = null;
+        
         if ($content === null) {
             $timestamp = null;
             $this->fetch(
@@ -265,12 +265,13 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource
     }
 
     /**
+     *
      * Lock cache for this template
      *
      * @param Smarty                 $smarty Smarty object
      * @param Smarty_Template_Cached $cached cached object
      *
-     * @return bool|void
+     * @return void
      */
     public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {
@@ -281,12 +282,13 @@ abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource
     }
 
     /**
+     *
      * Unlock cache for this template
      *
      * @param Smarty                 $smarty Smarty object
      * @param Smarty_Template_Cached $cached cached object
      *
-     * @return bool|void
+     * @return void
      */
     public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {

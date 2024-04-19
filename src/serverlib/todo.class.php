@@ -46,17 +46,7 @@ class BMTodo
         1 => 'high',
     ];
 
-    /**
-     * constructor.
-     *
-     * @param int $userID User ID
-     *
-     * @return BMTodo
-     */
-    public function __construct($userID)
-    {
-        $this->_userID = $userID;
-    }
+
 
     /**
      * get list of tasks.
@@ -252,13 +242,14 @@ class BMTodo
     }
 
     /**
+     *
      * get task info.
      *
      * @param int $id Task ID
      *
-     * @return array
+     * @psalm-return array{id: mixed, beginn: mixed, faellig: mixed, akt_status: mixed, titel: mixed, priority: mixed, erledigt: mixed, comments: mixed, tasklistid: mixed, dav_uri: mixed, dav_uid: mixed}|false
      */
-    public function GetTask($id)
+    public function GetTask($id): array|false
     {
         global $db;
 

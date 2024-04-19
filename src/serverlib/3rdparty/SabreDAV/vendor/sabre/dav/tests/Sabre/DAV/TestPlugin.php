@@ -28,7 +28,10 @@ class TestPlugin extends ServerPlugin {
 
     }
 
-    function beforeMethod(RequestInterface $request, ResponseInterface $response) {
+    /**
+     * @return true
+     */
+    function beforeMethod(RequestInterface $request, ResponseInterface $response): bool {
 
         $this->beforeMethod = $request->getMethod();
         return true;

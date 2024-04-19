@@ -164,6 +164,7 @@ class Writer extends XMLWriter {
     }
 
     /**
+     *
      * Write a full element tag and it's contents.
      *
      * This method automatically closes the element as well.
@@ -172,19 +173,20 @@ class Writer extends XMLWriter {
      *
      * Examples:
      *
-     *    $writer->writeElement('{http://www.w3.org/2005/Atom}author',null);
-     *    becomes:
-     *    <author xmlns="http://www.w3.org/2005" />
+     * $writer->writeElement('{http://www.w3.org/2005/Atom}author',null);
+     * becomes:
+     * <author xmlns="http://www.w3.org/2005" />
      *
-     *    $writer->writeElement('{http://www.w3.org/2005/Atom}author', [
-     *       '{http://www.w3.org/2005/Atom}name' => 'Evert Pot',
-     *    ]);
-     *    becomes:
-     *    <author xmlns="http://www.w3.org/2005" /><name>Evert Pot</name></author>
+     * $writer->writeElement('{http://www.w3.org/2005/Atom}author', [
+     * '{http://www.w3.org/2005/Atom}name' => 'Evert Pot',
+     * ]);
+     * becomes:
+     * <author xmlns="http://www.w3.org/2005" /><name>Evert Pot</name></author>
      *
      * @param string $name
      * @param string $content
-     * @return bool
+     *
+     * @return void
      */
     function writeElement($name, $content = null): void {
 
@@ -217,6 +219,7 @@ class Writer extends XMLWriter {
     }
 
     /**
+     *
      * Writes a new attribute.
      *
      * The name may be specified in clark-notation.
@@ -225,7 +228,8 @@ class Writer extends XMLWriter {
      *
      * @param string $name
      * @param string $value
-     * @return bool
+     *
+     * @return bool|null
      */
     function writeAttribute($name, $value) {
 

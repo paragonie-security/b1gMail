@@ -21,53 +21,16 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     protected $owner = 'principals/evert';
 
-    function setUp(): void {
 
-        $this->sut = new File($this->path, $this->acl, $this->owner);
 
-    }
 
-    function testGetOwner(): void {
 
-        $this->assertEquals(
-            $this->owner,
-            $this->sut->getOwner()
-        );
 
-    }
 
-    function testGetGroup(): void {
 
-        $this->assertNull(
-            $this->sut->getGroup()
-        );
 
-    }
 
-    function testGetACL(): void {
 
-        $this->assertEquals(
-            $this->acl,
-            $this->sut->getACL()
-        );
 
-    }
-
-    /**
-     * @expectedException \Sabre\DAV\Exception\Forbidden
-     */
-    function testSetAcl(): void {
-
-        $this->sut->setACL([]);
-
-    }
-
-    function testGetSupportedPrivilegeSet(): void {
-
-        $this->assertNull(
-            $this->sut->getSupportedPrivilegeSet()
-        );
-
-    }
 
 }

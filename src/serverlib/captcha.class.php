@@ -234,12 +234,16 @@ class BMCaptcha
 	}
 
 	/**
+	 *
 	 * register a captcha provider with the captcha system
 	 * (called by captcha provider file after inclusion)
 	 *
 	 * @return void
+	 *
+	 * @psalm-param 'default.php'|'keycaptcha.php'|'recaptcha.php' $file
+	 * @psalm-param 'BMCaptchaProvider_Default'|'BMCaptchaProvider_KeyCAPTCHA'|'BMCaptchaProvider_reCAPTCHA' $provider
 	 */
-	public static function registerProvider($file, $provider): void
+	public static function registerProvider(string $file, string $provider): void
 	{
 		BMCaptcha::$providers[] = $file . '/' . $provider;
 	}

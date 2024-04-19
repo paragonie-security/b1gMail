@@ -46,11 +46,13 @@ class VCFExportPlugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Intercepts GET requests on addressbook urls ending with ?export.
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $response) {
 

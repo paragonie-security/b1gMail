@@ -110,22 +110,22 @@ if($_REQUEST['action'] == 'compose')
 			&& ($userRow['soforthtml'] == 'yes' || isset($_REQUEST['htmlView'])))
 		{
 			$textMode = 'html';
-			$text = formatEMailHTMLText($textParts['html'], true, array(), -1, false, true);
+			formatEMailHTMLText($textParts['html'], true, array(), -1, false, true);
 		}
 		else if(isset($textParts['text']))
 		{
 			$textMode = 'text';
-			$text = formatEMailText($textParts['text'], false);
+			formatEMailText($textParts['text'], false);
 		}
 		else if(isset($textParts['html']) && $userRow['soforthtml'] == 'no')
 		{
 			$textMode = 'text';
-			$text = htmlToText($textParts['html']);
+			htmlToText($textParts['html']);
 		}
 		else
 		{
 			$textMode = 'text';
-			$text = '';
+			
 		}
 
 		// ...and text
@@ -417,7 +417,7 @@ else if($_REQUEST['action'] == 'addAttachment')
 			if(strlen(trim($attachment)) > 3)
 			{
 				list($tempFileID, $fileName, $contentType) = explode(',', $attachment);
-				$tempFileID = (int)$tempFileID;
+				
 				if(ValidTempFile($userRow['id'], $tempFileID))
 					$attSize += filesize(TempFileName($tempFileID));
 			}
@@ -554,7 +554,7 @@ else if($_REQUEST['action'] == 'uploadDnDAttachment'
 			if(strlen(trim($attachment)) > 3)
 			{
 				list($tempFileID, $fileName, $contentType) = explode(',', $attachment);
-				$tempFileID = (int)$tempFileID;
+				
 				if(ValidTempFile($userRow['id'], $tempFileID))
 					$attSize += filesize(TempFileName($tempFileID));
 			}
@@ -632,7 +632,7 @@ else if($_REQUEST['action'] == 'uploadDnDAttachment'
 else if($_REQUEST['action'] == 'deleteAttachment'
 	&& isset($_REQUEST['id']))
 {
-	$id = (int)$_REQUEST['id'];
+	(int)$_REQUEST['id'];
 	die(ReleaseTempFile($userRow['id'], $id) ? '1' : '0');
 }
 
@@ -952,10 +952,10 @@ else if($_REQUEST['action'] == 'sendMail'
 						//
 						Add2Stat('send');
 						$domains = GetDomainList();
-						$local = false;
+						
 						foreach($domains as $domain)
 							if(strpos(strtolower($to . $cc . $bcc), '@'.strtolower($domain)) !== false)
-								$local = true;
+								
 						Add2Stat('send_'.($local ? 'intern' : 'extern'));
 						$thisUser->AddSendStat(count($recipients));
 						$thisUser->UpdateLastSend(count($recipients));

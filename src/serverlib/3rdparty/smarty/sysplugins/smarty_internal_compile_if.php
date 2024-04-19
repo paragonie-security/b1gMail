@@ -121,7 +121,7 @@ class Smarty_Internal_Compile_Elseif extends Smarty_Internal_CompileBase
             $compiler->trigger_template_error('missing elseif condition', null, true);
         }
         $assignCode = '';
-        $var = '';
+        
         if (is_array($parameter[ 'if condition' ])) {
             $condition_by_assign = true;
             if (is_array($parameter[ 'if condition' ][ 'var' ])) {

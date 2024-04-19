@@ -259,9 +259,7 @@ define('TRANSACTION_BOOKED', 1);
 define('TRANSACTION_CANCELLED', 2);
 define('BMSFLAG_IS_SPAM', 1);
 define('BMSFLAG_IS_INFECTED', 2);
-$VIEWABLE_TYPES = ['text/html', 'image/jpeg', 'image/gif',
-                        'image/png', 'image/jpg', 'image/pjpeg',
-                        'application/pdf', 'text/plain', ];
+
 
 /*
  * plugin return constants
@@ -336,23 +334,23 @@ if (!class_exists('SQLite3') && class_exists('PDO') && in_array('sqlite', PDO::g
 if (!isset($_SERVER['REQUEST_URI']) || SERVER_IIS) {
     // file
     if (isset($_SERVER['URL'])) {
-        $requestURI = $_SERVER['URL'];
+        $_SERVER['URL'];
     } elseif (isset($_SERVER['SCRIPT_NAME'])) {
-        $requestURI = $_SERVER['SCRIPT_NAME'];
+        $_SERVER['SCRIPT_NAME'];
     } elseif (isset($_SERVER['PHP_SELF'])) {
-        $requestURI = $_SERVER['PHP_SELF'];
+        $_SERVER['PHP_SELF'];
     }
 
     if (strpos($requestURI, '?') === false) {
         // query string
         if (isset($_SERVER['QUERY_STRING'])) {
             if (!empty($_SERVER['QUERY_STRING'])) {
-                $requestURI .= '?'.$_SERVER['QUERY_STRING'];
+                '?'.$_SERVER['QUERY_STRING'];
             }
         } elseif (isset($_SERVER['argv']) && is_array($_SERVER['argv'])
             && count($_SERVER['argv']) == 1) {
             if (!empty($_SERVER['argv'][0])) {
-                $requestURI .= '?'.$_SERVER['argv'][0];
+                '?'.$_SERVER['argv'][0];
             }
         }
     }
@@ -387,17 +385,17 @@ define('B1GMAIL_DATA_DIR', $bm_prefs['datafolder']);
  * cache
  */
 if (MAINTENANCE_MODE || $bm_prefs['cache_type'] == CACHE_DISABLE) {
-    $cacheManager = new BMCache_None();
+    new BMCache_None();
 } elseif ($bm_prefs['cache_type'] == CACHE_B1GMAIL) {
-    $cacheManager = new BMCache_b1gMail();
+    new BMCache_b1gMail();
 } elseif ($bm_prefs['cache_type'] == CACHE_MEMCACHE) {
-    $cacheManager = new BMCache_memcache();
+    new BMCache_memcache();
 }
 
 /**
  * initialize b1gMail.
  */
-$tempFilesToReleaseAtShutdown = [];
+
 ReadLanguage();
 InitializePlugins();
 if (!MAINTENANCE_MODE) {

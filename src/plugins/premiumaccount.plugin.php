@@ -37,28 +37,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 */
 	var $prefs;
 
-	/**
-	 * constructor
-	 *
-	 * @return PremiumAccountPlugin
-	 */
-	function __construct()
-	{
-		global $thisUser;
 
-		// plugin info
-		$this->type					= BMPLUGIN_DEFAULT;
-		$this->name					= 'b1gMail PremiumAccount PlugIn';
-		$this->author				= 'b1gMail Project';
-		$this->version				= '2.51';
-		$this->website				= 'https://www.b1gmail.org/';
-		$this->update_url			= 'https://service.b1gmail.org/plugin_updates/';
-
-		// admin pages
-		$this->admin_pages			= true;
-		$this->admin_page_title		= 'PremiumAccount';
-		$this->admin_page_icon		= 'pacc_logo16.png';
-	}
 
 	/**
 	 * onload
@@ -564,7 +543,7 @@ class PremiumAccountPlugin extends BMPlugin
 		   foreach($$srcArray as $key=>$val)
 		   {
 			  if(function_exists('CharsetDecode') && !in_array(strtolower($currentCharset), array('iso-8859-1', 'iso-8859-15')))
-				 $val = CharsetDecode($val, 'iso-8859-15');
+				 CharsetDecode($val, 'iso-8859-15');
 			  ${$destArray}[$key] = $val;
 		   }
 		}
@@ -804,7 +783,7 @@ class PremiumAccountPlugin extends BMPlugin
 				$packageRes->Free();
 
 				// prepare mail
-				$vars = array(
+				array(
 					'email'			=> function_exists('DecodeEMail') ? DecodeEMail($userRow['email']) : $userRow['email'],
 					'vorname'		=> $userRow['vorname'],
 					'nachname'		=> $userRow['nachname'],
@@ -972,7 +951,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * packages page for NLI area
 	 *
 	 */
-	function _paccNLIPackages($signupMode = false): void
+	function _paccNLIPackages(bool $signupMode = false): void
 	{
 		global $tpl, $bm_prefs, $lang_user;
 
@@ -1016,12 +995,16 @@ class PremiumAccountPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * get package with given ID
 	 *
 	 * @param int $packageID
-	 * @return array
+	 *
+	 * @return (bool|mixed|string)[]|false
+	 *
+	 * @psalm-return array{id: mixed, title: string, description: string, price: string, priceTax: string, priceInterval: string, isFree: bool}|false
 	 */
-	function _getPackage($packageID)
+	function _getPackage($packageID): array|false
 	{
 		global $db, $bm_prefs;
 
@@ -1533,7 +1516,7 @@ class PremiumAccountPlugin extends BMPlugin
 	{
 		global $tpl, $db, $userRow, $bm_prefs;
 
-		$vatRate = 0;
+		
 		if(isset($userRow))
 		{
 			$vatRate = $this->_vatRateForUser($userRow['id']);
@@ -1846,7 +1829,7 @@ class PremiumAccountPlugin extends BMPlugin
 		}
 
 		// prepare cart
-		$orderID = -1;
+		
 		$cart = array();
 		$cart[] = array(
 			'key'		=> 'PAcc.order.' . $packageID,
@@ -1913,13 +1896,17 @@ class PremiumAccountPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * calculate order amount
 	 *
 	 * @param int $packageID Package ID
 	 * @param int $abrechnungT Runtime (unit according to package settings)
-	 * @return int Price in cents
+	 *
+	 * @return float|int Price in cents
+	 *
+	 * @psalm-return -1|float
 	 */
-	function _calcOrderAmount($packageID, $abrechnungT = -1)
+	function _calcOrderAmount($packageID, $abrechnungT = -1): int|float
 	{
 		global $db, $bm_prefs;
 
@@ -1935,7 +1922,7 @@ class PremiumAccountPlugin extends BMPlugin
 
 			if($package['abrechnung'] == 'einmalig')
 			{
-				$abrechnung_t = -1;
+				
 				return(round($package['preis_cent'], 0));
 			}
 			else
@@ -2016,7 +2003,7 @@ class PremiumAccountPlugin extends BMPlugin
 			die('Error: One or more missing input variables.');
 		$userID 	= (int)$_REQUEST['userID'];
 		$userToken 	= $_REQUEST['userToken'];
-		$signUp 	= isset($_REQUEST['signUp']);
+		isset($_REQUEST['signUp']);
 
 		// check token
 		$res = $db->Query('SELECT COUNT(*) FROM {pre}mod_premium_userauth WHERE userid=? AND token=?',
@@ -2922,75 +2909,7 @@ class PremiumAccountPlugin extends BMPlugin
 	// smarty callbacks
 	//
 	//
-	function _smartyPaccFormatField($params, &$smarty)
-	{
-		global $lang_user, $bm_prefs, $plugins, $userRow;
 
-		// params
-		$value = $params['value'];
-		$key = $params['key'];
-		if(isset($params['cut']))
-			$cut = $params['cut'];
-		else
-			$cut = -1;
-
-		// plugin stuff
-		$groupOptions = $plugins->getGroupOptions();
-		if(isset($groupOptions[$key]))
-		{
-			// plugin fields
-			switch($groupOptions[$key]['type'])
-			{
-			case FIELD_CHECKBOX:
-				$value = $value == 1 ? 'yes' : 'no';
-				break;
-
-			case FIELD_RADIO:
-			case FIELD_DROPDOWN:
-				return($groupOptions[$key]['options'][$value]);
-
-			case FIELD_TEXT:
-			case FIELD_TEXTAREA:
-				return(TemplateText($params, $smarty));
-
-			default:
-				return('#UNKNOWN_FIELD_TYPE(' . $groupOptions[$key]['type'] . ')#');
-			}
-		}
-		else
-		{
-			// other fields
-			if(in_array($key, array('storage','webdisk','maxsize','anlagen','traffic')))
-				return(TemplateSize(array('bytes' => $value), $smarty));
-			else if(in_array($key, array('wd_member_kbs','wd_open_kbs')))
-				return(sprintf('%d KB/s', $value));
-			else if($key == 'sms_monat')
-				return(sprintf('%d %s', $value, $lang_user['credits']));
-			else if($key == 'sms_price_per_credit')
-				return(sprintf('%.02f %s', $value/100, $bm_prefs['currency']));
-			else if(in_array($key, array('sms_sig', 'signatur')))
-				return(trim($value) == '' ? $lang_user['none'] : TemplateText($params, $smarty));
-			else if($key == 'saliase' || $key == 'sms_pre')
-				return(implode(', ', explode(':', $value)));
-			else if($key == 'ads')
-				$value = ($value == 'no' ? 'yes' : 'no');
-		}
-
-		if($value == 'yes' || $value == 'no')
-		{
-			if(!isset($userRow))
-				return sprintf('<span class="glyphicon glyphicon-%s" style="color:%s;"></span>',
-					$value == 'yes' ? 'ok' : 'remove',
-					$value == 'yes' ? 'green' : 'red');
-			else
-				return(sprintf('<span class="fa fa-%s" style="color:%s;" />',
-					$value == 'yes' ? 'check' : 'times',
-					$value == 'yes' ? 'green' : 'red'));
-		}
-
-		// default
-		return($params['value']);
-	}
 }
 
 /**

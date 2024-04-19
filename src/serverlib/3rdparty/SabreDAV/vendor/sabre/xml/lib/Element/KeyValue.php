@@ -42,18 +42,10 @@ class KeyValue implements Xml\Element {
      */
     protected $value;
 
+
+
     /**
-     * Constructor
      *
-     * @param array $value
-     */
-    function __construct(array $value = []) {
-
-        $this->value = $value;
-
-    }
-
-    /**
      * The xmlSerialize metod is called during xml writing.
      *
      * Use the $writer argument to write its own xml serialization.
@@ -69,7 +61,8 @@ class KeyValue implements Xml\Element {
      *
      * If you are opening new elements, you must also close them again.
      *
-     * @param Writer $writer
+     * @param Xml\Writer $writer
+     *
      * @return void
      */
     function xmlSerialize(Xml\Writer $writer): void {

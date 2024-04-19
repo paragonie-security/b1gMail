@@ -89,7 +89,6 @@ class CrossReference
         // fix faulty sub-section header
         if ($reader instanceof FixedReader) {
             /**
-             * @var FixedReader $reader
              */
             $reader->fixFaultySubSectionShift();
         }
@@ -99,15 +98,7 @@ class CrossReference
         }
     }
 
-    /**
-     * Get the size of the cross reference.
-     *
-     * @return integer
-     */
-    public function getSize()
-    {
-        return $this->getTrailer()->value['Size']->value;
-    }
+
 
     /**
      * Get the trailer dictionary.
@@ -191,16 +182,19 @@ class CrossReference
     }
 
     /**
+     *
      * Read the cross-reference table at a given offset.
      *
      * Internally the method will try to evaluate the best reader for this cross-reference.
      *
      * @param int $offset
-     * @return ReaderInterface
+     *
+     * @return ReaderInterface|bool
+     *
      * @throws CrossReferenceException
      * @throws PdfTypeException
      */
-    protected function readXref($offset)
+    protected function readXref($offset): bool|ReaderInterface
     {
         $this->parser->getStreamReader()->reset($offset);
         $this->parser->getTokenizer()->clearStack();
@@ -268,10 +262,14 @@ class CrossReference
     }
 
     /**
+     *
      * Check for encryption.
      *
      * @param PdfDictionary $dictionary
+     *
      * @throws CrossReferenceException
+     *
+     * @return void
      */
     protected function checkForEncryption(PdfDictionary $dictionary)
     {

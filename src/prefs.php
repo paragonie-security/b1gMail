@@ -80,7 +80,7 @@ if($groupRow['checker'] == 'yes')
 		$tbxRelease = @unserialize($tbxRow['release_files']);
 		if(!is_array($tbxRelease))
 			$tbxRelease = false;
-		$tbxConfig = @unserialize($tbxRow['config']);
+		@unserialize($tbxRow['config']);
 		break;
 	}
 	$res->Free();
@@ -93,13 +93,16 @@ if(BMPayment::Available())
 	$prefsItems['orders'] = true;
 $prefsItems['membership'] = true;
 
+/**
+ * @return never
+ */
 function PrefsDone()
 {
 	header('Location: prefs.php?sid='.session_id());
 	exit();
 }
 
-function _prefsItemsSort($a, $b)
+function _prefsItemsSort($a, $b): int
 {
 	global $lang_user;
 	return(strcmp($lang_user[$a], $lang_user[$b]));
@@ -990,7 +993,7 @@ else if($_REQUEST['action'] == 'signatures')
 	//
 	else if(isset($_REQUEST['do']) && $_REQUEST['do'] == 'createSignature' && IsPOSTRequest())
 	{
-		$id = $thisUser->AddSignature($_REQUEST['titel'],
+		$thisUser->AddSignature($_REQUEST['titel'],
 			$_REQUEST['text'],
 			$_REQUEST['html']);
 		header('Location: prefs.php?action=signatures&sid=' . session_id());
@@ -1022,7 +1025,7 @@ else if($_REQUEST['action'] == 'signatures')
 		&& isset($_REQUEST['id'])
 		&& IsPOSTRequest())
 	{
-		$id = $thisUser->UpdateSignature($_REQUEST['id'],
+		$thisUser->UpdateSignature($_REQUEST['id'],
 			$_REQUEST['titel'],
 			$_REQUEST['text'],
 			$_REQUEST['html']);
@@ -1882,8 +1885,8 @@ else if($_REQUEST['action'] == 'keyring'
 		// PKCS12 import
 		if(PKCS12_SUPPORT)
 		{
-			$pkcs12TempID = RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
-			$pkcs12TempName = TempFileName($pkcs12TempID);
+			RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
+			TempFileName($pkcs12TempID);
 			$pkcs12UploadFile = getUploadedFile('pkcs12File', $pkcs12TempName);
 
 			echo '<script>' . "\n";
@@ -1935,12 +1938,12 @@ else if($_REQUEST['action'] == 'keyring'
 		// PEM import
 		else
 		{
-			$certTempID = RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
-			$pkeyTempID = RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
-			$chainTempID = RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
-			$certTempName = TempFileName($certTempID);
-			$pkeyTempName = TempFileName($pkeyTempID);
-			$chainTempName = TempFileName($chainTempID);
+			RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
+			RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
+			RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
+			TempFileName($certTempID);
+			TempFileName($pkeyTempID);
+			TempFileName($chainTempID);
 			$certUploadFile = getUploadedFile('certFile', $certTempName);
 			$pkeyUploadFile = getUploadedFile('pkeyFile', $pkeyTempName);
 			$chainUploadFile = getUploadedFile('chainFile', $chainTempName);
@@ -2015,8 +2018,8 @@ else if($_REQUEST['action'] == 'keyring'
 	//
 	else if($_REQUEST['do'] == 'uploadPublicCertificate' && IsPOSTRequest())
 	{
-		$tempID = RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
-		$tempName = TempFileName($tempID);
+		RequestTempFile($userRow['id'], time() + TIME_ONE_HOUR);
+		TempFileName($tempID);
 		$uploadFile = getUploadedFile('certFile', $tempName);
 
 		echo '<script>' . "\n";
@@ -2318,7 +2321,7 @@ else if($_REQUEST['action'] == 'keyring'
 		&& isset($_REQUEST['id'])
 		&& PKCS12_SUPPORT)
 	{
-		$tempFileID = (int)$_REQUEST['id'];
+		(int)$_REQUEST['id'];
 
 		if(ValidTempFile($userRow['id'], $tempFileID))
 		{

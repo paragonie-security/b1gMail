@@ -127,11 +127,10 @@ class VCard extends VObject\Document {
     );
 
     /**
-     * Returns the current document type.
      *
-     * @return void
+     * Returns the current document type.
      */
-    function getDocumentType() {
+    function getDocumentType(): int {
 
         if (!$this->version) {
             $version = (string)$this->VERSION;
@@ -156,25 +155,7 @@ class VCard extends VObject\Document {
 
     }
 
-    /**
-     * Converts the document to a different vcard version.
-     *
-     * Use one of the VCARD constants for the target. This method will return
-     * a copy of the vcard in the new version.
-     *
-     * At the moment the only supported conversion is from 3.0 to 4.0.
-     *
-     * If input and output version are identical, a clone is returned.
-     *
-     * @param int $target
-     * @return VCard
-     */
-    function convert($target) {
 
-        $converter = new VObject\VCardConverter();
-        return $converter->convert($this, $target);
-
-    }
 
     /**
      * VCards with version 2.1, 3.0 and 4.0 are found.
@@ -296,19 +277,24 @@ class VCard extends VObject\Document {
     }
 
     /**
+     *
      * A simple list of validation rules.
      *
      * This is simply a list of properties, and how many times they either
      * must or must not appear.
      *
      * Possible values per property:
-     *   * 0 - Must not appear.
-     *   * 1 - Must appear exactly once.
-     *   * + - Must appear at least once.
-     *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
+     * 0 - Must not appear.
+     * 1 - Must appear exactly once.
+     * + - Must appear at least once.
+     * - Can appear any number of times.
+     * ? - May appear, but not more than once.
      *
      * @var array
+     *
+     * @return string[]
+     *
+     * @psalm-return array{ADR: '*', ANNIVERSARY: '?', BDAY: '?', CALADRURI: '*', CALURI: '*', CATEGORIES: '*', CLIENTPIDMAP: '*', EMAIL: '*', FBURL: '*', IMPP: '*', GENDER: '?', GEO: '*', KEY: '*', KIND: '?', LANG: '*', LOGO: '*', MEMBER: '*', N: '?', NICKNAME: '*', NOTE: '*', ORG: '*', PHOTO: '*', PRODID: '?', RELATED: '*', REV: '?', ROLE: '*', SOUND: '*', SOURCE: '*', TEL: '*', TITLE: '*', TZ: '*', URL: '*', VERSION: '1', XML: '*', UID: '?'}
      */
     function getValidationRules() {
 
@@ -357,41 +343,7 @@ class VCard extends VObject\Document {
 
     }
 
-    /**
-     * Returns a preferred field.
-     *
-     * VCards can indicate wether a field such as ADR, TEL or EMAIL is
-     * preferred by specifying TYPE=PREF (vcard 2.1, 3) or PREF=x (vcard 4, x
-     * being a number between 1 and 100).
-     *
-     * If neither of those parameters are specified, the first is returned, if
-     * a field with that name does not exist, null is returned.
-     *
-     * @param string $fieldName
-     * @return VObject\Property|null
-     */
-    function preferred($propertyName) {
 
-        $preferred = null;
-        $lastPref = 101;
-        foreach($this->select($propertyName) as $field) {
-
-            $pref = 101;
-            if (isset($field['TYPE']) && $field['TYPE']->has('PREF')) {
-                $pref = 1;
-            } elseif (isset($field['PREF'])) {
-                $pref = $field['PREF']->getValue();
-            }
-
-            if ($pref < $lastPref || is_null($preferred)) {
-                $preferred = $field;
-                $lastPref = $pref;
-            }
-
-        }
-        return $preferred;
-
-    }
 
     /**
      * This method should return a list of default property values.

@@ -260,7 +260,7 @@ class Server extends EventEmitter {
             $error->setAttribute('xmlns:s', self::NS_SABREDAV);
             $DOM->appendChild($error);
 
-            $h = function($v) {
+            $h = function($v): string {
 
                 return htmlspecialchars($v, ENT_NOQUOTES, 'UTF-8');
 
@@ -438,7 +438,7 @@ class Server extends EventEmitter {
      * @param $sendResponse Whether to send the HTTP response to the DAV client.
      * @return void
      */
-    function invokeMethod(RequestInterface $request, ResponseInterface $response, $sendResponse = true): void {
+    function invokeMethod(RequestInterface $request, ResponseInterface $response, bool $sendResponse = true): void {
 
         $method = $request->getMethod();
 
@@ -770,32 +770,7 @@ class Server extends EventEmitter {
 
     }
 
-    /**
-     * A kid-friendly way to fetch properties for a node's children.
-     *
-     * The returned array will be indexed by the path of the of child node.
-     * Only properties that are actually found will be returned.
-     *
-     * The parent node will not be returned.
-     *
-     * @param string $path
-     * @param array $propertyNames
-     * @return array
-     */
-    function getPropertiesForChildren($path, $propertyNames) {
 
-        $result = [];
-        foreach ($this->getPropertiesForPath($path, $propertyNames, 1) as $k => $row) {
-
-            // Skipping the parent path
-            if ($k === 0) continue;
-
-            $result[$row['href']] = $row[200];
-
-        }
-        return $result;
-
-    }
 
     /**
      * Returns a list of HTTP headers for a particular resource
@@ -1076,17 +1051,7 @@ class Server extends EventEmitter {
 
 
 
-    /**
-     * This method is invoked by sub-systems creating a new directory.
-     *
-     * @param string $uri
-     * @return void
-     */
-    function createDirectory($uri): void {
 
-        $this->createCollection($uri, new MkCol(['{DAV:}collection'], []));
-
-    }
 
     /**
      * Use this method to create a new collection
@@ -1224,7 +1189,7 @@ class Server extends EventEmitter {
 
         $path = $request->getPath();
         $node = null;
-        $lastMod = null;
+        
         $etag = null;
 
         if ($ifMatch = $request->getHeader('If-Match')) {
@@ -1583,7 +1548,7 @@ class Server extends EventEmitter {
      * @param bool strip404s
      * @return string
      */
-    function generateMultiStatus(array $fileProperties, $strip404s = false) {
+    function generateMultiStatus(array $fileProperties, bool $strip404s = false) {
 
         $xml = [];
 

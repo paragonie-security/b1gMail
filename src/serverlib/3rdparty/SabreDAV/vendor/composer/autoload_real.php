@@ -49,7 +49,7 @@ class ComposerAutoloaderInitd98aa8eda4187f8aba381f2d1a6f1d7d
     }
 }
 
-function composerRequired98aa8eda4187f8aba381f2d1a6f1d7d($fileIdentifier, $file)
+function composerRequired98aa8eda4187f8aba381f2d1a6f1d7d($fileIdentifier, $file): void
 {
     if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
         require $file;

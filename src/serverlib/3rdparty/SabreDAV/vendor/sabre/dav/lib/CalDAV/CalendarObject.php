@@ -120,20 +120,7 @@ class CalendarObject extends \Sabre\DAV\File implements ICalendarObject, \Sabre\
 
     }
 
-    /**
-     * Returns the mime content-type
-     *
-     * @return string
-     */
-    function getContentType() {
 
-        $mime = 'text/calendar; charset=utf-8';
-        if (isset($this->objectData['component']) && $this->objectData['component']) {
-            $mime .= '; component=' . $this->objectData['component'];
-        }
-        return $mime;
-
-    }
 
     /**
      * Returns an ETag for this object.
@@ -163,20 +150,7 @@ class CalendarObject extends \Sabre\DAV\File implements ICalendarObject, \Sabre\
 
     }
 
-    /**
-     * Returns the size of this object in bytes
-     *
-     * @return int
-     */
-    function getSize() {
 
-        if (array_key_exists('size', $this->objectData)) {
-            return $this->objectData['size'];
-        } else {
-            return strlen($this->get());
-        }
-
-    }
 
     /**
      * Returns the owner principal

@@ -288,12 +288,13 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
     }
 
     /**
+     *
      * Add current microtime to the beginning of $cache_content
      * {@internal the header uses 8 Bytes, the first 4 Bytes are the seconds, the second 4 Bytes are the microseconds}}
      *
      * @param string &$content the content to be cached
      */
-    protected function addMetaTimestamp(&$content)
+    protected function addMetaTimestamp(&$content): void
     {
         $mt = explode(' ', microtime());
         $ts = pack('NN', $mt[ 1 ], (int)($mt[ 0 ] * 100000000));
@@ -336,7 +337,7 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
         $resource_uid = null
     ) {
         $now = microtime(true);
-        $key = null;
+        
         // invalidate everything
         if (!$resource_name && !$cache_id && !$compile_id) {
             $key = 'IVK#ALL';
@@ -469,12 +470,13 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
     }
 
     /**
+     *
      * Lock cache for this template
      *
      * @param Smarty                 $smarty Smarty object
      * @param Smarty_Template_Cached $cached cached object
      *
-     * @return bool|void
+     * @return void
      */
     public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {
@@ -484,12 +486,13 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
     }
 
     /**
+     *
      * Unlock cache for this template
      *
      * @param Smarty                 $smarty Smarty object
      * @param Smarty_Template_Cached $cached cached object
      *
-     * @return bool|void
+     * @return void
      */
     public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {

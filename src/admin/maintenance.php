@@ -346,7 +346,7 @@ else if($_REQUEST['action'] == 'trash')
 		}
 		else
 		{
-			$mails = $mailSizes = 0;
+			
 			$res = $db->Query('SELECT id,email FROM {pre}users WHERE gruppe IN(' . implode(',', array_keys($_REQUEST['groups'])) . ') ORDER BY id ASC LIMIT '
 				. (int)$pos . ',' . (int)$perPage);
 			while($row = $res->FetchArray(MYSQLI_ASSOC))
@@ -367,7 +367,7 @@ else if($_REQUEST['action'] == 'trash')
 
 						// stats
 						$mails++;
-						$mailSizes += $mail['size'];
+						$mail['size'];
 					}
 				}
 

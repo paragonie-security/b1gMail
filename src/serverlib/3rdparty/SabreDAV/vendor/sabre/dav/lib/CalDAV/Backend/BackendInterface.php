@@ -11,32 +11,7 @@ namespace Sabre\CalDAV\Backend;
  */
 interface BackendInterface {
 
-    /**
-     * Returns a list of calendars for a principal.
-     *
-     * Every project is an array with the following keys:
-     *  * id, a unique id that will be used by other functions to modify the
-     *    calendar. This can be the same as the uri or a database key.
-     *  * uri, which is the basename of the uri with which the calendar is
-     *    accessed.
-     *  * principaluri. The owner of the calendar. Almost always the same as
-     *    principalUri passed to this method.
-     *
-     * Furthermore it can contain webdav properties in clark notation. A very
-     * common one is '{DAV:}displayname'.
-     *
-     * Many clients also require:
-     * {urn:ietf:params:xml:ns:caldav}supported-calendar-component-set
-     * For this property, you can just return an instance of
-     * Sabre\CalDAV\Property\SupportedCalendarComponentSet.
-     *
-     * If you return {http://sabredav.org/ns}read-only and set the value to 1,
-     * ACL will automatically be put in read-only mode.
-     *
-     * @param string $principalUri
-     * @return array
-     */
-    function getCalendarsForUser($principalUri);
+
 
     /**
      * Creates a new calendar for a principal.
@@ -128,19 +103,7 @@ interface BackendInterface {
      */
     function getCalendarObject($calendarId, $objectUri);
 
-    /**
-     * Returns a list of calendar objects.
-     *
-     * This method should work identical to getCalendarObject, but instead
-     * return all the calendar objects in the list as an array.
-     *
-     * If the backend supports this, it may allow for some speed-ups.
-     *
-     * @param mixed $calendarId
-     * @param array $uris
-     * @return array
-     */
-    function getMultipleCalendarObjects($calendarId, array $uris);
+
 
     /**
      * Creates a new calendar object.
@@ -162,36 +125,9 @@ interface BackendInterface {
      */
     function createCalendarObject($calendarId, $objectUri, $calendarData);
 
-    /**
-     * Updates an existing calendarobject, based on it's uri.
-     *
-     * The object uri is only the basename, or filename and not a full path.
-     *
-     * It is possible return an etag from this function, which will be used in
-     * the response to this PUT request. Note that the ETag must be surrounded
-     * by double-quotes.
-     *
-     * However, you should only really return this ETag if you don't mangle the
-     * calendar-data. If the result of a subsequent GET to this object is not
-     * the exact same as this request body, you should omit the ETag.
-     *
-     * @param mixed $calendarId
-     * @param string $objectUri
-     * @param string $calendarData
-     * @return string|null
-     */
-    function updateCalendarObject($calendarId, $objectUri, $calendarData);
 
-    /**
-     * Deletes an existing calendar object.
-     *
-     * The object uri is only the basename, or filename and not a full path.
-     *
-     * @param mixed $calendarId
-     * @param string $objectUri
-     * @return void
-     */
-    function deleteCalendarObject($calendarId, $objectUri);
+
+
 
     /**
      * Performs a calendar-query on the contents of this calendar.

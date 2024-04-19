@@ -58,7 +58,7 @@ trait EventEmitterTrait {
      */
     function once($eventName, callable $callBack, $priority = 100): void {
 
-        $wrapper = null;
+        
         $wrapper = function() use ($eventName, $callBack, &$wrapper) {
 
             $this->removeListener($eventName, $wrapper);
@@ -71,6 +71,7 @@ trait EventEmitterTrait {
     }
 
     /**
+     *
      * Emits an event.
      *
      * This method will return true if 0 or more listeners were succesfully
@@ -93,7 +94,8 @@ trait EventEmitterTrait {
      *
      * @param string $eventName
      * @param array $arguments
-     * @param callback $continueCallBack
+     * @param callable|null $continueCallBack
+     *
      * @return bool
      */
     function emit($eventName, array $arguments = [], callable $continueCallBack = null) {

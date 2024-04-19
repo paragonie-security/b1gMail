@@ -108,71 +108,20 @@ abstract class Document extends Component {
     }
 
     /**
+     *
      * Returns the current document type.
      *
-     * @return void
+     * @psalm-return 1
      */
-    public function getDocumentType() {
+    public function getDocumentType(): int {
 
         return self::UNKNOWN;
 
     }
 
-    /**
-     * Creates a new component or property.
-     *
-     * If it's a known component, we will automatically call createComponent.
-     * otherwise, we'll assume it's a property and call createProperty instead.
-     *
-     * @param string $name
-     * @param string $arg1,... Unlimited number of args
-     * @return mixed
-     */
-    public function create($name) {
 
-        if (isset(static::$componentMap[strtoupper($name)])) {
 
-            return call_user_func_array(array($this,'createComponent'), func_get_args());
 
-        } else {
-
-            return call_user_func_array(array($this,'createProperty'), func_get_args());
-
-        }
-
-    }
-
-    /**
-     * Creates a new component
-     *
-     * This method automatically searches for the correct component class, based
-     * on its name.
-     *
-     * You can specify the children either in key=>value syntax, in which case
-     * properties will automatically be created, or you can just pass a list of
-     * Component and Property object.
-     *
-     * By default, a set of sensible values will be added to the component. For
-     * an iCalendar object, this may be something like CALSCALE:GREGORIAN. To
-     * ensure that this does not happen, set $defaults to false.
-     *
-     * @param string $name
-     * @param array $children
-     * @param bool $defaults
-     * @return Component
-     */
-    public function createComponent($name, array $children = null, $defaults = true) {
-
-        $name = strtoupper($name);
-        $class = 'Sabre\\VObject\\Component';
-
-        if (isset(static::$componentMap[$name])) {
-            $class=static::$componentMap[$name];
-        }
-        if (is_null($children)) $children = array();
-        return new $class($this, $name, $children, $defaults);
-
-    }
 
     /**
      * Factory method for creating new properties
@@ -206,12 +155,12 @@ abstract class Document extends Component {
         if ($valueType) {
             // The valueType argument comes first to figure out the correct
             // class.
-            $class = $this->getClassNameForPropertyValue($valueType);
+            $this->getClassNameForPropertyValue($valueType);
         }
 
         if (is_null($class) && isset($parameters['VALUE'])) {
             // If a VALUE parameter is supplied, we should use that.
-            $class = $this->getClassNameForPropertyValue($parameters['VALUE']);
+            $this->getClassNameForPropertyValue($parameters['VALUE']);
         }
         if (is_null($class)) {
             $class = $this->getClassNameForPropertyName($name);

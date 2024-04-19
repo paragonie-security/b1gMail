@@ -84,6 +84,7 @@ trait FpdfTplTrait
     }
 
     /**
+     *
      * Draws a template onto the page or another template.
      *
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
@@ -96,10 +97,12 @@ trait FpdfTplTrait
      * @param float|int|null $width The width.
      * @param float|int|null $height The height.
      * @param bool $adjustPageSize
-     * @return array The size
+     *
+     * @return array|bool The size
+     *
      * @see FpdfTplTrait::getTemplateSize()
      */
-    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
+    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false): array|bool
     {
         if (!isset($this->templates[$tpl])) {
             throw new \InvalidArgumentException('Template does not exist!');
@@ -412,6 +415,9 @@ trait FpdfTplTrait
         }
     }
 
+    /**
+     * @return void
+     */
     protected function _putimages()
     {
         parent::_putimages();
@@ -449,6 +455,8 @@ trait FpdfTplTrait
 
     /**
      * @inheritdoc
+     *
+     * @return void
      */
     protected function _putxobjectdict()
     {

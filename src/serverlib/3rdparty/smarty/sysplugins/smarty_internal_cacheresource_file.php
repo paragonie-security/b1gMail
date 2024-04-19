@@ -210,12 +210,13 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
     }
 
     /**
+     *
      * Lock cache for this template
      *
      * @param Smarty                 $smarty Smarty object
      * @param Smarty_Template_Cached $cached cached object
      *
-     * @return bool|void
+     * @return void
      */
     public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {
@@ -224,12 +225,13 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
     }
 
     /**
+     *
      * Unlock cache for this template
      *
      * @param Smarty                 $smarty Smarty object
      * @param Smarty_Template_Cached $cached cached object
      *
-     * @return bool|void
+     * @return void
      */
     public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {

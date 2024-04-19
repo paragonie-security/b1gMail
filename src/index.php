@@ -275,7 +275,7 @@ else if($_REQUEST['action'] == 'signup')
 
 			if(isset($_POST['do']) && $_POST['do']=='createAccount')
 			{
-				$showForm = false;
+				
 				$invalidFields = array();
 				$errorInfo = '';
 
@@ -359,8 +359,8 @@ else if($_REQUEST['action'] == 'signup')
 				}
 				else if($bm_prefs['f_strasse'] == 'n')
 				{
-					$suStreet = $suNo = $suZIP = $suCity = '';
-					$suCountry = $bm_prefs['std_land'];
+					
+					$bm_prefs['std_land'];
 				}
 
 				// 'telefon'-field
@@ -372,7 +372,7 @@ else if($_REQUEST['action'] == 'signup')
 				}
 				else if($bm_prefs['f_telefon'] == 'n')
 				{
-					$suPhone = '';
+					
 				}
 
 				// safecode
@@ -390,7 +390,7 @@ else if($_REQUEST['action'] == 'signup')
 				}
 				else if($bm_prefs['f_fax'] == 'n')
 				{
-					$suFax = '';
+					
 				}
 
 				// 'altmail'-field
@@ -423,7 +423,7 @@ else if($_REQUEST['action'] == 'signup')
 				}
 				else if($bm_prefs['f_alternativ'] == 'n')
 				{
-					$suAltMail = '';
+					
 				}
 
 				// 'mail2sms_nummer'-field
@@ -453,7 +453,7 @@ else if($_REQUEST['action'] == 'signup')
 				}
 				else if($bm_prefs['f_mail2sms_nummer'] == 'n')
 				{
-					$suMobileNr = '';
+					
 				}
 
 				// password
@@ -768,12 +768,10 @@ else if($_REQUEST['action'] == 'checkAddressAvailability')
 	}
 
 	if($result == 1)
-		$result = BMUser::AddressAvailable($address) ? 1 : 0;
+		BMUser::AddressAvailable($address) ? 1 : 0;
 
 	// respond
-	$response = array(
-		'available'		=> $result
-	);
+	
 
 	Array2XML($response);
 	exit();
@@ -1060,8 +1058,8 @@ else if($_REQUEST['action'] == 'completeAddressBookEntry'
 			$book->InvalidateSelfCompleteInvitation($contactID, $key);
 
 			// send mail
-			$userData = BMUser::staticFetch($contactData['user']);
-			$vars = array(
+			BMUser::staticFetch($contactData['user']);
+			array(
 				'vorname'	=> $contactData['vorname'],
 				'nachname'	=> $contactData['nachname']
 			);
@@ -1430,7 +1428,7 @@ else
 									__FILE__,
 									__LINE__);
 
-								$vars = array(
+								array(
 									'activationcode'=> $userRow['sms_validation_code'],
 									'email'			=> DecodeEMail($email),
 									'url'			=> sprintf('%sindex.php?action=activateAccount&id=%d&code=%s',

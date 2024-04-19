@@ -16,7 +16,10 @@ use Sabre\DAVACL;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class User extends DAVACL\Principal implements DAV\ICollection {
+class User extends /**
+ * @param DAVACL\PrincipalBackend\BackendInterface $principalBackend
+ */
+DAVACL\Principal implements DAV\ICollection {
 
     /**
      * Creates a new file in the directory

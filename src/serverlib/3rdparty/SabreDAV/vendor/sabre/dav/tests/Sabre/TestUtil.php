@@ -16,7 +16,7 @@ class TestUtil {
     }
 
 
-    static private function deleteTree($path,$deleteRoot = true): void {
+    static private function deleteTree(string $path,bool $deleteRoot = true): void {
 
         foreach(scandir($path) as $node) {
 
@@ -35,7 +35,7 @@ class TestUtil {
 
     }
 
-    static function getMySQLDB() {
+    static function getMySQLDB(): \PDO|null {
 
         try {
             $pdo = new \PDO(SABRE_MYSQLDSN,SABRE_MYSQLUSER,SABRE_MYSQLPASS);
@@ -47,7 +47,7 @@ class TestUtil {
 
     }
 
-    static function getSQLiteDB() {
+    static function getSQLiteDB(): \PDO {
 
         $pdo = new \PDO('sqlite:'.SABRE_TEMPDIR.'/pdobackend');
         $pdo->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);

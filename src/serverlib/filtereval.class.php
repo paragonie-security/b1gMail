@@ -84,24 +84,7 @@ class BMFilterEval
 	 */
 	var $_mailColor;
 
-	/**
-	 * constructor
-	 *
-	 * @param BMUser $user User
-	 * @param BMMail $mail Mail
-	 * @return BMFilterEval
-	 */
-	function __construct(&$user, &$mail)
-	{
-		$this->_user = &$user;
-		$this->_mail = &$mail;
-		$this->_storeResult = STORE_RESULT_OK;
-		$this->_folder = -1;
-		$this->_flags = 0;
-		$this->_mailColor = 0;
-		$this->_forwardTo = array();
-		$this->_respondWith = array();
-	}
+
 
 	/**
 	 * check if filter conditions match mail

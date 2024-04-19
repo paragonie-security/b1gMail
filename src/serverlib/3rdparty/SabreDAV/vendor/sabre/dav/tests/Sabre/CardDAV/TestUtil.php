@@ -6,14 +6,14 @@ use PDO;
 
 class TestUtil {
 
-    static function getBackend() {
+    static function getBackend(): Backend\PDO {
 
         $backend = new Backend\PDO(self::getSQLiteDB());
         return $backend;
 
     }
 
-    static function getSQLiteDB() {
+    static function getSQLiteDB(): PDO {
 
         if (file_exists(SABRE_TEMPDIR . '/testdb.sqlite'))
             unlink(SABRE_TEMPDIR . '/testdb.sqlite');
@@ -28,7 +28,7 @@ class TestUtil {
         }
         // Inserting events through a backend class.
         $backend = new Backend\PDO($pdo);
-        $addressbookId = $backend->createAddressBook(
+        $backend->createAddressBook(
             'principals/user1',
             'UUID-123467',
             array(
@@ -49,7 +49,7 @@ class TestUtil {
 
     }
 
-    static function getTestCardData($type = 1) {
+    static function getTestCardData($type = 1): string {
 
         $addressbookData = 'BEGIN:VCARD
 VERSION:3.0

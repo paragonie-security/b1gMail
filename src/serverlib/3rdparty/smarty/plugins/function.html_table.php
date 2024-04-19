@@ -6,6 +6,7 @@
  * @subpackage PluginsFunction
  */
 /**
+ *
  * Smarty {html_table} function plugin
  * Type:     function
  * Name:     html_table
@@ -15,7 +16,7 @@
  *
  * - loop       - array to loop through
  * - cols       - number of columns, comma separated list of column names
- *                or array of column names
+ * or array of column names
  * - rows       - number of rows
  * - table_attr - table attributes
  * - th_attr    - table heading attributes (arrays are cycled)
@@ -26,7 +27,7 @@
  * - vdir       - vertical direction (default: "down", means top-to-bottom)
  * - hdir       - horizontal direction (default: "right", means left-to-right)
  * - inner      - inner loop (default "cols": print $loop line by line,
- *                $loop will be printed column by column otherwise)
+ * $loop will be printed column by column otherwise)
  *
  * Examples:
  *
@@ -34,16 +35,18 @@
  * {table loop=$data cols=4 tr_attr='"bgcolor=red"'}
  * {table loop=$data cols="first,second,third" tr_attr=$colors}
  *
- * @author  Monte Ohrt <monte at ohrt dot com>
- * @author  credit to Messju Mohr <messju at lammfellpuschen dot de>
- * @author  credit to boots <boots dot smarty at yahoo dot com>
+ * @author Monte Ohrt <monte at ohrt dot com>
+ * @author credit to Messju Mohr <messju at lammfellpuschen dot de>
+ * @author credit to boots <boots dot smarty at yahoo dot com>
+ *
  * @version 1.1
- * @link    http://www.smarty.net/manual/en/language.function.html.table.php {html_table}
+ *
+ * @link http://www.smarty.net/manual/en/language.function.html.table.php {html_table}
  *           (Smarty online manual)
  *
  * @param array $params parameters
  *
- * @return string
+ * @return null|string
  */
 function smarty_function_html_table($params)
 {

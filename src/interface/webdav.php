@@ -35,7 +35,12 @@ class BMWebdiskState extends BMSessionState
 
 abstract class BMWebdiskNode extends Sabre\DAV\FS\Node
 {
-	protected function getDataSize(&$data)
+	/**
+	 * @param null|resource|string $data
+	 *
+	 * @psalm-return int<0, max>
+	 */
+	protected function getDataSize(&$data): int
 	{
 		$fileSize = 0;
 
@@ -189,12 +194,12 @@ class BMWebdiskFile extends BMWebdiskNode implements Sabre\DAV\IFile
 		$wds->webdisk->DeleteFile($this->getFileID());
 	}
 
-	public function getSize()
-	{
-		return($this->fileRow['size']);
-	}
 
-	public function getETag()
+
+	/**
+	 * @return false|string
+	 */
+	public function getETag(): string|false
 	{
 		global $wds;
 
@@ -214,12 +219,7 @@ class BMWebdiskFile extends BMWebdiskNode implements Sabre\DAV\IFile
 		return('"' . $etag . '"');
 	}
 
-	public function getContentType()
-	{
-		return(isset($this->fileRow['ctype'])
-			? $this->fileRow['ctype']
-			: $this->fileRow['contenttype']);
-	}
+
 
 	public function getLastModified()
 	{
@@ -319,6 +319,9 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 		$wds->webdisk->CreateFolder($this->getFolderID(), $name);
 	}
 
+	/**
+	 * @return BMWebdiskFile|null|self
+	 */
 	public function getChild($name)
 	{
 		global $wds;
@@ -339,7 +342,12 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 		}
 	}
 
-	public function getChildren()
+	/**
+	 * @return (BMWebdiskFile|self)[]
+	 *
+	 * @psalm-return list{0?: BMWebdiskFile|self,...}
+	 */
+	public function getChildren(): array
 	{
 		global $wds;
 
@@ -376,6 +384,11 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 		$wds->webdisk->DeleteFolder($this->getFolderID());
 	}
 
+	/**
+	 * @return array
+	 *
+	 * @psalm-return list{mixed, mixed}
+	 */
 	public function getQuotaInfo()
 	{
 		global $wds;
@@ -397,6 +410,9 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 
 class BMWebdiskAuthBackend extends BMAuthBackend
 {
+	/**
+	 * @return bool
+	 */
 	function checkPermissions()
 	{
 		return($this->groupRow['webdav'] == 'yes');
@@ -446,66 +462,12 @@ class BMWebdiskLockBackend extends Sabre\DAV\Locks\Backend\AbstractBackend
 		return($result);
 	}
 
-	public function lock($uri, Sabre\DAV\Locks\LockInfo $lockInfo)
-	{
-		global $wds, $db;
 
-		$lockInfo->timeout = 1800;
-		$lockInfo->uri = $uri;
 
-		$res = $db->Query('SELECT COUNT(*) FROM {pre}disklocks WHERE `user`=? AND `path`=? AND `token`=?',
-			$wds->userRow['id'],
-			$lockInfo->uri,
-			$lockInfo->token);
-		list($lockCount) = $res->FetchArray(MYSQLI_NUM);
-		$res->Free();
 
-		if($lockCount > 0)
-		{
-			$db->Query('UPDATE {pre}disklocks SET `expires`=?,`modified`=?,`scope`=?,`owner`=?,`type`=? WHERE `user`=? AND `path`=? AND `token`=?',
-				time()+$lockInfo->timeout,
-				time(),
-				$lockInfo->scope,
-				$lockInfo->owner,
-				$lockInfo->depth,
-				$wds->userRow['id'],
-				$lockInfo->uri,
-				$lockInfo->token);
-			return(true);
-		}
-		else
-		{
-			$db->Query('REPLACE INTO {pre}disklocks(`user`,`path`,`token`,`type`,`created`,`modified`,`expires`,`scope`,`owner`) '
-				. 'VALUES(?,?,?,?,?,?,?,?,?)',
-				$wds->userRow['id'],
-				$lockInfo->uri,
-				$lockInfo->token,
-				$lockInfo->depth,
-				time(),
-				time(),
-				time()+$lockInfo->timeout,
-				$lockInfo->scope,
-				$lockInfo->owner);
-		}
-
-		return(true);
-	}
-
-	public function unlock($uri, Sabre\DAV\Locks\LockInfo $lockInfo)
-	{
-		global $wds, $db;
-
-		$lockInfo->uri = $uri;
-
-		$db->Query('DELETE FROM {pre}disklocks WHERE `user`=? AND `token`=?',
-			$wds->userRow['id'],
-			$lockInfo->token);
-
-		return($db->AffectedRows() > 0);
-	}
 }
 
-$wds = new BMWebdiskState;
+new BMWebdiskState;
 
 $rootDirectory = new BMWebdiskDirectory('');
 

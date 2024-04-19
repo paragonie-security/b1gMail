@@ -45,7 +45,7 @@ else if(isset($_REQUEST['out']) && $_REQUEST['out'] == 'img')
 flush();
 
 // set up lock
-function ReleaseUserPOP3Lock()
+function ReleaseUserPOP3Lock(): void
 {
 	global $lockFP;
 
@@ -62,7 +62,7 @@ register_shutdown_function('ReleaseUserPOP3Lock');
 if($bm_prefs['last_userpop3_cron'] < time()-$bm_prefs['cron_interval'])
 {
 	// get pop3 accounts
-	$startTime = time();
+	time();
 	$res = $db->Query('SELECT DISTINCT({pre}pop3.user) FROM {pre}pop3,{pre}users,{pre}gruppen WHERE {pre}gruppen.id={pre}users.gruppe AND {pre}users.id={pre}pop3.user AND {pre}users.gesperrt=\'no\' AND {pre}pop3.last_fetch+{pre}gruppen.ownpop3_interval<? AND {pre}pop3.paused=\'no\'',
 		time());
 	while($row = $res->FetchArray(MYSQLI_NUM))

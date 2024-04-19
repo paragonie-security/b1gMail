@@ -30,17 +30,7 @@ class BMDashboard
 {
     private $_type;
 
-    /**
-     * constructor.
-     *
-     * @param int $type Dashboard type (BMWIDGET_*-constant)
-     *
-     * @return BMDashboard
-     */
-    public function __construct($type)
-    {
-        $this->_type = $type;
-    }
+
 
     /**
      * get array of shown widgets.
@@ -99,14 +89,13 @@ class BMDashboard
     }
 
     /**
+     *
      * widget sort callback for uasort().
      *
      * @param array $a
      * @param array $b
-     *
-     * @return number
      */
-    private function _sortWidgets($a, $b)
+    private function _sortWidgets($a, $b): int
     {
         return strcmp($a['title'], $b['title']);
     }
@@ -187,7 +176,7 @@ class BMDashboard
 
         // explode old order string
         $rows = explode(';', $widgetOrder);
-        $newRows = [];
+        
 
         // remove deactivated widgets
         foreach ($rows as $row) {

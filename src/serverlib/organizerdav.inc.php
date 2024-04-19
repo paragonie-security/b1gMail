@@ -38,17 +38,20 @@ class BMOrganizerState extends BMSessionState
 		return $date;
 	}
 
-	public function getDisplayName()
+	public function getDisplayName(): string
 	{
 		return($this->userRow['vorname'] . ' ' . $this->userRow['nachname']);
 	}
 
-	public function getPrincipalURI()
+	public function getPrincipalURI(): string
 	{
 		return('principals/' . $this->userRow['email']);
 	}
 
-	public function genUID($davUID, $str)
+	/**
+	 * @psalm-param '' $davUID
+	 */
+	public function genUID(string $davUID, string $str): string
 	{
 		if(!empty($davUID))
 			return $davUID;
@@ -60,7 +63,12 @@ class BMOrganizerState extends BMSessionState
 			. '-' . substr($uid, 20, 12));
 	}
 
-	function getLastModified($itemIDs, $itemType)
+	/**
+	 * @param key-of<TArray>[] $itemIDs
+	 *
+	 * @psalm-param list<key-of<array>> $itemIDs
+	 */
+	function getLastModified(array $itemIDs, int $itemType)
 	{
 		global $db;
 
@@ -85,7 +93,7 @@ class BMOrganizerState extends BMSessionState
 		return($noArray ? array_pop($result) : $result);
 	}
 
-	public function getProdID()
+	public function getProdID(): string
 	{
 		return('-//b1gMail Project//b1gMail ' . B1GMAIL_VERSION . '//EN');
 	}
@@ -108,6 +116,11 @@ class BMPrincipalBackend extends Sabre\DAVACL\PrincipalBackend\AbstractBackend
 		return($result);
 	}
 
+	/**
+	 * @return array|null
+	 *
+	 * @psalm-return array{id: mixed, uri: mixed, '{DAV:}displayname': mixed}|null
+	 */
 	function getPrincipalByPath($path)
 	{
 		global $os;

@@ -39,18 +39,7 @@ class BMMailThreader
     public $_userID;
     public $_userObject;
 
-    /**
-     * constructor.
-     *
-     * @param int $userID User ID
-     *
-     * @return BMMailThreader
-     */
-    public function __construct($userID, &$userObject)
-    {
-        $this->_userID = (int) $userID;
-        $this->_userObject = &$userObject;
-    }
+
 
     /**
      * process a set of references.

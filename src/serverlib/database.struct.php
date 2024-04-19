@@ -20,7 +20,7 @@
  */
 
 // extract version
-$databaseStructureVersion = '1.69';
+
 define('DATABASE_STRUCT_HASH', 'f28e837f6c2c50f7536ab91fba3c5b7d26deac4921082249612a74a88fe2baee');
 
 // structure

@@ -63,6 +63,7 @@ class HomeCollection extends AbstractPrincipalCollection implements IACL {
     }
 
     /**
+     *
      * Returns a principals' collection of files.
      *
      * The passed array contains principal information, and is guaranteed to
@@ -70,9 +71,8 @@ class HomeCollection extends AbstractPrincipalCollection implements IACL {
      * supplied by the authentication backend.
      *
      * @param array $principalInfo
-     * @return void
      */
-    function getChildForPrincipal(array $principalInfo) {
+    function getChildForPrincipal(array $principalInfo): Collection {
 
         $owner = $principalInfo['uri'];
         $acl = [

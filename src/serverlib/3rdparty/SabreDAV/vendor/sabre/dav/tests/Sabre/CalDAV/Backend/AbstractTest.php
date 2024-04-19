@@ -95,7 +95,12 @@ class AbstractTest extends \PHPUnit_Framework_TestCase {
 
 class AbstractMock extends AbstractBackend {
 
-    function getCalendarsForUser($principalUri) {
+    /**
+     * @return (int|string)[][]
+     *
+     * @psalm-return list{array{id: 1, principaluri: 'principal1', uri: 'cal1'}, array{id: 2, principaluri: 'principal1', '{http://sabredav.org/ns}owner-principal': 'principal2', uri: 'cal1'}}
+     */
+    function getCalendarsForUser($principalUri): array {
 
         return array(
             array(
@@ -114,6 +119,11 @@ class AbstractMock extends AbstractBackend {
     }
     function createCalendar($principalUri,$calendarUri,array $properties) { }
     function deleteCalendar($calendarId) { }
+    /**
+     * @return (int|string)[][]|null
+     *
+     * @psalm-return list{0: array{id: 1|3, calendarid: 1|2, uri: 'event1.ics'|'shared-event.ics'}, 1?: array{id: 2, calendarid: 1, uri: 'task1.ics'}}|null
+     */
     function getCalendarObjects($calendarId) {
 
         switch($calendarId) {
@@ -171,8 +181,14 @@ class AbstractMock extends AbstractBackend {
         }
 
     }
+    /**
+     * @return void
+     */
     function createCalendarObject($calendarId,$objectUri,$calendarData) { }
+    /**
+     * @return void
+     */
     function updateCalendarObject($calendarId,$objectUri,$calendarData) { }
-    function deleteCalendarObject($calendarId,$objectUri) { }
+    function deleteCalendarObject($calendarId,$objectUri): void { }
 
 }

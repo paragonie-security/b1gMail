@@ -52,8 +52,8 @@ $url = $_SERVER['REQUEST_URI'];
 $sepPos = strpos($url, '?');
 if($sepPos !== false)
 {
-	$targetURL = substr($url, $sepPos+1);
-	$targetURL = str_replace('%23','#',$targetURL);
+	
+	
 	$tpl->assign('pref_exturl_warning', $bm_prefs['exturl_warning']);
 	if($bm_prefs['exturl_warning']=='no') {
 		$tpl->assign('url', HTMLFormat($targetURL));

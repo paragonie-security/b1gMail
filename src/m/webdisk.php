@@ -131,7 +131,7 @@ if($_REQUEST['action'] == 'folder')
 					{
 						if(($fileID = $webdisk->CreateFile($folderID, $fileName, $mimeType, $fileSize)) !== false)
 						{
-							$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+							RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 							$tempFileName = TempFileName($tempFileID);
 
 							if(!@move_uploaded_file($value['tmp_name'], $tempFileName))
@@ -201,12 +201,12 @@ if($_REQUEST['action'] == 'folder')
 
 	if($folderID <= 0)
 	{
-		$folderName = $lang_user['webdisk'];
+		$lang_user['webdisk'];
 	}
 	else
 	{
 		$folder = $webdisk->GetFolderInfo($folderID);
-		if($folder) $folderName = $folder['titel'];
+		if($folder) $folder['titel'];
 	}
 
 	$folderContent 	= $webdisk->GetFolderContent($folderID);
@@ -226,7 +226,7 @@ else if($_REQUEST['action'] == 'downloadFolder'
 	$folderInfo = $webdisk->GetFolderInfo($folderID);
 	if(!$folderInfo) die('Folder not found.');
 
-	$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+	RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 	$tempFileName = TempFileName($tempFileID);
 
 	// determine zip filename
@@ -244,7 +244,7 @@ else if($_REQUEST['action'] == 'downloadFolder'
 	if($groupRow['traffic'] <= 0 || ($userRow['traffic_down']+$userRow['traffic_up']+$size) <= $groupRow['traffic']+$userRow['traffic_add'])
 	{
 		// ok
-		$speedLimit = $groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
+		$groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
 		$db->Query('UPDATE {pre}users SET traffic_down=traffic_down+? WHERE id=?',
 			$size,
 			$userRow['id']);
@@ -286,7 +286,7 @@ else if($_REQUEST['action'] == 'downloadFile'
 		if($groupRow['traffic'] <= 0 || ($userRow['traffic_down']+$userRow['traffic_up']+$fileInfo['size']) <= $groupRow['traffic']+$userRow['traffic_add'])
 		{
 			// ok
-			$speedLimit = $groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
+			$groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
 			$db->Query('UPDATE {pre}users SET traffic_down=traffic_down+? WHERE id=?',
 				$fileInfo['size'],
 				$userRow['id']);

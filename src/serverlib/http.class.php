@@ -212,13 +212,18 @@ class BMHTTP
 	}
 
 	/**
+	 *
 	 * make post request and write response to FP
 	 *
 	 * @param string $postData Data to post to the URL
 	 * @param string $contentType Data content type
+	 * @param null|string[] $headers
+	 *
 	 * @return bool
+	 *
+	 * @psalm-param array{location: string,...}|null $headers
 	 */
-	function DownloadToFP_POST($fp, $postData, $contentType = 'application/x-www-form-urlencoded', &$headers = null)
+	function DownloadToFP_POST($fp, $postData, $contentType = 'application/x-www-form-urlencoded', array|null &$headers = null)
 	{
 		$crlf = "\r\n";
 

@@ -38,17 +38,7 @@ class BMAddressbook
     private $_groupCache = [];
     private $_exportFields = 'vorname AS Firstname, nachname AS Lastname, anrede AS Salutation, position AS Position, firma AS Company, strassenr AS Street, plz AS ZIP, ort as City, land AS Country, email AS EMail, tel AS Phone, handy AS Mobile, fax AS Fax, work_strassenr AS workStreet, work_plz AS workZIP, work_ort AS workCity, work_land AS workCountry, work_email AS workEMail, work_tel AS workPhone, work_handy AS workMobile, work_fax AS workFax, web AS Homepage, kommentar AS Comment, CASE geburtsdatum WHEN 0 THEN \'\' ELSE FROM_UNIXTIME(geburtsdatum, \'%Y-%m-%d\') END AS Birthday';
 
-    /**
-     * constructor.
-     *
-     * @param int $userID User ID
-     *
-     * @return BMAddressbook
-     */
-    public function __construct($userID)
-    {
-        $this->_userID = (int) $userID;
-    }
+
 
     /**
      * lookup address book entry by email.

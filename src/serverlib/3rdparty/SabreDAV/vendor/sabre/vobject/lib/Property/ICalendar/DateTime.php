@@ -110,11 +110,12 @@ class DateTime extends Property {
     }
 
     /**
+     *
      * Returns true if this is a floating DATE or DATE-TIME.
      *
      * Note that DATE is always floating.
      */
-    public function isFloating() {
+    public function isFloating(): bool {
 
         return
             !$this->hasTime() ||
@@ -126,6 +127,7 @@ class DateTime extends Property {
     }
 
     /**
+     *
      * Returns a date-time value.
      *
      * Note that if this property contained more than 1 date-time, only the
@@ -137,9 +139,8 @@ class DateTime extends Property {
      * figure out the exact date.
      *
      * @param DateTimeZone $timeZone
-     * @return \DateTime
      */
-    public function getDateTime(DateTimeZone $timeZone = null) {
+    public function getDateTime(DateTimeZone $timeZone = null): \DateTime|null {
 
         $dt = $this->getDateTimes($timeZone);
         if (!$dt) return null;
@@ -149,6 +150,7 @@ class DateTime extends Property {
     }
 
     /**
+     *
      * Returns multiple date-time values.
      *
      * If no timezone information is known, because it's either an all-day
@@ -156,9 +158,12 @@ class DateTime extends Property {
      * figure out the exact date.
      *
      * @param DateTimeZone $timeZone
-     * @return \DateTime[]
+     *
+     * @return (\DateInterval|\DateTime)[]
+     *
+     * @psalm-return list{0?: \DateInterval|\DateTime,...}
      */
-    public function getDateTimes(DateTimeZone $timeZone = null) {
+    public function getDateTimes(DateTimeZone $timeZone = null): array {
 
         // Does the property have a TZID?
         $tzid = $this['TZID'];

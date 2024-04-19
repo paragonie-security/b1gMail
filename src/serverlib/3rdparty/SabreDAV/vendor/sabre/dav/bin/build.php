@@ -74,7 +74,7 @@ foreach(array_keys($newTaskList) as $task) {
 
 }
 
-function init() {
+function init(): void {
 
     global $version;
     if (!$version) {
@@ -86,7 +86,7 @@ function init() {
 
 }
 
-function clean() {
+function clean(): void {
 
     global $baseDir;
     echo "  Removing build files\n";
@@ -97,13 +97,16 @@ function clean() {
 
 }
 
-function composerupdate() {
+function composerupdate(): void {
 
     global $baseDir;
     echo "  Updating composer packages to latest version\n\n";
     system('cd ' . $baseDir . '; composer update');
 }
 
+/**
+ * @return void
+ */
 function test() {
 
     global $baseDir;
@@ -118,6 +121,9 @@ function test() {
    
 }
 
+/**
+ * @return void
+ */
 function buildzip() {
 
     global $baseDir, $version;

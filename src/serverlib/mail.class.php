@@ -49,25 +49,7 @@ class BMMail
 	var $smimeStatus = SMIME_UNKNOWN;
 	var $smimeCertificateHash = false;
 
-	/**
-	 * constructor
-	 *
-	 * @param array $row Message row
-	 * @return BMMail
-	 */
-	function __construct($userID, $row = false, $fp = false, $useCache = true, $msgFileName = false, &$userObject = false)
-	{
-		$this->_useCache = $useCache;
-		$this->_userID = $userID;
-		$this->_userObject = &$userObject;
-		$this->_parsed = false;
-		if($row !== false)
-			$this->_fromRow($row);
-		$this->_fp = $fp;
-		$this->_msgFileName = $msgFileName;
 
-		ModuleFunction('OnGetMail', array($this->id, $this->_userID));
-	}
 
 	/**
 	 * parse mail
@@ -123,31 +105,13 @@ class BMMail
 		return($this->_parsed->GetPartList());
 	}
 
+
+
 	/**
-	 * load mail from row
 	 *
-	 * @param array $row Row (of bm60_mails)
-	 */
-	function _fromRow($row): void
-	{
-		$this->_row			= $row;
-		$this->id			= $row['id'];
-		$this->blobStorage 	= $row['blobstorage'];
-
-		$this->date			= $row['datum'];
-		$this->priority		= $row['priority'] == 'high' ? ITEMPRIO_HIGH :
-									($row['priority'] == 'low' ? ITEMPRIO_LOW :
-									ITEMPRIO_NORMAL);
-		$this->flags		= $row['flags'];
-		$this->infection	= $row['virnam'];
-		$this->trained		= $row['trained'] == 1;
-		$this->color 		= isset($row['color']) ? $row['color'] : 0;
-	}
-
-	/**
 	 * check if mail is trusted
 	 *
-	 * @return bool
+	 * @return bool|null
 	 */
 	function IsTrusted()
 	{
@@ -606,7 +570,12 @@ class BMMail
 		return(false);
 	}
 
-	function GetDeliveryStatus()
+	/**
+	 * @return (array|bool|int|string)[]|false
+	 *
+	 * @psalm-return array{statusText: string, processingCount: 0|1|2, deliveredCount: 0|1|2, deferredCount: 0|1|2, failedCount: 0|1|2, allCount: 0|1|2, allDelivered: bool, exception: bool, recipients: list{0?: mixed,...}}|false
+	 */
+	function GetDeliveryStatus(): array|false
 	{
 		global $db, $lang_user;
 

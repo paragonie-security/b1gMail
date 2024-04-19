@@ -58,31 +58,20 @@ class Smarty_Internal_SmartyTemplateCompiler extends Smarty_Internal_TemplateCom
      */
     public $postfixCompiledCode = '';
 
-    /**
-     * Initialize compiler
-     *
-     * @param string $lexer_class  class name
-     * @param string $parser_class class name
-     * @param Smarty $smarty       global instance
-     */
-    public function __construct($lexer_class, $parser_class, Smarty $smarty)
-    {
-        parent::__construct($smarty);
-        // get required plugins
-        $this->lexer_class = $lexer_class;
-        $this->parser_class = $parser_class;
-    }
+
 
     /**
+     *
      * method to compile a Smarty template
      *
      * @param mixed $_content template source
      * @param bool  $isTemplateSource
      *
-     * @return bool true if compiling succeeded, false if it failed
+     * @return string true if compiling succeeded, false if it failed
+     *
      * @throws \SmartyCompilerException
      */
-    protected function doCompile($_content, $isTemplateSource = false)
+    protected function doCompile($_content, $isTemplateSource = false): string
     {
         /* here is where the compiling takes place. Smarty
           tags in the templates are replaces with PHP code,
@@ -151,34 +140,7 @@ class Smarty_Internal_SmartyTemplateCompiler extends Smarty_Internal_TemplateCom
         return $this->prefixCompiledCode . $this->parser->retvalue . $this->postfixCompiledCode;
     }
 
-    /**
-     * Register a post compile callback
-     * - when the callback is called after template compiling the compiler object will be inserted as first parameter
-     *
-     * @param callback $callback
-     * @param array    $parameter optional parameter array
-     * @param string   $key       optional key for callback
-     * @param bool     $replace   if true replace existing keyed callback
-     */
-    public function registerPostCompileCallback($callback, $parameter = array(), $key = null, $replace = false): void
-    {
-        array_unshift($parameter, $callback);
-        if (isset($key)) {
-            if ($replace || !isset($this->postCompileCallbacks[ $key ])) {
-                $this->postCompileCallbacks[ $key ] = $parameter;
-            }
-        } else {
-            $this->postCompileCallbacks[] = $parameter;
-        }
-    }
 
-    /**
-     * Remove a post compile callback
-     *
-     * @param string $key callback key
-     */
-    public function unregisterPostCompileCallback($key): void
-    {
-        unset($this->postCompileCallbacks[ $key ]);
-    }
+
+
 }

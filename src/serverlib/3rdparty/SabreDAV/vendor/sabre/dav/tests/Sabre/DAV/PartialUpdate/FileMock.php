@@ -17,6 +17,7 @@ class FileMock implements IPatchSupport {
     }
 
     /**
+     *
      * Updates the file based on a range specification.
      *
      * The first argument is the data, which is either a readable stream
@@ -24,10 +25,10 @@ class FileMock implements IPatchSupport {
      *
      * The second argument is the type of update we're doing.
      * This is either:
-     * * 1. append
-     * * 2. update based on a start byte
-     * * 3. update based on an end byte
-     *;
+     * 1. append
+     * 2. update based on a start byte
+     * 3. update based on an end byte
+     * ;
      * The third argument is the start or end byte.
      *
      * After a successful put operation, you may choose to return an ETag. The
@@ -41,7 +42,8 @@ class FileMock implements IPatchSupport {
      * @param resource|string $data
      * @param int $rangeType
      * @param int $offset
-     * @return string|null
+     *
+     * @return void
      */
     function patch($data, $rangeType, $offset = null): void {
 
@@ -75,13 +77,16 @@ class FileMock implements IPatchSupport {
 
     }
 
-    function getContentType() {
+    function getContentType(): string {
 
         return 'text/plain';
 
     }
 
-    function getSize() {
+    /**
+     * @psalm-return int<0, max>
+     */
+    function getSize(): int {
 
         return strlen($this->data);
 

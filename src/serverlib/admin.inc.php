@@ -22,15 +22,13 @@
 define('ADMIN_MODE', true);
 include '../serverlib/init.inc.php';
 if (defined('TOOLBOX_SERVER')) {
-    $toolbox_serverurl = TOOLBOX_SERVER;
+    
 }
-else $toolbox_serverurl = '';
+else 
 
 // tables
-$customTextsHTML = [
-//	'imprint'						=> true
-];
-$permsTable = [
+
+[
     'overview' => $lang_admin['overview'],
     'users' => $lang_admin['users'],
     'groups' => $lang_admin['groups'],
@@ -44,55 +42,20 @@ $permsTable = [
     'stats' => $lang_admin['stats'],
     'logs' => $lang_admin['logs'],
 ];
-$fieldTypeTable = [
-    FIELD_CHECKBOX => $lang_admin['checkbox'],
-    FIELD_DROPDOWN => $lang_admin['dropdown'],
-    FIELD_RADIO => $lang_admin['radio'],
-    FIELD_TEXT => $lang_admin['text'],
-    FIELD_DATE => $lang_admin['date'],
-];
-$pluginTypeTable = [
-    BMPLUGIN_DEFAULT => $lang_admin['module'],
-    BMPLUGIN_FILTER => $lang_admin['filter'],
-    BMPLUGIN_WIDGET => $lang_admin['widget'],
-];
-$statusTable = [
+
+
+[
     'yes' => $lang_admin['locked'],
     'no' => $lang_admin['active'],
     'locked' => $lang_admin['notactivated'],
     'delete' => $lang_admin['deleted'],
     'registered' => $lang_admin['registered'],
 ];
-$statusImgTable = [
-    'yes' => 'locked',
-    'no' => 'active',
-    'locked' => 'notactivated',
-    'delete' => 'deleted',
-    'registered' => 'nologin',
-];
-$aliasTypeTable = [
-    ALIAS_RECIPIENT => $lang_admin['receive'],
-    ALIAS_SENDER => $lang_admin['send'],
-    ALIAS_SENDER | ALIAS_RECIPIENT => $lang_admin['send'].', '.$lang_admin['receive'],
-    ALIAS_SENDER | ALIAS_PENDING => $lang_admin['notconfirmed'],
-];
-$ruleActionTable = [
-    RECVRULE_ACTION_ISRECIPIENT => $lang_admin['isrecipient'],
-    RECVRULE_ACTION_SETRECIPIENT => $lang_admin['setrecipient'],
-    RECVRULE_ACTION_ADDRECIPIENT => $lang_admin['addrecipient'],
-    RECVRULE_ACTION_DELETE => $lang_admin['delete'],
-    RECVRULE_ACTION_BOUNCE => $lang_admin['bounce'],
-    RECVRULE_ACTION_MARKSPAM => $lang_admin['markspam'],
-    RECVRULE_ACTION_MARKINFECTED => $lang_admin['markinfected'],
-    RECVRULE_ACTION_SETINFECTION => $lang_admin['setinfection'],
-    RECVRULE_ACTION_MARKREAD => $lang_admin['markread'],
-];
-$ruleTypeTable = [
-    RECVRULE_TYPE_INACTIVE => $lang_admin['inactive'],
-    RECVRULE_TYPE_RECEIVERULE => $lang_admin['receiverule'],
-    RECVRULE_TYPE_CUSTOMRULE => $lang_admin['custom'],
-];
-$faqRequirementTable = [
+
+
+
+
+[
     'responder' => $lang_admin['autoresponder'],
     'forward' => $lang_admin['forward'],
     'mail2sms' => $lang_admin['mail2sms'],
@@ -107,7 +70,7 @@ $faqRequirementTable = [
     'organizerdav' => $lang_admin['organizerdav'],
     'ftsearch' => $lang_admin['ftsearch'],
 ];
-$lockedTypeTable = [
+[
     'start' => $lang_admin['startswith'],
     'mitte' => $lang_admin['contains'],
     'ende' => $lang_admin['endswith'],
@@ -128,7 +91,7 @@ $backupTables = [
 ];
 
 // files and folders that should have write permissions
-$writeableFiles = [
+[
     'admin/templates/cache/',
     'languages/',
     'logs/',
@@ -144,11 +107,7 @@ $writeableFiles = [
 ];
 
 // htaccess files that should exist
-$htaccessFiles = [
-    B1GMAIL_DATA_DIR.'.htaccess',
-    B1GMAIL_REL.'logs/.htaccess',
-    B1GMAIL_REL.'temp/.htaccess',
-];
+
 
 /**
  * check if admin is allowed to do sth.
@@ -165,9 +124,12 @@ function AdminAllowed($priv)
 }
 
 /**
+ *
  * require privilege.
  *
  * @param string $priv
+ *
+ * @return void
  */
 function AdminRequirePrivilege($priv)
 {
@@ -323,7 +285,7 @@ function LoadTbxConfigDescriptors()
     $tbxConfig = [];
     include B1GMAIL_DIR.'serverlib/toolbox.config.php';
 
-    function cmpTbxConfig($a, $b)
+    function cmpTbxConfig($a, $b): float|int
     {
         if ($a == $b) {
             return 0;
@@ -341,11 +303,12 @@ function LoadTbxConfigDescriptors()
 }
 
 /**
+ *
  * delete an user and associated data.
  *
  * @param int $userID
  */
-function DeleteUser($userID, $qAddAND = '')
+function DeleteUser($userID, $qAddAND = ''): bool
 {
     global $db;
 

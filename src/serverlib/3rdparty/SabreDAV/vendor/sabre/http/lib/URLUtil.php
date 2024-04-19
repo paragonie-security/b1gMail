@@ -32,20 +32,7 @@ class URLUtil {
 
     }
 
-    /**
-     * Encodes a 1 segment of a path
-     *
-     * Slashes are considered part of the name, and are encoded as %2f
-     *
-     * @deprecated use \Sabre\HTTP\encodePathSegment()
-     * @param string $pathSegment
-     * @return string
-     */
-    static function encodePathSegment($pathSegment) {
 
-        return encodePathSegment($pathSegment);
-
-    }
 
     /**
      * Decodes a url-encoded path
@@ -60,18 +47,7 @@ class URLUtil {
 
     }
 
-    /**
-     * Decodes a url-encoded path segment
-     *
-     * @deprecated use \Sabre\HTTP\decodePathSegment()
-     * @param string $path
-     * @return string
-     */
-    static function decodePathSegment($path) {
 
-        return decodePathSegment($path);
-
-    }
 
     /**
      * Returns the 'dirname' and 'basename' for a path.
@@ -86,18 +62,6 @@ class URLUtil {
 
     }
 
-    /**
-     * Resolves relative urls, like a browser would.
-     *
-     * @deprecated Use Sabre\Uri\resolve().
-     * @param string $basePath
-     * @param string $newPath
-     * @return string
-     */
-    static function resolve($basePath, $newPath) {
 
-        return Uri\resolve($basePath, $newPath);
-
-    }
 
 }

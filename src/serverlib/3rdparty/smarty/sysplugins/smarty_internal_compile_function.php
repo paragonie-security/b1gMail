@@ -93,10 +93,11 @@ class Smarty_Internal_Compile_Functionclose extends Smarty_Internal_CompileBase
     private $compiler = null;
 
     /**
+     *
      * Compiles code for the {/function} tag
      *
      * @param array                                        $args     array with attributes from parser
-     * @param object|\Smarty_Internal_TemplateCompilerBase $compiler compiler object
+     * @param Smarty_Internal_TemplateCompilerBase $compiler compiler object
      *
      * @return bool true
      */
@@ -216,13 +217,16 @@ class Smarty_Internal_Compile_Functionclose extends Smarty_Internal_CompileBase
     }
 
     /**
+     *
      * Remove nocache code
      *
      * @param $match
      *
-     * @return string
+     * @return string|string[]
+     *
+     * @psalm-return array<string>|string
      */
-    public function removeNocache($match)
+    public function removeNocache($match): array|string
     {
         $code =
             preg_replace(

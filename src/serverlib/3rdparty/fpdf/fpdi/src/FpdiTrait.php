@@ -108,11 +108,12 @@ trait FpdiTrait
     }
 
     /**
+     *
      * Set the minimal PDF version.
      *
      * @param string $pdfVersion
      */
-    protected function setMinPdfVersion($pdfVersion)
+    protected function setMinPdfVersion($pdfVersion): void
     {
         if (\version_compare($pdfVersion, $this->PDFVersion, '>')) {
             $this->PDFVersion = $pdfVersion;
@@ -422,6 +423,7 @@ trait FpdiTrait
     }
 
     /**
+     *
      * Draws an imported page onto the page.
      *
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
@@ -434,10 +436,12 @@ trait FpdiTrait
      * @param float|int|null $width The width.
      * @param float|int|null $height The height.
      * @param bool $adjustPageSize
-     * @return array The size.
+     *
+     * @return array|bool The size.
+     *
      * @see Fpdi::getTemplateSize()
      */
-    public function useImportedPage($pageId, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
+    public function useImportedPage($pageId, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false): array|bool
     {
         if (\is_array($x)) {
             /** @noinspection OffsetOperationsInspection */
@@ -578,12 +582,14 @@ trait FpdiTrait
     }
 
     /**
+     *
      * Writes a PdfType object to the resulting buffer.
      *
      * @param PdfType $value
+     *
      * @throws PdfTypeException
      */
-    protected function writePdfType(PdfType $value)
+    protected function writePdfType(PdfType $value): void
     {
         if ($value instanceof PdfNumeric) {
             if (\is_int($value->value)) {
@@ -637,7 +643,6 @@ trait FpdiTrait
             $this->_put($this->objectMap[$this->currentReaderId][$value->value] . ' 0 R ', false);
         } elseif ($value instanceof PdfIndirectObject) {
             /**
-             * @var PdfIndirectObject $value
              */
             $n = $this->objectMap[$this->currentReaderId][$value->objectNumber];
             $this->_newobj($n);

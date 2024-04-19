@@ -102,13 +102,13 @@ if($_REQUEST['action'] == 'users')
 				// get user info
 				$userObject = _new('BMUser', array($_REQUEST['singleID']));
 				$userRow = $userObject->Fetch();
-				$userMail = $userRow['email'];
+				$userRow['email'];
 
 				// open mailbox
 				$mailbox = _new('BMMailbox', array($_REQUEST['singleID'], $userMail, $userObject));
 
 				// empty trash
-				$deletedMails = $mailbox->EmptyFolder(FOLDER_TRASH);
+				$mailbox->EmptyFolder(FOLDER_TRASH);
 			}
 		}
 
@@ -465,7 +465,7 @@ if($_REQUEST['action'] == 'users')
 		// get user data
 		$userObject = _new('BMUser', array((int)$_REQUEST['id']));
 		$userRow = $user = $userObject->Fetch();
-		$userMailbox = _new('BMMailbox', array($userRow['id'], $userRow['email'], $userObject));
+		_new('BMMailbox', array($userRow['id'], $userRow['email'], $userObject));
 
 		// re-send validation sms
 		if(isset($_REQUEST['resendValidationSMS']))
@@ -485,7 +485,7 @@ if($_REQUEST['action'] == 'users')
 		// re-send validation email
 		if(isset($_REQUEST['resendValidationEmail']))
 		{
-			$vars = array(
+			array(
 				'activationcode' 	=> $userRow['sms_validation_code'],
 				'email'				=> DecodeEMail($userRow['email']),
 				'url'				=> sprintf('%sindex.php?action=activateAccount&id=%d&code=%s',
@@ -922,8 +922,8 @@ else if($_REQUEST['action'] == 'create')
 	// create user
 	if(isset($_REQUEST['create']))
 	{
-		$msgIcon = 'error32';
-		$msgText = '?';
+		
+		
 
 		// check address syntax
 		$email = trim($_REQUEST['email']) . '@' . $_REQUEST['emailDomain'];

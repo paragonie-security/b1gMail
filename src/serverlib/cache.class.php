@@ -52,7 +52,10 @@ class BMCache
 		else
 			return(false);
 	}
-	function _Get($key)
+	/**
+	 * @return false
+	 */
+	function _Get(string $key)
 	{
 		return(false);
 	}
@@ -74,7 +77,10 @@ class BMCache
 		else
 			return(false);
 	}
-	function _Add($key, $obj, $expires = 0)
+	/**
+	 * @return false
+	 */
+	function _Add(string $key, $obj, int $expires = 0)
 	{
 		return(false);
 	}
@@ -96,7 +102,10 @@ class BMCache
 		else
 			return(false);
 	}
-	function _Set($key, $obj, $expires = 0)
+	/**
+	 * @return false
+	 */
+	function _Set(string $key, $obj, int $expires = 0)
 	{
 		return(false);
 	}
@@ -116,7 +125,10 @@ class BMCache
 		else
 			return(false);
 	}
-	function _Delete($key)
+	/**
+	 * @return false
+	 */
+	function _Delete(string $key)
 	{
 		return(false);
 	}

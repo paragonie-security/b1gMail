@@ -40,13 +40,14 @@ class Smarty_Internal_Resource_Stream extends Smarty_Resource_Recompiled
     }
 
     /**
+     *
      * Load template's source from stream into current template object
      *
      * @param Smarty_Template_Source $source source object
      *
-     * @return string template source
+     * @return false|string template source
      */
-    public function getContent(Smarty_Template_Source $source)
+    public function getContent(Smarty_Template_Source $source): string|false
     {
         $t = '';
         // the availability of the stream has already been checked in Smarty_Resource::fetch()

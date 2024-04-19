@@ -49,7 +49,10 @@ class Widget_Calculator extends BMPlugin
 				|| $for == BMWIDGET_ORGANIZER);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		return(true);
 	}

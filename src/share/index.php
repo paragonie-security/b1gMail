@@ -103,7 +103,7 @@ else if($_REQUEST['action'] == 'getFolder'
 
 	if($id == 0)
 	{
-		$contents = $webdisk->GetShares();
+		$webdisk->GetShares();
 	}
 	else
 	{
@@ -113,7 +113,7 @@ else if($_REQUEST['action'] == 'getFolder'
 			|| (trim($sharePW) != '' && (!isset($_REQUEST['password']) || ($sharePW != _unescape($_REQUEST['password'])))))
 			die('Permission denied');
 		$path = array_merge($path, $webdisk->GetFolderPath($id));
-		$contents = $webdisk->GetFolderContent($id);
+		$webdisk->GetFolderContent($id);
 	}
 
 	foreach($path as $key=>$val)
@@ -187,7 +187,7 @@ else if($_REQUEST['action'] == 'getFile'
 		if($groupRow['traffic'] <= 0 || ($userRow['traffic_down']+$userRow['traffic_up']+$fileInfo['size']) <= $groupRow['traffic']+$userRow['traffic_add'])
 		{
 			// ok
-			$speedLimit = $groupRow['wd_open_kbs'] <= 0 ? -1 : $groupRow['wd_open_kbs'];
+			$groupRow['wd_open_kbs'] <= 0 ? -1 : $groupRow['wd_open_kbs'];
 			$db->Query('UPDATE {pre}users SET traffic_down=traffic_down+? WHERE id=?',
 				$fileInfo['size'],
 				$userID);

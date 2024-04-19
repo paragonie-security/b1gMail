@@ -34,6 +34,7 @@ class Json extends Parser {
     protected $root;
 
     /**
+     *
      * This method starts the parsing process.
      *
      * If the input was not supplied during construction, it's possible to pass
@@ -43,9 +44,10 @@ class Json extends Parser {
      *
      * @param resource|string|array|null $input
      * @param int|null $options
-     * @return array
+     *
+     * @return VCalendar|VCard
      */
-    public function parse($input = null, $options = null) {
+    public function parse($input = null, $options = null): VCard|VCalendar {
 
         if (!is_null($input)) {
             $this->setInput($input);

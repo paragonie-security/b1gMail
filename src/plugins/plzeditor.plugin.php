@@ -126,7 +126,10 @@ class PLZEditorPlugin extends BMPlugin
         }
     }
 
-    private function _getPLZFiles()
+    /**
+     * @psalm-return array<string, mixed>
+     */
+    private function _getPLZFiles(): array
     {
         $result = [];
         $countries = CountryList();
@@ -148,7 +151,7 @@ class PLZEditorPlugin extends BMPlugin
         return $result;
     }
 
-    private function _ZIPAdd($plz, $ort, $staat)
+    private function _ZIPAdd(string $plz, string $ort, int $staat): bool
     {
         if (ZIPCheck($plz, $ort, $staat)) {
             return true;

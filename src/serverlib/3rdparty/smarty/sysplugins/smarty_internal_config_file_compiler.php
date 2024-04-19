@@ -73,33 +73,19 @@ class Smarty_Internal_Config_File_Compiler
      */
     public $write_compiled_code = true;
 
-    /**
-     * Initialize compiler
-     *
-     * @param string $lexer_class  class name
-     * @param string $parser_class class name
-     * @param Smarty $smarty       global instance
-     */
-    public function __construct($lexer_class, $parser_class, Smarty $smarty)
-    {
-        $this->smarty = $smarty;
-        // get required plugins
-        $this->lexer_class = $lexer_class;
-        $this->parser_class = $parser_class;
-        $this->smarty = $smarty;
-        $this->config_data[ 'sections' ] = array();
-        $this->config_data[ 'vars' ] = array();
-    }
+
 
     /**
+     *
      * Method to compile Smarty config source.
      *
      * @param Smarty_Internal_Template $template
      *
-     * @return bool true if compiling succeeded, false if it failed
+     * @return string true if compiling succeeded, false if it failed
+     *
      * @throws \SmartyException
      */
-    public function compileTemplate(Smarty_Internal_Template $template)
+    public function compileTemplate(Smarty_Internal_Template $template): string
     {
         $this->template = $template;
         $this->template->compiled->file_dependency[ $this->template->source->uid ] =

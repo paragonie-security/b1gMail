@@ -38,6 +38,7 @@ class Eater implements Xml\Element {
     }
 
     /**
+     *
      * The deserialize method is called during xml parsing.
      *
      * This method is called statictly, this is because in theory this method
@@ -56,7 +57,8 @@ class Eater implements Xml\Element {
      * the next element.
      *
      * @param Xml\Reader $reader
-     * @return mixed
+     *
+     * @return void
      */
     static function xmlDeserialize(Xml\Reader $reader): void {
 

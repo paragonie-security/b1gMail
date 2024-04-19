@@ -6,6 +6,7 @@
  * @subpackage PluginsFunction
  */
 /**
+ *
  * Smarty {html_checkboxes} function plugin
  * File:       function.html_checkboxes.php
  * Type:       function
@@ -29,17 +30,21 @@
  * - assign     (optional) - assign the output as an array to this variable
  * - escape     (optional) - escape the content (not value), defaults to true
  *
- * @link    http://www.smarty.net/manual/en/language.function.html.checkboxes.php {html_checkboxes}
+ * @link http://www.smarty.net/manual/en/language.function.html.checkboxes.php {html_checkboxes}
  *             (Smarty online manual)
- * @author  Christopher Kvarme <christopher.kvarme@flashjab.com>
- * @author  credits to Monte Ohrt <monte at ohrt dot com>
+ *
+ * @author Christopher Kvarme <christopher.kvarme@flashjab.com>
+ * @author credits to Monte Ohrt <monte at ohrt dot com>
+ *
  * @version 1.0
  *
  * @param array                    $params   parameters
  * @param Smarty_Internal_Template $template template object
  *
- * @return string
- * @uses    smarty_function_escape_special_chars()
+ * @return null|string
+ *
+ * @uses smarty_function_escape_special_chars()
+ *
  * @throws \SmartyException
  */
 function smarty_function_html_checkboxes($params, Smarty_Internal_Template $template)

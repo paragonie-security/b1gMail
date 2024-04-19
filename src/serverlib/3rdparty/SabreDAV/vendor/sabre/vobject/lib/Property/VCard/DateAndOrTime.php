@@ -89,10 +89,10 @@ class DateAndOrTime extends Property {
      */
     public function setDateTime(\DateTime $dt): void {
 
-        $values = array();
+        
 
-        $tz = null;
-        $isUtc = false;
+        
+        
 
         $tz = $dt->getTimeZone();
         $isUtc = in_array($tz->getName() , array('UTC', 'GMT', 'Z'));
@@ -126,13 +126,13 @@ class DateAndOrTime extends Property {
      */
     public function getDateTime() {
 
-        $dts = array();
+        
         $now = new DateTime();
 
         $tzFormat = $now->getTimezone()->getOffset($now)===0?'\\Z':'O';
         $nowParts = DateTimeParser::parseVCardDateTime($now->format('Ymd\\This' . $tzFormat));
 
-        $value = $this->getValue();
+        $this->getValue();
 
         $dateParts = DateTimeParser::parseVCardDateTime($this->getValue());
 

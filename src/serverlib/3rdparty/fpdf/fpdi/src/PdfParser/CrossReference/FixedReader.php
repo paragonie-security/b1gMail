@@ -58,9 +58,12 @@ class FixedReader extends AbstractReader implements ReaderInterface
 
     /**
      * @inheritdoc
+     *
      * @return int|false
+     *
+     * @psalm-param 1 $objectNumber
      */
-    public function getOffsetFor($objectNumber)
+    public function getOffsetFor(int $objectNumber)
     {
         foreach ($this->subSections as $offset => list($startObject, $objectCount)) {
             /**
@@ -83,12 +86,15 @@ class FixedReader extends AbstractReader implements ReaderInterface
     }
 
     /**
+     *
      * Read the cross-reference.
      *
      * This reader will only read the subsections in this method. The offsets were resolved individually by this
      * information.
      *
      * @throws CrossReferenceException
+     *
+     * @return void
      */
     protected function read()
     {

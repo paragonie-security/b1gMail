@@ -69,13 +69,14 @@ class Duration extends Property {
     }
 
     /**
+     *
      * Returns a DateInterval representation of the Duration property.
      *
      * If the property has more than one value, only the first is returned.
      *
-     * @return \DateInterval
+     * @return \DateInterval|string
      */
-    public function getDateInterval() {
+    public function getDateInterval(): string|\DateInterval {
 
         $parts = $this->getParts();
         $value = $parts[0];

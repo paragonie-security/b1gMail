@@ -48,16 +48,7 @@ class File extends Node implements DAV\IFile {
 
     }
 
-    /**
-     * Returns the size of the node, in bytes
-     *
-     * @return int
-     */
-    function getSize() {
 
-        return filesize($this->path);
-
-    }
 
     /**
      * Returns the ETag for a file
@@ -79,17 +70,6 @@ class File extends Node implements DAV\IFile {
 
     }
 
-    /**
-     * Returns the mime-type for a file
-     *
-     * If null is returned, we'll assume application/octet-stream
-     *
-     * @return mixed
-     */
-    function getContentType() {
 
-        return null;
-
-    }
 
 }

@@ -192,6 +192,7 @@ class TreeFileTester extends File implements IProperties {
     }
 
     /**
+     *
      * Updates properties on this node.
      *
      * This method received a PropPatch object, which contains all the
@@ -201,7 +202,8 @@ class TreeFileTester extends File implements IProperties {
      * Read the PropPatch documentation for more information.
      *
      * @param array $mutations
-     * @return bool|array
+     *
+     * @return void
      */
     function propPatch(PropPatch $propPatch): void {
 
@@ -214,28 +216,6 @@ class TreeFileTester extends File implements IProperties {
 
 class TreeMultiGetTester extends TreeDirectoryTester implements IMultiGet {
 
-    /**
-     * This method receives a list of paths in it's first argument.
-     * It must return an array with Node objects.
-     *
-     * If any children are not found, you do not have to return them.
-     *
-     * @return array
-     */
-    function getMultipleChildren(array $paths) {
 
-        $result = [];
-        foreach($paths as $path) {
-            try {
-                $child = $this->getChild($path);
-                $result[] = $child;
-            } catch (Exception\NotFound $e) {
-                // Do nothing
-            }
-        }
-
-        return $result;
-
-    }
 
 }

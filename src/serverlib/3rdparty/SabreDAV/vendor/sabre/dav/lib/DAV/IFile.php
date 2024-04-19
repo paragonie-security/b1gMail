@@ -46,14 +46,7 @@ interface IFile extends INode {
      */
     function get();
 
-    /**
-     * Returns the mime-type for a file
-     *
-     * If null is returned, we'll assume application/octet-stream
-     *
-     * @return string|null
-     */
-    function getContentType();
+
 
     /**
      * Returns the ETag for a file
@@ -71,11 +64,6 @@ interface IFile extends INode {
      */
     function getETag();
 
-    /**
-     * Returns the size of the node, in bytes
-     *
-     * @return int
-     */
-    function getSize();
+
 
 }

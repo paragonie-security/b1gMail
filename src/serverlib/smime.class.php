@@ -30,18 +30,7 @@ class BMSMIME
 	var $_userID;
 	var $_userObject;
 
-	/**
-	 * constructor
-	 *
-	 * @param int $userID User ID
-	 * @param BMUser $userObject User object
-	 * @return BMSMIME
-	 */
-	function __construct($userID, &$userObject)
-	{
-		$this->_userID = (int)$userID;
-		$this->_userObject = &$userObject;
-	}
+
 
 	/**
 	 * write certs from array to disk
@@ -69,7 +58,7 @@ class BMSMIME
 		return($tempFileID);
 	}
 
-	function EncryptMail(&$mailBuilder, $recipients)
+	function EncryptMail(&$mailBuilder, $recipients): bool
 	{
 		$result = false;
 

@@ -189,12 +189,16 @@ class PdfReader
     }
 
     /**
+     *
      * Walk the page tree and resolve all indirect objects of all pages.
      *
      * @param bool $readAll
+     *
      * @throws CrossReferenceException
      * @throws PdfParserException
      * @throws PdfTypeException
+     *
+     * @return void
      */
     protected function readPages($readAll = false)
     {
@@ -203,7 +207,7 @@ class PdfReader
         }
 
         $expectedPageCount = $this->getPageCount();
-        $readPages = function ($kids, $count) use (&$readPages, $readAll, $expectedPageCount) {
+        $readPages = function ($kids, $count) use (&$readPages, $readAll, $expectedPageCount): void {
             $kids = PdfArray::ensure($kids);
             $isLeaf = ($count->value === \count($kids->value));
 

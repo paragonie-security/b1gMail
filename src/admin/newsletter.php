@@ -122,7 +122,7 @@ if($_REQUEST['action'] == 'newsletter')
 		$statusActive 			= isset($_REQUEST['statusActive']);
 		$statusLocked 			= isset($_REQUEST['statusLocked']);
 		$statusNotActivated 	= isset($_REQUEST['statusNotActivated']);
-		$statusDeleted 			= isset($_REQUEST['statusDeleted']);
+		isset($_REQUEST['statusDeleted']);
 		if($statusActive) 		$lockedValues[] = '\'no\'';
 		if($statusLocked) 		$lockedValues[] = '\'yes\'';
 		if($statusNotActivated) $lockedValues[] = '\'locked\'';
@@ -169,7 +169,7 @@ if($_REQUEST['action'] == 'newsletter')
 		$statusActive 			= isset($_REQUEST['statusActive']);
 		$statusLocked 			= isset($_REQUEST['statusLocked']);
 		$statusNotActivated 	= isset($_REQUEST['statusNotActivated']);
-		$statusDeleted 			= isset($_REQUEST['statusDeleted']);
+		isset($_REQUEST['statusDeleted']);
 		if($statusActive) 		$lockedValues[] = '\'no\'';
 		if($statusLocked) 		$lockedValues[] = '\'yes\'';
 		if($statusNotActivated) $lockedValues[] = '\'locked\'';

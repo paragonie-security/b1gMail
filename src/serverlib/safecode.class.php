@@ -35,26 +35,7 @@ class BMCaptchaGenerator
 	var $fontPath, $bgPath, $fontList, $bgList;
 	var $perturbation;
 
-	/**
-	 * constructor
-	 *
-	 * @param string $code
-	 * @return BMCaptchaGenerator
-	 */
-	public function __construct($code)
-	{
-		$this->fontPath			= B1GMAIL_DIR . 'res/fonts/';
-		$this->bgPath			= B1GMAIL_DIR . 'res/bg/';
-		$this->code 			= $code;
-		$this->w				= 220;
-		$this->h				= 60;
-		$this->borderSpacing	= 3;
-		$this->letterW			= floor(($this->w-2*$this->borderSpacing) / strlen($this->code));
-		$this->letterH			= $this->h-3*$this->borderSpacing;
-		$this->perturbation		= 5;
-		$this->_readFonts();
-		$this->_readBGs();
-	}
+
 
 
 	/**
@@ -160,12 +141,12 @@ class BMCaptchaGenerator
 	}
 
 	/**
+	 *
 	 * generate letter
 	 *
 	 * @param string $letter
-	 * @return resource
 	 */
-	private function _generateLetter($letter, $baseColor = false)
+	private function _generateLetter($letter, array|false $baseColor = false): GdImage|false
 	{
 		$angleRange	= ceil(($this->perturbation/10) * 45);
 

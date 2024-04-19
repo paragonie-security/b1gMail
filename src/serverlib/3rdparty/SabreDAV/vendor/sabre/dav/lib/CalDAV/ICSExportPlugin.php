@@ -72,11 +72,13 @@ class ICSExportPlugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Intercepts GET requests on calendar urls ending with ?export.
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $response) {
 
@@ -156,6 +158,7 @@ class ICSExportPlugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This method is responsible for generating the actual, full response.
      *
      * @param string $path
@@ -167,7 +170,7 @@ class ICSExportPlugin extends DAV\ServerPlugin {
      * @param array $properties
      * @param ResponseInterface $response
      */
-    protected function generateResponse($path, $start, $end, $expand, $componentType, $format, $properties, ResponseInterface $response) {
+    protected function generateResponse($path, $start, $end, $expand, $componentType, $format, $properties, ResponseInterface $response): void {
 
         $calDataProp = '{' . Plugin::NS_CALDAV . '}calendar-data';
 
@@ -225,7 +228,7 @@ class ICSExportPlugin extends DAV\ServerPlugin {
         );
 
         if ($expand) {
-            $calendarTimeZone = null;
+            
             // We're expanding, and for that we need to figure out the
             // calendar's timezone.
             $tzProp = '{' . Plugin::NS_CALDAV . '}calendar-timezone';

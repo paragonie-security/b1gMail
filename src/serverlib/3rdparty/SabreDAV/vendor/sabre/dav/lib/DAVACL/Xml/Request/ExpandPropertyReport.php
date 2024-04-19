@@ -65,13 +65,17 @@ class ExpandPropertyReport implements XmlDeserializable {
     }
 
     /**
+     *
      * This method is used by deserializeXml, to recursively parse the
      * {DAV:}property elements.
      *
      * @param array $elems
-     * @return void
+     *
+     * @return null[]
+     *
+     * @psalm-return array<string, null>
      */
-    private static function traverse($elems) {
+    private static function traverse($elems): array {
 
         $result = [];
 
@@ -89,7 +93,7 @@ class ExpandPropertyReport implements XmlDeserializable {
 
             $value = null;
             if (is_array($elem['value'])) {
-                $value = self::traverse($elem['value']);
+                self::traverse($elem['value']);
             }
 
             $result[$propName] = $value;

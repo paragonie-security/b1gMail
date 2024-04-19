@@ -76,15 +76,7 @@ class GraphicsState
         return $this->add(new Matrix(1, 0, 0, 1, $shiftX, $shiftY));
     }
 
-    /**
-     * @param int|float $scaleX
-     * @param int|float $scaleY
-     * @return $this
-     */
-    public function scale($scaleX, $scaleY)
-    {
-        return $this->add(new Matrix($scaleX, 0, 0, $scaleY, 0, 0));
-    }
+
 
     /**
      * @param Vector $vector

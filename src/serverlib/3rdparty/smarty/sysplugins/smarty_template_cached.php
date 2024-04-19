@@ -145,13 +145,14 @@ class Smarty_Template_Cached extends Smarty_Template_Resource_Base
     }
 
     /**
+     *
      * Check if cache is valid, lock cache if required
      *
      * @param \Smarty_Internal_Template $_template
      *
-     * @return bool flag true if cache is valid
+     * @return bool|null flag true if cache is valid
      */
-    public function isCached(Smarty_Internal_Template $_template)
+    public function isCached(Smarty_Internal_Template $_template): bool|null
     {
         if ($this->valid !== null) {
             return $this->valid;
@@ -240,18 +241,5 @@ class Smarty_Template_Cached extends Smarty_Template_Resource_Base
         }
     }
 
-    /**
-     * Read cache content from handler
-     *
-     * @param Smarty_Internal_Template $_template template object
-     *
-     * @return string|false content
-     */
-    public function read(Smarty_Internal_Template $_template)
-    {
-        if (!$_template->source->handler->recompiled) {
-            return $this->handler->readCachedContent($_template);
-        }
-        return false;
-    }
+
 }

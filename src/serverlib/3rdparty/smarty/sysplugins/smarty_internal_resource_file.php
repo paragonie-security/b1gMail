@@ -90,15 +90,17 @@ class Smarty_Internal_Resource_File extends Smarty_Resource
     }
 
     /**
+     *
      * build template filepath by traversing the template_dir array
      *
      * @param Smarty_Template_Source   $source    source object
      * @param Smarty_Internal_Template $_template template object
      *
-     * @return string fully qualified filepath
+     * @return bool|string fully qualified filepath
+     *
      * @throws SmartyException
      */
-    protected function buildFilepath(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null)
+    protected function buildFilepath(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null): string|bool
     {
         $file = $source->name;
         // absolute file ?

@@ -98,6 +98,7 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
     }
 
     /**
+     *
      * This method is called before any HTTP method handler
      *
      * This method intercepts any GET, DELETE, PUT and PROPFIND calls to
@@ -105,7 +106,8 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return bool|null
      */
     function beforeMethod(RequestInterface $request, ResponseInterface $response) {
 
@@ -127,6 +129,7 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
     }
 
     /**
+     *
      * This method is invoked if some subsystem creates a new file.
      *
      * This is used to deal with HTTP LOCK requests which create a new
@@ -134,7 +137,8 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
      *
      * @param string $uri
      * @param resource $data
-     * @return bool
+     *
+     * @return false|null
      */
     function beforeCreateFile($uri, $data) {
 
@@ -176,6 +180,7 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
 
 
     /**
+     *
      * This method handles the GET method for temporary files.
      * If the file doesn't exist, it will return false which will kick in
      * the regular system for the GET method.
@@ -183,7 +188,8 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
      * @param RequestInterface $request
      * @param ResponseInterface $hR
      * @param string $tempLocation
-     * @return bool
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $hR, $tempLocation) {
 
@@ -223,6 +229,7 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
     }
 
     /**
+     *
      * This method handles the DELETE method.
      *
      * If the file didn't exist, it will return false, which will make the
@@ -231,7 +238,8 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
      * @param RequestInterface $request
      * @param ResponseInterface $hR
      * @param string $tempLocation
-     * @return bool
+     *
+     * @return false|null
      */
     function httpDelete(RequestInterface $request, ResponseInterface $hR, $tempLocation) {
 
@@ -245,6 +253,7 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
     }
 
     /**
+     *
      * This method handles the PROPFIND method.
      *
      * It's a very lazy method, it won't bother checking the request body
@@ -254,7 +263,8 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
      * @param RequestInterface $request
      * @param ResponseInterface $hR
      * @param string $tempLocation
-     * @return bool
+     *
+     * @return false|null
      */
     function httpPropfind(RequestInterface $request, ResponseInterface $hR, $tempLocation) {
 

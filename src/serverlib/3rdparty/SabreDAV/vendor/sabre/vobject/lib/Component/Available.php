@@ -17,19 +17,24 @@ use Sabre\VObject;
 class Available extends VObject\Component {
 
     /**
+     *
      * A simple list of validation rules.
      *
      * This is simply a list of properties, and how many times they either
      * must or must not appear.
      *
      * Possible values per property:
-     *   * 0 - Must not appear.
-     *   * 1 - Must appear exactly once.
-     *   * + - Must appear at least once.
-     *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
+     * 0 - Must not appear.
+     * 1 - Must appear exactly once.
+     * + - Must appear at least once.
+     * - Can appear any number of times.
+     * ? - May appear, but not more than once.
      *
      * @var array
+     *
+     * @return (int|string)[]
+     *
+     * @psalm-return array{UID: 1, DTSTART: 1, DTSTAMP: 1, DTEND: '?', DURATION: '?', CREATED: '?', DESCRIPTION: '?', 'LAST-MODIFIED': '?', 'RECURRENCE-ID': '?', RRULE: '?', SUMMARY: '?', CATEGORIES: '*', COMMENT: '*', CONTACT: '*', EXDATE: '*', RDATE: '*', AVAILABLE: '*'}
      */
     function getValidationRules() {
 

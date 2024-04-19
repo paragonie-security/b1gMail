@@ -38,11 +38,13 @@ class MapGetToPropFind extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This method intercepts GET requests to non-files, and changes it into an HTTP PROPFIND request
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $response) {
 

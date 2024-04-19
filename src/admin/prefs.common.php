@@ -148,7 +148,7 @@ if($_REQUEST['action'] == 'common')
 
 	// get available languages
 	$languages = GetAvailableLanguages();
-	$countries = CountryList();
+	CountryList();
 	
 	// maintenance whitelist
 	$whitelist = NULL;
@@ -449,7 +449,7 @@ else if($_REQUEST['action'] == 'domains')
 
 	// fetch
 	$domains = array();
-	$lockedUsernames = array();
+	
 	$res = $db->Query('SELECT `domain`,`in_login`,`in_signup`,`in_aliases`,`pos` FROM {pre}domains ORDER BY `pos` ASC, `domain` ASC');
 	while($row = $res->FetchArray(MYSQLI_ASSOC))
 	{
@@ -501,7 +501,7 @@ else if($_REQUEST['action'] == 'taborder')
 	);
 
 	if(!isset($groupRow) || !is_array($groupRow))
-		$groupRow = array('id' => $bm_prefs['std_gruppe']);
+		array('id' => $bm_prefs['std_gruppe']);
 
 	$moduleResult = $plugins->callFunction('getUserPages', false, true, array(true));
 	foreach($moduleResult as $userPages)

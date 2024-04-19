@@ -37,24 +37,7 @@ class BMSMTP
     private $_userID;
     private $_dsIDs;
 
-    /**
-     * constructor.
-     *
-     * @param string $host
-     * @param int    $port
-     *
-     * @return BMSMTP
-     */
-    public function __construct($host, $port, $my_host)
-    {
-        $this->_host = $host;
-        $this->_port = $port;
-        $this->_helo = false;
-        $this->_my_host = $my_host;
-        $this->_isb1gMailServer = false;
-        $this->_userID = USERID_UNKNOWN;
-        $this->_dsIDs = [];
-    }
+
 
     /**
      * set sender user ID.
@@ -277,16 +260,7 @@ class BMSMTP
         return false;
     }
 
-    /**
-     * reset session.
-     *
-     * @return bool
-     */
-    public function Reset()
-    {
-        return fwrite($this->_sock, 'RSET'."\r\n")
-                && substr($this->_getResponse(), 0, 3) == '250';
-    }
+
 
     /**
      * associate sent mail with an outbox mail ID.

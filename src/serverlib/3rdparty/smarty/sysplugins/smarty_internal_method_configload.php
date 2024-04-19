@@ -175,7 +175,7 @@ class Smarty_Internal_Method_ConfigLoad
         }
         if ($data->smarty->error_unassigned && $errorEnable) {
             // force a notice
-            $x = $$varName;
+            
         }
         return null;
     }

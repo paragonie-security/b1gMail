@@ -46,6 +46,7 @@ function enum(Writer $writer, array $values) {
 }
 
 /**
+ *
  * The valueObject serializer turns a simple PHP object into a classname.
  *
  * Every public property will be encoded as an xml element with the same
@@ -58,7 +59,7 @@ function enum(Writer $writer, array $values) {
  * @param object $valueObject
  * @param string $namespace
  */
-function valueObject(Writer $writer, $valueObject, $namespace) {
+function valueObject(Writer $writer, $valueObject, $namespace): void {
     foreach (get_object_vars($valueObject) as $key => $val) {
         if (is_array($val)) {
             // If $val is an array, it has a special meaning. We need to

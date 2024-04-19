@@ -9,7 +9,7 @@
 
 require('ttfparser.php');
 
-function Message($txt, $severity='')
+function Message($txt, $severity=''): void
 {
 	if(PHP_SAPI=='cli')
 	{
@@ -25,23 +25,31 @@ function Message($txt, $severity='')
 	}
 }
 
-function Notice($txt)
+function Notice($txt): void
 {
 	Message($txt, 'Notice');
 }
 
-function Warning($txt)
+function Warning($txt): void
 {
 	Message($txt, 'Warning');
 }
 
+/**
+ * @return never
+ */
 function Error($txt)
 {
 	Message($txt, 'Error');
 	exit;
 }
 
-function LoadMap($enc)
+/**
+ * @return (int|string)[][]
+ *
+ * @psalm-return array<int, array{uv: int, name: string}>
+ */
+function LoadMap($enc): array
 {
 	$file = dirname(__FILE__).'/'.strtolower($enc).'.map';
 	$a = file($file);
@@ -121,7 +129,12 @@ function GetInfoFromTrueType($file, $embed, $subset, $map)
 	return $info;
 }
 
-function GetInfoFromType1($file, $embed, $map)
+/**
+ * @return (array|bool|int|mixed)[]|ArrayAccess
+ *
+ * @psalm-return ArrayAccess|array{FontName: mixed, Ascender: mixed, Descender: mixed, Bold: bool|mixed, MissingWidth: 0|mixed, Widths: array|mixed,...}
+ */
+function GetInfoFromType1($file, $embed, $map): array|ArrayAccess
 {
 	// Return information from a Type1 font
 	if($embed)
@@ -215,7 +228,7 @@ function GetInfoFromType1($file, $embed, $map)
 	return $info;
 }
 
-function MakeFontDescriptor($info)
+function MakeFontDescriptor($info): string
 {
 	// Ascent
 	$fd = "array('Ascent'=>".$info['Ascender'];
@@ -252,7 +265,7 @@ function MakeFontDescriptor($info)
 	return $fd;
 }
 
-function MakeWidthArray($widths)
+function MakeWidthArray($widths): string
 {
 	$s = "array(\n\t";
 	for($c=0;$c<=255;$c++)
@@ -275,7 +288,7 @@ function MakeWidthArray($widths)
 	return $s;
 }
 
-function MakeFontEncoding($map)
+function MakeFontEncoding($map): string
 {
 	// Build differences from reference encoding
 	$ref = LoadMap('cp1252');
@@ -294,7 +307,7 @@ function MakeFontEncoding($map)
 	return rtrim($s);
 }
 
-function MakeUnicodeArray($map)
+function MakeUnicodeArray($map): string
 {
 	// Build mapping to Unicode values
 	$ranges = array();
@@ -339,7 +352,7 @@ function MakeUnicodeArray($map)
 	return $s;
 }
 
-function SaveToFile($file, $s, $mode)
+function SaveToFile($file, $s, $mode): void
 {
 	$f = fopen($file, 'w'.$mode);
 	if(!$f)
@@ -348,7 +361,7 @@ function SaveToFile($file, $s, $mode)
 	fclose($f);
 }
 
-function MakeDefinitionFile($file, $type, $enc, $embed, $subset, $map, $info)
+function MakeDefinitionFile($file, $type, $enc, $embed, $subset, $map, $info): void
 {
 	$s = "<?php\n";
 	$s .= '$type = \''.$type."';\n";
@@ -381,7 +394,7 @@ function MakeDefinitionFile($file, $type, $enc, $embed, $subset, $map, $info)
 	SaveToFile($file, $s, 't');
 }
 
-function MakeFont($fontfile, $enc='cp1252', $embed=true, $subset=true)
+function MakeFont($fontfile, $enc='cp1252', $embed=true, $subset=true): void
 {
 	// Generate a font definition file
 	if(!file_exists($fontfile))

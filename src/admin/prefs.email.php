@@ -242,7 +242,7 @@ else if($_REQUEST['action'] == 'smime')
 					&& $_FILES['certfile']['size'] > 5)
 				{
 					// request temp file
-					$tempFileID = RequestTempFile(0);
+					RequestTempFile(0);
 					$tempFileName = TempFileName($tempFileID);
 
 					// move uploaded file to temp file
@@ -367,7 +367,7 @@ else if($_REQUEST['action'] == 'smime')
 				}
 				else if($_REQUEST['massAction'] == 'export')
 				{
-					$tempFileID = RequestTempFile(0);
+					RequestTempFile(0);
 					$tempFileName = TempFileName($tempFileID);
 
 					// create ZIP file
@@ -380,7 +380,7 @@ else if($_REQUEST['action'] == 'smime')
 						0);
 					while($row = $res->FetchArray(MYSQLI_ASSOC))
 					{
-						$certTempFileID = RequestTempFile(0);
+						RequestTempFile(0);
 						$certTempFileName = TempFileName($certTempFileID);
 
 						$certFP = fopen($certTempFileName, 'wb');
@@ -449,7 +449,7 @@ else if($_REQUEST['action'] == 'smime')
 					&& $_FILES['cert_ca_pem']['size'] > 5)
 				{
 					// request temp file
-					$tempFileID = RequestTempFile(0);
+					RequestTempFile(0);
 					$tempFileName = TempFileName($tempFileID);
 
 					// move uploaded file to temp file
@@ -465,7 +465,7 @@ else if($_REQUEST['action'] == 'smime')
 					&& $_FILES['cert_ca_key']['size'] > 5)
 				{
 					// request temp file
-					$tempFileID = RequestTempFile(0);
+					RequestTempFile(0);
 					$tempFileName = TempFileName($tempFileID);
 
 					// move uploaded file to temp file

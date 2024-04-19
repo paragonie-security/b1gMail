@@ -218,11 +218,13 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This functions handles REPORT requests specific to CalDAV
      *
      * @param string $reportName
      * @param mixed $report
-     * @return bool
+     *
+     * @return false|null
      */
     function report($reportName, $report) {
 
@@ -263,7 +265,7 @@ class Plugin extends DAV\ServerPlugin {
         if ($body) {
 
             try {
-                $mkcalendar = $this->server->xml->expect(
+                $this->server->xml->expect(
                     '{urn:ietf:params:xml:ns:caldav}mkcalendar',
                     $body
                 );
@@ -905,13 +907,15 @@ class Plugin extends DAV\ServerPlugin {
 
 
     /**
+     *
      * This method is used to generate HTML output for the
      * DAV\Browser\Plugin. This allows us to generate an interface users
      * can use to create new calendars.
      *
      * @param DAV\INode $node
      * @param string $output
-     * @return bool
+     *
+     * @return false|null
      */
     function htmlActionsPanel(DAV\INode $node, &$output) {
 

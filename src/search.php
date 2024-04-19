@@ -246,8 +246,8 @@ else if($_REQUEST['action'] == 'quickSearch'
 	}
 
 	// sort
-	$sortColumn = 'score,date,title,size';
-	$sortOrder = 'desc';
+	
+	
 	foreach($results as $key=>$val)
 	{
 		uasort($results[$key]['results'], '_searchSort');

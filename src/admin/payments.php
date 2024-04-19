@@ -103,9 +103,9 @@ if($_REQUEST['action'] == 'payments')
 						include(B1GMAIL_DIR . 'serverlib/zip.class.php');
 
 					// create zip archive
-					$tempID = RequestTempFile(0);
+					RequestTempFile(0);
 					$tempFileName = TempFileName($tempID);
-					$invTempID = RequestTempFile(0);
+					RequestTempFile(0);
 					$invTempFileName = TempFileName($invTempID);
 					$fp = fopen($tempFileName, 'wb+');
 					$zip = _new('BMZIP', array($fp));
@@ -342,7 +342,7 @@ else if($_REQUEST['action'] == 'export')
 						  $to);
 		while($row = $res->FetchArray(MYSQLI_ASSOC))
 		{
-			$desc = '';
+			
 			$cart = @unserialize($row['cart']);
 			if(!is_array($cart) || count($cart) == 0)
 			{
@@ -381,9 +381,9 @@ else if($_REQUEST['action'] == 'export')
 			include(B1GMAIL_DIR . 'serverlib/zip.class.php');
 
 		// create zip archive
-		$tempID = RequestTempFile(0);
+		RequestTempFile(0);
 		$tempFileName = TempFileName($tempID);
-		$invTempID = RequestTempFile(0);
+		RequestTempFile(0);
 		$invTempFileName = TempFileName($invTempID);
 		$fp = fopen($tempFileName, 'wb+');
 		$zip = _new('BMZIP', array($fp));

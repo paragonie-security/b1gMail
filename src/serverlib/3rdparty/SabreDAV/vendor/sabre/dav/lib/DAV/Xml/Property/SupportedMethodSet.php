@@ -56,20 +56,7 @@ class SupportedMethodSet implements XmlSerializable, HtmlOutput {
 
     }
 
-    /**
-     * Returns true or false if the property contains a specific method.
-     *
-     * @param string $methodName
-     * @return bool
-     */
-    function has($methodName) {
 
-        return in_array(
-            $methodName,
-            $this->methods
-        );
-
-    }
 
     /**
      * The xmlSerialize metod is called during xml writing.

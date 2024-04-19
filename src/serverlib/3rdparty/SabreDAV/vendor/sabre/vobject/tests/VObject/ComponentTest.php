@@ -504,6 +504,11 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
 class FakeComponent extends Component {
 
+    /**
+     * @return string[]
+     *
+     * @psalm-return array{FOO: '0', BAR: '1', BAZ: '+', ZIM: '*', GIR: '?'}
+     */
     public function getValidationRules() {
 
         return array(

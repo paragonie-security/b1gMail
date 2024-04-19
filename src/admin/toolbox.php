@@ -381,9 +381,9 @@ if($_REQUEST['action'] == 'overview')
 				$imgPath = $dbConfig[$groupName][$itemKey];
 
 				if(substr($imgPath, 0, 4) == 'res/')
-					$imgPath = B1GMAIL_DIR . $imgPath;
+					
 				else
-					$imgPath = B1GMAIL_DATA_DIR . $imgPath;
+					
 
 				$files[$i] = getFileContents($imgPath);
 				$dbConfig[$groupName][$itemKey] = $i;
@@ -416,7 +416,7 @@ if($_REQUEST['action'] == 'overview')
 		$postData = implode('&', $request);
 
 		// get temp file
-		$tempFileID = RequestTempFile(0, time() + TIME_ONE_HOUR);
+		RequestTempFile(0, time() + TIME_ONE_HOUR);
 		$tempFileName = TempFileName($tempFileID);
 		$tempFileFP = fopen($tempFileName, 'wb+');
 

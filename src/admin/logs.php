@@ -138,8 +138,8 @@ else if($_REQUEST['action'] == 'archiving')
 	 */
 	if(isset($_REQUEST['do']) && $_REQUEST['do'] == 'archive')
 	{
-		$date = SmartyDateTime('date');
-		$archive = isset($_REQUEST['saveCopy']);
+		SmartyDateTime('date');
+		isset($_REQUEST['saveCopy']);
 
 		if(!ArchiveLogs($date, $archive))
 		{

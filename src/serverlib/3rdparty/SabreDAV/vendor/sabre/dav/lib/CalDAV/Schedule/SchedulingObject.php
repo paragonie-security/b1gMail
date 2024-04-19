@@ -29,20 +29,21 @@ class SchedulingObject extends \Sabre\CalDAV\CalendarObject implements IScheduli
     protected $objectData;
 
     /**
+     *
      * Constructor
      *
      * The following properties may be passed within $objectData:
      *
-     *   * uri - A unique uri. Only the 'basename' must be passed.
-     *   * principaluri - the principal that owns the object.
-     *   * calendardata (optional) - The iCalendar data
-     *   * etag - (optional) The etag for this object, MUST be encloded with
-     *            double-quotes.
-     *   * size - (optional) The size of the data in bytes.
-     *   * lastmodified - (optional) format as a unix timestamp.
-     *   * acl - (optional) Use this to override the default ACL for the node.
+     * uri - A unique uri. Only the 'basename' must be passed.
+     * principaluri - the principal that owns the object.
+     * calendardata (optional) - The iCalendar data
+     * etag - (optional) The etag for this object, MUST be encloded with
+     * double-quotes.
+     * size - (optional) The size of the data in bytes.
+     * lastmodified - (optional) format as a unix timestamp.
+     * acl - (optional) Use this to override the default ACL for the node.
      *
-     * @param Backend\BackendInterface $caldavBackend
+     * @param Backend\SchedulingSupport $caldavBackend
      * @param array $objectData
      */
     function __construct(Backend\SchedulingSupport $caldavBackend, array $objectData) {

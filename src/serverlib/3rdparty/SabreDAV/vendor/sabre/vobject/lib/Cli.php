@@ -481,24 +481,28 @@ HELP
     }
 
     /**
+     *
      * Colorizes a file
      *
      * @param Component $vObj
-     * @return int
      */
-    protected function color($vObj) {
+    protected function color($vObj): void {
 
         fwrite($this->stdout, $this->serializeComponent($vObj));
 
     }
 
     /**
+     *
      * Returns an ansi color string for a color name.
      *
      * @param string $color
+     *
      * @return string
+     *
+     * @psalm-param 'default'|'green' $resetTo
      */
-    protected function colorize($color, $str, $resetTo = 'default') {
+    protected function colorize($color, string $str, string $resetTo = 'default') {
 
         $colors = array(
             'cyan'    => '1;36',
@@ -526,7 +530,7 @@ HELP
 
     }
 
-    protected function serializeComponent(Component $vObj) {
+    protected function serializeComponent(Component $vObj): void {
 
         $this->cWrite('cyan', 'BEGIN');
         $this->cWrite('red', ':');
@@ -616,7 +620,7 @@ HELP
             $this->cWrite('red', '.');
         }
 
-        $str = '';
+        
         $this->cWrite('yellow', $property->name);
 
         foreach($property->parameters as $param) {
@@ -673,12 +677,16 @@ HELP
     }
 
     /**
+     *
      * Parses the list of arguments.
      *
      * @param array $argv
-     * @return void
+     *
+     * @return (mixed|string|true)[][]
+     *
+     * @psalm-return list{array<string, string|true>, list<mixed>}
      */
-    protected function parseArguments(array $argv) {
+    protected function parseArguments(array $argv): array {
 
         $positional = array();
         $options = array();
@@ -747,7 +755,7 @@ HELP
      * @param string $msg
      * @return void
      */
-    protected function log($msg, $color = 'default') {
+    protected function log($msg, string $color = 'default') {
 
         if (!$this->quiet) {
             if ($color!=='default') {

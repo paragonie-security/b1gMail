@@ -66,27 +66,7 @@ class Digest extends AbstractAuth {
 
     }
 
-    /**
-     * Sets the quality of protection value.
-     *
-     * Possible values are:
-     *   Sabre\HTTP\DigestAuth::QOP_AUTH
-     *   Sabre\HTTP\DigestAuth::QOP_AUTHINT
-     *
-     * Multiple values can be specified using logical OR.
-     *
-     * QOP_AUTHINT ensures integrity of the request body, but this is not
-     * supported by most HTTP clients. QOP_AUTHINT also requires the entire
-     * request body to be md5'ed, which can put strains on CPU and memory.
-     *
-     * @param int $qop
-     * @return void
-     */
-    function setQOP($qop): void {
 
-        $this->qop = $qop;
-
-    }
 
     /**
      * Validates the user.

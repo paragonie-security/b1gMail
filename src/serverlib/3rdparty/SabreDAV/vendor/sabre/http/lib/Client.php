@@ -300,24 +300,7 @@ class Client extends EventEmitter {
 
     }
 
-    /**
-     * If this is set to true, the Client will automatically throw exceptions
-     * upon HTTP errors.
-     *
-     * This means that if a response came back with a status code greater than
-     * or equal to 400, we will throw a ClientHttpException.
-     *
-     * This only works for the send() method. Throwing exceptions for
-     * sendAsync() is not supported.
-     *
-     * @param bool $throwExceptions
-     * @return void
-     */
-    function setThrowExceptions($throwExceptions): void {
 
-        $this->throwExceptions = $throwExceptions;
-
-    }
 
     /**
      * Adds a CURL setting.
@@ -457,25 +440,29 @@ class Client extends EventEmitter {
     const STATUS_HTTPERROR = 2;
 
     /**
+     *
      * Parses the result of a curl call in a format that's a bit more
      * convenient to work with.
      *
      * The method returns an array with the following elements:
-     *   * status - one of the 3 STATUS constants.
-     *   * curl_errno - A curl error number. Only set if status is
-     *                  STATUS_CURLERROR.
-     *   * curl_errmsg - A current error message. Only set if status is
-     *                   STATUS_CURLERROR.
-     *   * response - Response object. Only set if status is STATUS_SUCCESS, or
-     *                STATUS_HTTPERROR.
-     *   * http_code - HTTP status code, as an int. Only set if Only set if
-     *                 status is STATUS_SUCCESS, or STATUS_HTTPERROR
+     * status - one of the 3 STATUS constants.
+     * curl_errno - A curl error number. Only set if status is
+     * STATUS_CURLERROR.
+     * curl_errmsg - A current error message. Only set if status is
+     * STATUS_CURLERROR.
+     * response - Response object. Only set if status is STATUS_SUCCESS, or
+     * STATUS_HTTPERROR.
+     * http_code - HTTP status code, as an int. Only set if Only set if
+     * status is STATUS_SUCCESS, or STATUS_HTTPERROR
      *
      * @param string $response
      * @param resource $curlHandle
-     * @return Response
+     *
+     * @return (Response|int|mixed)[]
+     *
+     * @psalm-return array{status: 0|1|2, response?: Response, http_code?: int<min, max>, curl_errno?: mixed, curl_errmsg?: mixed}
      */
-    protected function parseCurlResult($response, $curlHandle) {
+    protected function parseCurlResult($response, $curlHandle): array {
 
         list(
             $curlInfo,
@@ -533,6 +520,7 @@ class Client extends EventEmitter {
     }
 
     /**
+     *
      * Sends an asynchronous HTTP request.
      *
      * We keep this in a separate method, so we can call it without triggering
@@ -543,7 +531,7 @@ class Client extends EventEmitter {
      * @param callable $error
      * @param int $retryCount
      */
-    protected function sendAsyncInternal(RequestInterface $request, callable $success, callable $error, $retryCount = 0) {
+    protected function sendAsyncInternal(RequestInterface $request, callable $success, callable $error, $retryCount = 0): void {
 
         if (!$this->curlMultiHandle) {
             $this->curlMultiHandle = curl_multi_init();
@@ -566,14 +554,14 @@ class Client extends EventEmitter {
     // @codeCoverageIgnoreStart
 
     /**
+     *
      * Calls curl_exec
      *
      * This method exists so it can easily be overridden and mocked.
      *
      * @param resource $curlHandle
-     * @return string
      */
-    protected function curlExec($curlHandle) {
+    protected function curlExec($curlHandle): bool|string {
 
         return curl_exec($curlHandle);
 

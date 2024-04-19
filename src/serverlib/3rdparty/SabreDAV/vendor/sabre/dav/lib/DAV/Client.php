@@ -278,74 +278,9 @@ class Client extends HTTP\Client {
         $this->send($request);
     }
 
-    /**
-     * Performs an HTTP options request
-     *
-     * This method returns all the features from the 'DAV:' header as an array.
-     * If there was no DAV header, or no contents this method will return an
-     * empty array.
-     *
-     * @return array
-     */
-    function options() {
 
-        $request = new HTTP\Request('OPTIONS', $this->getAbsoluteUrl(''));
-        $response = $this->send($request);
 
-        $dav = $response->getHeader('Dav');
-        if (!$dav) {
-            return [];
-        }
 
-        $features = explode(',', $dav);
-        foreach ($features as &$v) {
-            $v = trim($v);
-        }
-        return $features;
-
-    }
-
-    /**
-     * Performs an actual HTTP request, and returns the result.
-     *
-     * If the specified url is relative, it will be expanded based on the base
-     * url.
-     *
-     * The returned array contains 3 keys:
-     *   * body - the response body
-     *   * httpCode - a HTTP code (200, 404, etc)
-     *   * headers - a list of response http headers. The header names have
-     *     been lowercased.
-     *
-     * For large uploads, it's highly recommended to specify body as a stream
-     * resource. You can easily do this by simply passing the result of
-     * fopen(..., 'r').
-     *
-     * This method will throw an exception if an HTTP error was received. Any
-     * HTTP status code above 399 is considered an error.
-     *
-     * Note that it is no longer recommended to use this method, use the send()
-     * method instead.
-     *
-     * @param string $method
-     * @param string $url
-     * @param string|resource|null $body
-     * @param array $headers
-     * @throws ClientException, in case a curl error occurred.
-     * @return array
-     */
-    function request($method, $url = '', $body = null, array $headers = []) {
-
-        $url = $this->getAbsoluteUrl($url);
-
-        $response = $this->send(new HTTP\Request($method, $url, $headers, $body));
-        return [
-            'body'       => $response->getBodyAsString(),
-            'statusCode' => (int)$response->getStatus(),
-            'headers'    => array_change_key_case($response->getHeaders()),
-        ];
-
-    }
 
     /**
      * Returns the full url based on the given url (which may be relative). All

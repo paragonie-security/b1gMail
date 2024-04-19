@@ -285,7 +285,7 @@ class Page
      * @throws PdfParserException
      * @throws PdfTypeException
      */
-    public function getExternalLinks($box = PageBoundaries::CROP_BOX)
+    public function getExternalLinks(string $box = PageBoundaries::CROP_BOX)
     {
         $dict = $this->getPageDictionary();
         $annotations = PdfType::resolve(PdfDictionary::get($dict, 'Annots'), $this->parser);

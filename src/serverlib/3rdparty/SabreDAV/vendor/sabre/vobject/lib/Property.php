@@ -157,6 +157,7 @@ abstract class Property extends Node {
     }
 
     /**
+     *
      * Adds a new parameter, and returns the new item.
      *
      * If a parameter with same name already existed, the values will be
@@ -165,7 +166,6 @@ abstract class Property extends Node {
      *
      * @param string $name
      * @param string|null|array $value
-     * @return Node
      */
     function add($name, $value = null): void {
         $noName = false;
@@ -248,7 +248,7 @@ abstract class Property extends Node {
                 $str = ' ' . mb_strcut($str,75,strlen($str),'utf-8');
             } else {
                 $out.=$str . "\r\n";
-                $str='';
+                
                 break;
             }
         }

@@ -65,7 +65,7 @@ class Rectangle
         return new self($ax, $ay, $bx, $by);
     }
 
-    public static function byVectors(Vector $ll, Vector $ur)
+    public static function byVectors(Vector $ll, Vector $ur): self
     {
         return new self($ll->getX(), $ll->getY(), $ur->getX(), $ur->getY());
     }
@@ -146,20 +146,7 @@ class Rectangle
         return $this->ury;
     }
 
-    /**
-     * Get the rectangle as an array.
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        return [
-            $this->llx,
-            $this->lly,
-            $this->urx,
-            $this->ury
-        ];
-    }
+
 
     /**
      * Get the rectangle as a PdfArray.

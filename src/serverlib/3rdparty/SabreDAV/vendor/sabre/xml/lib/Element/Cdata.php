@@ -37,6 +37,7 @@ class Cdata implements Xml\XmlSerializable
     }
 
     /**
+     *
      * The xmlSerialize metod is called during xml writing.
      *
      * Use the $writer argument to write its own xml serialization.
@@ -52,7 +53,8 @@ class Cdata implements Xml\XmlSerializable
      *
      * If you are opening new elements, you must also close them again.
      *
-     * @param Writer $writer
+     * @param Xml\Writer $writer
+     *
      * @return void
      */
     function xmlSerialize(Xml\Writer $writer): void {

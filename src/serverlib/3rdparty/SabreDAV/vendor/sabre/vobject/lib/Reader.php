@@ -36,9 +36,8 @@ class Reader {
      *
      * @param string|resource $data
      * @param int $options
-     * @return Document
      */
-    static public function read($data, $options = 0) {
+    static public function read($data, $options = 0): Component {
 
         $parser = new Parser\MimeDir();
         $result = $parser->parse($data, $options);
@@ -59,9 +58,8 @@ class Reader {
      *
      * @param string|resource|array $data
      * @param int $options
-     * @return Node
      */
-    static public function readJson($data, $options = 0) {
+    static public function readJson($data, $options = 0): Component\VCalendar|Component\VCard {
 
         $parser = new Parser\Json();
         $result = $parser->parse($data, $options);

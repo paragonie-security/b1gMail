@@ -273,7 +273,7 @@ class Smarty_Internal_Configfileparser
      *
      * @var Smarty_Internal_Configfilelexer
      */
-    private $lex;
+    public $lex;
 
     /**
      * internal error flag
@@ -313,7 +313,7 @@ class Smarty_Internal_Configfileparser
         $this->configReadHidden = $this->smarty->config_read_hidden;
     }
 
-    public static function yy_destructor($yymajor, $yypminor): void
+    public static function yy_destructor(int $yymajor, $yypminor): void
     {
         switch ($yymajor) {
             default:
@@ -397,6 +397,9 @@ class Smarty_Internal_Configfileparser
         }
     }
 
+    /**
+     * @return int|null
+     */
     public function yy_pop_parser_stack()
     {
         if (empty($this->yystack)) {
@@ -511,7 +514,10 @@ class Smarty_Internal_Configfileparser
         return array_unique($expected);
     }
 
-    public function yy_is_expected_token($token)
+    /**
+     * @psalm-param int<min, 18> $token
+     */
+    public function yy_is_expected_token(int $token): bool
     {
         static $res = array();
         static $res2 = array();
@@ -600,7 +606,10 @@ class Smarty_Internal_Configfileparser
         return true;
     }
 
-    public function yy_find_shift_action($iLookAhead)
+    /**
+     * @psalm-param 19 $iLookAhead
+     */
+    public function yy_find_shift_action(int $iLookAhead)
     {
         $stateno = $this->yystack[ $this->yyidx ]->stateno;
         /* if ($this->yyidx < 0) return self::YY_NO_ACTION;  */
@@ -655,7 +664,11 @@ class Smarty_Internal_Configfileparser
         }
     }
 
-    public function yy_shift($yyNewState, $yyMajor, $yypMinor): void
+    /**
+     * @psalm-param 0|null $yypMinor
+     * @psalm-param 19 $yyMajor
+     */
+    public function yy_shift($yyNewState, int $yyMajor, int|null $yypMinor): void
     {
         $this->yyidx++;
         if ($this->yyidx >= self::YYSTACKDEPTH) {
@@ -857,7 +870,7 @@ class Smarty_Internal_Configfileparser
     }
 
     // line 324 "../smarty/lexer/smarty_internal_configfileparser.y"
-    public function yy_syntax_error($yymajor, $TOKEN): void
+    public function yy_syntax_error(int $yymajor, $TOKEN): void
     {
         // line 232 "../smarty/lexer/smarty_internal_configfileparser.y"
         $this->internalError = true;

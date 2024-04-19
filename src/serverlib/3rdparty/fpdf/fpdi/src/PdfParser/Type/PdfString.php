@@ -52,31 +52,9 @@ class PdfString extends PdfType
         return $v;
     }
 
-    /**
-     * Helper method to create an instance.
-     *
-     * @param string $value The string needs to be escaped accordingly.
-     * @return self
-     */
-    public static function create($value)
-    {
-        $v = new self();
-        $v->value = $value;
 
-        return $v;
-    }
 
-    /**
-     * Ensures that the passed value is a PdfString instance.
-     *
-     * @param mixed $string
-     * @return self
-     * @throws PdfTypeException
-     */
-    public static function ensure($string)
-    {
-        return PdfType::ensureType(self::class, $string, 'String value expected.');
-    }
+
 
     /**
      * Escapes sequences in a string according to the PDF specification.

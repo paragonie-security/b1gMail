@@ -40,6 +40,7 @@ class MimeDir extends Parser {
     protected $root;
 
     /**
+     *
      * Parses an iCalendar or vCard file
      *
      * Pass a stream or a string. If null is parsed, the existing buffer is
@@ -47,9 +48,8 @@ class MimeDir extends Parser {
      *
      * @param string|resource|null $input
      * @param int|null $options
-     * @return array
      */
-    public function parse($input = null, $options = null) {
+    public function parse($input = null, $options = null): Component {
 
         $this->root = null;
         if (!is_null($input)) {
@@ -186,7 +186,7 @@ class MimeDir extends Parser {
         } else {
 
             // Property reader
-            $property = $this->readProperty($line);
+            $this->readProperty($line);
             if (!$property) {
                 // Ignored line
                 return false;
@@ -287,7 +287,7 @@ class MimeDir extends Parser {
      *
      * @return void
      */
-    protected function readProperty($line) {
+    protected function readProperty(string $line) {
 
         if ($this->options & self::OPTION_FORGIVING) {
             $propNameToken = 'A-Z0-9\-\._\\/';
@@ -525,39 +525,41 @@ class MimeDir extends Parser {
     }
 
     /**
+     *
      * Unescapes a parameter value.
      *
      * vCard 2.1:
-     *   * Does not mention a mechanism for this. In addition, double quotes
-     *     are never used to wrap values.
-     *   * This means that parameters can simply not contain colons or
-     *     semi-colons.
+     * Does not mention a mechanism for this. In addition, double quotes
+     * are never used to wrap values.
+     * This means that parameters can simply not contain colons or
+     * semi-colons.
      *
      * vCard 3.0 (rfc2425, rfc2426):
-     *   * Parameters _may_ be surrounded by double quotes.
-     *   * If this is not the case, semi-colon, colon and comma may simply not
-     *     occur (the comma used for multiple parameter values though).
-     *   * If it is surrounded by double-quotes, it may simply not contain
-     *     double-quotes.
-     *   * This means that a parameter can in no case encode double-quotes, or
-     *     newlines.
+     * Parameters _may_ be surrounded by double quotes.
+     * If this is not the case, semi-colon, colon and comma may simply not
+     * occur (the comma used for multiple parameter values though).
+     * If it is surrounded by double-quotes, it may simply not contain
+     * double-quotes.
+     * This means that a parameter can in no case encode double-quotes, or
+     * newlines.
      *
      * vCard 4.0 (rfc6350)
-     *   * Behavior seems to be identical to vCard 3.0
+     * Behavior seems to be identical to vCard 3.0
      *
      * iCalendar 2.0 (rfc5545)
-     *   * Behavior seems to be identical to vCard 3.0
+     * Behavior seems to be identical to vCard 3.0
      *
      * Parameter escaping mechanism (rfc6868) :
-     *   * This rfc describes a new way to escape parameter values.
-     *   * New-line is encoded as ^n
-     *   * ^ is encoded as ^^.
-     *   * " is encoded as ^'
+     * This rfc describes a new way to escape parameter values.
+     * New-line is encoded as ^n
+     * ^ is encoded as ^^.
+     * " is encoded as ^'
      *
      * @param string $input
-     * @return void
+     *
+     * @return null|string
      */
-    private function unescapeParam($input) {
+    private function unescapeParam($input): string|null {
 
         return
             preg_replace_callback(

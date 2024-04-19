@@ -113,75 +113,7 @@ class PDO extends AbstractBackend implements SyncSupport, SubscriptionSupport, S
 
     }
 
-    /**
-     * Returns a list of calendars for a principal.
-     *
-     * Every project is an array with the following keys:
-     *  * id, a unique id that will be used by other functions to modify the
-     *    calendar. This can be the same as the uri or a database key.
-     *  * uri. This is just the 'base uri' or 'filename' of the calendar.
-     *  * principaluri. The owner of the calendar. Almost always the same as
-     *    principalUri passed to this method.
-     *
-     * Furthermore it can contain webdav properties in clark notation. A very
-     * common one is '{DAV:}displayname'.
-     *
-     * Many clients also require:
-     * {urn:ietf:params:xml:ns:caldav}supported-calendar-component-set
-     * For this property, you can just return an instance of
-     * Sabre\CalDAV\Xml\Property\SupportedCalendarComponentSet.
-     *
-     * If you return {http://sabredav.org/ns}read-only and set the value to 1,
-     * ACL will automatically be put in read-only mode.
-     *
-     * @param string $principalUri
-     * @return array
-     */
-    function getCalendarsForUser($principalUri) {
 
-        $fields = array_values($this->propertyMap);
-        $fields[] = 'id';
-        $fields[] = 'uri';
-        $fields[] = 'synctoken';
-        $fields[] = 'components';
-        $fields[] = 'principaluri';
-        $fields[] = 'transparent';
-
-        // Making fields a comma-delimited list
-        $fields = implode(', ', $fields);
-        $stmt = $this->pdo->prepare("SELECT " . $fields . " FROM " . $this->calendarTableName . " WHERE principaluri = ? ORDER BY calendarorder ASC");
-        $stmt->execute([$principalUri]);
-
-        $calendars = [];
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-
-            $components = [];
-            if ($row['components']) {
-                $components = explode(',', $row['components']);
-            }
-
-            $calendar = [
-                'id'                                                                 => $row['id'],
-                'uri'                                                                => $row['uri'],
-                'principaluri'                                                       => $row['principaluri'],
-                '{' . CalDAV\Plugin::NS_CALENDARSERVER . '}getctag'                  => 'http://sabre.io/ns/sync/' . ($row['synctoken'] ? $row['synctoken'] : '0'),
-                '{http://sabredav.org/ns}sync-token'                                 => $row['synctoken'] ? $row['synctoken'] : '0',
-                '{' . CalDAV\Plugin::NS_CALDAV . '}supported-calendar-component-set' => new CalDAV\Xml\Property\SupportedCalendarComponentSet($components),
-                '{' . CalDAV\Plugin::NS_CALDAV . '}schedule-calendar-transp'         => new CalDAV\Xml\Property\ScheduleCalendarTransp($row['transparent'] ? 'transparent' : 'opaque'),
-            ];
-
-
-            foreach ($this->propertyMap as $xmlName => $dbName) {
-                $calendar[$xmlName] = $row[$dbName];
-            }
-
-            $calendars[] = $calendar;
-
-        }
-
-        return $calendars;
-
-    }
 
     /**
      * Creates a new calendar for a principal.
@@ -403,46 +335,7 @@ class PDO extends AbstractBackend implements SyncSupport, SubscriptionSupport, S
 
     }
 
-    /**
-     * Returns a list of calendar objects.
-     *
-     * This method should work identical to getCalendarObject, but instead
-     * return all the calendar objects in the list as an array.
-     *
-     * If the backend supports this, it may allow for some speed-ups.
-     *
-     * @param mixed $calendarId
-     * @param array $uris
-     * @return array
-     */
-    function getMultipleCalendarObjects($calendarId, array $uris) {
 
-        $query = 'SELECT id, uri, lastmodified, etag, calendarid, size, calendardata, componenttype FROM ' . $this->calendarObjectTableName . ' WHERE calendarid = ? AND uri IN (';
-        // Inserting a whole bunch of question marks
-        $query .= implode(',', array_fill(0, count($uris), '?'));
-        $query .= ')';
-
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute(array_merge([$calendarId], $uris));
-
-        $result = [];
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-
-            $result[] = [
-                'id'           => $row['id'],
-                'uri'          => $row['uri'],
-                'lastmodified' => $row['lastmodified'],
-                'etag'         => '"' . $row['etag'] . '"',
-                'calendarid'   => $row['calendarid'],
-                'size'         => (int)$row['size'],
-                'calendardata' => $row['calendardata'],
-                'component'    => strtolower($row['componenttype']),
-            ];
-
-        }
-        return $result;
-
-    }
 
 
     /**
@@ -486,36 +379,7 @@ class PDO extends AbstractBackend implements SyncSupport, SubscriptionSupport, S
 
     }
 
-    /**
-     * Updates an existing calendarobject, based on it's uri.
-     *
-     * The object uri is only the basename, or filename and not a full path.
-     *
-     * It is possible return an etag from this function, which will be used in
-     * the response to this PUT request. Note that the ETag must be surrounded
-     * by double-quotes.
-     *
-     * However, you should only really return this ETag if you don't mangle the
-     * calendar-data. If the result of a subsequent GET to this object is not
-     * the exact same as this request body, you should omit the ETag.
-     *
-     * @param mixed $calendarId
-     * @param string $objectUri
-     * @param string $calendarData
-     * @return string|null
-     */
-    function updateCalendarObject($calendarId, $objectUri, $calendarData) {
 
-        $extraData = $this->getDenormalizedData($calendarData);
-
-        $stmt = $this->pdo->prepare('UPDATE ' . $this->calendarObjectTableName . ' SET calendardata = ?, lastmodified = ?, etag = ?, size = ?, componenttype = ?, firstoccurence = ?, lastoccurence = ?, uid = ? WHERE calendarid = ? AND uri = ?');
-        $stmt->execute([$calendarData, time(), $extraData['etag'], $extraData['size'], $extraData['componentType'], $extraData['firstOccurence'], $extraData['lastOccurence'], $extraData['uid'], $calendarId, $objectUri]);
-
-        $this->addChange($calendarId, $objectUri, 2);
-
-        return '"' . $extraData['etag'] . '"';
-
-    }
 
     /**
      * Parses some information from calendar objects, used for optimized
@@ -596,23 +460,7 @@ class PDO extends AbstractBackend implements SyncSupport, SubscriptionSupport, S
 
     }
 
-    /**
-     * Deletes an existing calendar object.
-     *
-     * The object uri is only the basename, or filename and not a full path.
-     *
-     * @param string $calendarId
-     * @param string $objectUri
-     * @return void
-     */
-    function deleteCalendarObject($calendarId, $objectUri): void {
 
-        $stmt = $this->pdo->prepare('DELETE FROM ' . $this->calendarObjectTableName . ' WHERE calendarid = ? AND uri = ?');
-        $stmt->execute([$calendarId, $objectUri]);
-
-        $this->addChange($calendarId, $objectUri, 3);
-
-    }
 
     /**
      * Performs a calendar-query on the contents of this calendar.
@@ -785,23 +633,24 @@ SQL;
     }
 
     /**
+     *
      * The getChanges method returns all the changes that have happened, since
      * the specified syncToken in the specified calendar.
      *
      * This function should return an array, such as the following:
      *
      * [
-     *   'syncToken' => 'The current synctoken',
-     *   'added'   => [
-     *      'new.txt',
-     *   ],
-     *   'modified'   => [
-     *      'modified.txt',
-     *   ],
-     *   'deleted' => [
-     *      'foo.php.bak',
-     *      'old.txt'
-     *   ]
+     * 'syncToken' => 'The current synctoken',
+     * 'added'   => [
+     * 'new.txt',
+     * ],
+     * 'modified'   => [
+     * 'modified.txt',
+     * ],
+     * 'deleted' => [
+     * 'foo.php.bak',
+     * 'old.txt'
+     * ]
      * ];
      *
      * The returned syncToken property should reflect the *current* syncToken
@@ -838,9 +687,12 @@ SQL;
      * @param string $syncToken
      * @param int $syncLevel
      * @param int $limit
-     * @return array
+     *
+     * @return (array|mixed)[]|null
+     *
+     * @psalm-return array{syncToken: mixed, added: array, modified: list<array-key>, deleted: list<array-key>}|null
      */
-    function getChangesForCalendar($calendarId, $syncToken, $syncLevel, $limit = null) {
+    function getChangesForCalendar($calendarId, $syncToken, $syncLevel, $limit = null): array|null {
 
         // Current synctoken
         $stmt = $this->pdo->prepare('SELECT synctoken FROM ' . $this->calendarTableName . ' WHERE id = ?');
@@ -1044,89 +896,31 @@ SQL;
 
     }
 
-    /**
-     * Updates a subscription
-     *
-     * The list of mutations is stored in a Sabre\DAV\PropPatch object.
-     * To do the actual updates, you must tell this object which properties
-     * you're going to process with the handle() method.
-     *
-     * Calling the handle method is like telling the PropPatch object "I
-     * promise I can handle updating this property".
-     *
-     * Read the PropPatch documenation for more info and examples.
-     *
-     * @param mixed $subscriptionId
-     * @param \Sabre\DAV\PropPatch $propPatch
-     * @return void
-     */
-    function updateSubscription($subscriptionId, DAV\PropPatch $propPatch): void {
 
-        $supportedProperties = array_keys($this->subscriptionPropertyMap);
-        $supportedProperties[] = '{http://calendarserver.org/ns/}source';
 
-        $propPatch->handle($supportedProperties, function($mutations) use ($subscriptionId) {
 
-            $newValues = [];
-
-            foreach ($mutations as $propertyName => $propertyValue) {
-
-                if ($propertyName === '{http://calendarserver.org/ns/}source') {
-                    $newValues['source'] = $propertyValue->getHref();
-                } else {
-                    $fieldName = $this->subscriptionPropertyMap[$propertyName];
-                    $newValues[$fieldName] = $propertyValue;
-                }
-
-            }
-
-            // Now we're generating the sql query.
-            $valuesSql = [];
-            foreach ($newValues as $fieldName => $value) {
-                $valuesSql[] = $fieldName . ' = ?';
-            }
-
-            $stmt = $this->pdo->prepare("UPDATE " . $this->calendarSubscriptionsTableName . " SET " . implode(', ', $valuesSql) . ", lastmodified = ? WHERE id = ?");
-            $newValues['lastmodified'] = time();
-            $newValues['id'] = $subscriptionId;
-            $stmt->execute(array_values($newValues));
-
-            return true;
-
-        });
-
-    }
 
     /**
-     * Deletes a subscription
      *
-     * @param mixed $subscriptionId
-     * @return void
-     */
-    function deleteSubscription($subscriptionId): void {
-
-        $stmt = $this->pdo->prepare('DELETE FROM ' . $this->calendarSubscriptionsTableName . ' WHERE id = ?');
-        $stmt->execute([$subscriptionId]);
-
-    }
-
-    /**
      * Returns a single scheduling object.
      *
      * The returned array should contain the following elements:
-     *   * uri - A unique basename for the object. This will be used to
-     *           construct a full uri.
-     *   * calendardata - The iCalendar object
-     *   * lastmodified - The last modification date. Can be an int for a unix
-     *                    timestamp, or a PHP DateTime object.
-     *   * etag - A unique token that must change if the object changed.
-     *   * size - The size of the object, in bytes.
+     * uri - A unique basename for the object. This will be used to
+     * construct a full uri.
+     * calendardata - The iCalendar object
+     * lastmodified - The last modification date. Can be an int for a unix
+     * timestamp, or a PHP DateTime object.
+     * etag - A unique token that must change if the object changed.
+     * size - The size of the object, in bytes.
      *
      * @param string $principalUri
      * @param string $objectUri
-     * @return array
+     *
+     * @return (int|mixed|string)[]|null
+     *
+     * @psalm-return array{uri: mixed, calendardata: mixed, lastmodified: mixed, etag: string, size: int}|null
      */
-    function getSchedulingObject($principalUri, $objectUri) {
+    function getSchedulingObject($principalUri, $objectUri): array|null {
 
         $stmt = $this->pdo->prepare('SELECT uri, calendardata, lastmodified, etag, size FROM ' . $this->schedulingObjectTableName . ' WHERE principaluri = ? AND uri = ?');
         $stmt->execute([$principalUri, $objectUri]);
@@ -1144,36 +938,7 @@ SQL;
 
     }
 
-    /**
-     * Returns all scheduling objects for the inbox collection.
-     *
-     * These objects should be returned as an array. Every item in the array
-     * should follow the same structure as returned from getSchedulingObject.
-     *
-     * The main difference is that 'calendardata' is optional.
-     *
-     * @param string $principalUri
-     * @return array
-     */
-    function getSchedulingObjects($principalUri) {
 
-        $stmt = $this->pdo->prepare('SELECT id, calendardata, uri, lastmodified, etag, size FROM ' . $this->schedulingObjectTableName . ' WHERE principaluri = ?');
-        $stmt->execute([$principalUri]);
-
-        $result = [];
-        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
-            $result[] = [
-                'calendardata' => $row['calendardata'],
-                'uri'          => $row['uri'],
-                'lastmodified' => $row['lastmodified'],
-                'etag'         => '"' . $row['etag'] . '"',
-                'size'         => (int)$row['size'],
-            ];
-        }
-
-        return $result;
-
-    }
 
     /**
      * Deletes a scheduling object
@@ -1189,19 +954,6 @@ SQL;
 
     }
 
-    /**
-     * Creates a new scheduling object. This should land in a users' inbox.
-     *
-     * @param string $principalUri
-     * @param string $objectUri
-     * @param string $objectData
-     * @return void
-     */
-    function createSchedulingObject($principalUri, $objectUri, $objectData): void {
 
-        $stmt = $this->pdo->prepare('INSERT INTO ' . $this->schedulingObjectTableName . ' (principaluri, calendardata, uri, lastmodified, etag, size) VALUES (?, ?, ?, ?, ?, ?)');
-        $stmt->execute([$principalUri, $objectData, $objectUri, time(), md5($objectData), strlen($objectData) ]);
-
-    }
 
 }

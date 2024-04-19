@@ -119,20 +119,7 @@ class Promise {
 
     }
 
-    /**
-     * Add a callback for when this promise is rejected.
-     *
-     * I would have used the word 'catch', but it's a reserved word in PHP, so
-     * we're not allowed to call our function that.
-     *
-     * @param callable $onRejected
-     * @return Promise
-     */
-    function error(callable $onRejected) {
 
-        return $this->then(null, $onRejected);
-
-    }
 
     /**
      * Marks this promise as fulfilled and sets its return value.
@@ -169,42 +156,7 @@ class Promise {
 
     }
 
-    /**
-     * It's possible to send an array of promises to the all method. This
-     * method returns a promise that will be fulfilled, only if all the passed
-     * promises are fulfilled.
-     *
-     * @param Promise[] $promises
-     * @return Promise
-     */
-    static function all(array $promises) {
 
-        return new self(function($success, $fail) use ($promises) {
-
-            $successCount = 0;
-            $completeResult = [];
-
-            foreach ($promises as $promiseIndex => $subPromise) {
-
-                $subPromise->then(
-                    function($result) use ($promiseIndex, &$completeResult, &$successCount, $success, $promises) {
-                        $completeResult[$promiseIndex] = $result;
-                        $successCount++;
-                        if ($successCount === count($promises)) {
-                            $success($completeResult);
-                        }
-                        return $result;
-                    }
-                )->error(
-                    function($reason) use ($fail) {
-                        $fail($reason);
-                    }
-                );
-
-            }
-        });
-
-    }
 
     /**
      * This method is used to call either an onFulfilled or onRejected callback.

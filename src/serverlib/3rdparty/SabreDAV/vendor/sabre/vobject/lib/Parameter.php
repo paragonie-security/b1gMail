@@ -252,24 +252,7 @@ class Parameter extends Node {
 
     }
 
-    /**
-     * Checks if this parameter contains the specified value.
-     *
-     * This is a case-insensitive match. It makes sense to call this for for
-     * instance the TYPE parameter, to see if it contains a keyword such as
-     * 'WORK' or 'FAX'.
-     *
-     * @param string $value
-     * @return bool
-     */
-    public function has($value) {
 
-        return in_array(
-            strtolower($value),
-            array_map('strtolower', (array)$this->value)
-        );
-
-    }
 
     /**
      * Turns the object back into a serialized blob.
@@ -334,12 +317,11 @@ class Parameter extends Node {
     }
 
     /**
+     *
      * This method returns an array, with the representation as it should be
      * encoded in json. This is used to create jCard or jCal documents.
-     *
-     * @return array
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): string {
 
         return $this->value;
 
@@ -357,11 +339,12 @@ class Parameter extends Node {
     }
 
     /**
+     *
      * Returns the iterator for this object
      *
-     * @return ElementList
+     * @psalm-return ArrayObject<0, string>|ElementList
      */
-    public function getIterator() {
+    public function getIterator(): ArrayObject|ElementList {
 
         if (!is_null($this->iterator))
             return $this->iterator;

@@ -116,6 +116,7 @@ class Plugin extends ServerPlugin {
     }
 
     /**
+     *
      * This event is triggered before the usual GET request handler.
      *
      * We use this to intercept GET calls to notification nodes, and return the
@@ -123,7 +124,8 @@ class Plugin extends ServerPlugin {
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return void
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $response) {
 

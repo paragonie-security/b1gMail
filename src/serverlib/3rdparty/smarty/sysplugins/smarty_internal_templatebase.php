@@ -352,43 +352,13 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
         );
     }
 
-    /**
-     * @param int $compile_check
-     */
-    public function setCompileCheck($compile_check): void
-    {
-        $this->compile_check = (int)$compile_check;
-    }
 
-    /**
-     * @param int $caching
-     */
-    public function setCaching($caching): void
-    {
-        $this->caching = (int)$caching;
-    }
 
-    /**
-     * @param int $cache_lifetime
-     */
-    public function setCacheLifetime($cache_lifetime): void
-    {
-        $this->cache_lifetime = $cache_lifetime;
-    }
 
-    /**
-     * @param string $compile_id
-     */
-    public function setCompileId($compile_id): void
-    {
-        $this->compile_id = $compile_id;
-    }
 
-    /**
-     * @param string $cache_id
-     */
-    public function setCacheId($cache_id): void
-    {
-        $this->cache_id = $cache_id;
-    }
+
+
+
+
+
 }

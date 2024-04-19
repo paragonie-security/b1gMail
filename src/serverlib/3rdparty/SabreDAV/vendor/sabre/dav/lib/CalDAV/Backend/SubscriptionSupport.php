@@ -60,30 +60,8 @@ interface SubscriptionSupport extends BackendInterface {
      */
     function createSubscription($principalUri, $uri, array $properties);
 
-    /**
-     * Updates a subscription
-     *
-     * The list of mutations is stored in a Sabre\DAV\PropPatch object.
-     * To do the actual updates, you must tell this object which properties
-     * you're going to process with the handle() method.
-     *
-     * Calling the handle method is like telling the PropPatch object "I
-     * promise I can handle updating this property".
-     *
-     * Read the PropPatch documenation for more info and examples.
-     *
-     * @param mixed $subscriptionId
-     * @param \Sabre\DAV\PropPatch $propPatch
-     * @return void
-     */
-    function updateSubscription($subscriptionId, DAV\PropPatch $propPatch);
 
-    /**
-     * Deletes a subscription.
-     *
-     * @param mixed $subscriptionId
-     * @return void
-     */
-    function deleteSubscription($subscriptionId);
+
+
 
 }

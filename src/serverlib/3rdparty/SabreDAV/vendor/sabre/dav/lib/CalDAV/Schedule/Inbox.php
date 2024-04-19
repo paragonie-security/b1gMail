@@ -76,6 +76,7 @@ class Inbox extends DAV\Collection implements IInbox {
     }
 
     /**
+     *
      * Creates a new file in the directory
      *
      * Data will either be supplied as a stream resource, or in certain cases
@@ -97,7 +98,8 @@ class Inbox extends DAV\Collection implements IInbox {
      *
      * @param string $name Name of the file
      * @param resource|string $data Initial payload
-     * @return null|string
+     *
+     * @return void
      */
     function createFile($name, $data = null): void {
 

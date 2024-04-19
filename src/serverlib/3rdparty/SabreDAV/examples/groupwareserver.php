@@ -36,11 +36,14 @@ $pdo = new \PDO('sqlite:data/db.sqlite');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 /**
+ *
  * Mapping PHP errors to exceptions.
  *
  * While this is not strictly needed, it makes a lot of sense to do so. If an
  * E_NOTICE or anything appears in your code, this allows SabreDAV to intercept
  * the issue and send a proper response back to the client (HTTP/1.1 500).
+ *
+ * @return never
  */
 function exception_error_handler($errno, $errstr, $errfile, $errline) {
     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);

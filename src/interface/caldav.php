@@ -35,51 +35,14 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 	private static $wDays = array('SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA');
 	private static $supportedReminderIntervalMinutes = array(5, 10, 15, 30, 45, 60, 120, 240, 480, 720, 1440, 2880, 5760, 8640, 10080, 20160, 30240, 40320);
 
-	public function getCalendarsForUser($principalUri)
-	{
-		global $os;
 
-		$result = array();
 
-		$result[] = array(
-			'id'				=> array(BMCL_TYPE_CALENDAR, 0),
-			'uri'				=> 'calendar',
-			'principaluri'		=> $os->getPrincipalURI(),
-			'{DAV:}displayname'	=> 'Calendar',
-			'{' . Sabre\CalDAV\Plugin::NS_CALDAV . '}supported-calendar-component-set' => new Sabre\CalDAV\Xml\Property\SupportedCalendarComponentSet(array('VEVENT'))
-		);
-
-		$groupList = $os->calendar->GetGroups();
-		foreach($groupList as $key=>$group)
-		{
-			if($key <= 0)
-				continue;
-
-			$result[] = array(
-				'id'				=> array(BMCL_TYPE_CALENDAR, $key),
-				'uri'				=> !empty($group['dav_uri']) ? $group['dav_uri'] : 'calendar-' . $key,
-				'principaluri'		=> $os->getPrincipalURI(),
-				'{DAV:}displayname'	=> $group['title'],
-				'{' . Sabre\CalDAV\Plugin::NS_CALDAV . '}supported-calendar-component-set' => new Sabre\CalDAV\Xml\Property\SupportedCalendarComponentSet(array('VEVENT'))
-			);
-		}
-
-		$taskLists = $os->todo->GetTaskLists();
-		foreach($taskLists as $list)
-		{
-			$result[] = array(
-				'id'				=> array(BMCL_TYPE_TODO, $list['tasklistid']),
-				'uri'				=> !empty($list['dav_uri']) ? $list['dav_uri'] : 'tasklist-' . $list['tasklistid'],
-				'principaluri'		=> $os->getPrincipalURI(),
-				'{DAV:}displayname'	=> $list['title'],
-				'{' . Sabre\CalDAV\Plugin::NS_CALDAV . '}supported-calendar-component-set' => new Sabre\CalDAV\Xml\Property\SupportedCalendarComponentSet(array('VTODO'))
-			);
-		}
-
-		return($result);
-	}
-
-	public function createCalendar($principalUri, $calendarUri, array $properties)
+	/**
+	 * @return (int|mixed)[]
+	 *
+	 * @psalm-return list{1|2, mixed}
+	 */
+	public function createCalendar($principalUri, $calendarUri, array $properties): array
 	{
 		global $os;
 
@@ -317,76 +280,11 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 			throw new Sabre\DAV\Exception\NotFound();
 	}
 
-	public function updateCalendarObject($calendarId, $objectUri, $calendarData)
-	{
-		global $os;
 
-		if(!is_array($calendarId))
-			return(null);
 
-		if($calendarId[0] == BMCL_TYPE_TODO)
-		{
-			$todoID = $this->taskURItoID($objectUri);
-			if($todoID === false)
-				return(null);
 
-			$todo = $this->vTodoToRow(Sabre\VObject\Reader::read($calendarData, Sabre\VObject\Reader::OPTION_FORGIVING));
-			$os->todo->Change($todoID, $todo['beginn'], $todo['faellig'], $todo['akt_status'], $todo['titel'], $todo['priority'], $todo['erledigt'],
-				$todo['comments'], $calendarId[1], $todo['dav_uid']);
 
-			return(null);
-		}
-		else if($calendarId[0] == BMCL_TYPE_CALENDAR)
-		{
-			$dateID = $this->eventURItoID($objectUri);
-			if($dateID === false)
-				return(null);
-
-			$event = $this->vEventToRow(Sabre\VObject\Reader::read($calendarData, Sabre\VObject\Reader::OPTION_FORGIVING));
-
-			$event['group'] 	= $calendarId[1] > 0 ? $calendarId[1] : -1;
-			$event['dav_uri'] 	= $objectUri;
-
-			$os->calendar->ChangeDate($dateID, $event, array());
-
-			return(null);
-		}
-		else
-			throw new Sabre\DAV\Exception\NotFound();
-	}
-
-	public function deleteCalendarObject($calendarId, $objectUri): void
-	{
-		global $os;
-
-		if(!is_array($calendarId))
-			return;
-
-		if($calendarId[0] == BMCL_TYPE_TODO)
-		{
-			$todoID = $this->taskURItoID($objectUri);
-			if($todoID === false)
-				return;
-
-			$os->todo->Delete($todoID);
-
-			return;
-		}
-		else if($calendarId[0] == BMCL_TYPE_CALENDAR)
-		{
-			$eventID = $this->eventURItoID($objectUri);
-			if($eventID === false)
-				return;
-
-			$os->calendar->DeleteDate($eventID);
-
-			return;
-		}
-		else
-			throw new Sabre\DAV\Exception\NotFound();
-	}
-
-	private function taskURItoID($taskUri)
+	private function taskURItoID(string $taskUri)
 	{
 		global $db, $os;
 
@@ -410,7 +308,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 		return($taskID);
 	}
 
-	private function eventURItoID($eventUri)
+	private function eventURItoID(string $eventUri)
 	{
 		global $db, $os;
 
@@ -434,7 +332,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 		return($eventID);
 	}
 
-	private function vTodoToRow($obj, $baseRow = null)
+	private function vTodoToRow(\Sabre\VObject\Document $obj, $baseRow = null)
 	{
 		global $os;
 
@@ -514,7 +412,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 		return($row);
 	}
 
-	private function vEventToRow($obj, $baseRow = null)
+	private function vEventToRow(\Sabre\VObject\Document $obj, $baseRow = null)
 	{
 		global $os;
 
@@ -693,7 +591,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 		return($row);
 	}
 
-	private function rowToVEvent($row)
+	private function rowToVEvent($row): \Sabre\VObject\Component\VCalendar
 	{
 		global $os;
 
@@ -809,7 +707,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 		return($obj);
 	}
 
-	private function rowToVTodo($row)
+	private function rowToVTodo($row): \Sabre\VObject\Component\VCalendar
 	{
 		global $os;
 
@@ -867,6 +765,9 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 
 class BMCalDAVAuthBackend extends BMAuthBackend
 {
+	/**
+	 * @return bool
+	 */
 	function checkPermissions()
 	{
 		return($this->groupRow['organizerdav'] == 'yes');
@@ -885,7 +786,7 @@ class BMCalDAVAuthBackend extends BMAuthBackend
 	}
 }
 
-$os = new BMOrganizerState;
+new BMOrganizerState;
 
 $principalBackend 	= new BMPrincipalBackend;
 $caldavBackend		= new BMCalDAVBackend;

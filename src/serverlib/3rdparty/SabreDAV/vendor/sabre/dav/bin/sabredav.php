@@ -12,13 +12,11 @@ class CliLog {
 
     }
 
-    function log($msg): void {
-        fwrite($this->stream, $msg . "\n");
-    }
+
 
 }
 
-$log = new CliLog();
+new CliLog();
 
 if (php_sapi_name()!=='cli-server') {
     die("This script is intended to run on the built-in php webserver");

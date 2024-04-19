@@ -46,9 +46,9 @@ mysqli_free_result($result);
 
 // step?
 if(!isset($_REQUEST['step']))
-	$step = STEP_WELCOME;
+	
 else
-	$step = (int)$_REQUEST['step'];
+	(int)$_REQUEST['step'];
 
 // read language file
 if(!isset($_GET['lng']))
@@ -76,7 +76,7 @@ if(isset($bm_prefs['db_is_utf8']) && $bm_prefs['db_is_utf8']==1)
  */
 else if($step == STEP_WELCOME)
 {
-	$nextStep = STEP_SYSTEMCHECK;
+	
 	?>
 	<h1><?php echo($lang_setup['welcome']); ?></h1>
 

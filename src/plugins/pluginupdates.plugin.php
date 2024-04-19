@@ -93,7 +93,7 @@ class PluginUpdatesPlugin extends BMPlugin
             if (!isset($table[$className])
                 || $table[$className]['lastCheck'] + 3 * TIME_ONE_HOUR <= time()) {
                 $latestVersion = '';
-                $resultCode = $plugins->callFunction('CheckForUpdates', $className, false, [&$latestVersion]);
+                $plugins->callFunction('CheckForUpdates', $className, false, [&$latestVersion]);
 
                 $db->Query('REPLACE INTO {pre}mod_pluginupdates(`modName`,`lastCheck`,`latestVersion`) VALUES(?,?,?)',
                     $className,

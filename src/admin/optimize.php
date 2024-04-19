@@ -61,7 +61,7 @@ if($_REQUEST['action'] == 'db')
 			$databaseStructure = json_decode($databaseStructure, JSON_OBJECT_AS_ARRAY);
 
 			// get tables
-			$defaultTables = array();
+			
 			$res = $db->Query('SHOW TABLES');
 			while($row = $res->FetchArray(MYSQLI_NUM))
 				$myTables[] = $row[0];
@@ -184,8 +184,8 @@ if($_REQUEST['action'] == 'db')
 	{
 		// read default structure
 		include('../serverlib/database.struct.php');
-		$databaseStructure = json_decode($databaseStructure, JSON_OBJECT_AS_ARRAY);
-		$executedQueries = SyncDBStruct($databaseStructure);
+		
+		SyncDBStruct($databaseStructure);
 
 		// assign
 		$tpl->assign('backLink', 'optimize.php?');
@@ -402,7 +402,7 @@ else if($_REQUEST['action'] == 'filesystem')
 			$currentSourceProvider->endTx();
 
 			unset($currentSourceProvider);
-			$currentToDelete = array();
+			
 		}
 
 		if(is_object($currentDestProvider))
@@ -417,7 +417,7 @@ else if($_REQUEST['action'] == 'filesystem')
 			}
 
 			unset($currentDestProvider);
-			$currentToUpdate = array();
+			
 		}
 
 		if($processedCount == 0 || $processedCount >= $all)

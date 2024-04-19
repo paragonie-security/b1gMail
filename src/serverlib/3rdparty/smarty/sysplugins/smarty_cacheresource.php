@@ -66,32 +66,9 @@ abstract class Smarty_CacheResource
      */
     abstract public function writeCachedContent(Smarty_Internal_Template $_template, $content);
 
-    /**
-     * Read cached template from cache
-     *
-     * @param Smarty_Internal_Template $_template template object
-     *
-     * @return string  content
-     */
-    abstract public function readCachedContent(Smarty_Internal_Template $_template);
 
-    /**
-     * Return cached content
-     *
-     * @param Smarty_Internal_Template $_template template object
-     *
-     * @return null|string
-     */
-    public function getCachedContent(Smarty_Internal_Template $_template)
-    {
-        if ($_template->cached->handler->process($_template)) {
-            ob_start();
-            $unifunc = $_template->cached->unifunc;
-            $unifunc($_template);
-            return ob_get_clean();
-        }
-        return null;
-    }
+
+
 
     /**
      * Empty cache

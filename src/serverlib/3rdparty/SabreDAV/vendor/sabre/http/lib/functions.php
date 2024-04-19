@@ -314,6 +314,7 @@ function getHeaderValues($values, $values2 = null) {
 }
 
 /**
+ *
  * Parses a mime-type and splits it into:
  *
  * 1. type
@@ -322,9 +323,12 @@ function getHeaderValues($values, $values2 = null) {
  * 4. parameters
  *
  * @param string $str
- * @return array
+ *
+ * @return (float|int|string|string[])[]|null
+ *
+ * @psalm-return array{type: string, subType: string, quality: 1|float, parameters: array<string, string>}|null
  */
-function parseMimeType($str) {
+function parseMimeType($str): array|null {
 
     $parameters = [];
     // If no q= parameter appears, then quality = 1.

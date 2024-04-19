@@ -40,24 +40,7 @@ class NewsPlugin extends BMPlugin
         $this->admin_page_icon = 'news_icon.png';
     }
 
-    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
-    {
-        if ($lang == 'deutsch') {
-            $lang_admin['news_news'] = 'News';
-            $lang_admin['news_addnews'] = 'News hinzuf&uuml;gen';
 
-            $lang_user['news_news'] = 'News';
-            $lang_user['news_nonews'] = 'Es konnten keine News gefunden werden.';
-            $lang_user['news_text'] = 'Hier finden Sie aktuelle Informationen und Ank&uuml;ndigungen rund um unserem Dienst.';
-        } else {
-            $lang_admin['news_news'] = 'News';
-            $lang_admin['news_addnews'] = 'Add news';
-
-            $lang_user['news_news'] = 'News';
-            $lang_user['news_nonews'] = 'Could not find any news.';
-            $lang_user['news_text'] = 'Here you can find current information and announcements regarding our service.';
-        }
-    }
 
     public function Install()
     {
@@ -94,158 +77,13 @@ class NewsPlugin extends BMPlugin
         return true;
     }
 
-    public function AdminHandler(): void
-    {
-        global $tpl, $bm_prefs, $lang_admin, $db;
 
-        if (!isset($_REQUEST['action'])) {
-            $_REQUEST['action'] = 'news';
-        }
 
-        $tabs = [
-            0 => [
-                'title' => $lang_admin['news_news'],
-                'link' => $this->_adminLink().'&',
-                'icon' => '../plugins/templates/images/news_add.png',
-                'active' => $_REQUEST['action'] == 'news',
-            ],
-        ];
 
-        $tpl->assign('tabs', $tabs);
-        $tpl->assign('pageURL', $this->_adminLink());
 
-        if ($_REQUEST['action'] == 'news') {
-            //
-            // overview (+ add, delete)
-            //
-            if (!isset($_REQUEST['do'])) {
-                if (isset($_REQUEST['add'])) {
-                    if (isset($_REQUEST['all_groups'])) {
-                        $groups = '*';
-                    } else {
-                        $groups = implode(',', is_array($_REQUEST['groups']) ? $_REQUEST['groups'] : []);
-                    }
-                    $db->Query('INSERT INTO {pre}news(`title`,`date`,`loggedin`,`groups`,`text`) VALUES(?,?,?,?,?)',
-                        $_REQUEST['title'],
-                        time(),
-                        $_REQUEST['loggedin'],
-                        $groups,
-                        $_REQUEST['text']);
-                } elseif (isset($_REQUEST['delete'])) {
-                    $db->Query('DELETE FROM {pre}news WHERE `newsid`=?',
-                        (int) $_REQUEST['delete']);
-                }
 
-                $news = [];
-                $res = $db->Query('SELECT `newsid`,`title`,`date`,`loggedin` FROM {pre}news ORDER BY `newsid` DESC');
-                while ($row = $res->FetchArray(MYSQLI_ASSOC)) {
-                    $news[$row['newsid']] = $row;
-                }
-                $res->Free();
 
-                $tpl->assign('usertpldir', B1GMAIL_REL.'templates/'.$bm_prefs['template'].'/');
-                $tpl->assign('groups', BMGroup::GetSimpleGroupList());
-                $tpl->assign('news', $news);
-                $tpl->assign('page', $this->_templatePath('news.admin.tpl'));
-            }
-
-            //
-            // edit
-            //
-            elseif ($_REQUEST['do'] == 'edit'
-                && isset($_REQUEST['id'])) {
-                if (isset($_REQUEST['save'])) {
-                    if (isset($_REQUEST['all_groups'])) {
-                        $groups = '*';
-                    } else {
-                        $groups = implode(',', is_array($_REQUEST['groups']) ? $_REQUEST['groups'] : []);
-                    }
-                    $db->Query('UPDATE {pre}news SET `title`=?,`loggedin`=?,`groups`=?,`text`=? WHERE `newsid`=?',
-                        $_REQUEST['title'],
-                        $_REQUEST['loggedin'],
-                        $groups,
-                        $_REQUEST['text'],
-                        (int) $_REQUEST['id']);
-                    header('Location: '.$this->_adminLink().'&sid='.session_id());
-                    exit();
-                }
-
-                // fetch news
-                $news = [];
-                $res = $db->Query('SELECT `newsid`,`title`,`text`,`loggedin`,`groups` FROM {pre}news WHERE `newsid`=?',
-                    (int) $_REQUEST['id']);
-                if ($res->RowCount() != 1) {
-                    exit();
-                }
-                $news = $res->FetchArray();
-                $res->Free();
-
-                // process groups
-                $groups = BMGroup::GetSimpleGroupList();
-                if ($news['groups'] != '*') {
-                    $newsGroups = explode(',', $news['groups']);
-
-                    foreach ($groups as $key => $val) {
-                        if (in_array($val['id'], $newsGroups)) {
-                            $groups[$key]['checked'] = true;
-                        }
-                    }
-                }
-
-                $tpl->assign('usertpldir', B1GMAIL_REL.'templates/'.$bm_prefs['template'].'/');
-                $tpl->assign('groups', $groups);
-                $tpl->assign('news', $news);
-                $tpl->assign('page', $this->_templatePath('news.admin.edit.tpl'));
-            }
-        }
-    }
-
-    public function FileHandler($file, $action): void
-    {
-        global $tpl, $groupRow;
-
-        if ($file == 'index.php' && $action == 'newsPlugin') {
-            $news = $this->_getNews(false);
-
-            $tpl->assign('news', $news);
-            $tpl->assign('page', $this->_templatePath('news.notloggedin.tpl'));
-            $tpl->display('nli/index.tpl');
-
-            exit();
-        } elseif ($file == 'start.php' && $action == 'newsPlugin') {
-            if (isset($_REQUEST['do']) && $_REQUEST['do'] == 'showNews' && isset($_REQUEST['id'])) {
-                $news = $this->_getNews(true, $groupRow['id']);
-
-                if (isset($news[$_REQUEST['id']])) {
-                    $tpl->assign('news', $news[$_REQUEST['id']]);
-                    $tpl->display($this->_templatePath('news.show.tpl'));
-                    exit();
-                }
-            }
-        }
-    }
-
-    public function getUserPages($loggedin)
-    {
-        global $lang_user;
-
-        if ($loggedin) {
-            return [];
-        }
-
-        if (count($this->_getNews(false)) < 1) {
-            return [];
-        }
-
-        return [
-            'news' => [
-                'text' => $lang_user['news_news'],
-                'link' => 'index.php?action=newsPlugin',
-            ],
-        ];
-    }
-
-    public function _getNews($loggedin, $groupID = 0, $sortField = 'date', $sortDirection = 'DESC')
+    public function _getNews(bool $loggedin, $groupID = 0, $sortField = 'date', $sortDirection = 'DESC'): array
     {
         global $db;
 
@@ -293,7 +131,10 @@ class NewsWidget extends BMPlugin
                 || $for == BMWIDGET_ORGANIZER;
     }
 
-    public function renderWidget()
+    /**
+     * @return true
+     */
+    public function renderWidget(): bool
     {
         global $groupRow, $tpl;
         $tpl->assign('bmwidget_news_news', (new NewsPlugin())->_getNews(true, $groupRow['id']));

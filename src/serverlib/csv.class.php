@@ -33,25 +33,13 @@ class CSVReader
 	var $_rp = 0;
 	var $_encoding = false;
 
-	/**
-	 * constructor
-	 *
-	 * @param resource $fp File pointer to CSV file
-	 * @return CSVReader
-	 */
-	public function __construct($fp, $encoding = 'UTF-8')
-	{
-		$this->_encoding = $encoding;
-		$this->_fp = $fp;
-		$this->_data = $this->_parse_file($fp);
-	}
+
 
 	/**
-	 * fetch row from CSV file
 	 *
-	 * @return array
+	 * fetch row from CSV file
 	 */
-	public function FetchRow()
+	public function FetchRow(): array|false
 	{
 		return(isset($this->_data[++$this->_rp]) ? $this->_generate_assoc_row($this->_rp) : false);
 	}
@@ -66,15 +54,7 @@ class CSVReader
 		return($this->_data[0]);
 	}
 
-	/**
-	 * return number of fields
-	 *
-	 * @return int
-	 */
-	public function NumFields()
-	{
-		return(count($this->_data[0]));
-	}
+
 
 	/**
 	 * generate a associate array for row

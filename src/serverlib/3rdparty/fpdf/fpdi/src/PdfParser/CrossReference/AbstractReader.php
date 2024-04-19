@@ -43,21 +43,16 @@ abstract class AbstractReader
         $this->readTrailer();
     }
 
-    /**
-     * Get the trailer dictionary.
-     *
-     * @return PdfDictionary
-     */
-    public function getTrailer()
-    {
-        return $this->trailer;
-    }
+
 
     /**
+     *
      * Read the trailer dictionary.
      *
      * @throws CrossReferenceException
      * @throws PdfTypeException
+     *
+     * @return void
      */
     protected function readTrailer()
     {

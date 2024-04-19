@@ -109,6 +109,7 @@ class Reader extends XMLReader {
     }
 
     /**
+     *
      * Parses all elements below the current element.
      *
      * This method will return a string if this was a text-node, or an array if
@@ -120,9 +121,12 @@ class Reader extends XMLReader {
      * be overridden while parsing the tree, and restored after this process.
      *
      * @param array $elementMap
-     * @return array|string
+     *
+     * @return array[]|false|null|string
+     *
+     * @psalm-return false|non-empty-list<array>|null|string
      */
-    function parseInnerTree(array $elementMap = null) {
+    function parseInnerTree(array $elementMap = null): array|false|null|string {
 
         $text = null;
         $elements = [];

@@ -33,26 +33,8 @@ class ClientHttpException extends \Exception implements HttpException {
 
     }
 
-    /**
-     * The http status code for the error.
-     *
-     * @return int
-     */
-    function getHttpStatus() {
 
-        return $this->response->getStatus();
 
-    }
 
-    /**
-     * Returns the full response object.
-     *
-     * @return ResponseInterface
-     */
-    function getResponse() {
-
-        return $this->response;
-
-    }
 
 }

@@ -352,7 +352,10 @@ class TTFParser
 			$this->glyphNames = false;
 	}
 
-	function Subset($chars): void
+	/**
+	 * @psalm-param list{0?: mixed,...} $chars
+	 */
+	function Subset(array $chars): void
 	{
 		$this->subsettedGlyphs = array();
 		$this->AddGlyph(0);
@@ -367,7 +370,10 @@ class TTFParser
 		}
 	}
 
-	function AddGlyph($id): void
+	/**
+	 * @psalm-param 0 $id
+	 */
+	function AddGlyph(int $id): void
 	{
 		if(!isset($this->glyphs[$id]['ssid']))
 		{
@@ -381,7 +387,7 @@ class TTFParser
 		}
 	}
 
-	function Build()
+	function Build(): string
 	{
 		$this->BuildCmap();
 		$this->BuildHhea();
@@ -582,7 +588,7 @@ class TTFParser
 		$this->SetTable('post', $data);
 	}
 
-	function BuildFont()
+	function BuildFont(): string
 	{
 		$tags = array();
 		foreach(array('cmap', 'cvt ', 'fpgm', 'glyf', 'head', 'hhea', 'hmtx', 'loca', 'maxp', 'name', 'post', 'prep') as $tag)
@@ -634,7 +640,7 @@ class TTFParser
 		return $font;
 	}
 
-	function LoadTable($tag): void
+	function LoadTable(string $tag): void
 	{
 		$this->Seek($tag);
 		$length = $this->tables[$tag]['length'];
@@ -644,7 +650,12 @@ class TTFParser
 		$this->tables[$tag]['data'] = $this->Read($length);
 	}
 
-	function SetTable($tag, $data): void
+	/**
+	 * @param string|string[] $data
+	 *
+	 * @psalm-param array<string>|string $data
+	 */
+	function SetTable(string $tag, array|string $data): void
 	{
 		$length = strlen($data);
 		$n = $length % 4;
@@ -655,19 +666,27 @@ class TTFParser
 		$this->tables[$tag]['checkSum'] = $this->CheckSum($data);
 	}
 
-	function Seek($tag): void
+	function Seek(string $tag): void
 	{
 		if(!isset($this->tables[$tag]))
 			$this->Error('Table not found: '.$tag);
 		fseek($this->f, $this->tables[$tag]['offset'], SEEK_SET);
 	}
 
-	function Skip($n): void
+	/**
+	 * @psalm-param int<1, max> $n
+	 */
+	function Skip(int $n): void
 	{
 		fseek($this->f, $n, SEEK_CUR);
 	}
 
-	function Read($n)
+	/**
+	 * @psalm-param int<0, 255> $n
+	 *
+	 * @return false|string
+	 */
+	function Read(int $n): string|false
 	{
 		return $n>0 ? fread($this->f, $n) : '';
 	}
@@ -693,7 +712,7 @@ class TTFParser
 		return $a['N'];
 	}
 
-	function CheckSum($s)
+	function CheckSum(string $s): string
 	{
 		$n = strlen($s);
 		$high = 0;
@@ -706,7 +725,10 @@ class TTFParser
 		return pack('nn', $high+($low>>16), $low);
 	}
 
-	function Error($msg)
+	/**
+	 * @return never
+	 */
+	function Error(string $msg)
 	{
 		throw new Exception($msg);
 	}

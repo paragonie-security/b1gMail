@@ -202,9 +202,10 @@ class EventIterator implements \Iterator {
     }
 
     /**
+     *
      * Returns the date for the current position of the iterator.
      *
-     * @return DateTime
+     * @return DateTime|null
      */
     public function current() {
 
@@ -215,10 +216,11 @@ class EventIterator implements \Iterator {
     }
 
     /**
+     *
      * This method returns the start date for the current iteration of the
      * event.
      *
-     * @return DateTime
+     * @return DateTime|null
      */
     public function getDtStart() {
 
@@ -229,12 +231,11 @@ class EventIterator implements \Iterator {
     }
 
     /**
+     *
      * This method returns the end date for the current iteration of the
      * event.
-     *
-     * @return DateTime
      */
-    public function getDtEnd() {
+    public function getDtEnd(): DateTime|null {
 
         if (!$this->valid()) {
             return null;

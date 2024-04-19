@@ -59,15 +59,6 @@ abstract class AbstractAuth {
      */
     abstract function requireLogin();
 
-    /**
-     * Returns the HTTP realm
-     *
-     * @return string
-     */
-    function getRealm() {
 
-        return $this->realm;
-
-    }
 
 }

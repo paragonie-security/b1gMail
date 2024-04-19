@@ -173,16 +173,18 @@ class Smarty_Internal_Template extends Smarty_Internal_TemplateBase
     }
 
     /**
+     *
      * render template
      *
      * @param bool      $no_output_filter if true do not run output filter
      * @param null|bool $display          true: display, false: fetch null: sub-template
      *
-     * @return string
+     * @return null|string
+     *
      * @throws \Exception
      * @throws \SmartyException
      */
-    public function render($no_output_filter = true, $display = null)
+    public function render($no_output_filter = true, $display = null): string|null
     {
         if ($this->smarty->debugging) {
             if (!isset($this->smarty->_debug)) {
@@ -258,134 +260,7 @@ class Smarty_Internal_Template extends Smarty_Internal_TemplateBase
         }
     }
 
-    /**
-     * Runtime function to render sub-template
-     *
-     * @param string  $template       template name
-     * @param mixed   $cache_id       cache id
-     * @param mixed   $compile_id     compile id
-     * @param integer $caching        cache mode
-     * @param integer $cache_lifetime life time of cache data
-     * @param array   $data           passed parameter template variables
-     * @param int     $scope          scope in which {include} should execute
-     * @param bool    $forceTplCache  cache template object
-     * @param string  $uid            file dependency uid
-     * @param string  $content_func   function name
-     *
-     * @throws \Exception
-     * @throws \SmartyException
-     */
-    public function _subTemplateRender(
-        $template,
-        $cache_id,
-        $compile_id,
-        $caching,
-        $cache_lifetime,
-        $data,
-        $scope,
-        $forceTplCache,
-        $uid = null,
-        $content_func = null
-    ): void {
-        $tpl = clone $this;
-        $tpl->parent = $this;
-        $smarty = &$this->smarty;
-        $_templateId = $smarty->_getTemplateId($template, $cache_id, $compile_id, $caching, $tpl);
-        // recursive call ?
-        if (isset($tpl->templateId) ? $tpl->templateId : $tpl->_getTemplateId() !== $_templateId) {
-            // already in template cache?
-            if (isset(self::$tplObjCache[ $_templateId ])) {
-                // copy data from cached object
-                $cachedTpl = &self::$tplObjCache[ $_templateId ];
-                $tpl->templateId = $cachedTpl->templateId;
-                $tpl->template_resource = $cachedTpl->template_resource;
-                $tpl->cache_id = $cachedTpl->cache_id;
-                $tpl->compile_id = $cachedTpl->compile_id;
-                $tpl->source = $cachedTpl->source;
-                if (isset($cachedTpl->compiled)) {
-                    $tpl->compiled = $cachedTpl->compiled;
-                } else {
-                    unset($tpl->compiled);
-                }
-                if ($caching !== 9999 && isset($cachedTpl->cached)) {
-                    $tpl->cached = $cachedTpl->cached;
-                } else {
-                    unset($tpl->cached);
-                }
-            } else {
-                $tpl->templateId = $_templateId;
-                $tpl->template_resource = $template;
-                $tpl->cache_id = $cache_id;
-                $tpl->compile_id = $compile_id;
-                if (isset($uid)) {
-                    // for inline templates we can get all resource information from file dependency
-                    list($filepath, $timestamp, $type) = $tpl->compiled->file_dependency[ $uid ];
-                    $tpl->source = new Smarty_Template_Source($smarty, $filepath, $type, $filepath);
-                    $tpl->source->filepath = $filepath;
-                    $tpl->source->timestamp = $timestamp;
-                    $tpl->source->exists = true;
-                    $tpl->source->uid = $uid;
-                } else {
-                    $tpl->source = Smarty_Template_Source::load($tpl);
-                    unset($tpl->compiled);
-                }
-                if ($caching !== 9999) {
-                    unset($tpl->cached);
-                }
-            }
-        } else {
-            // on recursive calls force caching
-            $forceTplCache = true;
-        }
-        $tpl->caching = $caching;
-        $tpl->cache_lifetime = $cache_lifetime;
-        // set template scope
-        $tpl->scope = $scope;
-        if (!isset(self::$tplObjCache[ $tpl->templateId ]) && !$tpl->source->handler->recompiled) {
-            // check if template object should be cached
-            if ($forceTplCache || (isset(self::$subTplInfo[ $tpl->template_resource ])
-                                   && self::$subTplInfo[ $tpl->template_resource ] > 1)
-                || ($tpl->_isSubTpl() && isset(self::$tplObjCache[ $tpl->parent->templateId ]))
-            ) {
-                self::$tplObjCache[ $tpl->templateId ] = $tpl;
-            }
-        }
-        if (!empty($data)) {
-            // set up variable values
-            foreach ($data as $_key => $_val) {
-                $tpl->tpl_vars[ $_key ] = new Smarty_Variable($_val, $this->isRenderingCache);
-            }
-        }
-        if ($tpl->caching === 9999) {
-            if (!isset($tpl->compiled)) {
-                $this->loadCompiled(true);
-            }
-            if ($tpl->compiled->has_nocache_code) {
-                $this->cached->hashes[ $tpl->compiled->nocache_hash ] = true;
-            }
-        }
-        $tpl->_cache = array();
-        if (isset($uid)) {
-            if ($smarty->debugging) {
-                if (!isset($smarty->_debug)) {
-                    $smarty->_debug = new Smarty_Internal_Debug();
-                }
-                $smarty->_debug->start_template($tpl);
-                $smarty->_debug->start_render($tpl);
-            }
-            $tpl->compiled->getRenderedTemplateCode($tpl, $content_func);
-            if ($smarty->debugging) {
-                $smarty->_debug->end_template($tpl);
-                $smarty->_debug->end_render($tpl);
-            }
-        } else {
-            if (isset($tpl->compiled)) {
-                $tpl->compiled->render($tpl);
-            } else {
-                $tpl->render();
-            }
-        }
-    }
+
 
     /**
      * Get called sub-templates and save call count
@@ -471,82 +346,7 @@ class Smarty_Internal_Template extends Smarty_Internal_TemplateBase
         }
     }
 
-    /**
-     * This function is executed automatically when a compiled or cached template file is included
-     * - Decode saved properties from compiled template and cache files
-     * - Check if compiled or cache file is valid
-     *
-     * @param \Smarty_Internal_Template $tpl
-     * @param array                     $properties special template properties
-     * @param bool                      $cache      flag if called from cache file
-     *
-     * @return bool flag if compiled or cache file is valid
-     * @throws \SmartyException
-     */
-    public function _decodeProperties(Smarty_Internal_Template $tpl, $properties, $cache = false)
-    {
-        // on cache resources other than file check version stored in cache code
-        if (!isset($properties[ 'version' ]) || Smarty::SMARTY_VERSION !== $properties[ 'version' ]) {
-            if ($cache) {
-                $tpl->smarty->clearAllCache();
-            } else {
-                $tpl->smarty->clearCompiledTemplate();
-            }
-            return false;
-        }
-        $is_valid = true;
-        if (!empty($properties[ 'file_dependency' ])
-            && ((!$cache && $tpl->compile_check) || $tpl->compile_check === Smarty::COMPILECHECK_ON)
-        ) {
-            // check file dependencies at compiled code
-            foreach ($properties[ 'file_dependency' ] as $_file_to_check) {
-                if ($_file_to_check[ 2 ] === 'file' || $_file_to_check[ 2 ] === 'php') {
-                    if ($tpl->source->filepath === $_file_to_check[ 0 ]) {
-                        // do not recheck current template
-                        continue;
-                        //$mtime = $tpl->source->getTimeStamp();
-                    } else {
-                        // file and php types can be checked without loading the respective resource handlers
-                        $mtime = is_file($_file_to_check[ 0 ]) ? filemtime($_file_to_check[ 0 ]) : false;
-                    }
-                } else {
-                    $handler = Smarty_Resource::load($tpl->smarty, $_file_to_check[ 2 ]);
-                    if ($handler->checkTimestamps()) {
-                        $source = Smarty_Template_Source::load($tpl, $tpl->smarty, $_file_to_check[ 0 ]);
-                        $mtime = $source->getTimeStamp();
-                    } else {
-                        continue;
-                    }
-                }
-                if ($mtime === false || $mtime > $_file_to_check[ 1 ]) {
-                    $is_valid = false;
-                    break;
-                }
-            }
-        }
-        if ($cache) {
-            // CACHING_LIFETIME_SAVED cache expiry has to be validated here since otherwise we'd define the unifunc
-            if ($tpl->caching === Smarty::CACHING_LIFETIME_SAVED && $properties[ 'cache_lifetime' ] >= 0
-                && (time() > ($tpl->cached->timestamp + $properties[ 'cache_lifetime' ]))
-            ) {
-                $is_valid = false;
-            }
-            $tpl->cached->cache_lifetime = $properties[ 'cache_lifetime' ];
-            $tpl->cached->valid = $is_valid;
-            $resource = $tpl->cached;
-        } else {
-            $tpl->mustCompile = !$is_valid;
-            $resource = $tpl->compiled;
-            $resource->includes = isset($properties[ 'includes' ]) ? $properties[ 'includes' ] : array();
-        }
-        if ($is_valid) {
-            $resource->unifunc = $properties[ 'unifunc' ];
-            $resource->has_nocache_code = $properties[ 'has_nocache_code' ];
-            //            $tpl->compiled->nocache_hash = $properties['nocache_hash'];
-            $resource->file_dependency = $properties[ 'file_dependency' ];
-        }
-        return $is_valid && !function_exists($properties[ 'unifunc' ]);
-    }
+
 
     /**
      * Compiles the template
@@ -559,39 +359,11 @@ class Smarty_Internal_Template extends Smarty_Internal_TemplateBase
         return $this->compiled->compileTemplateSource($this);
     }
 
-    /**
-     * Writes the content to cache resource
-     *
-     * @param string $content
-     *
-     * @return bool
-     */
-    public function writeCachedContent($content)
-    {
-        return $this->smarty->ext->_updateCache->writeCachedContent($this, $content);
-    }
 
-    /**
-     * Get unique template id
-     *
-     * @return string
-     * @throws \SmartyException
-     */
-    public function _getTemplateId()
-    {
-        return isset($this->templateId) ? $this->templateId : $this->templateId =
-            $this->smarty->_getTemplateId($this->template_resource, $this->cache_id, $this->compile_id);
-    }
 
-    /**
-     * runtime error not matching capture tags
-     *
-     * @throws \SmartyException
-     */
-    public function capture_error()
-    {
-        throw new SmartyException("Not matching {capture} open/close in '{$this->template_resource}'");
-    }
+
+
+
 
     /**
      * Load compiled object
@@ -617,25 +389,9 @@ class Smarty_Internal_Template extends Smarty_Internal_TemplateBase
         }
     }
 
-    /**
-     * Load inheritance object
-     */
-    public function _loadInheritance(): void
-    {
-        if (!isset($this->inheritance)) {
-            $this->inheritance = new Smarty_Internal_Runtime_Inheritance();
-        }
-    }
 
-    /**
-     * Unload inheritance object
-     */
-    public function _cleanUp(): void
-    {
-        $this->startRenderCallbacks = array();
-        $this->endRenderCallbacks = array();
-        $this->inheritance = null;
-    }
+
+
 
     /**
      * Load compiler object

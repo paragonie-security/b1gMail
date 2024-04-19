@@ -115,9 +115,10 @@ class Lzw implements FilterInterface
     }
 
     /**
+     *
      * Initialize the string table.
      */
-    protected function initsTable()
+    protected function initsTable(): void
     {
         $this->sTable = [];
 
@@ -130,12 +131,13 @@ class Lzw implements FilterInterface
     }
 
     /**
+     *
      * Add a new string to the string table.
      *
      * @param string $oldString
      * @param string $newString
      */
-    protected function addStringToTable($oldString, $newString = '')
+    protected function addStringToTable($oldString, $newString = ''): void
     {
         $string = $oldString . $newString;
 

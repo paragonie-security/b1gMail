@@ -21,29 +21,32 @@ class VTimeZone extends VObject\Component {
      *
      * If we can't accurately determine the timezone, this method will return
      * UTC.
-     *
-     * @return \DateTimeZone
      */
-    function getTimeZone() {
+    function getTimeZone(): VObject\DateTimeZone|\DateTimeZone {
 
         return VObject\TimeZoneUtil::getTimeZone((string)$this->TZID, $this->root);
 
     }
 
     /**
+     *
      * A simple list of validation rules.
      *
      * This is simply a list of properties, and how many times they either
      * must or must not appear.
      *
      * Possible values per property:
-     *   * 0 - Must not appear.
-     *   * 1 - Must appear exactly once.
-     *   * + - Must appear at least once.
-     *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
+     * 0 - Must not appear.
+     * 1 - Must appear exactly once.
+     * + - Must appear at least once.
+     * - Can appear any number of times.
+     * ? - May appear, but not more than once.
      *
      * @var array
+     *
+     * @return (int|string)[]
+     *
+     * @psalm-return array{TZID: 1, 'LAST-MODIFIED': '?', TZURL: '?', STANDARD: '*', DAYLIGHT: '*'}
      */
     function getValidationRules() {
 

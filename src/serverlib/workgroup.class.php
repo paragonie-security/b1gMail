@@ -33,18 +33,7 @@ class BMWorkgroup
     public $_id;
     public $_row;
 
-    /**
-     * constructor.
-     *
-     * @param int $id
-     *
-     * @return BMWorkgroup
-     */
-    public function __construct($id)
-    {
-        $this->_id = $id;
-        $this->_row = $this->Fetch();
-    }
+
 
     /**
      * fetch a group row (assoc).
@@ -161,61 +150,9 @@ class BMWorkgroup
         return $members;
     }
 
-    /**
-     * check if user is in a workgroup.
-     *
-     * @param int $userID
-     * @param int $groupID
-     *
-     * @return bool
-     * @TODO: currently unused function
-     */
-    public function UserInGroup($userID, $groupID)
-    {
-        global $db, $__inGroupCache;
 
-        // init cache
-        if (!isset($__inGroupCache) || !is_array($__inGroupCache)) {
-            $__inGroupCache = [];
-        }
 
-        // cached?
-        if (isset($__inGroupCache[$userID.'_'.$groupID])) {
-            return $__inGroupCache[$userID.'_'.$groupID];
-        }
 
-        // get from db
-        $res = $db->Query('SELECT COUNT(*) FROM {pre}workgroups_member WHERE workgroup=? AND user=?',
-            (int) $groupID,
-            (int) $userID);
-        list($rowCount) = $res->FetchArray(MYSQLI_NUM);
-        $res->Free();
-
-        // cache, return
-        $__inGroupCache[$userID.'_'.$groupID] = $rowCount == 1;
-
-        return $__inGroupCache[$userID.'_'.$groupID];
-    }
-
-    /**
-     * get title by id.
-     *
-     * @param int $id
-     *
-     * @return string
-     * @TODO: currently unused function
-     */
-    public function GetTitle($id)
-    {
-        global $db;
-
-        $res = $db->Query('SELECT title FROM {pre}workgroups WHERE id=?',
-            $id);
-        list($title) = $res->FetchArray(MYSQLI_NUM);
-        $res->Free();
-
-        return $title;
-    }
 
     /**
      * check if access to a certain shared element is allowed.
@@ -226,7 +163,7 @@ class BMWorkgroup
      *
      * @return bool
      */
-    public static function AccessAllowed($userID, $shareType, $shareID, $writeAccess)
+    public static function AccessAllowed($userID, $shareType, int $shareID, $writeAccess)
     {
         global $db, $wgAccessCache;
 
@@ -260,7 +197,7 @@ class BMWorkgroup
             $res->Free();
         }
 
-        $result = false;
+        
 
         if (!isset($wgAccessCache[$userID][$shareType][$shareID])) {
             $result = false;

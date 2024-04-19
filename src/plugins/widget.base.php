@@ -53,7 +53,10 @@ class BMPlugin_Widget_Websearch extends BMPlugin
 				|| $for == BMWIDGET_ORGANIZER);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		return(true);
 	}
@@ -86,7 +89,10 @@ class BMPlugin_Widget_Mailspace extends BMPlugin
 		return($for == BMWIDGET_START);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $groupRow, $userRow, $tpl;
 		$tpl->assign('bmwidget_mailspace_spaceUsed', $userRow['mailspace_used']);
@@ -122,7 +128,10 @@ class BMPlugin_Widget_Webdiskspace extends BMPlugin
 		return($for == BMWIDGET_START);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $tpl, $thisUser;
 
@@ -167,7 +176,10 @@ class BMPlugin_Widget_Tasks extends BMPlugin
 				|| $for == BMWIDGET_ORGANIZER);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $tpl, $thisUser;
 
@@ -211,7 +223,10 @@ class BMPlugin_Widget_Welcome extends BMPlugin
 		return($for == BMWIDGET_START);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $lang_user, $userRow, $tpl, $bm_prefs, $thisUser;
 
@@ -275,7 +290,10 @@ class BMPlugin_Widget_WebdiskDND extends BMPlugin
 		return($for == BMWIDGET_START);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $tpl;
 		$tpl->assign('bmwidget_webdiskdnd_userAgent',		$_SERVER['HTTP_USER_AGENT']);
@@ -312,7 +330,10 @@ class BMPlugin_Widget_Calendar extends BMPlugin
 				|| $for == BMWIDGET_ORGANIZER);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $tpl, $thisUser;
 
@@ -369,7 +390,10 @@ class BMPlugin_Widget_Notes extends BMPlugin
 				|| $for == BMWIDGET_ORGANIZER);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $tpl, $thisUser;
 
@@ -413,7 +437,10 @@ class BMPlugin_Widget_EMail extends BMPlugin
 		return($for == BMWIDGET_START);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		global $tpl, $thisUser, $userRow;
 
@@ -502,7 +529,10 @@ class BMPlugin_Widget_Quicklinks extends BMPlugin
 				|| $for == BMWIDGET_ORGANIZER);
 	}
 
-	function renderWidget()
+	/**
+	 * @return true
+	 */
+	function renderWidget(): bool
 	{
 		return(true);
 	}

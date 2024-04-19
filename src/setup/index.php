@@ -115,9 +115,9 @@ $defaultInvoice = file_get_contents("./rgtemplate.tpl");
 
 // step?
 if (!isset($_REQUEST['step'])) {
-    $step = STEP_SELECT_LANGUAGE;
+    
 } else {
-    $step = (int) $_REQUEST['step'];
+    (int) $_REQUEST['step'];
 }
 
 // read language file
@@ -136,7 +136,7 @@ if(file_exists(__DIR__."/lock")) {
  * select language
  */
 if ($step == STEP_SELECT_LANGUAGE) {
-    $nextStep = STEP_WELCOME; ?>
+     ?>
 	<h1><?php echo $lang_setup['selectlanguage']; ?></h1>
 
 	<?php echo $lang_setup['selectlanguage_text']; ?>
@@ -159,7 +159,7 @@ if ($step == STEP_SELECT_LANGUAGE) {
  * welcome / license
  */
 elseif ($step == STEP_WELCOME) {
-    $nextStep = STEP_SYSTEMCHECK; ?>
+     ?>
 	<h1><?php echo $lang_setup['welcome']; ?></h1>
 
 	<?php echo $lang_setup['welcome_text']; ?>
@@ -265,7 +265,7 @@ elseif ($step == STEP_SYSTEMCHECK) {
  * mysql login
  */
 elseif ($step == STEP_MYSQL) {
-    $nextStep = STEP_CHECK_MYSQL; ?>
+     ?>
 	<h1><?php echo $lang_setup['db']; ?></h1>
 
 	<?php echo $lang_setup['dbfresh_text']; ?>
@@ -305,13 +305,13 @@ elseif ($step == STEP_CHECK_MYSQL) {
         mysqli_close($connection);
 
         if ($b1gMailInDB) {
-            $nextStep = STEP_MYSQL; ?>
+             ?>
 			<h1><?php echo $lang_setup['db']; ?></h1>
 
 			<?php echo $lang_setup['dbexists_text']; ?>
 			<?php
         } else {
-            $nextStep = STEP_CHECK_EMAIL; ?>
+             ?>
 			<h1><?php echo $lang_setup['emailcfg']; ?></h1>
 
 			<?php echo $lang_setup['emailcfg_text']; ?>
@@ -385,7 +385,7 @@ elseif ($step == STEP_CHECK_MYSQL) {
 			<?php
         }
     } else {
-        $nextStep = STEP_MYSQL; ?>
+         ?>
 		<h1><?php echo $lang_setup['db']; ?></h1>
 
 		<?php echo $lang_setup['dbfail_text']; ?>
@@ -401,7 +401,7 @@ elseif ($step == STEP_CHECK_EMAIL) {
         || CheckPOP3Login($_REQUEST['pop3_host'], $_REQUEST['pop3_user'], $_REQUEST['pop3_pass'])) {
         if ($_REQUEST['send_method'] != 'sendmail'
             || (file_exists($_REQUEST['sendmail_path']) && is_executable($_REQUEST['sendmail_path']))) {
-            $nextStep = STEP_INSTALL; ?>
+             ?>
 			<h1><?php echo $lang_setup['misc']; ?></h1>
 
 			<?php echo $lang_setup['misc_text']; ?>
@@ -429,14 +429,14 @@ example.org</textarea>
 			<input type="hidden" name="sendmail_path" value="<?php echo htmlentities($_REQUEST['sendmail_path']); ?>" />
 			<?php
         } else {
-            $nextStep = STEP_CHECK_MYSQL; ?>
+             ?>
 			<h1><?php echo $lang_setup['emailcfg']; ?></h1>
 
 			<?php echo $lang_setup['emailcfgsmfail_text']; ?>
 			<?php
         }
     } else {
-        $nextStep = STEP_CHECK_MYSQL; ?>
+         ?>
 		<h1><?php echo $lang_setup['emailcfg']; ?></h1>
 
 		<?php echo $lang_setup['emailcfgpop3fail_text']; ?>
@@ -765,7 +765,7 @@ elseif ($step == STEP_INSTALL) {
     if(is_writable('./'))
 	{
 		$lock = @fopen('./lock', 'w');
-		$written = @fwrite($lock, '1');
+		@fwrite($lock, '1');
 		@fclose($lock);
 	}
 }

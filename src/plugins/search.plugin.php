@@ -49,12 +49,14 @@ class B1GMailSearchProvider extends BMPlugin
 	}
 
 	/**
+	 *
 	 * handle search mass action
 	 *
 	 * @param string $category Category name
 	 * @param string $action Action name
 	 * @param array $items Array with item IDs
-	 * @return bool Handled?
+	 *
+	 * @return false|null Handled?
 	 */
 	function HandleSearchMassAction($category, $action, $items)
 	{
@@ -529,7 +531,7 @@ class B1GMailSearchProvider extends BMPlugin
 				$thisUser->_id);
 			while($row = $res->FetchArray(MYSQLI_ASSOC))
 			{
-				$addrTitle = '';
+				
 
 				if(empty($row['vorname']) && empty($row['nachname']))
 					$addrTitle = $row['firma'];

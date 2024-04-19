@@ -28,15 +28,5 @@ class PdfBoolean extends PdfType
         return $v;
     }
 
-    /**
-     * Ensures that the passed value is a PdfBoolean instance.
-     *
-     * @param mixed $value
-     * @return self
-     * @throws PdfTypeException
-     */
-    public static function ensure($value)
-    {
-        return PdfType::ensureType(self::class, $value, 'Boolean value expected.');
-    }
+
 }

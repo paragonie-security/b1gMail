@@ -208,13 +208,14 @@ trait MessageDecoratorTrait {
 
 
     /**
+     *
      * Removes a HTTP header.
      *
      * The specified header name must be treated as case-insenstive.
      * This method should return true if the header was successfully deleted,
      * and false if the header did not exist.
      *
-     * @return bool
+     * @return void
      */
     function removeHeader($name): void {
 

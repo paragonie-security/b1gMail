@@ -6,6 +6,7 @@
  * @subpackage PluginsFunction
  */
 /**
+ *
  * Smarty {html_image} function plugin
  * Type:     function
  * Name:     html_image
@@ -21,18 +22,22 @@
  * - basedir     - (optional) - base directory for absolute paths, default is environment variable DOCUMENT_ROOT
  * - path_prefix - prefix for path output (optional, default empty)
  *
- * @link    http://www.smarty.net/manual/en/language.function.html.image.php {html_image}
+ * @link http://www.smarty.net/manual/en/language.function.html.image.php {html_image}
  *          (Smarty online manual)
- * @author  Monte Ohrt <monte at ohrt dot com>
- * @author  credits to Duda <duda@big.hu>
+ *
+ * @author Monte Ohrt <monte at ohrt dot com>
+ * @author credits to Duda <duda@big.hu>
+ *
  * @version 1.0
  *
  * @param array                    $params   parameters
  * @param Smarty_Internal_Template $template template object
  *
  * @throws SmartyException
- * @return string
- * @uses    smarty_function_escape_special_chars()
+ *
+ * @return null|string
+ *
+ * @uses smarty_function_escape_special_chars()
  */
 function smarty_function_html_image($params, Smarty_Internal_Template $template)
 {

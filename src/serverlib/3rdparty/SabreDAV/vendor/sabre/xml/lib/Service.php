@@ -160,6 +160,7 @@ class Service {
     }
 
     /**
+     *
      * Generates an XML document in one go.
      *
      * The $rootElement must be specified in clark notation.
@@ -177,7 +178,7 @@ class Service {
      * @param string|array|XmlSerializable $value
      * @param string|null $contextUri
      */
-    function write($rootElementName, $value, $contextUri = null) {
+    function write($rootElementName, $value, $contextUri = null): string {
 
         $w = $this->getWriter();
         $w->openMemory();
@@ -189,71 +190,9 @@ class Service {
 
     }
 
-    /**
-     * Map an xml element to a PHP class.
-     *
-     * Calling this function will automatically setup the Reader and Writer
-     * classes to turn a specific XML element to a PHP class.
-     *
-     * For example, given a class such as :
-     *
-     * class Author {
-     *   public $firstName;
-     *   public $lastName;
-     * }
-     *
-     * and an XML element such as:
-     *
-     * <author xmlns="http://example.org/ns">
-     *   <firstName>...</firstName>
-     *   <lastName>...</lastName>
-     * </author>
-     *
-     * These can easily be mapped by calling:
-     *
-     * $service->mapValueObject('{http://example.org}author', 'Author');
-     *
-     * @param string $elementName
-     * @param object $className
-     * @return void
-     */
-    function mapValueObject($elementName, $className): void {
-        list($namespace) = self::parseClarkNotation($elementName);
 
-        $this->elementMap[$elementName] = function(Reader $reader) use ($className, $namespace) {
-            return \Sabre\Xml\Deserializer\valueObject($reader, $className, $namespace);
-        };
-        $this->classMap[$className] = function(Writer $writer, $valueObject) use ($namespace) {
-            return \Sabre\Xml\Serializer\valueObject($writer, $valueObject, $namespace);
-        };
-        $this->valueObjectMap[$className] = $elementName;
-    }
 
-    /**
-     * Writes a value object.
-     *
-     * This function largely behaves similar to write(), except that it's
-     * intended specifically to serialize a Value Object into an XML document.
-     *
-     * The ValueObject must have been previously registered using
-     * mapValueObject().
-     *
-     * @param object $object
-     * @param string $contextUri
-     * @return void
-     */
-    function writeValueObject($object, $contextUri = null) {
 
-        if (!isset($this->valueObjectMap[get_class($object)])) {
-            throw new \InvalidArgumentException('"' . get_class($object) . '" is not a registered value object class. Register your class with mapValueObject.');
-        }
-        return $this->write(
-            $this->valueObjectMap[get_class($object)],
-            $object,
-            $contextUri
-        );
-
-    }
 
     /**
      * Parses a clark-notation string, and returns the namespace and element

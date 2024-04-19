@@ -15,6 +15,7 @@ namespace Sabre\DAV;
 abstract class Collection extends Node implements ICollection {
 
     /**
+     *
      * Returns a child object, by its name.
      *
      * This method makes use of the getChildren method to grab all the child
@@ -25,10 +26,10 @@ abstract class Collection extends Node implements ICollection {
      * exist.
      *
      * @param string $name
+     *
      * @throws Exception\NotFound
-     * @return INode
      */
-    function getChild($name) {
+    function getChild($name): DAV\INode {
 
         foreach ($this->getChildren() as $child) {
 

@@ -12,12 +12,13 @@ namespace Sabre\VObject;
 class VCardConverter {
 
     /**
+     *
      * Converts a vCard object to a new version.
      *
      * targetVersion must be one of:
-     *   Document::VCARD21
-     *   Document::VCARD30
-     *   Document::VCARD40
+     * Document::VCARD21
+     * Document::VCARD30
+     * Document::VCARD40
      *
      * Currently only 3.0 and 4.0 as input and output versions.
      *
@@ -29,9 +30,9 @@ class VCardConverter {
      * @param Component\VCard $input
      * @param int $targetVersion
      */
-    public function convert(Component\VCard $input, $targetVersion) {
+    public function convert(Component\VCard $input, $targetVersion): Component\VCard {
 
-        $inputVersion = $input->getDocumentType();
+        $input->getDocumentType();
         if ($inputVersion===$targetVersion) {
             return clone $input;
         }

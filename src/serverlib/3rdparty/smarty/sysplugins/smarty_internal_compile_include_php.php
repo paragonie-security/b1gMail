@@ -60,7 +60,6 @@ class Smarty_Internal_Compile_Include_Php extends Smarty_Internal_CompileBase
         /**
          *
          *
-         * @var Smarty_Internal_Template $_smarty_tpl
          * used in evaluated code
          */
         $_smarty_tpl = $compiler->template;

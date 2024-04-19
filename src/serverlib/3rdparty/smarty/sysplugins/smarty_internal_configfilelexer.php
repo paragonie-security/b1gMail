@@ -170,7 +170,7 @@ class Smarty_Internal_Configfilelexer
         $this->configBooleanize = $this->smarty->config_booleanize;
     }
 
-    public function replace($input)
+    public function replace(string $input): string
     {
         return $input;
     } // end function
@@ -186,7 +186,7 @@ class Smarty_Internal_Configfilelexer
         return $this->{'yylex' . $this->_yy_state}();
     }
 
-    public function yypushstate($state): void
+    public function yypushstate(int $state): void
     {
         if ($this->yyTraceFILE) {
             fprintf(
@@ -322,7 +322,10 @@ class Smarty_Internal_Configfilelexer
         $this->yypushstate(self::VALUE);
     } // end function
 
-    public function yy_r1_5()
+    /**
+     * @return false
+     */
+    public function yy_r1_5(): bool
     {
         return false;
     }
@@ -399,7 +402,10 @@ class Smarty_Internal_Configfilelexer
         } while (true);
     }
 
-    public function yy_r2_1()
+    /**
+     * @return false
+     */
+    public function yy_r2_1(): bool
     {
         return false;
     }
@@ -434,6 +440,9 @@ class Smarty_Internal_Configfilelexer
         $this->yypopstate();
     } // end function
 
+    /**
+     * @return null|true
+     */
     public function yy_r2_7()
     {
         if (!$this->configBooleanize ||
@@ -578,7 +587,10 @@ class Smarty_Internal_Configfilelexer
         } while (true);
     }
 
-    public function yy_r4_1()
+    /**
+     * @return false
+     */
+    public function yy_r4_1(): bool
     {
         return false;
     }

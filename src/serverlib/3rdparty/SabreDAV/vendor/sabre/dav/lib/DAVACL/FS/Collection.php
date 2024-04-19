@@ -46,16 +46,17 @@ class Collection extends BaseCollection implements IACL {
     }
 
     /**
+     *
      * Returns a specific child node, referenced by its name
      *
      * This method must throw Sabre\DAV\Exception\NotFound if the node does not
      * exist.
      *
      * @param string $name
+     *
      * @throws DAV\Exception\NotFound
-     * @return DAV\INode
      */
-    function getChild($name) {
+    function getChild($name): File|self {
 
         $path = $this->path . '/' . $name;
 

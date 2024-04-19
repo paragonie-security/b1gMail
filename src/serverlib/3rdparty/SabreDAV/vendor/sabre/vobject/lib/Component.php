@@ -92,6 +92,7 @@ class Component extends Node {
     }
 
     /**
+     *
      * Adds a new property or component, and returns the new item.
      *
      * This method has 3 possible signatures:
@@ -103,8 +104,16 @@ class Component extends Node {
      * by name.
      *
      * @return Node
+     *
+     * @param (int|string)|Node $a1
+     * @param ((mixed|string)[]|\DateTime|int|mixed|string)[]|null|string $a2
+     * @param (mixed|null|string|string[])[]|null $a3
+     *
+     * @psalm-param Node|array-key $a1
+     * @psalm-param array{DTSTART?: \DateTime|numeric-string, DTEND?: \DateTime|numeric-string, SUMMARY?: mixed, UID?: mixed, DESCRIPTION?: mixed, LOCATION?: mixed, RRULE?: array{FREQ?: string, INTERVAL?: mixed, BYDAY?: string, BYMONTHDAY?: mixed, UNTIL?: string, COUNT?: mixed}, DUE?: \DateTime, 'PERCENT-COMPLETE'?: 100|mixed, PRIORITY?: 0|1|9, STATUS?: string, 0?: ''|mixed, 1?: ''|mixed, 2?: ''|mixed, 3?: ''|mixed, 4?: '', 5?: mixed, 6?: mixed, SEQUENCE?: mixed}|null|string $a2
+     * @psalm-param array{type?: list{'CELL'|'FAX', 'WORK'}|string, BASE64?: null, PARTSTAT?: mixed, VALUE?: 'DATE-AND-OR-TIME'}|null $a3
      */
-    function add($a1, $a2 = null, $a3 = null) {
+    function add($a1, array|string|null $a2 = null, array|null $a3 = null) {
 
         if ($a1 instanceof Node) {
             if (!is_null($a2)) {
@@ -471,17 +480,18 @@ class Component extends Node {
     }
 
     /**
+     *
      * A simple list of validation rules.
      *
      * This is simply a list of properties, and how many times they either
      * must or must not appear.
      *
      * Possible values per property:
-     *   * 0 - Must not appear.
-     *   * 1 - Must appear exactly once.
-     *   * + - Must appear at least once.
-     *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
+     * 0 - Must not appear.
+     * 1 - Must appear exactly once.
+     * + - Must appear at least once.
+     * - Can appear any number of times.
+     * ? - May appear, but not more than once.
      *
      * It is also possible to specify defaults and severity levels for
      * violating the rule.
@@ -490,6 +500,10 @@ class Component extends Node {
      * example.
      *
      * @var array
+     *
+     * @return array
+     *
+     * @psalm-return array<never, never>
      */
     function getValidationRules() {
 

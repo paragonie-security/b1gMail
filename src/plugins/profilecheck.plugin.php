@@ -58,8 +58,10 @@ class ProfileCheckPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * user page handler
 	 *
+	 * @return false|null
 	 */
 	function FileHandler($file, $action)
 	{
@@ -105,11 +107,14 @@ class ProfileCheckPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * check profile
 	 *
-	 * @return array Invalid fields
+	 * @return string[]|true Invalid fields
+	 *
+	 * @psalm-return list{0?: string, 1?: string, 2?: string, 3?: string, 4?: string, 5?: string, 6?: string, 7?: string, 8?: string, 9?: string, 10?: string, 11?: string,...}|true
 	 */
-	function _checkProfile()
+	function _checkProfile(): array|bool
 	{
 		global $userRow, $bm_prefs, $db;
 

@@ -20,6 +20,9 @@ use setasign\Fpdi\PdfParser\Type\PdfNull;
  */
 trait FpdfTrait
 {
+    /**
+     * @return void
+     */
     protected function _enddoc()
     {
         parent::_enddoc();
@@ -27,6 +30,7 @@ trait FpdfTrait
     }
 
     /**
+     *
      * Draws an imported page or a template onto the page or another template.
      *
      * Give only one of the size parameters (width, height) to calculate the other one automatically in view to the
@@ -39,10 +43,12 @@ trait FpdfTrait
      * @param float|int|null $width The width.
      * @param float|int|null $height The height.
      * @param bool $adjustPageSize
-     * @return array The size
+     *
+     * @return array|bool The size
+     *
      * @see Fpdi::getTemplateSize()
      */
-    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false)
+    public function useTemplate($tpl, $x = 0, $y = 0, $width = null, $height = null, $adjustPageSize = false): array|bool
     {
         if (isset($this->importedPages[$tpl])) {
             $size = $this->useImportedPage($tpl, $x, $y, $width, $height, $adjustPageSize);
@@ -79,6 +85,8 @@ trait FpdfTrait
     /**
      * @throws CrossReferenceException
      * @throws PdfParserException
+     *
+     * @return void
      */
     protected function _putimages()
     {
@@ -117,6 +125,8 @@ trait FpdfTrait
 
     /**
      * @inheritdoc
+     *
+     * @return void
      */
     protected function _putxobjectdict()
     {
@@ -194,6 +204,9 @@ trait FpdfTrait
         }
     }
 
+    /**
+     * @return void
+     */
     protected function _put($s, $newLine = true)
     {
         if ($newLine) {

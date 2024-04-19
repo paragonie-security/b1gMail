@@ -49,28 +49,7 @@ class BMZIP
      */
     private $_centralDirStruct;
 
-    /**
-     * constructor.
-     *
-     * @param resource $fp Output stream
-     *
-     * @return BMZIP
-     */
-    public function __construct($fp)
-    {
-        // output stream
-        $this->_fp = $fp;
 
-        // use b1gZIP?
-        if (function_exists('b1gzip_create')
-            && function_exists('b1gzip_add')
-            && function_exists('b1gzip_final')) {
-            $this->_b1gzip_stream = b1gzip_create();
-        } else {
-            $this->_b1gzip_stream = false;
-            $this->_centralDirStruct = [];
-        }
-    }
 
     /**
      * add a file to ZIP file.

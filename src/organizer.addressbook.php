@@ -262,8 +262,8 @@ else if($_REQUEST['action'] == 'addContact')
 	if(isset($_REQUEST['importFile'])
 		&& ValidTempFile($userRow['id'], (int)$_REQUEST['importFile']))
 	{
-		$tempID = (int)$_REQUEST['importFile'];
-		$tempName = TempFileName($tempID);
+		(int)$_REQUEST['importFile'];
+		TempFileName($tempID);
 
 		$jsCode  = '<script>' . "\n";
 		$jsCode .= '<!--' . "\n";
@@ -708,8 +708,8 @@ else if($_REQUEST['action'] == 'vcfImportDialog')
 else if($_REQUEST['action'] == 'vcfImportDialogSubmit'
 		&& IsPOSTRequest())
 {
-	$tempID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
-	$tempName = TempFileName($tempID);
+	RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+	TempFileName($tempID);
 	$vcfFile = getUploadedFile('vcfFile', $tempName);
 
 	echo '<script>' . "\n";
@@ -1248,7 +1248,7 @@ else if($_REQUEST['action'] == 'importCSV'
 		&& is_array($_REQUEST['fields'])
 		&& ValidTempFile($userRow['id'], (int)$_REQUEST['tempID']))
 {
-	$tempID = (int)$_REQUEST['tempID'];
+	(int)$_REQUEST['tempID'];
 	$tempName = TempFileName($tempID);
 	$importedDatasets = 0;
 	$fieldsAssoc = $_REQUEST['fields'];
@@ -1274,12 +1274,12 @@ else if($_REQUEST['action'] == 'importCSV'
 	if($fp)
 	{
 		if(!isset($_REQUEST['encoding']))
-			$encoding = FALLBACK_CHARSET;
+			
 		else
-			$encoding = $_REQUEST['encoding'];
+			$_REQUEST['encoding'];
 
 		$csvReader = _new('CSVReader', array($fp, $encoding));
-		$fields = $csvReader->Fields();
+		$csvReader->Fields();
 
 		while($row = $csvReader->FetchRow())
 		{
@@ -1453,7 +1453,7 @@ else if($_REQUEST['action'] == 'attendeePopup')
 	}
 
 	// given addresses
-	$attendees = array();
+	
 	if(trim($_REQUEST['attendeeList']) != '')
 	{
 		$attendeeList = explode(';', _unescape($_REQUEST['attendeeList']));

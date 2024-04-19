@@ -71,9 +71,9 @@ $numVersion = (int) str_replace('.', '', $numVersion);
 
 // step?
 if (!isset($_REQUEST['step'])) {
-    $step = STEP_WELCOME;
+    
 } else {
-    $step = (int) $_REQUEST['step'];
+    (int) $_REQUEST['step'];
 }
 
 // read language file
@@ -106,7 +106,7 @@ if ($step == STEP_WELCOME
 		<?php echo sprintf($lang_setup['unknownversion'], $b1gmail_version, $target_version); ?>
 		<?php
     } else {
-        $nextStep = STEP_SYSTEMCHECK; ?>
+         ?>
 		<h1><?php echo $lang_setup['welcome']; ?></h1>
 
 		<?php echo sprintf($lang_setup['update_welcome_text'], $b1gmail_version, $target_version); ?>
@@ -171,7 +171,7 @@ elseif ($step == STEP_SYSTEMCHECK) {
 		</tr>
 			<?php
 
-            $showDbMailsNote = ($dbMails != 0);
+            
         }
 
     foreach ($writeableFiles as $file) {
@@ -830,7 +830,7 @@ elseif ($step == STEP_UPDATE_STEP) {
         if(is_writable('./'))
         {
             $lock = @fopen('./lock_update', 'w');
-            $written = @fwrite($lock, '1');
+            @fwrite($lock, '1');
             @fclose($lock);
         }
 

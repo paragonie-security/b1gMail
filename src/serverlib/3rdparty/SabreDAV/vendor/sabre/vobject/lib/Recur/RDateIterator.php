@@ -100,31 +100,9 @@ class RDateIterator implements Iterator {
 
     /* End of Iterator implementation }}} */
 
-    /**
-     * Returns true if this recurring event never ends.
-     *
-     * @return bool
-     */
-    public function isInfinite() {
 
-        return false;
 
-    }
 
-    /**
-     * This method allows you to quickly go to the next occurrence after the
-     * specified date.
-     *
-     * @param DateTime $dt
-     * @return void
-     */
-    public function fastForward(\DateTime $dt): void {
-
-        while($this->valid() && $this->currentDate < $dt ) {
-            $this->next();
-        }
-
-    }
 
     /**
      * The reference start date/time for the rrule.
@@ -161,7 +139,7 @@ class RDateIterator implements Iterator {
      * @param string|array $rrule
      * @return void
      */
-    protected function parseRDate($rdate) {
+    protected function parseRDate(array|string $rdate) {
 
         if (is_string($rdate)) {
             $rdate = explode(',', $rdate);

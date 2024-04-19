@@ -126,6 +126,7 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
     }
 
     /**
+     *
      * This method is called when a user replied to a request to share.
      *
      * @param string href The sharee who is replying (often a mailto: address)
@@ -133,7 +134,10 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param string $calendarUri The url to the calendar thats being shared
      * @param string $inReplyTo The unique id this message is a response to
      * @param string $summary A description of the reply
-     * @return void
+     *
+     * @return null|string
+     *
+     * @psalm-return 'calendars/blabla/calendar'|null
      */
     function shareReply($href, $status, $calendarUri, $inReplyTo, $summary = null) {
 

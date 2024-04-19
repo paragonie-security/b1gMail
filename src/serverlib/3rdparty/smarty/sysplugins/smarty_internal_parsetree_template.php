@@ -126,7 +126,12 @@ class Smarty_Internal_ParseTree_Template extends Smarty_Internal_ParseTree
         return $code;
     }
 
-    private function getChunkedSubtrees() {
+    /**
+     * @return ((Smarty_Internal_ParseTree_Tag|Smarty_Internal_ParseTree_Text|mixed)[]|null|string)[][]
+     *
+     * @psalm-return list{0?: array{mode: null|string, subtrees: list{0?: Smarty_Internal_ParseTree_Tag|Smarty_Internal_ParseTree_Text|mixed,...}},...}
+     */
+    private function getChunkedSubtrees(): array {
     	$chunks = array();
     	$currentMode = null;
     	$currentChunk = array();

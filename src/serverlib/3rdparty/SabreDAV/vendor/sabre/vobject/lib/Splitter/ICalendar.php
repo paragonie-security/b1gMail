@@ -47,8 +47,8 @@ class ICalendar implements SplitterInterface {
     public function __construct($input, $options = 0) {
 
         $data = VObject\Reader::read($input, $options);
-        $vtimezones = array();
-        $components = array();
+        
+        
 
         if (!$data instanceof VObject\Component\VCalendar) {
             throw new VObject\ParseException('Supplied input could not be parsed as VCALENDAR.');

@@ -35,28 +35,7 @@ class BMWebdisk
 {
 	var $_userID;
 
-	/**
-	 * constructor
-	 *
-	 * @param int $userID User ID
-	 * @return BMWebdisk
-	 */
-	function __construct($userID)
-	{
-		global $userRow, $db;
 
-		$this->_userID = $userID;
-
-		if($userRow['id'] == $userID && $userRow['traffic_status'] != (int)date('m'))
-		{
-			$userRow['traffic_down'] = $userRow['traffic_up'] = 0;
-			$userRow['traffic_status'] = (int)date('m');
-
-			$db->Query('UPDATE {pre}users SET traffic_down=0,traffic_up=0,traffic_status=? WHERE id=?',
-				(int)date('m'),
-				$userID);
-		}
-	}
 
 
 	/**
@@ -148,13 +127,17 @@ class BMWebdisk
 	}
 
 	/**
+	 *
 	 * parse a path, return ID of element or false on error
 	 *
 	 * @param string $path Path
 	 * @param bool $withFiles Search for files and folders?
-	 * @return array
+	 *
+	 * @return (int|mixed)[]|false
+	 *
+	 * @psalm-return false|list{0|mixed, 1|2}
 	 */
-	function ParsePath($path, $withFiles = false)
+	function ParsePath($path, $withFiles = false): array|false
 	{
 		global $db;
 
@@ -380,124 +363,21 @@ class BMWebdisk
 		return($info);
 	}
 
+
+
+
+
+
+
 	/**
-	 * get "common" file info
 	 *
-	 * @param int $fileID File ID
-	 * @return array
-	 */
-	function GetStructFileInfo($fileID)
-	{
-		global $db;
-
-		$res = $db->Query('SELECT * FROM {pre}diskfiles WHERE id=? AND user=?',
-			$fileID,
-			$this->_userID);
-		if($res->RowCount() == 0)
-			return(false);
-		$row = $res->FetchArray(MYSQLI_ASSOC);
-		$res->Free();
-
-		return(array(
-				'id'		=> $row['id'],
-				'type'		=> WEBDISK_ITEM_FILE,
-				'title'		=> $row['dateiname'],
-				'share'		=> false,
-				'size'		=> $row['size'],
-				'ctype'		=> $row['contenttype'],
-				'created'	=> $row['created'],
-				'accessed'	=> $row['accessed'],
-				'modified'	=> $row['modified']
-			));
-	}
-
-	/**
-	 * get "common" folder info
-	 *
-	 * @param int $folderID Folder ID
-	 * @return array
-	 */
-	function GetStructFolderInfo($folderID)
-	{
-		global $db;
-
-		if($folderID != 0)
-		{
-			$res = $db->Query('SELECT * FROM {pre}diskfolders WHERE id=? AND user=?',
-				$folderID,
-				$this->_userID);
-			if($res->RowCount() == 0)
-				return(false);
-			$row = $res->FetchArray(MYSQLI_ASSOC);
-			$res->Free();
-
-			$info = array(
-					'id'		=> $row['id'],
-					'type'		=> WEBDISK_ITEM_FOLDER,
-					'title'		=> $row['titel'],
-					'share'		=> $row['share']=='yes',
-					'size'		=> 0,
-					'created'	=> $row['created'],
-					'accessed'	=> $this->FolderDate($folderID, 'accessed', $row['accessed']),
-					'modified'	=> $this->FolderDate($folderID, 'modified', $row['modified']),
-					'ext'		=> $row['share']=='yes' ? '.SHAREDFOLDER' : '.FOLDER'
-				);
-		}
-		else
-		{
-			$userRow = BMUser::staticFetch($this->_userID);
-			$info = array(
-					'id'		=> 0,
-					'type'		=> WEBDISK_ITEM_FOLDER,
-					'title'		=> '',
-					'share'		=> false,
-					'size'		=> 0,
-					'created'	=> $userRow['reg_date'],
-					'accessed'	=> $this->FolderDate($folderID, 'accessed', 0),
-					'modified'	=> $this->FolderDate($folderID, 'modified', 0),
-					'ext'		=> '.FOLDER'
-				);
-		}
-
-		$this->UpdateFolderAccess($folderID);
-
-		return($info);
-	}
-
-	/**
-	 * get DB props for resource
-	 *
-	 * @param string $path Path
-	 * @param int $userID User ID
-	 * @return array
-	 */
-	function GetDBProps($path, $userID)
-	{
-		global $db;
-
-		$result = array();
-		$res = $db->Query('SELECT `name`,`value`,`xmlns` FROM {pre}diskprops WHERE user=? AND path=?',
-			$userID,
-			$path);
-		while($row = $res->FetchArray(MYSQLI_ASSOC))
-			$result[] = array(
-				'name'	=> $row['name'],
-				'xmlns'	=> $row['xmlns'],
-				'value'	=> $row['value']
-			);
-		$res->Free();
-
-		return($result);
-	}
-
-	/**
 	 * move file to another folder
 	 *
 	 * @param int $folderID (New) folder ID
 	 * @param int $fileID File ID
 	 * @param string $newName New name
 	 */
-	function MoveFile($folderID, $fileID, $newName = false)
+	function MoveFile($folderID, $fileID, $newName = false): bool
 	{
 		global $db;
 
@@ -519,13 +399,14 @@ class BMWebdisk
 	}
 
 	/**
+	 *
 	 * move folder to another folder
 	 *
 	 * @param int $folderID (New) folder ID
 	 * @param int $moveID Folder ID
 	 * @param string $newName New name
 	 */
-	function MoveFolder($folderID, $moveID, $newName = false)
+	function MoveFolder($folderID, $moveID, $newName = false): bool
 	{
 		global $db;
 
@@ -600,12 +481,13 @@ class BMWebdisk
 	}
 
 	/**
+	 *
 	 * checks if $folderID is a child of $srcFolderID
 	 *
 	 * @param int $folerID Folder ID
 	 * @param int $srcFolderID (Parent) Folder ID
 	 */
-	function IsFolderChildOf($folderID, $srcFolderID)
+	function IsFolderChildOf(int $folderID, $srcFolderID): bool
 	{
 		global $db;
 
@@ -686,14 +568,18 @@ class BMWebdisk
 	}
 
 	/**
+	 *
 	 * copy a file
 	 *
 	 * @param int $folderID (New) folder ID
 	 * @param int $fileID File ID
 	 * @param string $newName New name
-	 * @return int
+	 *
+	 * @return false|int|string
+	 *
+	 * @psalm-return 0|false|string
 	 */
-	function CopyFile($folderID, $fileID, $newName = false)
+	function CopyFile($folderID, $fileID, $newName = false): int|false|string
 	{
 		global $db;
 
@@ -791,26 +677,7 @@ class BMWebdisk
 		return(true);
 	}
 
-	/**
-	 * get file size
-	 *
-	 * @param int $fileID File ID
-	 * @return int
-	 */
-	function GetFileSize($fileID)
-	{
-		global $db;
 
-		$res = $db->Query('SELECT size FROM {pre}diskfiles WHERE id=? AND user=?',
-			$fileID,
-			$this->_userID);
-		list($size) = $res->FetchArray(MYSQLI_NUM);
-		$res->Free();
-
-		$this->UpdateFileAccess($fileID);
-
-		return($size);
-	}
 
 	/**
 	 * create a new file, returns path to datafile
@@ -874,27 +741,7 @@ class BMWebdisk
 	 	return(0);
 	}
 
-	/**
-	 * get path to file
-	 *
-	 * @param int $fileID File ID
-	 */
-	function GetFilePath($fileID)
-	{
-		global $db;
 
-		$res = $db->Query('SELECT dateiname,ordner FROM {pre}diskfiles WHERE id=? AND user=?',
-			$fileID,
-			$this->_userID);
-		assert($res->RowCount() != 0);
-		list($thisFilename, $thisFolder) = $res->FetchArray(MYSQLI_NUM);
-		$res->Free();
-
-		$path = $this->GetFolderPath($thisFolder);
-		$path[] = array('id' => $fileID, 'title' => $thisFilename);
-
-		return($path);
-	}
 
 	/**
 	 * check if folder exists
@@ -949,11 +796,16 @@ class BMWebdisk
 	}
 
 	/**
+	 *
 	 * get path to folder
 	 *
 	 * @param int $folderID Folder ID
+	 *
+	 * @return array[]
+	 *
+	 * @psalm-return list<array{id: mixed, share: mixed, share_pw: mixed, title: mixed}>
 	 */
-	function GetFolderPath($folderID)
+	function GetFolderPath($folderID): array
 	{
 		global $db;
 
@@ -977,35 +829,19 @@ class BMWebdisk
 		return($path);
 	}
 
+
+
 	/**
-	 * get folder parent
 	 *
-	 * @param int $id Folder ID
-	 * @return int
-	 */
-	function GetFolderParent($id)
-	{
-		global $db;
-
-		$res = $db->Query('SELECT parent FROM {pre}diskfolders WHERE user=? AND id=?',
-			$this->_userID,
-			$id);
-		if($res->RowCount() > 0)
-		{
-			list($parent) = $res->FetchArray(MYSQLI_NUM);
-			$res->Free();
-			return($parent);
-		}
-
-		return(0);
-	}
-
-	/**
 	 * get folder contents
 	 *
 	 * @param integer $folderID Folder ID
+	 *
+	 * @return (bool|int|mixed|string)[][]
+	 *
+	 * @psalm-return list<array{accessed: int, created: int|mixed, ctype?: mixed, ext: string, id: mixed, modified: int, share?: bool, size: int, title: mixed, type: 1|2, viewable: bool}>
 	 */
-	function GetFolderContent($folderID, $sort = 'dateiname', $order = 'ASC')
+	function GetFolderContent($folderID, $sort = 'dateiname', $order = 'ASC'): array
 	{
 		global $db, $VIEWABLE_TYPES, $thisUser;
 

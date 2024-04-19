@@ -129,12 +129,12 @@ if ($_REQUEST['action'] == 'plugins'
         }
     }
 
-    function __PluginSort($a, $b)
+    function __PluginSort($a, $b): int
     {
         return strcasecmp(($a['installed'] ? '0' : '1').$a['title'], ($b['installed'] ? '0' : '1').$b['title']);
     }
 
-    function __PluginListSort($a, $b)
+    function __PluginListSort($a, $b): int
     {
         return strcasecmp($a['name'], $b['name']);
     }
@@ -220,7 +220,7 @@ elseif ($_REQUEST['action'] == 'install') {
             $tempFileName = TempFileName($tempFileID);
 
             // move file
-            $fileName = $_FILES['package']['name'];
+            $_FILES['package']['name'];
             move_uploaded_file($_FILES['package']['tmp_name'], $tempFileName);
 
             // open file
@@ -302,7 +302,7 @@ elseif ($_REQUEST['action'] == 'install') {
         }
 
         $id = (int) $_REQUEST['id'];
-        $tempFileName = TempFileName($id);
+        TempFileName($id);
 
         // open file
         $package = _new('BMPluginPackage', [$fp = fopen($tempFileName, 'rb')]);

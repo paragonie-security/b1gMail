@@ -82,20 +82,7 @@ class SupportedReportSet implements XmlSerializable, HtmlOutput {
 
     }
 
-    /**
-     * Returns true or false if the property contains a specific report.
-     *
-     * @param string $reportName
-     * @return bool
-     */
-    function has($reportName) {
 
-        return in_array(
-            $reportName,
-            $this->reports
-        );
-
-    }
 
     /**
      * The xmlSerialize metod is called during xml writing.

@@ -81,11 +81,11 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
     }
 
     /**
+     *
      * render compiled template code
      *
      * @param Smarty_Internal_Template $_template
      *
-     * @return string
      * @throws Exception
      */
     public function render(Smarty_Internal_Template $_template): void
@@ -218,20 +218,7 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
         return true;
     }
 
-    /**
-     * Read compiled content from handler
-     *
-     * @param Smarty_Internal_Template $_template template object
-     *
-     * @return string content
-     */
-    public function read(Smarty_Internal_Template $_template)
-    {
-        if (!$_template->source->handler->recompiled) {
-            return file_get_contents($this->filepath);
-        }
-        return isset($this->content) ? $this->content : false;
-    }
+
 
     /**
      * Load fresh compiled template by including the PHP file

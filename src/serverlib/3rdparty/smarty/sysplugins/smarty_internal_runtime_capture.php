@@ -128,11 +128,14 @@ class Smarty_Internal_Runtime_Capture
     }
 
     /**
+     *
      * Error exception on not matching {capture}{/capture}
      *
      * @param \Smarty_Internal_Template $_template
      *
      * @throws \SmartyException
+     *
+     * @return never
      */
     public function error(Smarty_Internal_Template $_template)
     {

@@ -31,17 +31,5 @@ class AsciiHex implements FilterInterface
         return \pack('H*', $data);
     }
 
-    /**
-     * Converts a string into ASCII hexadecimal representation.
-     *
-     * @param string $data The input string
-     * @param boolean $leaveEOD
-     * @return string
-     */
-    public function encode($data, $leaveEOD = false)
-    {
-        $t = \unpack('H*', $data);
-        return \current($t)
-            . ($leaveEOD ? '' : '>');
-    }
+
 }

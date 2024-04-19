@@ -39,14 +39,15 @@ class Smarty_Internal_Compile_Make_Nocache extends Smarty_Internal_CompileBase
     public $shorttag_order = array('var');
 
     /**
+     *
      * Compiles code for the {make_nocache} tag
      *
      * @param array                                 $args     array with attributes from parser
      * @param \Smarty_Internal_TemplateCompilerBase $compiler compiler object
      *
-     * @return string compiled code
+     * @return string|true compiled code
      */
-    public function compile($args, Smarty_Internal_TemplateCompilerBase $compiler)
+    public function compile($args, Smarty_Internal_TemplateCompilerBase $compiler): bool|string
     {
         // check and get attributes
         $_attr = $this->getAttributes($compiler, $args);

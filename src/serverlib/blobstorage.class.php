@@ -202,35 +202,41 @@ class BMBlobStorage
 	}
 
 	/**
+	 *
 	 * returns an instance of the default provider for a specific user
 	 *
 	 * @param int $userID
-	 * @return BMBlobStorageInterface
+	 *
+	 * @return false|object
 	 */
-	public static function createDefaultProvider($userID)
+	public static function createDefaultProvider($userID): object|false
 	{
 		return(BMBlobStorage::createProvider(BMBlobStorage::getDefaultProvider(), $userID));
 	}
 
 	/**
+	 *
 	 * returns an instance of the default webdisk provider for a specific user
 	 *
 	 * @param int $userID
-	 * @return BMBlobStorageInterface
+	 *
+	 * @return false|object
 	 */
-	public static function createDefaultWebdiskProvider($userID)
+	public static function createDefaultWebdiskProvider($userID): object|false
 	{
 		return(BMBlobStorage::createProvider(BMBlobStorage::getDefaultWebdiskProvider(), $userID));
 	}
 
 	/**
+	 *
 	 * create an instance of a specific provider
 	 *
 	 * @param int $id provider ID
 	 * @param int $userID
-	 * @return BMBlobStorageInterface
+	 *
+	 * @return false|object
 	 */
-	public static function createProvider($id, $userID = 0)
+	public static function createProvider($id, $userID = 0): object|false
 	{
 		if(!isset(BMBlobStorage::$providers[$id]))
 			return(false);

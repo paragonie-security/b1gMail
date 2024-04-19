@@ -107,7 +107,7 @@ if($_REQUEST['action'] == 'folder')
 		else if($_REQUEST['massAction'] == 'download'
 			&& (count($folderIDs) > 0 || count($fileIDs) > 0))
 		{
-			$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+			RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 			$tempFileName = TempFileName($tempFileID);
 
 			// determine zip filename
@@ -166,7 +166,7 @@ if($_REQUEST['action'] == 'folder')
 			if($groupRow['traffic'] <= 0 || ($userRow['traffic_down']+$userRow['traffic_up']+$size) <= $groupRow['traffic']+$userRow['traffic_add'])
 			{
 				// ok
-				$speedLimit = $groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
+				$groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
 				$db->Query('UPDATE {pre}users SET traffic_down=traffic_down+? WHERE id=?',
 					$size,
 					$userRow['id']);
@@ -215,9 +215,9 @@ if($_REQUEST['action'] == 'folder')
 		$tpl->assign('viewMode', $newMode);
 	}
 
-	$titlePath = '/';
+	
 	foreach($folderPath as $folderBit)
-		$titlePath .= $folderBit['title'] . '/';
+		$folderBit['title'] . '/';
 
 	$folderInfo 	= $webdisk->GetFolderInfo($folderID);
 	$folderContent 	= $webdisk->GetFolderContent($folderID);
@@ -279,7 +279,7 @@ else if($_REQUEST['action'] == 'itemInfo'
 
 	if(!$_info) die('Item not found');
 
-	$info = array(
+	array(
 		'type'			=> (int)$_REQUEST['type'],
 		'title'			=> $_info['titel'],
 		'shortTitle'	=> TemplateText(array('cut' => 20, 'value' => $_info['titel']), $tpl),
@@ -307,7 +307,7 @@ else if($_REQUEST['action'] == 'downloadFile'
 		if($groupRow['traffic'] <= 0 || ($userRow['traffic_down']+$userRow['traffic_up']+$fileInfo['size']) <= $groupRow['traffic']+$userRow['traffic_add'])
 		{
 			// ok
-			$speedLimit = $groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
+			$groupRow['wd_member_kbs'] <= 0 ? -1 : $groupRow['wd_member_kbs'];
 			$db->Query('UPDATE {pre}users SET traffic_down=traffic_down+? WHERE id=?',
 				$fileInfo['size'],
 				$userRow['id']);
@@ -760,7 +760,7 @@ else if($_REQUEST['action'] == 'dndUpload'
 		&& isset($_REQUEST['filename'])
 		&& isset($_REQUEST['type']))
 {
-	$msg = '0';
+	
 	$fileName = $_REQUEST['filename'];
 	$fileSize = (int)$_REQUEST['size'];
 	$mimeType = $_REQUEST['type'];
@@ -830,7 +830,7 @@ else if($_REQUEST['action'] == 'dndUpload'
 						$fileSize = $readBytes;
 					}
 
-					$usedSpace += $fileSize;
+					
 					$db->Query('UPDATE {pre}users SET traffic_up=traffic_up+? WHERE id=?',
 						$fileSize,
 						$userRow['id']);
@@ -882,7 +882,7 @@ else if($_REQUEST['action'] == 'uploadFiles'
 				{
 					if(($fileID = $webdisk->CreateFile($folderID, $fileName, $mimeType, $fileSize)) !== false)
 					{
-						$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
+						RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR);
 						$tempFileName = TempFileName($tempFileID);
 
 						if(!@move_uploaded_file($value['tmp_name'], $tempFileName))

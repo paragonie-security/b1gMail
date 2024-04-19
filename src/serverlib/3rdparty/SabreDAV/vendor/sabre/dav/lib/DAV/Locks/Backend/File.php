@@ -79,59 +79,9 @@ class File extends AbstractBackend {
 
     }
 
-    /**
-     * Locks a uri
-     *
-     * @param string $uri
-     * @param LockInfo $lockInfo
-     * @return bool
-     */
-    function lock($uri, LockInfo $lockInfo) {
 
-        // We're making the lock timeout 30 minutes
-        $lockInfo->timeout = 1800;
-        $lockInfo->created = time();
-        $lockInfo->uri = $uri;
 
-        $locks = $this->getData();
 
-        foreach ($locks as $k => $lock) {
-            if (
-                ($lock->token == $lockInfo->token) ||
-                (time() > $lock->timeout + $lock->created)
-            ) {
-                unset($locks[$k]);
-            }
-        }
-        $locks[] = $lockInfo;
-        $this->putData($locks);
-        return true;
-
-    }
-
-    /**
-     * Removes a lock from a uri
-     *
-     * @param string $uri
-     * @param LockInfo $lockInfo
-     * @return bool
-     */
-    function unlock($uri, LockInfo $lockInfo) {
-
-        $locks = $this->getData();
-        foreach ($locks as $k => $lock) {
-
-            if ($lock->token == $lockInfo->token) {
-
-                unset($locks[$k]);
-                $this->putData($locks);
-                return true;
-
-            }
-        }
-        return false;
-
-    }
 
     /**
      * Loads the lockdata from the filesystem.
@@ -160,26 +110,6 @@ class File extends AbstractBackend {
 
     }
 
-    /**
-     * Saves the lockdata
-     *
-     * @param array $newData
-     * @return void
-     */
-    protected function putData(array $newData) {
 
-        // opening up the file, and creating an exclusive lock
-        $handle = fopen($this->locksFile, 'a+');
-        flock($handle, LOCK_EX);
-
-        // We can only truncate and rewind once the lock is acquired.
-        ftruncate($handle, 0);
-        rewind($handle);
-
-        fwrite($handle, serialize($newData));
-        flock($handle, LOCK_UN);
-        fclose($handle);
-
-    }
 
 }

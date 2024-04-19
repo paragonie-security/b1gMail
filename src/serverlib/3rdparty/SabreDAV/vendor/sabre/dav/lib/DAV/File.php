@@ -41,16 +41,7 @@ abstract class File extends Node implements IFile {
 
     }
 
-    /**
-     * Returns the size of the file, in bytes.
-     *
-     * @return int
-     */
-    function getSize() {
 
-        return 0;
-
-    }
 
     /**
      * Returns the ETag for a file
@@ -68,17 +59,6 @@ abstract class File extends Node implements IFile {
 
     }
 
-    /**
-     * Returns the mime-type for a file
-     *
-     * If null is returned, we'll assume application/octet-stream
-     *
-     * @return string|null
-     */
-    function getContentType() {
 
-        return null;
-
-    }
 
 }

@@ -57,7 +57,7 @@ class SQLite3Stmt
 		$this->stmt->bindValue($variable, $value, $dataTypeMap[$dataType]);
 	}
 
-	public function execute()
+	public function execute(): SQLite3Result|false
 	{
 		try
 		{
@@ -127,7 +127,7 @@ class SQLite3
 		$this->pdo->setAttribute(PDO::ATTR_TIMEOUT, $timeout/1000);
 	}
 
-	public function query($q)
+	public function query($q): SQLite3Result|false
 	{
 		try
 		{
@@ -140,7 +140,7 @@ class SQLite3
 		}
 	}
 
-	function prepare($q)
+	function prepare($q): PDOException|SQLite3Stmt
 	{
 		try
 		{
@@ -153,7 +153,7 @@ class SQLite3
 		}
 	}
 
-	public function escapeString($str)
+	public function escapeString($str): string
 	{
 		return(substr($this->pdo->quote($str), 1, -1));
 	}

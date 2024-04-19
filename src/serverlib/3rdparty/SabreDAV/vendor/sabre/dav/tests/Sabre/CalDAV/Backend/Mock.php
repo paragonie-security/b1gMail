@@ -22,35 +22,7 @@ class Mock extends AbstractBackend {
 
     }
 
-    /**
-     * Returns a list of calendars for a principal.
-     *
-     * Every project is an array with the following keys:
-     *  * id, a unique id that will be used by other functions to modify the
-     *    calendar. This can be the same as the uri or a database key.
-     *  * uri, which the basename of the uri with which the calendar is
-     *    accessed.
-     *  * principalUri. The owner of the calendar. Almost always the same as
-     *    principalUri passed to this method.
-     *
-     * Furthermore it can contain webdav properties in clark notation. A very
-     * common one is '{DAV:}displayname'.
-     *
-     * @param string $principalUri
-     * @return array
-     */
-    function getCalendarsForUser($principalUri) {
 
-        $r = array();
-        foreach($this->calendars as $row) {
-            if ($row['principaluri'] == $principalUri) {
-                $r[] = $row;
-            }
-        }
-
-        return $r;
-
-    }
 
     /**
      * Creates a new calendar for a principal.
@@ -160,14 +132,14 @@ class Mock extends AbstractBackend {
     }
 
     /**
+     *
      * Creates a new calendar object.
      *
      * @param string $calendarId
      * @param string $objectUri
      * @param string $calendarData
-     * @return void
      */
-    function createCalendarObject($calendarId,$objectUri,$calendarData) {
+    function createCalendarObject($calendarId,$objectUri,$calendarData): string {
 
         $this->calendarData[$calendarId][$objectUri] = array(
             'calendardata' => $calendarData,
@@ -178,37 +150,8 @@ class Mock extends AbstractBackend {
 
     }
 
-    /**
-     * Updates an existing calendarobject, based on it's uri.
-     *
-     * @param string $calendarId
-     * @param string $objectUri
-     * @param string $calendarData
-     * @return void
-     */
-    function updateCalendarObject($calendarId,$objectUri,$calendarData) {
-
-        $this->calendarData[$calendarId][$objectUri] = array(
-            'calendardata' => $calendarData,
-            'calendarid' => $calendarId,
-            'uri' => $objectUri,
-        );
-        return '"' . md5($calendarData) . '"';
-
-    }
-
-    /**
-     * Deletes an existing calendar object.
-     *
-     * @param string $calendarId
-     * @param string $objectUri
-     * @return void
-     */
-    function deleteCalendarObject($calendarId,$objectUri) {
-
-        throw new Exception('Not implemented');
 
 
-    }
+
 
 }

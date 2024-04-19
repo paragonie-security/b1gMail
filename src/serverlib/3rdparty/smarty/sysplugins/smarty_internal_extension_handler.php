@@ -170,28 +170,7 @@ class Smarty_Internal_Extension_Handler
         return $this->$property_name = new $class();
     }
 
-    /**
-     * set extension property
-     *
-     * @param string $property_name property name
-     * @param mixed  $value         value
-     *
-     */
-    public function __set($property_name, $value)
-    {
-        $this->$property_name = $value;
-    }
 
-    /**
-     * Call error handler for undefined method
-     *
-     * @param string $name unknown method-name
-     * @param array  $args argument array
-     *
-     * @return mixed
-     */
-    public function __call($name, $args)
-    {
-        return call_user_func_array(array(new Smarty_Internal_Undefined(), $name), array($this));
-    }
+
+
 }

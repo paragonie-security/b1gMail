@@ -104,6 +104,7 @@ class TimeZoneUtil {
     );
 
     /**
+     *
      * This method will try to find out the correct timezone for an iCalendar
      * date-time value.
      *
@@ -118,10 +119,9 @@ class TimeZoneUtil {
      * exception if we cannot accurately determine the timezone.
      *
      * @param string $tzid
-     * @param Sabre\VObject\Component $vcalendar
-     * @return DateTimeZone
+     * @param Component|null $vcalendar
      */
-    static public function getTimeZone($tzid, Component $vcalendar = null, $failIfUncertain = false) {
+    static public function getTimeZone($tzid, Component $vcalendar = null, $failIfUncertain = false): DateTimeZone|\DateTimeZone {
 
         // First we will just see if the tzid is a support timezone identifier.
         //

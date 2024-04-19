@@ -84,7 +84,7 @@ if($_REQUEST['action'] == 'folder')
 	{
 		$mails = $mailbox->GetMailIDList($folderID);
 
-		$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR, true);
+		RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR, true);
 		$tempFileName = TempFileName($tempFileID);
 
 		// create ZIP file
@@ -228,7 +228,7 @@ if($_REQUEST['action'] == 'folder')
 			// download
 			else if($_REQUEST['massAction'] == 'download')
 			{
-				$tempFileID = RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR, true);
+				RequestTempFile($userRow['id'], time()+TIME_ONE_HOUR, true);
 				$tempFileName = TempFileName($tempFileID);
 
 				// create ZIP file
@@ -416,7 +416,7 @@ if($_REQUEST['action'] == 'folder')
 	if(isset($folderList[$folderID]))
 	{
 		$tpl->assign('folderInfo', $folderList[$folderID]);
-		$folderTitle = $folderList[$folderID]['title'];
+		$folderList[$folderID]['title'];
 	}
 	else
 	{
@@ -424,14 +424,14 @@ if($_REQUEST['action'] == 'folder')
 		$folderInfo['title'] = $folderInfo['titel'];
 		$folderInfo['type'] = 'folder';
 		$tpl->assign('folderInfo', $folderInfo);
-		$folderTitle = $folderInfo['title'];
+		$folderInfo['title'];
 	}
 	$tpl->assign('pageTitle', HTMLFormat($folderTitle));
 	$tpl->assign('flexSpans', $bm_prefs['flexspans'] == 'yes');
 
 	if(isset($_REQUEST['inline']))
 	{
-		$html = '';
+		
 		if(isset($_REQUEST['narrow']))
 			$html = $tpl->fetch('li/email.folder.contents.narrow.tpl');
 		else

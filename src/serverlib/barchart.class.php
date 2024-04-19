@@ -70,19 +70,7 @@ class BMBarChart
      */
     public $_barWidth;
 
-    /**
-     * constructor.
-     *
-     * @return BMBarChart
-     */
-    public function __construct($title, $width, $height)
-    {
-        $this->w = $width;
-        $this->h = $height;
-        $this->img = imagecreate($this->w, $this->h);
-        $this->title = $title;
-        $this->_init();
-    }
+
 
     /**
      * set graph data.

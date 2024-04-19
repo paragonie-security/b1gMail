@@ -36,7 +36,12 @@ class MyCollection extends Sabre\DAV\Collection {
 
   }
 
-  function getChildren() {
+  /**
+   * @return \Sabre\DAV\DAV\INode[]
+   *
+   * @psalm-return list<Sabre\DAV\DAV\INode>
+   */
+  function getChildren(): array {
 
     $children = [];
     // Loop through the directory, and create objects for each node
@@ -53,7 +58,7 @@ class MyCollection extends Sabre\DAV\Collection {
 
   }
 
-    function getChild($name) {
+    function getChild($name): MyFile|self|self|self|self|self|self|self {
 
         $path = $this->myPath . '/' . $name;
 
@@ -105,11 +110,7 @@ class MyFile extends \Sabre\DAV\File {
 
   }
 
-  function getSize() {
 
-      return filesize($this->myPath);
-
-  }
 
 }
 

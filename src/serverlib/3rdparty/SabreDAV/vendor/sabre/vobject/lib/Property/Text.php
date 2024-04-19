@@ -197,11 +197,12 @@ class Text extends Property {
     }
 
     /**
+     *
      * Turns the object back into a serialized blob.
      *
-     * @return string
+     * @return null|string
      */
-    public function serialize() {
+    public function serialize(): string|null {
 
         // We need to kick in a special type of encoding, if it's a 2.1 vcard.
         if ($this->root->getDocumentType() !== Document::VCARD21) {
@@ -277,7 +278,7 @@ class Text extends Property {
                     $str = ' ' . mb_strcut($str,75,strlen($str),'utf-8');
                 } else {
                     $out.=$str . "\r\n";
-                    $str='';
+                    
                     break;
                 }
             }

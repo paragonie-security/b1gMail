@@ -762,11 +762,11 @@ class Smarty extends Smarty_Internal_TemplateBase
     {
         if ($isConfig) {
             $processed = &$this->_processedConfigDir;
-            $dir = &$this->config_dir;
+            
             $this->_configDirNormalized = false;
         } else {
             $processed = &$this->_processedTemplateDir;
-            $dir = &$this->template_dir;
+            
             $this->_templateDirNormalized = false;
         }
         if (is_array($template_dir)) {
@@ -852,13 +852,14 @@ class Smarty extends Smarty_Internal_TemplateBase
     }
 
     /**
+     *
      * Get config directory
      *
      * @param mixed $index index of directory to get, null to get all
      *
-     * @return array configuration directory
+     * @return array|string configuration directory
      */
-    public function getConfigDir($index = null)
+    public function getConfigDir($index = null): array|string
     {
         return $this->getTemplateDir($index, true);
     }
@@ -1013,7 +1014,7 @@ class Smarty extends Smarty_Internal_TemplateBase
             $this->_normalizeTemplateConfig(false);
         }
         $_templateId = $this->_getTemplateId($template, $cache_id, $compile_id);
-        $tpl = null;
+        
         if ($this->caching && isset(Smarty_Internal_Template::$isCacheTplObj[ $_templateId ])) {
             $tpl = $do_clone ? clone Smarty_Internal_Template::$isCacheTplObj[ $_templateId ] :
                 Smarty_Internal_Template::$isCacheTplObj[ $_templateId ];
@@ -1050,6 +1051,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     }
 
     /**
+     *
      * Takes unknown classes and loads plugin files for them
      * class name format: Smarty_PluginType_PluginName
      * plugin filename format: plugintype.pluginname.php
@@ -1057,10 +1059,11 @@ class Smarty extends Smarty_Internal_TemplateBase
      * @param string $plugin_name class plugin name to load
      * @param bool   $check       check if already loaded
      *
-     * @return string |boolean filepath of loaded file or false
+     * @return bool|string |boolean filepath of loaded file or false
+     *
      * @throws \SmartyException
      */
-    public function loadPlugin($plugin_name, $check = true)
+    public function loadPlugin($plugin_name, $check = true): bool|string
     {
         return $this->ext->loadPlugin->loadPlugin($this, $plugin_name, $check);
     }

@@ -93,7 +93,7 @@ class SupportedPrivilegeSet implements XmlSerializable, HtmlOutput {
      */
     function toHtml(HtmlOutputHelper $html) {
 
-        $traverse = function($priv) use (&$traverse, $html) {
+        $traverse = function($priv) use (&$traverse, $html): void {
             echo "<li>";
             echo $html->xmlName($priv['privilege']);
             if (isset($priv['abstract']) && $priv['abstract']) {

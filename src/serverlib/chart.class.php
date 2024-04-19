@@ -161,7 +161,7 @@ class BMChart
 		$this->_yPerPixel = ($this->_yEnd-$this->_yStart) / $this->_plotH;
 
 		// draw Y lines / texts
-		$yLines = floor($this->_plotH/$ySpacing);
+		
 		for($y=$this->_plotY+$this->_plotH; $y>=$this->_plotY; $y-=$ySpacing)
 		{
 			// line
@@ -186,7 +186,7 @@ class BMChart
 		$this->_xPerPixel = ($this->_xEnd-$this->_xStart) / $this->_plotW;
 
 		// draw X lines / texts
-		$yLines = floor($this->_plotH/$ySpacing);
+		
 		for($x=$this->_plotX; $x<=$this->_plotX+$this->_plotW; $x+=$xSpacing)
 		{
 			// line
@@ -295,20 +295,7 @@ class BMChart
 		imagestring($this->img, 2, $x, $y, $text, $color);
 	}
 
-	/**
-	 * draw text vertically and centered
-	 *
-	 * @param string $text
-	 * @param int $x
-	 * @param int $y
-	 * @param int $h
-	 * @param int $color
-	 */
-	function _centerTextV($text, $x, $y, $h, $color): void
-	{
-		$y = $h/2 - strlen($text)*3 + $y;
-		imagestringup($this->img, 2, $x, $y, $text, $color);
-	}
+
 
 	/**
 	 * draw text horizontally and right aligned

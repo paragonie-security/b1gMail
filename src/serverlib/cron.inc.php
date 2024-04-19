@@ -23,10 +23,10 @@ if(!defined('B1GMAIL_INIT'))
 	die('Directly calling this file is not supported');
 
 /**
- * Clean up expired action tokens
  *
+ * Clean up expired action tokens
  */
-function CleanupActionTokens()
+function CleanupActionTokens(): void
 {
 	global $db;
 
@@ -35,10 +35,10 @@ function CleanupActionTokens()
 }
 
 /**
- * Clean up the mail send stats
  *
+ * Clean up the mail send stats
  */
-function CleanupSendStats()
+function CleanupSendStats(): void
 {
 	global $db;
 
@@ -47,10 +47,10 @@ function CleanupSendStats()
 }
 
 /**
- * Clean up the mail receive stats
  *
+ * Clean up the mail receive stats
  */
-function CleanupRecvStats()
+function CleanupRecvStats(): void
 {
 	global $db;
 
@@ -59,10 +59,10 @@ function CleanupRecvStats()
 }
 
 /**
- * Auto-delete users who never logged in
  *
+ * Auto-delete users who never logged in
  */
-function ProcessNoSignupAutoDel()
+function ProcessNoSignupAutoDel(): void
 {
 	global $bm_prefs, $db;
 
@@ -94,10 +94,10 @@ function ProcessNoSignupAutoDel()
 }
 
 /**
- * Delete old mail delivery status entries
  *
+ * Delete old mail delivery status entries
  */
-function CleanupMailDeliveryStatus()
+function CleanupMailDeliveryStatus(): void
 {
 	global $db;
 
@@ -107,10 +107,10 @@ function CleanupMailDeliveryStatus()
 }
 
 /**
- * Delete old notifications
  *
+ * Delete old notifications
  */
-function CleanupNotifications()
+function CleanupNotifications(): void
 {
 	global $db, $bm_prefs;
 
@@ -121,10 +121,10 @@ function CleanupNotifications()
 }
 
 /**
- * Birthday notification cron job
  *
+ * Birthday notification cron job
  */
-function ProcessBirthdayNotifications()
+function ProcessBirthdayNotifications(): void
 {
 	global $db, $bm_prefs;
 
@@ -162,10 +162,10 @@ function ProcessBirthdayNotifications()
 }
 
 /**
- * Abuse protection cron job
  *
+ * Abuse protection cron job
  */
-function AbuseCron()
+function AbuseCron(): void
 {
 	global $db, $bm_prefs, $lang_admin, $lang_custom;
 
@@ -256,10 +256,10 @@ function AbuseCron()
 }
 
 /**
- * Delete expired saved login tokens
  *
+ * Delete expired saved login tokens
  */
-function CleanupSavedLogins()
+function CleanupSavedLogins(): void
 {
 	global $db;
 
@@ -268,10 +268,10 @@ function CleanupSavedLogins()
 }
 
 /**
- * reset webdisk traffic
  *
+ * reset webdisk traffic
  */
-function ResetWebdiskTraffic()
+function ResetWebdiskTraffic(): void
 {
 	global $db;
 
@@ -281,10 +281,10 @@ function ResetWebdiskTraffic()
 }
 
 /**
- * clean up webdisk locks
  *
+ * clean up webdisk locks
  */
-function CleanupWebdiskLocks()
+function CleanupWebdiskLocks(): void
 {
 	global $db;
 
@@ -294,10 +294,10 @@ function CleanupWebdiskLocks()
 }
 
 /**
- * clean up expired cert mails
  *
+ * clean up expired cert mails
  */
-function CleanupCertMails()
+function CleanupCertMails(): void
 {
 	global $db, $bm_prefs;
 
@@ -315,10 +315,10 @@ function CleanupCertMails()
 }
 
 /**
- * clean up expired safe codes
  *
+ * clean up expired safe codes
  */
-function CleanupSafeCodes()
+function CleanupSafeCodes(): void
 {
 	global $db;
 	$db->Query('DELETE FROM {pre}safecode WHERE generation<' . (time()-8*TIME_ONE_HOUR));
@@ -338,11 +338,12 @@ function CleanupAliases()
 }
 
 /**
+ *
  * process store time row
  *
  * @param array $row Row
  */
-function ProcessStoreTimeRow($row)
+function ProcessStoreTimeRow($row): void
 {
 	global $db;
 
@@ -372,11 +373,10 @@ function ProcessStoreTimeRow($row)
 }
 
 /**
- * enforce store times
  *
- * @return int Number of deleted mails
+ * enforce store times
  */
-function StoreTimeCron()
+function StoreTimeCron(): void
 {
 	global $db, $cacheManager;
 
@@ -425,10 +425,10 @@ function StoreTimeCron()
 }
 
 /**
- * auto-archive logs
  *
+ * auto-archive logs
  */
-function AutoArchiveLogs()
+function AutoArchiveLogs(): void
 {
 	global $bm_prefs, $db;
 

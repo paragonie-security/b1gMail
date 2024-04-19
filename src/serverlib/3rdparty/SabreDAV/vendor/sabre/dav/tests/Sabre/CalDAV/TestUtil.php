@@ -4,14 +4,14 @@ namespace Sabre\CalDAV;
 
 class TestUtil {
 
-    static function getBackend() {
+    static function getBackend(): Backend\PDO {
 
         $backend = new Backend\PDO(self::getSQLiteDB());
         return $backend;
 
     }
 
-    static function getSQLiteDB() {
+    static function getSQLiteDB(): \PDO {
 
         if (file_exists(SABRE_TEMPDIR . '/testdb.sqlite'))
             unlink(SABRE_TEMPDIR . '/testdb.sqlite');
@@ -51,7 +51,7 @@ class TestUtil {
 
     }
 
-    static function getTestCalendarData($type = 1) {
+    static function getTestCalendarData($type = 1): string {
 
         $calendarData = 'BEGIN:VCALENDAR
 VERSION:2.0
@@ -119,7 +119,7 @@ END:VCALENDAR';
 
     }
 
-    static function getTestTODO($type = 'due') {
+    static function getTestTODO($type = 'due'): string {
 
         switch($type) {
 

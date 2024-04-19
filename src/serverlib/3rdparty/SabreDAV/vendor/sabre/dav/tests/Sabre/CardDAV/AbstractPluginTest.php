@@ -21,23 +21,6 @@ abstract class AbstractPluginTest extends \PHPUnit_Framework_TestCase {
      */
     protected $backend;
 
-    function setUp(): void {
 
-        $this->backend = new Backend\Mock();
-        $principalBackend = new DAVACL\PrincipalBackend\Mock();
-
-        $tree = array(
-            new AddressBookRoot($principalBackend, $this->backend),
-            new DAVACL\PrincipalCollection($principalBackend)
-        );
-
-        $this->plugin = new Plugin();
-        $this->plugin->directories = array('directory');
-        $this->server = new DAV\Server($tree);
-        $this->server->sapi = new HTTP\SapiMock();
-        $this->server->addPlugin($this->plugin);
-        $this->server->debugExceptions = true;
-
-    }
 
 }

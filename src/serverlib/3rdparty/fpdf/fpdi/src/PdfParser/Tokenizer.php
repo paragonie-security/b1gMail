@@ -37,15 +37,7 @@ class Tokenizer
         $this->streamReader = $streamReader;
     }
 
-    /**
-     * Get the stream reader instance.
-     *
-     * @return StreamReader
-     */
-    public function getStreamReader()
-    {
-        return $this->streamReader;
-    }
+
 
     /**
      * Clear the token stack.

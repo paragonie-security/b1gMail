@@ -53,7 +53,7 @@ if($_REQUEST['action'] == 'extensions')
 		{
 			if(isset($_FILES['icon']) && $_FILES['icon']['error'] == 0 && $_FILES['icon']['size'] > 5)
 			{
-				$tempFileID = RequestTempFile(0);
+				RequestTempFile(0);
 				$tempFileName = TempFileName($tempFileID);
 				if(move_uploaded_file($_FILES['icon']['tmp_name'], $tempFileName))
 				{
@@ -127,7 +127,7 @@ if($_REQUEST['action'] == 'extensions')
 			// new icon?
 			if(isset($_FILES['icon']) && $_FILES['icon']['error'] == 0 && $_FILES['icon']['size'] > 5)
 			{
-				$tempFileID = RequestTempFile(0);
+				RequestTempFile(0);
 				$tempFileName = TempFileName($tempFileID);
 				if(move_uploaded_file($_FILES['icon']['tmp_name'], $tempFileName))
 				{

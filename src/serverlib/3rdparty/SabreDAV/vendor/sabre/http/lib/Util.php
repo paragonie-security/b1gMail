@@ -13,29 +13,21 @@ namespace Sabre\HTTP;
  */
 class Util {
 
+
+
     /**
-     * Content negotiation
      *
-     * @deprecated Use \Sabre\HTTP\negotiateContentType
-     * @param string|null $acceptHeaderValue
-     * @param array $availableOptions
-     * @return string|null
-     */
-    static function negotiateContentType($acceptHeaderValue, array $availableOptions) {
-
-        return negotiateContentType($acceptHeaderValue, $availableOptions);
-
-    }
-
-    /**
      * Deprecated! Use negotiateContentType.
      *
      * @deprecated Use \Sabre\HTTP\NegotiateContentType
+     *
      * @param string|null $acceptHeader
      * @param array $availableOptions
+     * @param null|string $acceptHeaderValue
+     *
      * @return string|null
      */
-    static function negotiate($acceptHeaderValue, array $availableOptions) {
+    static function negotiate(string|null $acceptHeaderValue, array $availableOptions) {
 
         return negotiateContentType($acceptHeaderValue, $availableOptions);
 

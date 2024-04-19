@@ -216,7 +216,12 @@ class DirectoryMock extends Collection {
 
     }
 
-    function getChildren() {
+    /**
+     * @return FileMock[]
+     *
+     * @psalm-return list{FileMock}
+     */
+    function getChildren(): array {
 
         return array(new FileMock());
 

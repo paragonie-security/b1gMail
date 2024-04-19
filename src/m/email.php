@@ -133,12 +133,12 @@ else if($_REQUEST['action'] == 'read'
 		$textParts = $mail->GetTextParts();
 		if(isset($textParts['text']))
 		{
-			$textMode = 'text';
+			
 			$text = formatEMailText($textParts['text'], true, true);
 		}
 		else if(isset($textParts['html']))
 		{
-			$textMode = 'html';
+			
 			$text = formatEMailHTMLText($textParts['html'],
 				true,
 				$attachments,
@@ -147,7 +147,7 @@ else if($_REQUEST['action'] == 'read'
 		}
 		else
 		{
-			$textMode = 'text';
+			
 			$text = '';
 		}
 
@@ -160,9 +160,9 @@ else if($_REQUEST['action'] == 'read'
 
 		// reply to
 		if(($replyTo = $mail->GetHeaderValue('reply-to')) && $replyTo != '')
-			$replyTo = $replyTo;
+			
 		else
-			$replyTo = $mail->GetHeaderValue('from');
+			$mail->GetHeaderValue('from');
 
 		// assign
 		$tpl->assign('attachments', $attachments);
@@ -242,14 +242,14 @@ else if($_REQUEST['action'] == 'compose')
 	}
 
 	// signature?
-	$sigText = false;
+	
 	if(isset($composeDefaults['signature']) && $composeDefaults['signature'] > 0)
 	{
 		$signature = $thisUser->GetSignature($composeDefaults['signature']);
 		if(is_array($signature))
 		{
 			if(trim($signature['text']) != '')
-				$sigText = $signature['text'];
+				$signature['text'];
 		}
 	}
 
@@ -294,15 +294,15 @@ else if($_REQUEST['action'] == 'compose')
 			$textParts = $sourceMail->GetTextParts();
 			if(isset($textParts['text']))
 			{
-				$text = formatEMailText($textParts['text'], false);
+				formatEMailText($textParts['text'], false);
 			}
 			else if(isset($textParts['html']))
 			{
-				$text = htmlToText($textParts['html']);
+				htmlToText($textParts['html']);
 			}
 			else
 			{
-				$text = '';
+				
 			}
 
 			// text
@@ -482,10 +482,10 @@ else if($_REQUEST['action'] == 'sendMail')
 				//
 				Add2Stat('send');
 				$domains = GetDomainList();
-				$local = false;
+				
 				foreach($domains as $domain)
 					if(strpos(strtolower($to . $cc), '@'.strtolower($domain)) !== false)
-						$local = true;
+						
 				Add2Stat('send_'.($local ? 'intern' : 'extern'));
 				$thisUser->AddSendStat(count($recipients));
 				$thisUser->UpdateLastSend(count($recipients));

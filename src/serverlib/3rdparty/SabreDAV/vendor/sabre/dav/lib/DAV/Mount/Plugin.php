@@ -38,12 +38,14 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * 'beforeMethod' event handles. This event handles intercepts GET requests ending
      * with ?mount
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $response) {
 

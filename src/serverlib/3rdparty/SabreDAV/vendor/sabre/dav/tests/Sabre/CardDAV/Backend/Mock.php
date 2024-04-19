@@ -114,7 +114,12 @@ class Mock extends AbstractBackend {
 
     }
 
-    function getCard($addressBookId, $cardUri) {
+    /**
+     * @return (mixed|string)[]|false
+     *
+     * @psalm-return array{uri: string, carddata: mixed}|false
+     */
+    function getCard($addressBookId, $cardUri): array|false {
 
         if (!isset($this->cards[$addressBookId][$cardUri])) {
             return false;

@@ -14,17 +14,6 @@ use Sabre\DAV\MkCol;
  */
 interface CreatePrincipalSupport extends BackendInterface {
 
-    /**
-     * Creates a new principal.
-     *
-     * This method receives a full path for the new principal. The mkCol object
-     * contains any additional webdav properties specified during the creation
-     * of the principal.
-     *
-     * @param string $path
-     * @param MkCol $mkCol
-     * @return void
-     */
-    function createPrincipal($path, MkCol $mkCol);
+
 
 }

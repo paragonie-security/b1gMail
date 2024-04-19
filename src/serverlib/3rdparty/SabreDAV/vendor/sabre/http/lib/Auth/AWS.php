@@ -147,6 +147,7 @@ class AWS extends AbstractAuth {
     }
 
     /**
+     *
      * Makes sure the supplied value is a valid RFC2616 date.
      *
      * If we would just use strtotime to get a valid timestamp, we have no way of checking if a
@@ -156,9 +157,8 @@ class AWS extends AbstractAuth {
      * system date, to prevent replay attacks.
      *
      * @param string $dateHeader
-     * @return bool
      */
-    protected function validateRFC2616Date($dateHeader) {
+    protected function validateRFC2616Date($dateHeader): \Sabre\HTTP\DateTime|bool {
 
         $date = Util::parseHTTPDate($dateHeader);
 

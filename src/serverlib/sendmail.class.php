@@ -127,9 +127,10 @@ class BMSendMail
     }
 
     /**
+     *
      * send the mail.
      *
-     * @return bool
+     * @return bool|null
      */
     public function Send()
     {

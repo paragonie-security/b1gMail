@@ -268,6 +268,7 @@ abstract class Message implements MessageInterface {
 
 
     /**
+     *
      * Removes a HTTP header.
      *
      * The specified header name must be treated as case-insenstive.
@@ -275,8 +276,10 @@ abstract class Message implements MessageInterface {
      * and false if the header did not exist.
      *
      * @return bool
+     *
+     * @psalm-param 'Host' $name
      */
-    function removeHeader($name) {
+    function removeHeader(string $name) {
 
         $name = strtolower($name);
         if (!isset($this->headers[$name])) {

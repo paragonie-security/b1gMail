@@ -151,11 +151,12 @@ class VCalendar extends VObject\Document {
     );
 
     /**
+     *
      * Returns the current document type.
      *
-     * @return void
+     * @psalm-return 3
      */
-    function getDocumentType() {
+    function getDocumentType(): int {
 
         return self::ICALENDAR20;
 
@@ -196,36 +197,7 @@ class VCalendar extends VObject\Document {
 
     }
 
-    /**
-     * Returns the first component that is not a VTIMEZONE, and does not have
-     * an RECURRENCE-ID.
-     *
-     * If there is no such component, null will be returned.
-     *
-     * @param string $componentName filter by component name
-     * @return VObject\Component|null
-     */
-    function getBaseComponent($componentName = null) {
 
-        foreach($this->children as $component) {
-
-            if (!$component instanceof VObject\Component)
-                continue;
-
-            if (isset($component->{'RECURRENCE-ID'}))
-                continue;
-
-            if ($componentName && $component->name !== strtoupper($componentName))
-                continue;
-
-            if ($component->name === 'VTIMEZONE')
-                continue;
-
-            return $component;
-
-        }
-
-    }
 
     /**
      * If this calendar object, has events with recurrence rules, this method
@@ -355,19 +327,24 @@ class VCalendar extends VObject\Document {
     }
 
     /**
+     *
      * A simple list of validation rules.
      *
      * This is simply a list of properties, and how many times they either
      * must or must not appear.
      *
      * Possible values per property:
-     *   * 0 - Must not appear.
-     *   * 1 - Must appear exactly once.
-     *   * + - Must appear at least once.
-     *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
+     * 0 - Must not appear.
+     * 1 - Must appear exactly once.
+     * + - Must appear at least once.
+     * - Can appear any number of times.
+     * ? - May appear, but not more than once.
      *
      * @var array
+     *
+     * @return (int|string)[]
+     *
+     * @psalm-return array{PRODID: 1, VERSION: 1, CALSCALE: '?', METHOD: '?'}
      */
     function getValidationRules() {
 
@@ -500,27 +477,7 @@ class VCalendar extends VObject\Document {
 
     }
 
-    /**
-     * Returns all components with a specific UID value.
-     *
-     * @return array
-     */
-    function getByUID($uid) {
 
-        return array_filter($this->children, function($item) use ($uid) {
-
-            if (!$item instanceof Component) {
-                return false;
-            }
-            if (!$itemUid = $item->select('UID')) {
-                return false;
-            }
-            $itemUid = current($itemUid)->getValue();
-            return $uid === $itemUid;
-
-        });
-
-    }
 
 
 }

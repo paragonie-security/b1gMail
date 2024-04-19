@@ -27,28 +27,7 @@ class wbb2AuthPlugin extends BMPlugin
 {
 	var $_uidFormat = 'wbb2:%d';
 	
-	/**
-	 * constructor
-	 *
-	 * @return wbb2AuthPlugin
-	 */
-	public function __construct()
-	{
-		
-		// plugin info
-		$this->name					= 'wbb2 Authentication Plugin';
-		$this->author			    = 'b1gMail Project, IND-InterNetDienst Schlei';
-		$this->web					= 'http://www.ind.de/';
-		$this->mail					= 'b1gmail.com@ind.de';
-		$this->version				= '1.0.3';
-		$this->type             	= BMPLUGIN_DEFAULT;
-		$this->update_url       	= 'http://my.b1gmail.com/update_service/';
-		
-		// admin pages
-		$this->admin_pages				= true;
-		$this->admin_page_title			= 'wbb2-Auth';
-		$this->admin_page_icon		= "wbb2.png";
-	}
+
 
 
 	/**
@@ -110,15 +89,18 @@ class wbb2AuthPlugin extends BMPlugin
 	}
 	
 	/**
+	 *
 	 * authentication handler
 	 *
 	 * @param string $userName
 	 * @param string $userDomain
 	 * @param string $passwordMD5
-	 * @return array
+	 *
+	 * @return (array|string)[]|false
+	 *
+	 * @psalm-return array{uid: string, profile: array{altmail: mixed}}|false
 	 */
-
-	public function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = '')
+	public function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = ''): array|false
 	{
 		global $db, $bm_prefs;
 		
@@ -170,7 +152,7 @@ class wbb2AuthPlugin extends BMPlugin
 							PRIO_PLUGIN,
 							__FILE__,
 							__LINE__);
-						$bmUID = BMUser::CreateAccount($myUserName,
+						BMUser::CreateAccount($myUserName,
 							'',
 							'',
 							'',
@@ -219,8 +201,10 @@ class wbb2AuthPlugin extends BMPlugin
 	}
 	
 	/**
+	 *
 	 * user page handler
-	 * 
+	 *
+	 * @return false|null
 	 */
 	public function FileHandler($file, $action)
 	{

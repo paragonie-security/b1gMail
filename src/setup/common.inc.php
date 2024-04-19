@@ -26,25 +26,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 include('./data/example.data.php');
 
 // files and folders that should have write permissions
-$writeableFiles = array(
-	'serverlib/config.inc.php',
-	'serverlib/version.inc.php',
-	'admin/templates/cache/',
-	'languages/',
-	'languages/deutsch.lang.php',
-	'languages/english.lang.php',
-	'logs/',
-	'plugins/',
-	'plugins/templates/',
-	'plugins/templates/images/',
-	'plugins/js/',
-	'plugins/css/',
-	'temp/',
-	'temp/session/',
-	'temp/cache/',
-	'templates/modern/cache/',
-	'data/'
-);
+
 
 // constants
 define('VERSION_IS_OLDER',		-1);
@@ -111,10 +93,10 @@ function CompareVersions($ver1, $ver2)
 }
 
 /**
- * setup page header
  *
+ * setup page header
  */
-function pageHeader($update = false, $convert = false)
+function pageHeader($update = false, $convert = false): void
 {
 	global $lang_setup, $lang, $step;
 
@@ -144,10 +126,10 @@ function pageHeader($update = false, $convert = false)
 }
 
 /**
- * setup page footer
  *
+ * setup page footer
  */
-function pageFooter($update = false, $convert = false)
+function pageFooter($update = false, $convert = false): void
 {
 	global $lang_setup, $nextStep, $step;
 
@@ -177,10 +159,10 @@ function pageFooter($update = false, $convert = false)
 }
 
 /**
- * read setup language file
  *
+ * read setup language file
  */
-function ReadLanguage()
+function ReadLanguage(): void
 {
 	global $lang, $lang_setup, $step, $exampleData;
 
@@ -219,15 +201,17 @@ function ReadLanguage()
 }
 
 /**
+ *
  * check mysql login
  *
  * @param string $host
  * @param string $user
  * @param string $pass
  * @param string $db
- * @return bool
+ *
+ * @return false|mysqli
  */
-function CheckMySQLLogin($host, $user, $pass, $db)
+function CheckMySQLLogin($host, $user, $pass, $db): mysqli|false
 {
 	$result = false;
 
@@ -313,21 +297,25 @@ function GeneratePW()
 
 
 /**
+ *
  * synchronize DB structure against an DB structure array
  *
  * @param resource $connection
  * @param array $databaseStructure (New/correct) DB structure
  * @param bool $return Return queries?
  * @param bool $return Return queries?
- * @return array
+ *
+ * @return (bool|string)[]
+ *
+ * @psalm-return array<int<0, max>|string, bool|string>
  */
-function SyncDBStruct($connection, $databaseStructure, $return = true, $utf8Mode = false)
+function SyncDBStruct($connection, $databaseStructure, $return = true, $utf8Mode = false): array
 {
 	// queries to execute
 	$syncQueries = array();
 
 	// get tables
-	$defaultTables = array();
+	
 	$res = mysqli_query($connection, 'SHOW TABLES');
 	while($row = mysqli_fetch_array($res, MYSQLI_NUM))
 		$myTables[] = $row[0];
@@ -607,10 +595,14 @@ function ConvertEncoding($str, $from, $to)
 }
 
 /**
+ *
  * get language file info
  *
+ * @return (bool|int|string)[]
+ *
+ * @psalm-return array{ctime?: false|int, title?: string, author?: string, authorMail?: string, authorWeb?: string, charset?: string, locale?: string, writeable?: bool, langDefLine?: string}
  */
-function GetLanguageInfo($fileName)
+function GetLanguageInfo($fileName): array
 {
 	$result = array();
 	$fp = @fopen($fileName, 'r');

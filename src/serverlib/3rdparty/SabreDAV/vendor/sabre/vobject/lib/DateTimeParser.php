@@ -172,13 +172,15 @@ class DateTimeParser {
     }
 
     /**
+     *
      * Parses either a Date or DateTime, or Duration value.
      *
      * @param string $date
      * @param DateTimeZone|string $referenceTz
-     * @return DateTime|DateInterval
+     *
+     * @return DateInterval|DateTime|string
      */
-    static public function parse($date, $referenceTz = null) {
+    static public function parse($date, $referenceTz = null): string|DateTime|DateInterval {
 
         if ($date[0]==='P' || ($date[0]==='-' && $date[1]==='P')) {
             return self::parseDuration($date);

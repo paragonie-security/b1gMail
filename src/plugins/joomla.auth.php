@@ -27,26 +27,7 @@ class JoomlaAuthPlugin extends BMPlugin
 {
 	var $_uidFormat = 'J!:%d';
 
-	/**
-	 * constructor
-	 *
-	 * @return JoomlaAuthPlugin
-	 */
-	function __construct()
-	{
-		// plugin info
-		$this->type					= BMPLUGIN_DEFAULT;
-		$this->name					= 'Joomla! Authentication Plugin';
-		$this->author				= 'b1gMail Project';
-		$this->web					= 'https://www.b1gmail.org/';
-		$this->mail					= 'info@b1gmail.org';
-		$this->version				= '1.5';
 
-		// admin pages
-		$this->admin_pages			= true;
-		$this->admin_page_title		= 'Joomla!-Auth';
-		$this->admin_page_icon		= 'joomla32.png';
-	}
 
  	/**
  	 * get list of domains
@@ -106,14 +87,18 @@ class JoomlaAuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * authentication handler
 	 *
 	 * @param string $userName
 	 * @param string $userDomain
 	 * @param string $passwordMD5
-	 * @return array
+	 *
+	 * @return ((mixed|string)[]|string)[]|false
+	 *
+	 * @psalm-return array{uid: string, profile: array{altmail: mixed, vorname: mixed|string, nachname: string}}|false
 	 */
-	function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = '')
+	function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = ''): array|false
 	{
 		global $db, $bm_prefs;
 
@@ -181,7 +166,7 @@ class JoomlaAuthPlugin extends BMPlugin
 							PRIO_PLUGIN,
 							__FILE__,
 							__LINE__);
-						$bmUID = BMUser::CreateAccount($myUserName,
+						BMUser::CreateAccount($myUserName,
 							$userFirstName,
 							$userLastName,
 							'',
@@ -232,8 +217,10 @@ class JoomlaAuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * user page handler
 	 *
+	 * @return false|null
 	 */
 	function FileHandler($file, $action)
 	{

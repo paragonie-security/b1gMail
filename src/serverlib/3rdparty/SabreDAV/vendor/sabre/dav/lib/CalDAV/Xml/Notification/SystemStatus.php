@@ -173,7 +173,7 @@ class SystemStatus implements NotificationInterface {
      *
      * @return string
      */
-    function getETag() {
+    function getETag(): string {
 
         return $this->etag;
 

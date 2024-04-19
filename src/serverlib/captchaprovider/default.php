@@ -37,6 +37,9 @@ class BMCaptchaProvider_Default extends BMAbstractCaptchaProvider
 		return(function_exists('imagepng'));
 	}
 
+	/**
+	 * @return false|null
+	 */
 	public function generate()
 	{
 		if(!isset($_REQUEST['id']))

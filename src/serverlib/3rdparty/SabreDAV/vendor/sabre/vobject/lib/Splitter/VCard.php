@@ -52,14 +52,13 @@ class VCard implements SplitterInterface {
     }
 
     /**
+     *
      * Every time getNext() is called, a new object will be parsed, until we
      * hit the end of the stream.
      *
      * When the end is reached, null will be returned.
-     *
-     * @return Sabre\VObject\Component|null
      */
-    public function getNext() {
+    public function getNext(): VObject\Component\VCard|null {
 
         try {
             $object = $this->parser->parse();

@@ -63,9 +63,10 @@ class PDO extends AbstractBackend implements CreatePrincipalSupport {
     ];
 
     /**
+     *
      * Sets up the backend.
      *
-     * @param PDO $pdo
+     * @param \PDO $pdo
      */
     function __construct(\PDO $pdo) {
 
@@ -125,12 +126,14 @@ class PDO extends AbstractBackend implements CreatePrincipalSupport {
     }
 
     /**
+     *
      * Returns a specific principal, specified by it's path.
      * The returned structure should be the exact same as from
      * getPrincipalsByPrefix.
      *
      * @param string $path
-     * @return array
+     *
+     * @return array|null
      */
     function getPrincipalByPath($path) {
 
@@ -364,23 +367,6 @@ class PDO extends AbstractBackend implements CreatePrincipalSupport {
 
     }
 
-    /**
-     * Creates a new principal.
-     *
-     * This method receives a full path for the new principal. The mkCol object
-     * contains any additional webdav properties specified during the creation
-     * of the principal.
-     *
-     * @param string $path
-     * @param MkCol $mkCol
-     * @return void
-     */
-    function createPrincipal($path, MkCol $mkCol): void {
 
-        $stmt = $this->pdo->prepare('INSERT INTO ' . $this->tableName . ' (uri) VALUES (?)');
-        $stmt->execute([$path]);
-        $this->updatePrincipal($path, $mkCol);
-
-    }
 
 }

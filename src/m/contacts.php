@@ -93,9 +93,9 @@ else if($_REQUEST['action'] == 'show' && isset($_REQUEST['id']))
 		}
 
 		if(empty($contact['vorname']) && empty($contact['nachname']))
-			$contactName = $contact['firma'];
+			$contact['firma'];
 		else
-			$contactName = $contact['vorname'] . ' ' . $contact['nachname'];
+			$contact['vorname'] . ' ' . $contact['nachname'];
 
 		$tpl->assign('groups', $groupList);
 		$tpl->assign('contact', $contact);

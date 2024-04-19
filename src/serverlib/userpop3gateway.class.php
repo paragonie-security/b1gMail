@@ -41,28 +41,17 @@ class BMUserPOP3Gateway
 	var $_groupRow;
 	var $_account;
 
-	/**
-	 * constructor
-	 *
-	 * @param int $userID
-	 * @param BMUser $userObject
-	 * @return BMUserPOP3Gateway
-	 */
-	function __construct($userID, &$userObject)
-	{
-		$this->_userID = $userID;
-		$this->_userObject = &$userObject;
-		$group = $this->_userObject->GetGroup();
-        	$this->_groupRow = $group->Fetch();
-	}
+
 
 	/**
+	 *
 	 * run pop3 fetcher
 	 *
 	 * @param $maxMails Max mails to process
-	 * @return array Mail count, processed mail count
+	 *
+	 * @return bool Mail count, processed mail count
 	 */
-	function Run($maxMails = -1)
+	function Run($maxMails = -1): bool
 	{
 		global $db;
 		$result = true;
@@ -111,12 +100,16 @@ class BMUserPOP3Gateway
 	}
 
 	/**
+	 *
 	 * process mails
 	 *
 	 * @param $maxMails Max mails to process
-	 * @return array Mail count, processed mail count
+	 *
+	 * @return false|int[] Mail count, processed mail count
+	 *
+	 * @psalm-return false|list{int<0, max>, int<0, max>}
 	 */
-	function ProcessMails($maxMails = -1)
+	function ProcessMails($maxMails = -1): array|false
 	{
 		global $bm_prefs, $db;
 

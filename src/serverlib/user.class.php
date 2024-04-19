@@ -30,17 +30,7 @@ class BMUser
 	var $_id;
 	var $_row;
 
-	/**
-	 * constructor
-	 *
-	 * @param int $id User ID
-	 * @return BMUser
-	 */
-	function __construct($id)
-	{
-		$this->_id = $id;
-		$this->_row = $this->Fetch();
-	}
+
 
 	/**
 	 * get user's group
@@ -325,28 +315,7 @@ class BMUser
 		return($db->AffectedRows() == 1);
 	}
 
-	/**
-	 * get bayes training values for an user
-	 *
-	 * @param int $userID
-	 * @return array bayes_nonspam, bayes_spam, bayes_border (%)
-	 */
-	public static function GetBayesValues($userID)
-	{
-		global $db;
 
-		$res = $db->Query('SELECT bayes_nonspam,bayes_spam,bayes_border FROM {pre}users WHERE id=?',
-			$userID);
-		if($res->RowCount() == 1)
-		{
-			$ret = $res->FetchArray(MYSQLI_NUM);
-			$res->Free();
-		}
-		else
-			$ret = array(0, 0, 90);
-
-		return($ret);
-	}
 
 	/**
 	 * set preference
@@ -421,7 +390,7 @@ class BMUser
 		$res = $db->Query('SELECT * FROM {pre}locked');
 		while($row = $res->FetchObject())
 		{
-			$laenge = strlen($row->benutzername);
+			
 			$row->benutzername = strtolower($row->benutzername);
 
 			if(($row->typ == 'start') && (preg_match('/^' . preg_quote($row->benutzername) . '/i', $userm)))
@@ -484,7 +453,7 @@ class BMUser
 	 * @param string $address
 	 * @return bool
 	 */
-	public static function AddressValid($address, $forRegistration = true)
+	public static function AddressValid($address, bool $forRegistration = true)
 	{
 		@list($preAt, $afterAt) = explode('@', $address);
 		if(preg_match('/^[a-zA-Z0-9&\'\\.\\-_\\+]+@[a-zA-Z0-9.-]+\\.+[a-zA-Z]{2,12}$/', $address) == 1)
@@ -529,12 +498,13 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * password reset / activation
 	 *
 	 * @param int $userID User ID
 	 * @param string $resetKey Reset key
 	 */
-	public static function ResetPassword($userID, $resetKey)
+	public static function ResetPassword($userID, $resetKey): bool
 	{
 		global $db;
 
@@ -659,6 +629,7 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * create a new account
 	 *
 	 * @param string $email
@@ -676,9 +647,13 @@ class BMUser
 	 * @param string $password
 	 * @param array $profilefields
 	 * @param bool $allowNotification
+	 * @param (array|string)[]|string $salutation
+	 *
 	 * @return int User ID
+	 *
+	 * @psalm-param array<int|string, array<int|string, mixed>|string>|string $salutation
 	 */
-	public static function CreateAccount($email, $firstname, $surname, $street, $no, $zip, $city, $country, $phone, $fax, $altmail, $mobile_nr, $password, $profilefields = array(), $allowNotification = true, $c_uid = '', $salutation = '', $createLocked = false)
+	public static function CreateAccount($email, $firstname, $surname, $street, $no, $zip, $city, $country, $phone, $fax, $altmail, $mobile_nr, $password, $profilefields = array(), $allowNotification = true, string $c_uid = '', array|string $salutation = '', bool $createLocked = false)
 	{
 		global $db, $bm_prefs, $currentCharset, $currentLanguage, $lang_custom;
 
@@ -1076,11 +1051,13 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * activate a user account using it's activation code
 	 *
 	 * @param int $id User ID
 	 * @param string $code Code
-	 * @return bool Success
+	 *
+	 * @return bool|null Success
 	 */
 	public static function ActivateAccount($id, $code)
 	{
@@ -1119,15 +1096,22 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * login a user
 	 *
 	 * @param string $email E-Mail
 	 * @param string $passwordPlain Password (PLAIN)
 	 * @param bool $createSession Create session?
 	 * @param bool $successLog Log successful logins?
-	 * @return string Session-ID
+	 * @param (array|string)[]|string $ValidationCode
+	 *
+	 * @return (false|int|mixed|string)[] Session-ID
+	 *
+	 * @psalm-param array<int|string, array<int|string, mixed>|string>|string $ValidationCode
+	 *
+	 * @psalm-return list{mixed, false|int<1, max>|mixed|string}
 	 */
-	public static function Login($email, $passwordPlain, $createSession = true, $successLog = true, $ValidationCode = '', $skipSalting = false)
+	public static function Login($email, $passwordPlain, $createSession = true, $successLog = true, array|string $ValidationCode = '', $skipSalting = false): array
 	{
 		global $db, $currentCharset, $currentLanguage, $bm_prefs;
 
@@ -1145,7 +1129,7 @@ class BMUser
 		{
 			// get user ID
 			$userID = BMUser::GetID($email,false,$isAlias);
-			$aliaslogin='no';
+			
 			if($isAlias === true) { // Check if alias login is allowed
 				$res = $db->Query('SELECT login FROM {pre}aliase WHERE user=? AND email=? LIMIT 1',
 				$userID,$email);
@@ -1295,7 +1279,7 @@ class BMUser
 			else
 			{
 				// bad password or login lock
-				$result = array(USER_BAD_PASSWORD, false);
+				
 				ModuleFunction('OnLoginFailed', array($email, $password, BM_WRONGLOGIN));
 
 				// bruteforce login protection
@@ -1418,7 +1402,7 @@ class BMUser
 	 * @param int $id
 	 * @return array
 	 */
-	public function Fetch($id = -1, $re = false)
+	public function Fetch($id = -1, bool $re = false)
 	{
 		global $db;
 
@@ -1460,16 +1444,7 @@ class BMUser
 		return($row);
 	}
 
-	/**
-	 * refresh user row
-	 *
-	 * @return array
-	 */
-	public function ReFetch()
-	{
-		$this->_row = $this->Fetch(-1, true);
-		return($this->_row);
-	}
+
 
 	/**
 	 * get user's pop3 accounts
@@ -1507,12 +1482,16 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * get pop3 account
 	 *
 	 * @param int $id
-	 * @return array
+	 *
+	 * @return (bool|mixed)[]|false
+	 *
+	 * @psalm-return array{id: mixed, p_host: mixed, p_user: mixed, p_pass: mixed, p_target: mixed, p_port: mixed, p_keep: bool, p_ssl: bool, last_fetch: mixed, paused: bool}|false
 	 */
-	public function GetPOP3Account($id)
+	public function GetPOP3Account($id): array|false
 	{
 		global $db;
 
@@ -1539,7 +1518,7 @@ class BMUser
 		return($result);
 	}
 
-	public function UpdatePOP3Account($id, $p_host, $p_user, $p_pass, $p_target, $p_port, $p_keep, $p_ssl, $paused)
+	public function UpdatePOP3Account($id, $p_host, $p_user, $p_pass, $p_target, $p_port, $p_keep, $p_ssl, $paused): bool
 	{
 		global $db;
 
@@ -2116,7 +2095,7 @@ class BMUser
 		if($when == 0)
 			$when = time();
 
-		$result = 0;
+		
 
 		$res = $db->Query('SELECT SUM(`amount`) FROM {pre}transactions WHERE `userid`=? AND `status`=? AND `date`<=?',
 			$this->_id, TRANSACTION_BOOKED, $when);
@@ -2132,7 +2111,7 @@ class BMUser
 	 * @param int $credits Credits
 	 * @return int -1 = failed, 0 = ok, but no smsend ID, > 0 = smsend ID
 	 */
-	public function Debit($credits, $description = 'Unknown')
+	public function Debit($credits, string $description = 'Unknown')
 	{
 		global $db;
 
@@ -2287,14 +2266,14 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * set autoresponder settings
 	 *
 	 * @param bool $active Active?
 	 * @param string $subject Subject
 	 * @param string $text Text
-	 * @return int
 	 */
-	public function SetAutoresponder($active, $subject, $text)
+	public function SetAutoresponder($active, $subject, $text): bool
 	{
 		global $db;
 
@@ -3251,12 +3230,12 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * get chain certs
 	 *
 	 * @param string $hash Certificate hash
-	 * @return array
 	 */
-	public function GetChainCerts($hash)
+	public function GetChainCerts($hash): array|false
 	{
 		$result = @unserialize($this->GetPref('ChainCerts_' . $hash));
 		return(is_array($result) ? $result : false);
@@ -3373,7 +3352,7 @@ class BMUser
 	 *
 	 * @return string Plaintext password
 	 */
-	public function GetPrivateKeyPassword($certID)
+	public function GetPrivateKeyPassword(string $certID)
 	{
 		if(!isset($_SESSION['bm_xorCryptKey']))
 			return(false);
@@ -3387,11 +3366,12 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * get all available private key passwords
 	 *
-	 * @return array
+	 * @psalm-return array<string, mixed>|false
 	 */
-	public function GetPrivateKeyPasswords()
+	public function GetPrivateKeyPasswords(): array|false
 	{
 		global $db;
 
@@ -3601,12 +3581,14 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * decrypt saved password using DB token
 	 *
 	 * @param string $token Cookie token
-	 * @return string
+	 *
+	 * @return false|string
 	 */
-	public static function LoadLogin($token)
+	public static function LoadLogin($token): string|false
 	{
 		global $db;
 
@@ -3635,11 +3617,12 @@ class BMUser
 	}
 
 	/**
+	 *
 	 * delete a saved login token
 	 *
 	 * @param string $token Cookie token
 	 */
-	public static function DeleteSavedLogin($token)
+	public static function DeleteSavedLogin($token): bool
 	{
 		global $db;
 

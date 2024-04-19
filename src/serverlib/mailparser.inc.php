@@ -40,24 +40,7 @@ class BMMailParser_PartBody
 	var $contentEncoding;
 	var $contentType;
 
-	/**
-	 * constructor
-	 *
-	 * @param resource $fp Pointer to mail file
-	 * @param int $offsetStart Start offset
-	 * @param int $offsetLength Length
-	 * @param BMMailParser_Header $header Reference to header object
-	 * @return BMMailParser_PartBody
-	 */
-	function __construct($fp, $offsetStart, $offsetLength, &$header)
-	{
-		$this->_fp = $fp;
-		$this->oldOffset = ftell($this->_fp);
-		$this->offsetStart = $offsetStart;
-		$this->offsetLength = $offsetLength;
-		$this->contentEncoding = $header->GetValueOnly('content-transfer-encoding');
-		$this->contentType = $header->GetValueOnly('content-type');
-	}
+
 
 	/**
 	 * prepare for body read
@@ -160,16 +143,7 @@ class BMMailParser_Header
 	var $items;
 	var $_lastKey;
 
-	/**
-	 * constructor
-	 *
-	 * @return BMMailParser_Header
-	 */
-	function __construct()
-	{
-		$this->items = array();
-		$this->_lastKey = '';
-	}
+
 
 	/**
 	 * get value of a header field, even if it contains more parameters
@@ -360,22 +334,7 @@ class BMMailParser_Part
 	var $header;
 	var $body;
 
-	/**
-	 * constructor
-	 *
-	 * @param BMMailParser_Part $parent Part parent
-	 * @param string $myBoundary End of part - boundary
-	 * @return BMMailParser_Part
-	 */
-	function __construct(&$parent, $myBoundary)
-	{
-		$this->_fp = $parent->_fp;
-		$this->_offset = ftell($this->_fp);
-		$this->_myBoundary = $myBoundary;
-		$this->body = false;
-		$this->header = _new('BMMailParser_Header');
-		$this->subParts = array();
-	}
+
 
 	/**
 	 * parse the part
@@ -516,18 +475,7 @@ class BMMailParser
 	var $partList;
 	var $rootPart;
 
-	/**
-	 * constructor
-	 *
-	 * @param resource $fp Pointer to mail file
-	 * @return BMMailParser
-	 */
-	function __construct($fp)
-	{
-		$this->_fp = $fp;
-		$this->rootPart = _new('BMMailParser_Part', array($this, false));
-		$this->partList = false;
-	}
+
 
 	/**
 	 * parse the mail
@@ -539,7 +487,7 @@ class BMMailParser
 		if(is_resource($this->_fp))
 		{
 			// time measurement
-			$processingTime = microtime_float();
+			microtime_float();
 
 			// parse
 			$this->rootPart->Parse();

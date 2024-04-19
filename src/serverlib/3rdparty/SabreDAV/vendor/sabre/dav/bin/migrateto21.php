@@ -114,7 +114,7 @@ if ($addUid) {
 
     $result = $pdo->query('SELECT id, calendardata FROM calendarobjects');
     $stmt = $pdo->prepare('UPDATE calendarobjects SET uid = ? WHERE id = ?');
-    $counter = 0;
+    
 
     while($row = $result->fetch(\PDO::FETCH_ASSOC)) {
 
@@ -124,7 +124,7 @@ if ($addUid) {
             echo "Warning! Item with id $row[id] could not be parsed!\n";
             continue;
         }
-        $uid = null;
+        
         $item = $vobj->getBaseComponent();
         if (!isset($item->UID)) {
             echo "Warning! Item with id $item[id] does NOT have a UID property and this is required.\n";

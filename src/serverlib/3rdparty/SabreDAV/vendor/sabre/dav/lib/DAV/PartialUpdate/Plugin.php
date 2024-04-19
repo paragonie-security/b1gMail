@@ -102,6 +102,7 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Patch an uri
      *
      * The WebDAV patch request can be used to modify only a part of an
@@ -110,7 +111,8 @@ class Plugin extends DAV\ServerPlugin {
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return void
+     *
+     * @return false|null
      */
     function httpPatch(RequestInterface $request, ResponseInterface $response) {
 

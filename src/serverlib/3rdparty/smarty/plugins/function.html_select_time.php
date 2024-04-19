@@ -37,7 +37,7 @@ function smarty_function_html_select_time($params, Smarty_Internal_Template $tem
     $prefix = 'Time_';
     $field_array = null;
     $field_separator = "\n";
-    $option_separator = "\n";
+    
     $time = null;
     $display_hours = true;
     $display_minutes = true;
@@ -66,7 +66,7 @@ function smarty_function_html_select_time($params, Smarty_Internal_Template $tem
     $use_24_hours = true;
     $minute_interval = 1;
     $second_interval = 1;
-    $extra_attrs = '';
+    
     $all_extra = null;
     $hour_extra = null;
     $minute_extra = null;

@@ -21,12 +21,14 @@ use DateTime;
 class CalendarQueryValidator {
 
     /**
+     *
      * Verify if a list of filters applies to the calendar data object
      *
      * The list of filters must be formatted as parsed by \Sabre\CalDAV\CalendarQueryParser
      *
-     * @param VObject\Component $vObject
+     * @param VObject\Component\VCalendar $vObject
      * @param array $filters
+     *
      * @return bool
      */
     function validate(VObject\Component\VCalendar $vObject, array $filters) {

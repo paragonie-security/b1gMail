@@ -262,35 +262,7 @@ class PDO extends AbstractBackend implements SyncSupport {
 
     }
 
-    /**
-     * Returns a list of cards.
-     *
-     * This method should work identical to getCard, but instead return all the
-     * cards in the list as an array.
-     *
-     * If the backend supports this, it may allow for some speed-ups.
-     *
-     * @param mixed $addressBookId
-     * @param array $uris
-     * @return array
-     */
-    function getMultipleCards($addressBookId, array $uris) {
 
-        $query = 'SELECT id, uri, lastmodified, etag, size, carddata FROM ' . $this->cardsTableName . ' WHERE addressbookid = ? AND uri IN (';
-        // Inserting a whole bunch of question marks
-        $query .= implode(',', array_fill(0, count($uris), '?'));
-        $query .= ')';
-
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute(array_merge([$addressBookId], $uris));
-        $result = [];
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $row['etag'] = '"' . $row['etag'] . '"';
-            $result[] = $row;
-        }
-        return $result;
-
-    }
 
     /**
      * Creates a new card.
@@ -402,23 +374,24 @@ class PDO extends AbstractBackend implements SyncSupport {
     }
 
     /**
+     *
      * The getChanges method returns all the changes that have happened, since
      * the specified syncToken in the specified address book.
      *
      * This function should return an array, such as the following:
      *
      * [
-     *   'syncToken' => 'The current synctoken',
-     *   'added'   => [
-     *      'new.txt',
-     *   ],
-     *   'modified'   => [
-     *      'updated.txt',
-     *   ],
-     *   'deleted' => [
-     *      'foo.php.bak',
-     *      'old.txt'
-     *   ]
+     * 'syncToken' => 'The current synctoken',
+     * 'added'   => [
+     * 'new.txt',
+     * ],
+     * 'modified'   => [
+     * 'updated.txt',
+     * ],
+     * 'deleted' => [
+     * 'foo.php.bak',
+     * 'old.txt'
+     * ]
      * ];
      *
      * The returned syncToken property should reflect the *current* syncToken
@@ -455,9 +428,12 @@ class PDO extends AbstractBackend implements SyncSupport {
      * @param string $syncToken
      * @param int $syncLevel
      * @param int $limit
-     * @return array
+     *
+     * @return ((int|string)[]|mixed)[]|null
+     *
+     * @psalm-return array{syncToken: mixed, added: list<array-key>|mixed, modified: list<array-key>, deleted: list<array-key>}|null
      */
-    function getChangesForAddressBook($addressBookId, $syncToken, $syncLevel, $limit = null) {
+    function getChangesForAddressBook($addressBookId, $syncToken, $syncLevel, $limit = null): array|null {
 
         // Current synctoken
         $stmt = $this->pdo->prepare('SELECT synctoken FROM ' . $this->addressBooksTableName . ' WHERE id = ?');

@@ -56,7 +56,7 @@ if (isset($_REQUEST['sid']) && RequestPrivileges(PRIVILEGES_USER, true)) {
 // check if interval time passed
 if ($bm_prefs['last_cron'] < time() - $bm_prefs['cron_interval']) {
     // set up lock
-    function ReleaseCronLock()
+    function ReleaseCronLock(): void
     {
         global $lockFP;
 

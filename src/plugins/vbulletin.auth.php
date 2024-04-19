@@ -27,24 +27,7 @@ class VBulletinAuthPlugin extends BMPlugin
 {
 	var $_uidFormat = 'vB:%d';
 
-	/**
-	 * constructor
-	 *
-	 * @return VBulletinAuthPlugin
-	 */
-	function __construct()
-	{
-		// plugin info
-		$this->type					= BMPLUGIN_DEFAULT;
-		$this->name					= 'vBulletin Authentication PlugIn';
-		$this->author				= 'b1gMail Project';
-		$this->version				= '1.8';
 
-		// admin pages
-		$this->admin_pages			= true;
-		$this->admin_page_title		= 'vBulletin-Auth';
-		$this->admin_page_icon		= "vbulletin32.png";
-	}
 
 	/**
  	 * get list of domains
@@ -104,14 +87,18 @@ class VBulletinAuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * authentication handler
 	 *
 	 * @param string $userName
 	 * @param string $userDomain
 	 * @param string $passwordMD5
-	 * @return array
+	 *
+	 * @return (array|string)[]|false
+	 *
+	 * @psalm-return array{uid: string, profile: array{altmail: mixed}}|false
 	 */
-	function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = '')
+	function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = ''): array|false
 	{
 		global $db, $bm_prefs;
 
@@ -159,7 +146,7 @@ class VBulletinAuthPlugin extends BMPlugin
 							PRIO_PLUGIN,
 							__FILE__,
 							__LINE__);
-						$bmUID = BMUser::CreateAccount($myUserName,
+						BMUser::CreateAccount($myUserName,
 							'',
 							'',
 							'',
@@ -208,8 +195,10 @@ class VBulletinAuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * user page handler
 	 *
+	 * @return false|null
 	 */
 	function FileHandler($file, $action)
 	{

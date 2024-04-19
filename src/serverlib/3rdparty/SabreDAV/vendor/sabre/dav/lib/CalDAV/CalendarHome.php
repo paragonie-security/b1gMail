@@ -125,12 +125,14 @@ class CalendarHome implements DAV\IExtendedCollection, DAVACL\IACL {
     }
 
     /**
+     *
      * Returns a single calendar, by name
      *
      * @param string $name
-     * @return Calendar
+     *
+     * @return Calendar|Notifications\Collection|Schedule\Inbox|Schedule\Outbox|Subscriptions\Subscription
      */
-    function getChild($name) {
+    function getChild($name): Subscriptions\Subscription|Schedule\Inbox|Schedule\Outbox|Notifications\Collection|Calendar {
 
         // Special nodes
         if ($name === 'inbox' && $this->caldavBackend instanceof Backend\SchedulingSupport) {

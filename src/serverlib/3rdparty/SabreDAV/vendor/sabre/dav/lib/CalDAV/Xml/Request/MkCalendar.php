@@ -25,16 +25,7 @@ class MkCalendar implements XmlDeserializable {
      */
     public $properties = [];
 
-    /**
-     * Returns the list of properties the calendar will be initialized with.
-     *
-     * @return array
-     */
-    function getProperties() {
 
-        return $this->properties;
-
-    }
 
     /**
      * The deserialize method is called during xml parsing.

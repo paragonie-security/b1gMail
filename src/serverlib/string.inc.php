@@ -237,7 +237,7 @@ function _unescape($str)
 	return(preg_replace_callback('/%u([0-9ABCDEF]{3,4})/i', '_hex2utf', CharsetDecode($str, 'ISO-8859-1')));
 }
 
-function _urlencode($str)
+function _urlencode($str): string
 {
 	global $currentCharset;
 
@@ -246,7 +246,7 @@ function _urlencode($str)
 	return(urlencode($str));
 }
 
-function _urldecode($str)
+function _urldecode($str): string
 {
 	global $currentCharset;
 

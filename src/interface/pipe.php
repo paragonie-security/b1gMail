@@ -26,7 +26,7 @@ define('INTERFACE_MODE', true);
 include('../serverlib/init.inc.php');
 include(B1GMAIL_DIR . 'serverlib/mailprocessor.class.php');
 
-function ProcessPipeMail(&$tempFileFP, $inputSize, $recps, &$error, &$errorCode, $flags = 0)
+function ProcessPipeMail(&$tempFileFP, $inputSize, $recps, &$error, &$errorCode, $flags = 0): bool
 {
 	global $bm_prefs;
 
@@ -105,7 +105,7 @@ else if($timeout > -1)
 	@set_time_limit($timeout);
 
 // request temp file
-$tempFileID = RequestTempFile(0, -1, true);
+RequestTempFile(0, -1, true);
 $tempFileName = TempFileName($tempFileID);
 $tempFileFP = fopen($tempFileName, 'wb+');
 assert('is_resource($tempFileFP)');

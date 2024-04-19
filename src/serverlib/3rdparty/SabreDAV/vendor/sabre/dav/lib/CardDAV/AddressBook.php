@@ -55,12 +55,12 @@ class AddressBook extends DAV\Collection implements IAddressBook, DAV\IPropertie
     }
 
     /**
+     *
      * Returns a card
      *
      * @param string $name
-     * @return \ICard
      */
-    function getChild($name) {
+    function getChild($name): Card {
 
         $obj = $this->carddavBackend->getCard($this->addressBookInfo['id'], $name);
         if (!$obj) throw new DAV\Exception\NotFound('Card not found');
@@ -85,26 +85,7 @@ class AddressBook extends DAV\Collection implements IAddressBook, DAV\IPropertie
 
     }
 
-    /**
-     * This method receives a list of paths in it's first argument.
-     * It must return an array with Node objects.
-     *
-     * If any children are not found, you do not have to return them.
-     *
-     * @param string[] $paths
-     * @return array
-     */
-    function getMultipleChildren(array $paths) {
 
-        $objs = $this->carddavBackend->getMultipleCards($this->addressBookInfo['id'], $paths);
-        $children = [];
-        foreach ($objs as $obj) {
-            $obj['acl'] = $this->getChildACL();
-            $children[] = new Card($this->carddavBackend, $this->addressBookInfo, $obj);
-        }
-        return $children;
-
-    }
 
     /**
      * Creates a new directory
@@ -362,23 +343,24 @@ class AddressBook extends DAV\Collection implements IAddressBook, DAV\IPropertie
     }
 
     /**
+     *
      * The getChanges method returns all the changes that have happened, since
      * the specified syncToken and the current collection.
      *
      * This function should return an array, such as the following:
      *
      * [
-     *   'syncToken' => 'The current synctoken',
-     *   'added'   => [
-     *      'new.txt',
-     *   ],
-     *   'modified'   => [
-     *      'modified.txt',
-     *   ],
-     *   'deleted' => [
-     *      'foo.php.bak',
-     *      'old.txt'
-     *   ]
+     * 'syncToken' => 'The current synctoken',
+     * 'added'   => [
+     * 'new.txt',
+     * ],
+     * 'modified'   => [
+     * 'modified.txt',
+     * ],
+     * 'deleted' => [
+     * 'foo.php.bak',
+     * 'old.txt'
+     * ]
      * ];
      *
      * The syncToken property should reflect the *current* syncToken of the
@@ -414,9 +396,8 @@ class AddressBook extends DAV\Collection implements IAddressBook, DAV\IPropertie
      * @param string $syncToken
      * @param int $syncLevel
      * @param int $limit
-     * @return array
      */
-    function getChanges($syncToken, $syncLevel, $limit = null) {
+    function getChanges($syncToken, $syncLevel, $limit = null): array|null {
 
         if (!$this->carddavBackend instanceof Backend\SyncSupport) {
             return null;

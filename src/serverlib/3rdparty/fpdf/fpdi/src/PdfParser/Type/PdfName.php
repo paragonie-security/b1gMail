@@ -68,15 +68,5 @@ class PdfName extends PdfType
         return $v;
     }
 
-    /**
-     * Ensures that the passed value is a PdfName instance.
-     *
-     * @param mixed $name
-     * @return self
-     * @throws PdfTypeException
-     */
-    public static function ensure($name)
-    {
-        return PdfType::ensureType(self::class, $name, 'Name value expected.');
-    }
+
 }

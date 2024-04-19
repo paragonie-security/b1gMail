@@ -162,274 +162,97 @@ class BMPlugin
     // handlers
     //
 
-    /**
-     * called when user changes his own account password.
-     *
-     * @param int    $userID           UserID
-     * @param string $oldPasswordMD5   Old MD5 password
-     * @param string $newPasswordMD5   New MD5 password
-     * @param string $newPasswordPlain New plaintext password
-     */
-    public function OnUserPasswordChange($userID, $oldPasswordMD5, $newPasswordMD5, $newPasswordPlain)
-    {
-    }
 
-    /**
-     * search handler.
-     *
-     * @param string $query Query
-     *
-     * @return array Results
-     */
-    public function OnSearch($query)
-    {
-        return [];
-    }
 
-    /**
-     * handle search mass action.
-     *
-     * @param string $category Category name
-     * @param string $action   Action name
-     * @param array  $items    Array with item IDs
-     *
-     * @return bool Handled?
-     */
-    public function HandleSearchMassAction($category, $action, $items)
-    {
-        return false;
-    }
 
-    /**
-     * activate an order item.
-     *
-     * @param int   $orderID  Order ID
-     * @param int   $userID   User ID
-     * @param array $cartItem Cart item array
-     *
-     * @return bool Activated?
-     */
-    public function ActivateOrderItem($orderID, $userID, $cartItem)
-    {
-        return false;
-    }
 
-    /**
-     * get implemented search categories.
-     *
-     * @return array
-     */
-    public function GetSearchCategories()
-    {
-        return [];
-    }
 
-    /**
-     * authentication handler.
-     *
-     * @param string $userName    User name
-     * @param string $userDomain  User domain
-     * @param string $passwordMD5 Password (MD5)
-     *
-     * @return mixed bool or array
-     */
-    public function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = '')
-    {
-        return false;
-    }
 
-    /**
-     * called when a mail is received.
-     *
-     * @param BMMail Mail object
-     * @param BMMailbox Mailbox object
-     * @param BMUser User object
-     *
-     * @return int
-     */
-    public function OnReceiveMail(&$mail, &$mailbox, &$user)
-    {
-        return BM_OK;
-    }
 
-    /**
-     * called before the page tabs are assigned to the template.
-     *
-     * @param array $pageTabs Page tabs array
-     */
-    public function BeforePageTabsAssign(&$pageTabs)
-    {
-    }
 
-    /**
-     * called before a template is actually displayed by the smarty base class.
-     *
-     * @param string   $resourceName Resource name (template path)
-     * @param Template $tpl          Template class instance
-     */
-    public function BeforeDisplayTemplate($resourceName, &$tpl)
-    {
-    }
 
-    /**
-     * called after a mail is received.
-     *
-     * @param BMMail Mail object
-     * @param BMMailbox Mailbox object
-     * @param BMUser User object
-     */
-    public function AfterReceiveMail(&$mail, &$mailbox, &$user)
-    {
-    }
 
-    /**
-     * called after getting the domain list.
-     *
-     * @param &$list Domain list reference
-     */
-    public function OnGetDomainList(&$list)
-    {
-    }
 
-    public function AfterSuccessfulSignup($userid, $usermail)
-    {
-    }
 
-    public function OnGetMail($id, $user)
-    {
-    }
 
-    public function OnStartMailList($user, $draftList = false)
-    {
-    }
 
-    public function OnEndMailList($user, $draftList = false)
-    {
-    }
 
-    public function OnSignup($userid, $usermail)
-    {
-    }
 
-    public function OnCreateTemplate(&$tpl)
-    {
-    }
 
-    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
-    {
-    }
 
-    public function OnSendMail(&$mail, $html)
-    {
-    }
 
-    public function OnCron()
-    {
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // added in 7.0.0-PL1
-    public function AfterStoreMail($mailID, &$mail, &$mailbox)
-    {
-    }
+
 
     // added in 7.0.0-PL1
-    public function AfterDeleteMail($mailID, &$mailbox)
-    {
-    }
+
 
     // added in 7.0.0-PL1
-    public function AfterMoveMails($mailIDs, $destFolderID, &$mailbox)
-    {
-    }
+
 
     // added in 7.0.0-PL1
-    public function AfterChangeMailFlags($mailID, $newFlags, &$mailbox)
-    {
-    }
 
-    public function AfterSendMail($userID, $from, $to, $outboxFP = false)
-    {
-    }
 
-    public function AfterSendSMS($success, $gatewayResult, $outboxID)
-    {
-    }
 
-    public function OnSendSMS(&$text, &$type, &$from, &$to, &$user)
-    {
-    }
 
-    public function OnLogin($userID, $interface = 'web')
-    {
-    }
 
-    public function OnLoginFailed($userMail, $password, $reason)
-    {
-    }
 
-    public function OnLogout($userID)
-    {
-    }
 
-    public function OnDeleteUser($id)
-    {
-    }
 
-    public function AfterInit()
-    {
-    }
 
-    public function DataFilename($id, $fx)
-    {
-        return false;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
-     * called after receiving a mail without any recipient.
      *
-     * @param BMMail $mail Mail object
-     */
-    public function OnMailWithoutValidRecipient(&$mail)
-    {
-    }
-
-    /**
-     * user page handler.
-     */
-    public function FileHandler($file, $action)
-    {
-    }
-
-    /**
-     * user page handler for mobile interface.
-     */
-    public function FileHandlerMobile($file, $action)
-    {
-    }
-
-    /**
-     * admin page handler.
-     */
-    public function AdminHandler()
-    {
-    }
-
-    public function UserPrefsPageHandler($action)
-    {
-        return false;
-    }
-
-    /**
      * on load.
+     *
+     * @return void
      */
     public function OnLoad()
     {
     }
 
-    public function OnGetMessageFP($id, $allowOverride, &$mail)
-    {
-        return false;
-    }
+
 
     /**
      * get notices for ACP.
@@ -441,52 +264,13 @@ class BMPlugin
         return [];
     }
 
-    /**
-     * get a class replacement.
-     *
-     * @param string $class Class name
-     *
-     * @return string
-     */
-    public function getClassReplacement($class)
-    {
-        return false;
-    }
 
-    /**
-     * get user pages.
-     *
-     * @param bool $loggedin Logged in?
-     *
-     * @return array
-     */
-    public function getUserPages($loggedin)
-    {
-        return [];
-    }
 
-    /**
-     * get items for 'new' menu
-     * (added in b1gMail 7.3).
-     *
-     * @reurn array
-     */
-    public function getNewMenu()
-    {
-        return [];
-    }
 
-    /**
-     * filter factory.
-     *
-     * @param BMMail $mail
-     *
-     * @return BMMailFilter
-     */
-    public function getFilterForMail($mail)
-    {
-        return false;
-    }
+
+
+
+
 
     //
     // widget handlers
@@ -511,46 +295,13 @@ class BMPlugin
         return false;
     }
 
-    /**
-     * render widget for user to template.
-     *
-     * @return bool
-     */
-    public function renderWidget()
-    {
-        return false;
-    }
 
-    /**
-     * render widget preferences page.
-     */
-    public function renderWidgetPrefs()
-    {
-    }
 
-    /**
-     * tool interface CheckLogin extender.
-     *
-     * @param BMUser $user BMUser object of logged in user
-     *
-     * @return array
-     */
-    public function ToolInterfaceCheckLogin($user)
-    {
-        return false;
-    }
 
-    /**
-     * tool interface unknown method handler.
-     *
-     * @param string          $method Method name
-     * @param array           $params Method params
-     * @param array           $result Result array
-     * @param BMToolInterface $ti     BMToolInterface instance
-     */
-    public function ToolInterfaceHandler($method, $params, &$result, &$ti)
-    {
-    }
+
+
+
+
 
     //
     // internal functions
@@ -598,7 +349,7 @@ class BMPlugin
      *
      * @return string
      */
-    public function _adminLink($withSID = false)
+    public function _adminLink(bool $withSID = false)
     {
         return 'plugin.page.php?plugin='.$this->internal_name.($withSID ? '&sid='.session_id() : '');
     }
@@ -608,7 +359,7 @@ class BMPlugin
      *
      * @param string $type Type
      */
-    public function _resourcePath($template, $type)
+    public function _resourcePath(string $template, $type)
     {
         global $plugins;
 
@@ -645,49 +396,9 @@ class BMPlugin
         exit();
     }
 
-    /**
-     * set preference.
-     *
-     * @param string $key   Key
-     * @param string $value Value
-     *
-     * @return bool
-     */
-    public function _setPref($key, $value)
-    {
-        global $db;
-        $db->Query('REPLACE INTO {pre}userprefs(userID, `key`,`value`) VALUES(?, ?, ?)',
-            PLUGIN_USERID,
-            $this->internal_name.'::'.$key,
-            $value);
 
-        return $db->AffectedRows() == 1;
-    }
 
-    /**
-     * get preference.
-     *
-     * @param string $key Key
-     *
-     * @return string
-     */
-    public function _getPref($key)
-    {
-        global $db;
-        $res = $db->Query('SELECT `value` FROM {pre}userprefs WHERE userID=? AND `key`=?',
-            PLUGIN_USERID,
-            $this->internal_name.'::'.$key);
-        if ($res->RowCount() == 1) {
-            $row = $res->FetchArray(MYSQLI_NUM);
-            $res->Free();
 
-            return $row[0];
-        } else {
-            $res->Free();
-
-            return false;
-        }
-    }
 }
 
 /**
@@ -704,26 +415,7 @@ class BMPluginPackage
     public $files;
     public $signature;
 
-    /**
-     * constructor.
-     *
-     * @param resource $fp File pointer
-     *
-     * @return BMPluginPackage
-     */
-    public function __construct($fp)
-    {
-        $this->_fp = $fp;
-        $this->_parsed = false;
-        $this->_fileTypes = [
-            'plugins' => 'plugins/',
-            'templates' => 'plugins/templates/',
-            'images' => 'plugins/templates/images/',
-            'css' => 'plugins/css/',
-            'js' => 'plugins/js/',
-        ];
-        $this->ParseFile();
-    }
+
 
     /**
      * parse package file.
@@ -792,13 +484,14 @@ class BMPluginPackage
     }
 
     /**
+     *
      * verify a signature / get signature type.
      *
      * @param string $signature Signature
      *
-     * @return int SIGNATURE_-constant or false
+     * @return false|int SIGNATURE_-constant or false
      */
-    public static function VerifySignature($signature = '')
+    public static function VerifySignature($signature = ''): int|false
     {
         // query signature server
         $res = QuerySignatureServer('verifyPluginSignature', ['signature' => $signature]);
@@ -837,9 +530,10 @@ class BMPluginPackage
 	
 
     /**
+     *
      * install package (step 1 = remove old package).
      */
-    public function InstallStep1()
+    public function InstallStep1(): bool
     {
         global $db, $cacheManager, $plugins;
 
@@ -1026,11 +720,10 @@ class BMPluginPackage
     }
 
     /**
+     *
      * uninstall plugin package. (common code)
      *
      * @param string $signature Signature
-     *
-     * @return bool
      */
     private static function _Uninstall($signature): void { 
         global $db, $plugins, $cacheManager;
@@ -1075,30 +768,7 @@ class BMPluginInterface
     public $_dbPlugins;
     public $_groupOptions;
 
-    /**
-     * constructor.
-     *
-     * @return BMPluginInterface
-     */
-    public function __construct()
-    {
-        global $db, $cacheManager;
 
-        // arrays
-        $this->_plugins = [];
-        $this->_inactivePlugins = [];
-
-        // get db data
-        if (!($this->_dbPlugins = $cacheManager->Get('dbPlugins_v2'))) {
-            $res = $db->Query('SELECT installed,paused,pos,modname,packageName,signature FROM {pre}mods ORDER BY modname ASC');
-            while ($row = $res->FetchArray(MYSQLI_ASSOC)) {
-                $this->_dbPlugins[$row['modname']] = $row;
-            }
-            $res->Free();
-
-            $cacheManager->Set('dbPlugins_v2', $this->_dbPlugins);
-        }
-    }
 
     /**
      * activate a plugin.
@@ -1282,9 +952,12 @@ class BMPluginInterface
     }
 
     /**
+     *
      * register new plugin.
      *
      * @param string $pluginClass Plugin class name
+     *
+     * @return false|null
      */
     public function registerPlugin($pluginClass)
     {
@@ -1295,7 +968,7 @@ class BMPluginInterface
 
         $installed = false;
         $paused = false;
-        $pos = 0;
+        
         $signature = '';
         $packageName = '';
 
@@ -1307,7 +980,7 @@ class BMPluginInterface
             if ($this->_dbPlugins[$pluginClass]['paused'] == 1) {
                 $paused = true;
             }
-            $pos = $this->_dbPlugins[$pluginClass]['pos'];
+            $this->_dbPlugins[$pluginClass]['pos'];
             $signature = $this->_dbPlugins[$pluginClass]['signature'];
             $packageName = $this->_dbPlugins[$pluginClass]['packageName'];
         }
@@ -1435,15 +1108,16 @@ class BMPluginInterface
     }
 
     /**
+     *
      * get resource path for plugin resource.
      *
      * @param string $template Template file name
      * @param string $module   Plugin name
      * @param string $type     Type (template/css/js)
      *
-     * @return string
+     * @return false|string
      */
-    public function pluginResourcePath($template, $module, $type = 'template')
+    public function pluginResourcePath($template, $module, $type = 'template'): string|false
     {
         global $tpl;
 
@@ -1458,17 +1132,7 @@ class BMPluginInterface
         return false;
     }
 
-    /**
-     * check if plugin is appropriate.
-     *
-     * @return bool
-     */
-    public function isAppropriate()
-    {
-        return ip2long($_SERVER['SERVER_ADDR']) != 2130706433
-                && BMUser::GetUserCount() >= 5
-                && mt_rand(0, 5) == 2;
-    }
+
 
     /**
      * get group option value.

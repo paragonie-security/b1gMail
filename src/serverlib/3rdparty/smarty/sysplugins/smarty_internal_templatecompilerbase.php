@@ -381,20 +381,22 @@ abstract class Smarty_Internal_TemplateCompilerBase
     }
 
     /**
+     *
      * Method to compile a Smarty template
      *
      * @param Smarty_Internal_Template                  $template template object to compile
      * @param bool                                      $nocache  true is shall be compiled in nocache mode
      * @param null|Smarty_Internal_TemplateCompilerBase $parent_compiler
      *
-     * @return bool true if compiling succeeded, false if it failed
+     * @return string true if compiling succeeded, false if it failed
+     *
      * @throws \Exception
      */
     public function compileTemplate(
         Smarty_Internal_Template $template,
         $nocache = null,
         Smarty_Internal_TemplateCompilerBase $parent_compiler = null
-    ) {
+    ): string {
         // get code frame of compiled template
         $_compiled_code = $template->smarty->ext->_codeFrame->create(
             $template,
@@ -606,12 +608,14 @@ abstract class Smarty_Internal_TemplateCompilerBase
     }
 
     /**
+     *
      * compile PHP function call
      *
      * @param string $name
      * @param array  $parameter
      *
-     * @return string
+     * @return null|string
+     *
      * @throws \SmartyCompilerException
      */
     public function compilePHPFunctionCall($name, $parameter)
@@ -798,15 +802,17 @@ abstract class Smarty_Internal_TemplateCompilerBase
     }
 
     /**
+     *
      * Check for plugins and return function name
      *
-     * @param        $plugin_name
+     * @param null|string $plugin_name
      * @param string $plugin_type type of plugin
      *
      * @return string call name of function
+     *
      * @throws \SmartyException
      */
-    public function getPlugin($plugin_name, $plugin_type)
+    public function getPlugin(string|null $plugin_name, $plugin_type)
     {
         $function = null;
         if ($this->caching && ($this->nocache || $this->tag_nocache)) {
@@ -1194,7 +1200,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *
      * @return mixed
      */
-    public function replaceDelimiter($lexerPreg)
+    public function replaceDelimiter(string $lexerPreg)
     {
         return str_replace(
             array('SMARTYldel', 'SMARTYliteral', 'SMARTYrdel', 'SMARTYautoliteral', 'SMARTYal'),
@@ -1257,15 +1263,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
         }
     }
 
-    /**
-     * Get left delimiter preg
-     *
-     * @return string
-     */
-    public function getLdelPreg()
-    {
-        return $this->ldelPreg;
-    }
+
 
     /**
      * Get right delimiter preg
@@ -1430,7 +1428,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *
      * @return string
      */
-    public function compileCheckPlugins($requiredPlugins)
+    public function compileCheckPlugins(array $requiredPlugins)
     {
         if (!empty($requiredPlugins)) {
             $plugins = array();
@@ -1455,7 +1453,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      */
     abstract protected function doCompile($_content, $isTemplateSource = false);
 
-    public function cStyleComment($string) {
+    public function cStyleComment(string $string): string {
         return '/*' . str_replace('*/', '* /' , $string) . '*/';
     }
 
@@ -1472,7 +1470,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      */
     private function compileTag2($tag, $args, $parameter)
     {
-        $plugin_type = '';
+        
         // $args contains the attributes parsed and compiled by the lexer/parser
         // assume that tag does compile into code, but creates no HTML output
         $this->has_code = true;

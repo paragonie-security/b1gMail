@@ -44,21 +44,7 @@ class BMMailProcessor
 	var $disableBounces;
 	var $isUserPOP3;
 
-	/**
-	 * constructor
-	 *
-	 * @param resource $fp Pointer to mail file
-	 * @return BMMailProcessor
-	 */
-	function __construct($fp)
-	{
-		$this->isUserPOP3 = false;
-		$this->disableBounces = false;
-		$this->_fp = $fp;
-		$this->_targetFolder = FOLDER_INBOX;
-		$this->_aliasTable = array();
-		$this->bmsFlags = 0;
-	}
+
 
 	/**
 	 * set b1gMailServer mail flags
@@ -90,14 +76,7 @@ class BMMailProcessor
 		$this->_recipients = $recipients;
 	}
 
-	/**
-	 * clear recipient list
-	 *
-	 */
-	function ClearRecipients(): void
-	{
-		$this->_recipients = array();
-	}
+
 
 	/**
 	 * add a recipient
@@ -109,26 +88,7 @@ class BMMailProcessor
 		$this->_recipients[] = $recipient;
 	}
 
-	/**
-	 * process internal mail
-	 *
-	 */
-	function ProcessInternalMail($uid): void
-	{
-		global $db;
 
-		// read mail contents
-		$mailContents = '';
-		fseek($this->_fp, 0, SEEK_SET);
-		while(is_resource($this->_fp) && !feof($this->_fp))
-			$mailContents .= fread($this->_fp, 4096);
-
-		// store mail in DB
-		$db->Query('UPDATE {pre}testmails SET data=?, received=?, recv_count=recv_count+1 WHERE uid=?',
-			$mailContents,
-			time(),
-			$uid);
-	}
 
 	/**
 	 * process routine
@@ -140,7 +100,7 @@ class BMMailProcessor
 
 		// time measurement
 		$mailboxTime = 0;
-		$processingTime = microtime_float();
+		microtime_float();
 
 		// results
 		$storeResult = RECEIVE_RESULT_NO_RECIPIENTS;
@@ -196,7 +156,7 @@ class BMMailProcessor
 					$this->_mail->flags |= FLAG_INFECTED;
 
 				// deliver mail
-				$mailboxTime = microtime_float();
+				microtime_float();
 				foreach($this->_recipients as $recpMail=>$userID)
 				{
 					// create user object
@@ -385,12 +345,12 @@ class BMMailProcessor
 		global $bm_prefs, $plugins, $db;
 
 		// process custom receive rules
-		$recipients = array();
+		
 		$res = $db->Query('SELECT id,field,expression,action,value FROM {pre}recvrules WHERE type=? ORDER BY action,id ASC',
 			RECVRULE_TYPE_CUSTOMRULE);
 		while($row = $res->FetchArray(MYSQLI_ASSOC))
 		{
-			$ruleResult = false;
+			
 			if(($headerValue = trim($this->_mail->GetHeaderValue(strtolower($row['field'])))) != '')
 			{
 				$expression = $row['expression'];
@@ -536,7 +496,7 @@ class BMMailProcessor
 				RECVRULE_TYPE_RECEIVERULE);
 			while($row = $res->FetchArray(MYSQLI_ASSOC))
 			{
-				$ruleResult = false;
+				
 				if(($headerValue = trim($this->_mail->GetHeaderValue(strtolower($row['field'])))) != '')
 				{
 					$headerValue = str_replace(array("\r","\n"), '', $headerValue);

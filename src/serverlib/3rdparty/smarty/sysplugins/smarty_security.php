@@ -252,13 +252,7 @@ class Smarty_Security
      */
     protected $_include_dir = array();
 
-    /**
-     * @param Smarty $smarty
-     */
-    public function __construct($smarty)
-    {
-        $this->smarty = $smarty;
-    }
+
 
     /**
      * Check if PHP function is trusted.
@@ -684,19 +678,7 @@ class Smarty_Security
         return $smarty;
     }
 
-    /**
-     * Start template processing
-     *
-     * @param $template
-     *
-     * @throws SmartyException
-     */
-    public function startTemplate($template): void
-    {
-        if ($this->max_template_nesting > 0 && $this->_current_template_nesting++ >= $this->max_template_nesting) {
-            throw new SmartyException("maximum template nesting level of '{$this->max_template_nesting}' exceeded when calling '{$template->template_resource}'");
-        }
-    }
+
 
     /**
      * Exit template processing

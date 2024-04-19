@@ -79,13 +79,12 @@ class DB
     }
 
     /**
+     *
      * execute safe query.
      *
      * @param string $query
-     *
-     * @return DB_Result
      */
-    public function Query($query)
+    public function Query($query): DB_Result|false
     {
         global $bm_modules, $mysql;
 
@@ -193,21 +192,23 @@ class DB
     }
 
     /**
-     * get insert id.
      *
-     * @return int
+     * get insert id.
      */
-    public function InsertId()
+    public function InsertId(): int|string
     {
         return mysqli_insert_id($this->_last_handle);
     }
 
     /**
+     *
      * get number of affected rows.
      *
-     * @return int
+     * @return int|numeric-string
+     *
+     * @psalm-return int<-1, max>|numeric-string
      */
-    public function AffectedRows()
+    public function AffectedRows(): int|string
     {
         return mysqli_affected_rows($this->_last_handle);
     }
@@ -238,31 +239,38 @@ class DB_Result
     }
 
     /**
+     *
      * fetch a row as array.
      *
-     * @return array
+     * @return (float|int|null|string)[]|false|null
+     *
+     * @psalm-return array<float|int|null|string>|false|null
      */
-    public function FetchArray($resultType = MYSQLI_BOTH)
+    public function FetchArray($resultType = MYSQLI_BOTH): array|false|null
     {
         return mysqli_fetch_array($this->_result, $resultType);
     }
 
     /**
+     *
      * fetch a row as object.
      *
-     * @return object
+     * @return false|null|object
      */
-    public function FetchObject()
+    public function FetchObject(): object|false|null
     {
         return mysqli_fetch_object($this->_result);
     }
 
     /**
+     *
      * get count of rows in result set.
      *
-     * @return int
+     * @return int|numeric-string
+     *
+     * @psalm-return int<0, max>|numeric-string
      */
-    public function RowCount()
+    public function RowCount(): int|string
     {
         return mysqli_num_rows($this->_result);
     }

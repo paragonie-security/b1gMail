@@ -9,16 +9,7 @@
  **/
 class Smarty_Internal_Runtime_UpdateCache
 {
-    /**
-     * check client side cache
-     *
-     * @param \Smarty_Template_Cached  $cached
-     * @param Smarty_Internal_Template $_template
-     * @param string                   $content
-     */
-    public function cacheModifiedCheck(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template, $content)
-    {
-    }
+
 
     /**
      * Cache was invalid , so render from compiled and write to cache
@@ -29,7 +20,7 @@ class Smarty_Internal_Runtime_UpdateCache
      *
      * @throws \Exception
      */
-    public function updateCache(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template, $no_output_filter): void
+    public function updateCache(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template, bool $no_output_filter): void
     {
         ob_start();
         if (!isset($_template->compiled)) {

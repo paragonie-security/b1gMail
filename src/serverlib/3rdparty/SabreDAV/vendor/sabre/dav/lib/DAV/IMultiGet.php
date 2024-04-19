@@ -22,15 +22,6 @@ namespace Sabre\DAV;
  */
 interface IMultiGet extends ICollection {
 
-    /**
-     * This method receives a list of paths in it's first argument.
-     * It must return an array with Node objects.
-     *
-     * If any children are not found, you do not have to return them.
-     *
-     * @param string[] $paths
-     * @return array
-     */
-    function getMultipleChildren(array $paths);
+
 
 }

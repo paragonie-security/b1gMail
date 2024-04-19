@@ -236,14 +236,17 @@ class PdfParser
     }
 
     /**
+     *
      * Read a PDF value.
      *
      * @param null|bool|string $token
      * @param null|string $expectedType
-     * @return false|PdfArray|PdfBoolean|PdfDictionary|PdfHexString|PdfIndirectObject|PdfIndirectObjectReference|PdfName|PdfNull|PdfNumeric|PdfStream|PdfString|PdfToken
+     *
+     * @return PdfArray|PdfBoolean|PdfDictionary|PdfHexString|PdfIndirectObject|PdfIndirectObjectReference|PdfName|PdfNull|PdfNumeric|PdfString|PdfToken|bool
+     *
      * @throws Type\PdfTypeException
      */
-    public function readValue($token = null, $expectedType = null)
+    public function readValue($token = null, $expectedType = null): bool|PdfToken|PdfString|PdfDictionary|PdfHexString|PdfName|PdfArray|PdfIndirectObject|PdfIndirectObjectReference|PdfNumeric|PdfBoolean|PdfNull
     {
         if ($token === null) {
             $token = $this->tokenizer->getNextToken();

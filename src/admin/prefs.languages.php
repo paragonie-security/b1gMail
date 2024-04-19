@@ -117,10 +117,10 @@ else if($_REQUEST['action'] == 'texts')
 		return($lang_custom);
 	}
 	if($selectedLang)
-		$lang_custom = GetCustomLang($selectedLang);
+		GetCustomLang($selectedLang);
 
 	// db texts
-	$dbTexts = array();
+	
 	$res = $db->Query('SELECT `key`,`text` FROM {pre}texts WHERE language=?',
 		$selectedLang);
 	while($row = $res->FetchArray(MYSQLI_ASSOC))

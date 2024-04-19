@@ -95,13 +95,16 @@ class BMPayment
 	}
 
 	/**
+	 *
 	 * Prepares payment form (payment.form.tpl)
 	 *
 	 * @param &$tpl Template object
 	 * @param $title Payment form title
-	 * @param $amount Payment amount
+	 * @param float|int $amount Payment amount
+	 *
+	 * @psalm-param 0|float $amount
 	 */
-	function PreparePaymentForm(&$tpl, $title, $amount, $userRow = false): void
+	function PreparePaymentForm(&$tpl, string $title, int|float $amount, array|false $userRow = false): void
 	{
 		global $bm_prefs, $thisUser, $lang_user;
 
@@ -137,12 +140,14 @@ class BMPayment
 	}
 
 	/**
+	 *
 	 * calculate total amount of cart
 	 *
 	 * @param $cart Cart array
-	 * @return int Amount
+	 *
+	 * @return float Amount
 	 */
-	static function CalcTotal($cart, $vatRate)
+	static function CalcTotal(array $cart, $vatRate): float
 	{
 		global $bm_prefs;
 
@@ -346,15 +351,20 @@ class BMPayment
 	}
 
 	/**
+	 *
 	 * Initiate payment
 	 *
 	 * @param &$tpl Template object
-	 * @param $orderID Order ID
+	 * @param (array|string)[]|string $orderID Order ID
 	 * @param $returnURL Return URL
 	 * @param $pageVarName Name of page variable in template
-	 * @return bool 'true' on success, 'false' on error (error message will be displayed)
+	 *
+	 * @return false|null 'true' on success, 'false' on error (error message will be displayed)
+	 *
+	 * @psalm-param 'pageContent' $pageVarName
+	 * @psalm-param array<int|string, array<int|string, mixed>|string>|string $orderID
 	 */
-	static function InitiatePayment(&$tpl, $orderID, $returnURL = '', $pageVarName = 'pageContent', $userID = 0)
+	static function InitiatePayment(&$tpl, string|array $orderID, string $returnURL = '', string $pageVarName = 'pageContent', int $userID = 0)
 	{
 		global $db, $thisUser, $lang_user, $bm_prefs;
 
@@ -463,13 +473,17 @@ class BMPayment
 	}
 
 	/**
+	 *
 	 * Process payment form submission
 	 *
 	 * @param &$tpl Template object
-	 * @param $cart Cart array
+	 * @param (float|int|mixed|string)[][] $cart Cart array
+	 *
 	 * @return mixed 'false' on error or order ID on success
+	 *
+	 * @psalm-param list{array{key: string, count: 0|1|float|mixed, amount: mixed, total: mixed, text: string}} $cart
 	 */
-	static function ProcessPaymentForm(&$tpl, $cart, $fail = false, $userID = 0)
+	static function ProcessPaymentForm(&$tpl, array $cart, bool $fail = false, int $userID = 0)
 	{
 		global $bm_prefs, $db, $thisUser, $lang_user;
 
@@ -520,7 +534,7 @@ class BMPayment
 
 			// country
 			$countryList = CountryList();
-			$country = $countryList[$_POST['land']];
+			$countryList[$_POST['land']];
 
 			// zip check
 			if(!in_array('plz', $invalidFields)
@@ -847,12 +861,16 @@ class BMPayment
 	}
 
 	/**
+	 *
 	 * Generate invoice number
 	 *
 	 * @param int $orderID Order ID
-	 * @return string
+	 *
+	 * @return string|string[]
+	 *
+	 * @psalm-return array<string>|string
 	 */
-	static function InvoiceNo($orderID)
+	static function InvoiceNo($orderID): array|string
 	{
 		global $bm_prefs;
 
@@ -860,12 +878,16 @@ class BMPayment
 	}
 
 	/**
+	 *
 	 * Generate customer number
 	 *
 	 * @param int $userID User ID
-	 * @return string
+	 *
+	 * @return string|string[]
+	 *
+	 * @psalm-return array<string>|string
 	 */
-	static function CustomerNo($userID)
+	static function CustomerNo($userID): array|string
 	{
 		global $bm_prefs;
 
@@ -890,34 +912,8 @@ class BMPayment
 	//
 	// smarty callbacks
 	//
-	function __tpl_getTemplate($tpl_name, &$tpl_source, &$smarty_obj)
-	{
-		global $bm_prefs;
-		if(!isset($bm_prefs[$tpl_name]))
-			return(false);
-		$tpl_source = $bm_prefs[$tpl_name];
-		return(true);
-	}
-	function __tpl_getTimestamp($tpl_name, &$tpl_timestamp, &$smarty_obj)
-	{
-		global $bm_prefs;
-		if(!isset($bm_prefs[$tpl_name]))
-			return(false);
-		$tpl_timestamp = time();
-		return(true);
-	}
-	function __tpl_getSecure($tpl_name, &$smarty_obj)
-	{
-		global $bm_prefs;
-		if(!isset($bm_prefs[$tpl_name]))
-			return(false);
-		return(true);
-	}
-	function __tpl_getTrusted($tpl_name, &$smarty_obj)
-	{
-		global $bm_prefs;
-		if(!isset($bm_prefs[$tpl_name]))
-			return(false);
-		return(true);
-	}
+
+
+
+
 }

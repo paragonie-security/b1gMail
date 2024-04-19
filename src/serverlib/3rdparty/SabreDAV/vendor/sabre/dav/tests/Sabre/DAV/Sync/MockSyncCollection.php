@@ -48,20 +48,21 @@ class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection
     }
 
     /**
+     *
      * The getChanges method returns all the changes that have happened, since
      * the specified syncToken and the current collection.
      *
      * This function should return an array, such as the following:
      *
      * array(
-     *   'syncToken' => 'The current synctoken',
-     *   'modified'   => array(
-     *      'new.txt',
-     *   ),
-     *   'deleted' => array(
-     *      'foo.php.bak',
-     *      'old.txt'
-     *   )
+     * 'syncToken' => 'The current synctoken',
+     * 'modified'   => array(
+     * 'new.txt',
+     * ),
+     * 'deleted' => array(
+     * 'foo.php.bak',
+     * 'old.txt'
+     * )
      * );
      *
      * The syncToken property should reflect the *current* syncToken of the
@@ -97,9 +98,12 @@ class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection
      * @param string $syncToken
      * @param int $syncLevel
      * @param int $limit
-     * @return array
+     *
+     * @return ((mixed|string)[]|mixed|null|string)[]|null
+     *
+     * @psalm-return array{syncToken: mixed|null|string, added: array<mixed|string>, modified: array, deleted: array}|null
      */
-    public function getChanges($syncToken, $syncLevel, $limit = null) {
+    public function getChanges($syncToken, $syncLevel, $limit = null): array|null {
 
         // This is an initial sync
         if (is_null($syncToken)) {

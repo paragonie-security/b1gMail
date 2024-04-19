@@ -20,6 +20,9 @@ $pdo = new PDO('sqlite:data/db.sqlite');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //Mapping PHP errors to exceptions
+/**
+ * @return never
+ */
 function exception_error_handler($errno, $errstr, $errfile, $errline) {
     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 }

@@ -130,6 +130,11 @@ class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
 
 class AbstractDigestMock extends AbstractDigest {
 
+    /**
+     * @return array|false|null|string
+     *
+     * @psalm-return 'HELLO'|array<never, never>|false|null
+     */
     function getDigestHash($realm, $userName) {
 
         switch($userName) {

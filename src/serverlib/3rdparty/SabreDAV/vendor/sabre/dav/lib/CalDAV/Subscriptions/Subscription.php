@@ -132,6 +132,7 @@ class Subscription extends Collection implements ISubscription, IACL {
     }
 
     /**
+     *
      * Returns a list of properties for this nodes.
      *
      * The properties list is a list of propertynames the client requested,
@@ -144,9 +145,12 @@ class Subscription extends Collection implements ISubscription, IACL {
      * The Server class will filter out the extra.
      *
      * @param array $properties
-     * @return void
+     *
+     * @return (Href|mixed)[]
+     *
+     * @psalm-return array<Href|mixed>
      */
-    function getProperties($properties) {
+    function getProperties($properties): array {
 
         $r = [];
 

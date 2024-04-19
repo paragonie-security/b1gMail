@@ -1773,7 +1773,7 @@ class Smarty_Internal_Templateparser
         $this->security = isset($this->smarty->security_policy) ? $this->smarty->security_policy : false;
         $this->current_buffer = $this->root_buffer = new Smarty_Internal_ParseTree_Template();
     }  /* The parser's stack */
-    public static function yy_destructor($yymajor, $yypminor): void
+    public static function yy_destructor(int $yymajor, $yypminor): void
     {
         switch ($yymajor) {
             default:
@@ -1852,6 +1852,9 @@ class Smarty_Internal_Templateparser
         }
     }
 
+    /**
+     * @return int|null
+     */
     public function yy_pop_parser_stack()
     {
         if (empty($this->yystack)) {
@@ -1963,7 +1966,10 @@ class Smarty_Internal_Templateparser
         return array_unique($expected);
     }
 
-    public function yy_is_expected_token($token)
+    /**
+     * @psalm-param int<min, 61> $token
+     */
+    public function yy_is_expected_token(int $token): bool
     {
         static $res = array();
         static $res2 = array();
@@ -2051,7 +2057,10 @@ class Smarty_Internal_Templateparser
         return true;
     }
 
-    public function yy_find_shift_action($iLookAhead)
+    /**
+     * @psalm-param 62 $iLookAhead
+     */
+    public function yy_find_shift_action(int $iLookAhead)
     {
         $stateno = $this->yystack[ $this->yyidx ]->stateno;
         /* if ($this->yyidx < 0) return self::YY_NO_ACTION;  */
@@ -2107,7 +2116,11 @@ class Smarty_Internal_Templateparser
     }
 
     // line 234 "../smarty/lexer/smarty_internal_templateparser.y"
-    public function yy_shift($yyNewState, $yyMajor, $yypMinor): void
+    /**
+     * @psalm-param 0|null $yypMinor
+     * @psalm-param 62 $yyMajor
+     */
+    public function yy_shift($yyNewState, int $yyMajor, int|null $yypMinor): void
     {
         $this->yyidx++;
         if ($this->yyidx >= self::YYSTACKDEPTH) {
@@ -3515,7 +3528,7 @@ class Smarty_Internal_Templateparser
         }
     }
 
-    public function yy_syntax_error($yymajor, $TOKEN): void
+    public function yy_syntax_error(int $yymajor, $TOKEN): void
     {
         // line 214 "../smarty/lexer/smarty_internal_templateparser.y"
         $this->internalError = true;

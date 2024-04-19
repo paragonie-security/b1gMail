@@ -184,11 +184,13 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This functions handles REPORT requests specific to CardDAV
      *
      * @param string $reportName
      * @param \DOMNode $dom
-     * @return bool
+     *
+     * @return false|null
      */
     function report($reportName, $dom) {
 
@@ -677,13 +679,15 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This method is used to generate HTML output for the
      * Sabre\DAV\Browser\Plugin. This allows us to generate an interface users
      * can use to create new addressbooks.
      *
      * @param DAV\INode $node
      * @param string $output
-     * @return bool
+     *
+     * @return false|null
      */
     function htmlActionsPanel(DAV\INode $node, &$output) {
 

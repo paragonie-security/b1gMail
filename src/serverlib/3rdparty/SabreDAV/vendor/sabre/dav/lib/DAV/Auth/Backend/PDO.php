@@ -27,11 +27,12 @@ class PDO extends AbstractDigest {
 
 
     /**
+     *
      * Creates the backend object.
      *
      * If the filename argument is passed in, it will parse out the specified file fist.
      *
-     * @param PDO $pdo
+     * @param \PDO $pdo
      */
     function __construct(\PDO $pdo) {
 

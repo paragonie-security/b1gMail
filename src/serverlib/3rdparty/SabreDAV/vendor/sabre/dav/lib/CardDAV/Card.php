@@ -110,16 +110,7 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
 
     }
 
-    /**
-     * Returns the mime content-type
-     *
-     * @return string
-     */
-    function getContentType() {
 
-        return 'text/vcard; charset=utf-8';
-
-    }
 
     /**
      * Returns an ETag for this object
@@ -153,20 +144,7 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
 
     }
 
-    /**
-     * Returns the size of this object in bytes
-     *
-     * @return int
-     */
-    function getSize() {
 
-        if (array_key_exists('size', $this->cardData)) {
-            return $this->cardData['size'];
-        } else {
-            return strlen($this->get());
-        }
-
-    }
 
     /**
      * Returns the owner principal

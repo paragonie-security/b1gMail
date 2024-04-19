@@ -25,17 +25,7 @@ class MkCol implements XmlDeserializable {
      */
     protected $properties = [];
 
-    /**
-     * Returns a key=>value array with properties that are supposed to get set
-     * during creation of the new collection.
-     *
-     * @return array
-     */
-    function getProperties() {
 
-        return $this->properties;
-
-    }
 
     /**
      * The deserialize method is called during xml parsing.

@@ -369,32 +369,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 */
 	var $bayesBorder;
 
-	/**
-	 * constructor
-	 *
-	 * @param BMMail $mail Mail object
-	 * @param int $userID User ID (0 = global)
-	 * @return BMMailFilter_Bayes
-	 */
-	function __construct(&$mail, $userID = 0)
-	{
-		global $bm_prefs;
 
-		$this->_mail = &$mail;
-		$this->_userID = $userID;
-
-		if($userID == 0)
-		{
-			$this->bayesNonSpam = $bm_prefs['bayes_nonspam'];
-			$this->bayesSpam = $bm_prefs['bayes_spam'];
-			$this->bayesBorder = BMMAILFILTER_BAYES_BORDER;
-		}
-		else
-		{
-			list($this->bayesNonSpam, $this->bayesSpam, $this->bayesBorder) = BMUser::GetBayesValues($userID);
-			$this->bayesBorder /= 100.0;
-		}
-	}
 
 	/**
 	 * extract words from string
@@ -561,23 +536,9 @@ class BMMailFilter_Bayes extends BMMailFilter
 		return($p);
 	}
 
-	/**
-	 * mark mail as spam (wrapper for Train())
-	 *
-	 */
-	function MarkAsSpam(): void
-	{
-		$this->Train(true);
-	}
 
-	/**
-	 * mark mail as non spam (wrapper for Train())
-	 *
-	 */
-	function MarkAsNonSpam(): void
-	{
-		$this->Train(false);
-	}
+
+
 
 	/**
 	 * train words
@@ -588,7 +549,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	{
 		global $db;
 
-		$field = $isSpam ? 'inspam' : 'innonspam';
+		
 		$updatedWords = array();
 
 		if(count($this->_words) > 0)

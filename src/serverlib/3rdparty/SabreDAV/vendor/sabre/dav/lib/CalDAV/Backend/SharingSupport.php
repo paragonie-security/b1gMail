@@ -171,30 +171,7 @@ namespace Sabre\CalDAV\Backend;
  */
 interface SharingSupport extends NotificationSupport {
 
-    /**
-     * Updates the list of shares.
-     *
-     * The first array is a list of people that are to be added to the
-     * calendar.
-     *
-     * Every element in the add array has the following properties:
-     *   * href - A url. Usually a mailto: address
-     *   * commonName - Usually a first and last name, or false
-     *   * summary - A description of the share, can also be false
-     *   * readOnly - A boolean value
-     *
-     * Every element in the remove array is just the address string.
-     *
-     * Note that if the calendar is currently marked as 'not shared' by and
-     * this method is called, the calendar should be 'upgraded' to a shared
-     * calendar.
-     *
-     * @param mixed $calendarId
-     * @param array $add
-     * @param array $remove
-     * @return void
-     */
-    function updateShares($calendarId, array $add, array $remove);
+
 
     /**
      * Returns the list of people whom this calendar is shared with.
@@ -231,13 +208,6 @@ interface SharingSupport extends NotificationSupport {
      */
     function shareReply($href, $status, $calendarUri, $inReplyTo, $summary = null);
 
-    /**
-     * Publishes a calendar
-     *
-     * @param mixed $calendarId
-     * @param bool $value
-     * @return void
-     */
-    function setPublishStatus($calendarId, $value);
+
 
 }

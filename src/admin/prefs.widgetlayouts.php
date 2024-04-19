@@ -26,7 +26,12 @@ AdminRequirePrivilege('prefs.widgetlayouts');
 if(!class_exists('BMDashboard'))
 	include(B1GMAIL_DIR . 'serverlib/dashboard.class.php');
 
-function getWidgetArray($type, $widgetOrder)
+/**
+ * @return array[]
+ *
+ * @psalm-return array<array{title: mixed}>
+ */
+function getWidgetArray($type, $widgetOrder): array
 {
 	global $plugins;
 

@@ -132,14 +132,14 @@ class MockSubscriptionSupport extends Mock implements SubscriptionSupport {
     }
 
     /**
+     *
      * Deletes a subscription
      *
      * @param mixed $subscriptionId
-     * @return void
      */
-    public function deleteSubscription($subscriptionId) {
+    public function deleteSubscription($subscriptionId): bool {
 
-        $found = null;
+        
         foreach($this->subs[$subscriptionId[0]] as $index=>$sub) {
 
             if ($sub['id'][1] === $subscriptionId[1]) {

@@ -45,7 +45,7 @@ if(!$avoidFrameTasks)
 $tpl->assign('pageToolbarFile', 'li/email.toolbar.tpl');
 $tpl->assign('pageTitle', $lang_user['email']);
 $tpl->assign('hotkeys', $thisUser->GetPref('hotkeys'));
-$null = null;
+
 
 /**
  * page menu (folders)

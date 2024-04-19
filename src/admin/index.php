@@ -53,7 +53,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action']=='login')
 
 					// create session
 					session_start();
-					$sessionID = session_id();
+					session_id();
 					$_SESSION['bm_adminLoggedIn']	= true;
 					$_SESSION['bm_adminID']			= $adminUserRow['adminid'];
 					$_SESSION['bm_adminAuth']		= md5($adminUserRow['password'].$_SERVER['HTTP_USER_AGENT']);

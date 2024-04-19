@@ -85,13 +85,12 @@ trait ContextStackTrait {
     protected $contextStack = [];
 
     /**
+     *
      * Create a new "context".
      *
      * This allows you to safely modify the elementMap, contextUri or
      * namespaceMap. After you're done, you can restore the old data again
      * with popContext.
-     *
-     * @return null
      */
     function pushContext(): void {
 
@@ -105,9 +104,8 @@ trait ContextStackTrait {
     }
 
     /**
-     * Restore the previous "context".
      *
-     * @return null
+     * Restore the previous "context".
      */
     function popContext(): void {
 

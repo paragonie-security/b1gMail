@@ -63,7 +63,7 @@ if ($_GET['lng'] == 'deutsch') {
     $lang_setup['convert_alreadyutf8'] = 'You have to first to execute the script utf8convert.php, before execute this script.';
 }
 
-function pageHeader2($update = false, $convert = false)
+function pageHeader2($update = false, $convert = false): void
 {
     global $lang_setup, $lang, $step;
 
@@ -113,7 +113,7 @@ if (isset($bm_prefs['db_is_utf8']) && $bm_prefs['db_is_utf8'] == 0) {
  * welcome
  */
 elseif ($step == STEP_WELCOME) {
-    $nextStep = STEP_SYSTEMCHECK; ?>
+     ?>
 	<h1><?php echo $lang_setup['welcome']; ?></h1>
 
 	<p>

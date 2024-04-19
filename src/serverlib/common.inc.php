@@ -23,9 +23,10 @@ if(!defined('B1GMAIL_INIT'))
 	die('Directly calling this file is not supported');
 
 /**
+ *
  * Prepare to start page output using compression (if enabled)
  */
-function StartPageOutput()
+function StartPageOutput(): void
 {
 	global $bm_prefs;
 	if(!ADMIN_MODE && $bm_prefs['compress_pages'] == 'yes' && function_exists('ob_gzhandler') && !in_array('ob_gzhandler', ob_list_handlers()))
@@ -285,12 +286,13 @@ function CreateMailDeliveryStatusEntry($userID, $recipient)
 }
 
 /**
+ *
  * Associate delivery status entry with an outbox email
  *
  * @param int $dsIDs Delivery status ID(s)
  * @param int $outboxID ID of outbox email
  */
-function SetDeliveryStatusOutboxID($dsIDs, $outboxID)
+function SetDeliveryStatusOutboxID($dsIDs, $outboxID): void
 {
 	global $db;
 
@@ -303,12 +305,13 @@ function SetDeliveryStatusOutboxID($dsIDs, $outboxID)
 }
 
 /**
+ *
  * Update delivery status
  *
  * @param int $dsIDs Delivery status ID(s)
  * @param int $status Status code
  */
-function UpdateDeliveryStatus($dsIDs, $status)
+function UpdateDeliveryStatus($dsIDs, $status): void
 {
 	global $db;
 
@@ -680,7 +683,7 @@ function RecipientBlocked($addr)
 	return(false);
 }
 
-function ChangelogAdded($itemType, $itemID, $added)
+function ChangelogAdded($itemType, $itemID, $added): void
 {
 	global $db, $userRow;
 
@@ -701,7 +704,7 @@ function ChangelogAdded($itemType, $itemID, $added)
 	}
 }
 
-function ChangelogUpdated($itemType, $itemID, $updated)
+function ChangelogUpdated($itemType, $itemID, $updated): void
 {
 	global $db, $userRow;
 
@@ -722,7 +725,7 @@ function ChangelogUpdated($itemType, $itemID, $updated)
 	}
 }
 
-function ChangelogDeleted($itemType, $itemID, $deleted)
+function ChangelogDeleted($itemType, $itemID, $deleted): void
 {
 	global $db, $userRow;
 
@@ -1183,7 +1186,7 @@ function SyncDBStruct($databaseStructure)
 	$syncQueries = array();
 
 	// get tables
-	$defaultTables = array();
+	
 	$res = $db->Query('SHOW TABLES');
 	while($row = $res->FetchArray(MYSQLI_NUM))
 		$myTables[] = $row[0];
@@ -1507,7 +1510,7 @@ function GetPhraseForLanguage($language, $var, $phrase)
 
 		if($var == 'lang_custom')
 		{
-			$lang_custom = GetCustomLanguage($language, $lang_custom);
+			GetCustomLanguage($language, $lang_custom);
 		}
 
 		return(${$var}[$phrase]);
@@ -1518,12 +1521,13 @@ function GetPhraseForLanguage($language, $var, $phrase)
 }
 
 /**
+ *
  * update statistics
  *
  * @param string $type
  * @param int $count
  */
-function Add2Stat($type, $count = 1)
+function Add2Stat($type, $count = 1): void
 {
 	global $db;
 
@@ -1585,17 +1589,18 @@ function fgets2($handle, $length = 40960)
 }
 
 /**
+ *
  * validate mail address against MX server
  *
  * @param string $address Address
  */
-function ValidateMailAddress($address)
+function ValidateMailAddress($address): bool
 {
 	global $bm_prefs;
 
 	list($userName, $hostName) = explode('@', $address);
 	$errNo = $errStr = '';
-	$mailFrom = GetPostmasterMail();
+	GetPostmasterMail();
 
 	// windows does not support this
 	if(!function_exists('getmxrr'))
@@ -1664,11 +1669,14 @@ function _new($class, $args = array())
 }
 
 /**
+ *
  * get day of week (1-7)
  *
- * @return int
+ * @return int|numeric-string
+ *
+ * @psalm-return 7|numeric-string
  */
-function RealW()
+function RealW(): int|string
 {
 	$a = date('w');
 	if($a==0) {
@@ -1889,7 +1897,7 @@ function formatEMailText($in, $html = true, $mobile = false)
 			$in);
 
 		// e-mail addresses
-		$links = array();
+		
 		$in = preg_replace_callback("/[a-zA-Z0-9\.\_-]*\@[^ ]*\.[a-zA-Z0-9\.\_-]*/" . $pcreSuffix,
 			function($matches) use($mobile)
 			{
@@ -1926,12 +1934,14 @@ function PHPNumVersion()
 }
 
 /**
+ *
  * get full file contents
  *
  * @param string $fileName Filename
- * @return string
+ *
+ * @return false|string
  */
-function getFileContents($fileName)
+function getFileContents($fileName): string|false
 {
 	// we should not read too big files at once
 	if(@filesize($fileName) > 1024*500)
@@ -1956,13 +1966,17 @@ function getFileContents($fileName)
 }
 
 /**
+ *
  * get/copy file(s) selected using the webdisk upload widget
  *
  * @param string $webdiskFile Webdisk file ID
  * @param int $destinationFile Destination file name
- * @return array
+ *
+ * @return (int|mixed|string)[]|false
+ *
+ * @psalm-return array{name?: mixed, type?: mixed, size?: mixed, tmp_name?: '-none-', error?: 0, dest?: int}|false
  */
-function getUploadedWebdiskFile($webdiskFile, $destinationFile)
+function getUploadedWebdiskFile($webdiskFile, $destinationFile): array|false
 {
 	global $userRow;
 
@@ -2105,13 +2119,13 @@ function getUploadedFiles($fieldName, $lifeTime = 28800)
 }
 
 /**
+ *
  * get/copy a file uploaded using the local/webdisk upload widget
  *
  * @param string $fieldName Field name
  * @param string $destinationFile Destination path
- * @return array
  */
-function getUploadedFile($fieldName, $destinationFile)
+function getUploadedFile($fieldName, $destinationFile): array|false
 {
 	global $userRow;
 
@@ -2178,10 +2192,10 @@ function stripslashes_array($in)
 }
 
 /**
- * prepare input vars
  *
+ * prepare input vars
  */
-function PrepareInputVars()
+function PrepareInputVars(): void
 {
 
 }
@@ -2220,7 +2234,7 @@ function SmartyCellphoneNo($field)
  */
 function SmartyDateTime($field)
 {
-	$d = $m = $y = 1;
+	$d = $m = 1;
 	$h = $i = $s = 0;
 	$y = (int)date('Y');
 
@@ -2361,7 +2375,7 @@ function ExplodeOutsideOfQuotation($string, $separator, $preserveQuotes = false)
 	if(trim($tmp) != '')
 	{
 		$result[] = trim($tmp);
-		$tmp = '';
+		
 	}
 
 	return($result);
@@ -2514,9 +2528,12 @@ function ExtractMailAddresses($string, $utf8 = false)
 }
 
 /**
+ *
  * request privileges
  *
  * @param int $privileges Bitmask
+ *
+ * @return bool|null
  */
 function RequestPrivileges($privileges, $return = false)
 {
@@ -2720,10 +2737,10 @@ function ZIPCheck($plz, $ort, $staat)
 }
 
 /**
- * xml encode
  *
+ * xml encode
  */
-function XMLEncode($str)
+function XMLEncode($str): string
 {
 	$newstr = '';
 	for($i=0; $i<strlen($str); $i++)
@@ -2790,20 +2807,21 @@ function isBinary($string)
 }
 
 /**
+ *
  * Base64 ouput incl. word wrap
  *
  * @param string $string String
  */
-function base64Output($string)
+function base64Output($string): void
 {
 	echo wordwrap(base64_encode($string), 72, "\n", true);
 }
 
 /**
- * generate xml respone from any array
  *
+ * generate xml respone from any array
  */
-function NormalArray2XML($array, $responseString = 'response', $first = true)
+function NormalArray2XML($array, $responseString = 'response', $first = true): void
 {
 	global $currentCharset;
 
@@ -2877,10 +2895,10 @@ function NormalArray2XML($array, $responseString = 'response', $first = true)
 }
 
 /**
- * generate xml response from specialy prepared array
  *
+ * generate xml response from specialy prepared array
  */
-function Array2XML($array, $responseString = 'response', $first = true, $return = false)
+function Array2XML($array, $responseString = 'response', $first = true, $return = false): string
 {
 	global $currentCharset;
 
@@ -2958,8 +2976,10 @@ function Array2XML($array, $responseString = 'response', $first = true, $return 
 }
 
 /**
+ *
  * execute a module function
  *
+ * @return false|null
  */
 function ModuleFunction($function, $args = false)
 {
@@ -3064,12 +3084,12 @@ function GetTemplateInfo($template)
 }
 
 /**
+ *
  * get template prefs
  *
  * @param string $template
- * @return array
  */
-function GetTemplatePrefs($template)
+function GetTemplatePrefs($template): array|false
 {
 	global $db;
 
@@ -3205,10 +3225,12 @@ function DetermineLanguage()
 }
 
 /**
+ *
  * read language file
  *
+ * @return true
  */
-function ReadLanguage()
+function ReadLanguage(): bool
 {
 	global $db, $currentCharset, $lang_admin, $lang_user, $lang_client, $lang_custom, $bm_prefs, $currentLanguage, $lang_info, $cacheManager;
 
@@ -3283,7 +3305,7 @@ function ReadLanguage()
 	$currentCharset = $lang_info['charset'];
 
 	// locale
-	$localeOK = false;
+	
 	$locales = explode('|', $lang_info['locale']);
 
 	setlocale(LC_ALL, $locales);
@@ -3342,10 +3364,10 @@ function GetCustomLanguage($language, $defaultCustomLang)
 }
 
 /**
- * read custom language phrases
  *
+ * read custom language phrases
  */
-function ReadCustomLanguage()
+function ReadCustomLanguage(): void
 {
 	global $currentLanguage, $lang_custom;
 	$lang_custom = GetCustomLanguage($currentLanguage, $lang_custom);
@@ -3458,12 +3480,15 @@ function EncodeMailHeaderField($text, $charset = '')
 }
 
 /**
+ *
  * write to log table
  *
  * @param string $entry
  * @param int $prio
  * @param string $at_file
  * @param int $at_line
+ *
+ * @return void
  */
 function PutLog($entry, $prio = PRIO_NOTE, $at_file = __FILE__, $at_line = __LINE__)
 {
@@ -3482,10 +3507,10 @@ function PutLog($entry, $prio = PRIO_NOTE, $at_file = __FILE__, $at_line = __LIN
 }
 
 /**
- * initialize modules
  *
+ * initialize modules
  */
-function InitializePlugins()
+function InitializePlugins(): void
 {
 	global $plugins;
 
@@ -3494,10 +3519,10 @@ function InitializePlugins()
 }
 
 /**
- * shutdown
  *
+ * shutdown
  */
-function b1gMailShutdown()
+function b1gMailShutdown(): void
 {
 	global $db, $tempFilesToReleaseAtShutdown;
 
@@ -3515,6 +3540,7 @@ function b1gMailShutdown()
 }
 
 /**
+ *
  * display error
  *
  * @param int $number
@@ -3525,7 +3551,7 @@ function b1gMailShutdown()
  * @param int $line
  * @param int $httpcode
  */
-function DisplayError($number, $title, $description, $text = false, $file = '', $line = '', $httpcode=400)
+function DisplayError($number, $title, $description, $text = false, $file = '', $line = '', $httpcode=400): void
 {
 	http_response_code($httpcode);
 	if(INTERFACE_MODE)
@@ -3611,10 +3637,12 @@ function DisplayError($number, $title, $description, $text = false, $file = '', 
 }
 
 /**
+ *
  * connect to db
  *
+ * @return true
  */
-function ConnectDB()
+function ConnectDB(): bool
 {
 	global $db, $mysql;
 
@@ -3651,10 +3679,10 @@ function ConnectDB()
 }
 
 /**
- * fetch configuration from db
  *
+ * fetch configuration from db
  */
-function ReadConfig()
+function ReadConfig(): void
 {
 	global $bm_prefs, $db;
 

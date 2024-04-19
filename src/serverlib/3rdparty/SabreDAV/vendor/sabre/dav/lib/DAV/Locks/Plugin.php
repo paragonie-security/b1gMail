@@ -263,6 +263,7 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Unlocks a uri
      *
      * This WebDAV method allows you to remove a lock from a node. The client should provide a valid locktoken through the Lock-token http header
@@ -270,9 +271,10 @@ class Plugin extends DAV\ServerPlugin {
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return void
+     *
+     * @return false
      */
-    function httpUnlock(RequestInterface $request, ResponseInterface $response) {
+    function httpUnlock(RequestInterface $request, ResponseInterface $response): bool {
 
         $lockToken = $request->getHeader('Lock-Token');
 

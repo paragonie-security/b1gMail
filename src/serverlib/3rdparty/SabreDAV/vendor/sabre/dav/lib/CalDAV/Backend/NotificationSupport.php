@@ -24,23 +24,8 @@ use Sabre\CalDAV\Xml\Notification\NotificationInterface;
  */
 interface NotificationSupport extends BackendInterface {
 
-    /**
-     * Returns a list of notifications for a given principal url.
-     *
-     * @param string $principalUri
-     * @return NotificationInterface[]
-     */
-    function getNotificationsForPrincipal($principalUri);
 
-    /**
-     * This deletes a specific notifcation.
-     *
-     * This may be called by a client once it deems a notification handled.
-     *
-     * @param string $principalUri
-     * @param NotificationInterface $notification
-     * @return void
-     */
-    function deleteNotification($principalUri, NotificationInterface $notification);
+
+
 
 }

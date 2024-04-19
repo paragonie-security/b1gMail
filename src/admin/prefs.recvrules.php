@@ -79,7 +79,7 @@ if($_REQUEST['action'] == 'recvrules')
 				&& $_FILES['rulefile']['size'] > 5)
 			{
 				// request temp file
-				$tempFileID = RequestTempFile(0);
+				RequestTempFile(0);
 				$tempFileName = TempFileName($tempFileID);
 
 				// move uploaded file to temp file

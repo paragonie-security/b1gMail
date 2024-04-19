@@ -121,17 +121,7 @@ class Plugin extends DAV\ServerPlugin {
 
     }
 
-    /**
-     * Returns a list of available methods for a given url
-     *
-     * @param string $uri
-     * @return array
-     */
-    function getMethods($uri) {
 
-        return ['ACL'];
-
-    }
 
     /**
      * Returns a plugin name.
@@ -272,7 +262,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param string $principal
      * @return array
      */
-    function getPrincipalMembership($mainPrincipal) {
+    function getPrincipalMembership(string $mainPrincipal) {
 
         // First check our cache
         if (isset($this->principalMembershipCache[$mainPrincipal])) {
@@ -416,8 +406,8 @@ class Plugin extends DAV\ServerPlugin {
 
         $privs = $this->getSupportedPrivilegeSet($node);
 
-        $fpsTraverse = null;
-        $fpsTraverse = function($priv, $concrete, &$flat) use (&$fpsTraverse) {
+        
+        $fpsTraverse = function($priv, $concrete, &$flat) use (&$fpsTraverse): void {
 
             $myPriv = [
                 'privilege'  => $priv['privilege'],
@@ -458,6 +448,7 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Returns the full ACL list.
      *
      * Either a uri or a INode may be passed.
@@ -465,9 +456,8 @@ class Plugin extends DAV\ServerPlugin {
      * null will be returned if the node doesn't support ACLs.
      *
      * @param string|DAV\INode $node
-     * @return array
      */
-    function getACL($node) {
+    function getACL($node): array|null {
 
         if (is_string($node)) {
             $node = $this->server->tree->getNodeForPath($node);
@@ -488,6 +478,7 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Returns a list of privileges the current user has
      * on a particular node.
      *
@@ -496,9 +487,10 @@ class Plugin extends DAV\ServerPlugin {
      * null will be returned if the node doesn't support ACLs.
      *
      * @param string|DAV\INode $node
-     * @return array
+     *
+     * @psalm-return list<mixed>|null
      */
-    function getCurrentUserPrivilegeSet($node) {
+    function getCurrentUserPrivilegeSet($node): array|null {
 
         if (is_string($node)) {
             $node = $this->server->tree->getNodeForPath($node);
@@ -573,35 +565,7 @@ class Plugin extends DAV\ServerPlugin {
     }
 
 
-    /**
-     * Returns a principal based on its uri.
-     *
-     * Returns null if the principal could not be found.
-     *
-     * @param string $uri
-     * @return null|string
-     */
-    function getPrincipalByUri($uri) {
 
-        $result = null;
-        $collections = $this->principalCollectionSet;
-        foreach ($collections as $collection) {
-
-            $principalCollection = $this->server->tree->getNodeForPath($collection);
-            if (!$principalCollection instanceof IPrincipalCollection) {
-                // Not a principal collection, we're simply going to ignore
-                // this.
-                continue;
-            }
-
-            $result = $principalCollection->findByUri($uri);
-            if ($result) {
-                return $result;
-            }
-
-        }
-
-    }
 
     /**
      * Principal property search
@@ -827,14 +791,17 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Triggered before properties are looked up in specific nodes.
      *
      * @param DAV\PropFind $propFind
      * @param DAV\INode $node
      * @param array $requestedProperties
      * @param array $returnedProperties
+     *
      * @TODO really should be broken into multiple methods, or even a class.
-     * @return bool
+     *
+     * @return false|null
      */
     function propFind(DAV\PropFind $propFind, DAV\INode $node) {
 
@@ -977,11 +944,13 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This method handles HTTP REPORT requests
      *
      * @param string $reportName
      * @param mixed $report
-     * @return bool
+     *
+     * @return false|null
      */
     function report($reportName, $report) {
 
@@ -1271,13 +1240,15 @@ class Plugin extends DAV\ServerPlugin {
     /* }}} */
 
     /**
+     *
      * This method is used to generate HTML output for the
      * DAV\Browser\Plugin. This allows us to generate an interface users
      * can use to create new calendars.
      *
      * @param DAV\INode $node
      * @param string $output
-     * @return bool
+     *
+     * @return false|null
      */
     function htmlActionsPanel(DAV\INode $node, &$output) {
 

@@ -31,18 +31,7 @@ class BMUnZIP
     private $_fp;
     private $_centralDirStruct;
 
-    /**
-     * constructor.
-     *
-     * @param resource $fp Input file stream
-     *
-     * @return BMUnZIP
-     */
-    public function __construct($fp)
-    {
-        $this->_fp = $fp;
-        $this->_readCentralDirStruct();
-    }
+
 
     /**
      * get ZIP file directory listing.
@@ -254,7 +243,7 @@ class BMUnZIP
         uasort($this->_centralDirStruct, [&$this, '_sortHandler']);
     }
 
-    private function _sortHandler($s1, $s2)
+    private function _sortHandler($s1, $s2): int
     {
         return strcmp($s1['fileName'], $s2['fileName']);
     }

@@ -48,7 +48,7 @@ function resolve($basePath, $newPath) {
     $newParts['host']   = $pick('host');
     $newParts['port']   = $pick('port');
 
-    $path = '';
+    
     if ($delta['path']) {
         // If the path starts with a slash
         if ($delta['path'][0] === '/') {

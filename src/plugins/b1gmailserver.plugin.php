@@ -64,68 +64,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 */
 	var $prefs;
 
-	/**
-	 * constructor
-	 *
-	 * @return B1GMailServerAdmin
-	 */
-	function __construct()
-	{
-		// plugin info
-		$this->type					= BMPLUGIN_DEFAULT;
-		$this->name					= 'b1gMailServer Administration PlugIn';
-		$this->author				= 'b1gMail Project';
-		$this->version				= '1.151';
-		$this->website				= 'https://www.b1gmail.org/';
-		$this->update_url			= 'https://service.b1gmail.org/plugin_updates/';
 
-		// admin pages
-		$this->admin_pages			= true;
-		$this->admin_page_title		= 'b1gMailServer';
-		$this->admin_page_icon		= 'bms_logo.png';
-
-		// group options
-		$this->RegisterGroupOption('wdhttpadsig',
-			FIELD_TEXTAREA,
-			'Webdisk-Werbung-Code:',
-			'',
-			'');
-		$this->RegisterGroupOption('minpop3',
-			FIELD_TEXT,
-			'Min. POP3-Sitzg.-Abst.:',
-			'',
-			0);
-		$this->RegisterGroupOption('smtp_sendercheck',
-			FIELD_DROPDOWN,
-			'SMTP-Absender-Check?',
-			array('no' => 'Nein', 'mailfrom' => 'Nur MAIL FROM', 'full' => 'MAIL FROM und From-Header'),
-			'mailfrom');
-		$this->RegisterGroupOption('require_weblogin',
-			FIELD_CHECKBOX,
-			'POP3/IMAP/SMTP erfordert erstmaligen Web-Login?',
-			'',
-			true);
-		$this->RegisterGroupOption('weblogin_interval',
-			FIELD_TEXT,
-			'POP3/IMAP/SMTP erfordert Web-Login-Intervall (Tage):',
-			'',
-			0);
-
-		list($vMajor, $vMinor) = explode('.', B1GMAIL_VERSION);
-		if($vMajor == 7 && $vMinor < 4)
-		{
-			$this->RegisterGroupOption('smtplimit_count',
-				FIELD_TEXT,
-				'SMTP-Limit (Mails):',
-				'',
-				30);
-			$this->RegisterGroupOption('smtplimit_time',
-				FIELD_TEXT,
-				'SMTP-Limit (Minuten):',
-				'',
-				60);
-		}
-	}
 
 	/**
 	 * installer
@@ -1255,7 +1194,7 @@ class B1GMailServerAdmin extends BMPlugin
 		   foreach($$srcArray as $key=>$val)
 		   {
 			  if(function_exists('CharsetDecode') && !in_array(strtolower($currentCharset), array('iso-8859-1', 'iso-8859-15')))
-				 $val = CharsetDecode($val, 'iso-8859-15');
+				 CharsetDecode($val, 'iso-8859-15');
 			  ${$destArray}[$key] = $val;
 		   }
 		}
@@ -1464,9 +1403,10 @@ class B1GMailServerAdmin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * connect to queue control channel
 	 *
-	 * @return type resource
+	 * @return false|resource resource
 	 */
 	function _openControlChannel()
 	{
@@ -1500,13 +1440,15 @@ class B1GMailServerAdmin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * send command to queue control channel
 	 *
 	 * @param resource $fp Connection
 	 * @param string $cmd Command
-	 * @return string string Response
+	 *
+	 * @return false|string string Response
 	 */
-	function _queueControlCommand(&$fp, $cmd)
+	function _queueControlCommand(&$fp, $cmd): string|false
 	{
 		if(@fprintf($fp, $cmd . "\r\n"))
 		{
@@ -1531,10 +1473,10 @@ class B1GMailServerAdmin extends BMPlugin
 	}
 
 	/**
-	 * check if queue service is running
 	 *
+	 * check if queue service is running
 	 */
-	function _isQueueRunning()
+	function _isQueueRunning(): bool
 	{
 		// queue service running?
 		$queueRunning = false;
@@ -2130,13 +2072,18 @@ class B1GMailServerAdmin extends BMPlugin
 
 
 	/**
+	 *
 	 * get stat data
 	 *
 	 * @param string $types Stat type
 	 * @param int $time Stat time
+	 * @param (array|string)[]|string $type
+	 *
 	 * @return array
+	 *
+	 * @psalm-param array<int|string, array<int|string, mixed>|string>|string $type
 	 */
-	function _getStatData($type, $time)
+	function _getStatData(array|string $type, $time)
 	{
 		global $db;
 
@@ -3680,10 +3627,12 @@ class B1GMailServerAdmin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * User area
 	 *
 	 * @param string $action
-	 * @return bool
+	 *
+	 * @return bool|null
 	 */
 	function UserPrefsPageHandler($action)
 	{

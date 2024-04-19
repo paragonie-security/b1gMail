@@ -9,7 +9,7 @@ $try = array(
 
 foreach($try as $path) {
     if (file_exists($path)) {
-        $autoLoader = include $path;
+        include $path;
         break;
     }
 }

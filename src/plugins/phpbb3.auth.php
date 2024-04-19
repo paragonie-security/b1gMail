@@ -27,26 +27,7 @@ class phpBB3AuthPlugin extends BMPlugin
 {
 	var $_uidFormat = 'phpBB3:%d';
 
-	/**
-	 * constructor
-	 *
-	 * @return phpBB3AuthPlugin
-	 */
-	function __construct()
-	{
-		// plugin info
-		$this->type					= BMPLUGIN_DEFAULT;
-		$this->name					= 'phpBB3 Authentication Plugin';
-		$this->author				= 'b1gMail Project';
-		$this->web					= 'https://www.b1gmail.org/';
-		$this->mail					= 'info@b1gmail.org';
-		$this->version				= '1.2';
 
-		// admin pages
-		$this->admin_pages			= true;
-		$this->admin_page_title		= 'phpBB3-Auth';
-		$this->admin_page_icon		= "phpbb32.png";
-	}
 
 	/**
  	 * get list of domains
@@ -106,14 +87,18 @@ class phpBB3AuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * authentication handler
 	 *
 	 * @param string $userName
 	 * @param string $userDomain
 	 * @param string $passwordMD5
-	 * @return array
+	 *
+	 * @return (array|string)[]|false
+	 *
+	 * @psalm-return array{uid: string, profile: array{altmail: mixed}}|false
 	 */
-	function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = '')
+	function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = ''): array|false
 	{
 		global $db, $bm_prefs;
 
@@ -161,7 +146,7 @@ class phpBB3AuthPlugin extends BMPlugin
 							PRIO_PLUGIN,
 							__FILE__,
 							__LINE__);
-						$bmUID = BMUser::CreateAccount($myUserName,
+						BMUser::CreateAccount($myUserName,
 							'',
 							'',
 							'',
@@ -210,8 +195,10 @@ class phpBB3AuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * user page handler
 	 *
+	 * @return false|null
 	 */
 	function FileHandler($file, $action)
 	{
@@ -297,9 +284,9 @@ class phpBB3AuthPlugin extends BMPlugin
 	 * the following functions were taken from phpBB / the portable PHP hashing framework
 	 * and are placed in public domain
 	 *
+	 * @param float|int|null|string $hash
 	 */
-
-	function phpbb_check_hash($password, $hash)
+	function phpbb_check_hash($password, float|int|string|null $hash): bool
 	{
 		$itoa64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 		if (strlen($hash) == 34)
@@ -311,9 +298,12 @@ class phpBB3AuthPlugin extends BMPlugin
 	}
 
 	/**
-	* Encode hash
-	*/
-	function _hash_encode64($input, $count, &$itoa64)
+	 * Encode hash
+	 *
+	 * @psalm-param 16 $count
+	 * @psalm-param './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' $itoa64
+	 */
+	function _hash_encode64(string $input, int $count, string &$itoa64): string
 	{
 		$output = '';
 		$i = 0;
@@ -355,9 +345,13 @@ class phpBB3AuthPlugin extends BMPlugin
 	}
 
 	/**
-	* The crypt function/replacement
-	*/
-	function _hash_crypt_private($password, $setting, &$itoa64)
+	 * The crypt function/replacement
+	 *
+	 * @psalm-param './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' $itoa64
+	 *
+	 * @param float|int|null|string $setting
+	 */
+	function _hash_crypt_private($password, float|int|string|null $setting, string &$itoa64): string
 	{
 		$output = '*';
 

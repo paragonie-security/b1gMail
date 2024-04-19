@@ -29,16 +29,7 @@ class BMNotes
 {
 	var $_userID;
 
-	/**
-	 * constructor
-	 *
-	 * @param int $userID User ID
-	 * @return BMNotes
-	 */
-	public function __construct($userID)
-	{
-		$this->_userID = $userID;
-	}
+
 
 	/**
 	 * get list of notes

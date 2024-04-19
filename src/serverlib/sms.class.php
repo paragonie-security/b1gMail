@@ -35,19 +35,7 @@ class BMSMS
     private $_userID;
     private $_userObject;
 
-    /**
-     * constructor.
-     *
-     * @param int    $userID     User ID
-     * @param BMUser $userObject User object
-     *
-     * @return BMSMS
-     */
-    public function __construct($userID, &$userObject)
-    {
-        $this->_userID = (int) $userID;
-        $this->_userObject = &$userObject;
-    }
+
 
     /**
      * get outbox.
@@ -70,11 +58,12 @@ class BMSMS
     }
 
     /**
+     *
      * delete sms outbox entry.
      *
      * @param int $id ID
      */
-    public function DeleteOutboxEntry($id)
+    public function DeleteOutboxEntry($id): bool
     {
         global $db;
 
@@ -177,13 +166,14 @@ class BMSMS
     }
 
     /**
+     *
      * get default gateway or gateway specified by ID.
      *
      * @param int $id ID (0 = default gateway)
      *
-     * @return array
+     * @psalm-return array{id: mixed, title: mixed, getstring: mixed, success: mixed, user: mixed, pass: mixed}|false
      */
-    public function GetGateway($id = 0)
+    public function GetGateway($id = 0): array|false
     {
         global $bm_prefs, $db;
 

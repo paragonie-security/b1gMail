@@ -27,24 +27,7 @@ class MyBBAuthPlugin extends BMPlugin
 {
 	var $_uidFormat = 'MyBB:%d';
 
-	/**
-	 * constructor
-	 *
-	 * @return MyBBAuthPlugin
-	 */
-	public function __construct()
-	{
-		// plugin info
-		$this->type					= BMPLUGIN_DEFAULT;
-		$this->name					= 'MyBB Authentication PlugIn';
-		$this->author				= 'b1gMail Project';
-		$this->version				= '1.0';
 
-		// admin pages
-		$this->admin_pages			= true;
-		$this->admin_page_title		= 'MyBB-Auth';
-		$this->admin_page_icon		= "mybb32.png";
-	}
 
 	/**
  	 * get list of domains
@@ -104,14 +87,18 @@ class MyBBAuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * authentication handler
 	 *
 	 * @param string $userName
 	 * @param string $userDomain
 	 * @param string $passwordMD5
-	 * @return array
+	 *
+	 * @return (array|string)[]|false
+	 *
+	 * @psalm-return array{uid: string, profile: array{altmail: mixed}}|false
 	 */
-	public function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = '')
+	public function OnAuthenticate($userName, $userDomain, $passwordMD5, $passwordPlain = ''): array|false
 	{
 		global $db, $bm_prefs;
 
@@ -160,7 +147,7 @@ class MyBBAuthPlugin extends BMPlugin
 							PRIO_PLUGIN,
 							__FILE__,
 							__LINE__);
-						$bmUID = BMUser::CreateAccount($myUserName,
+						BMUser::CreateAccount($myUserName,
 							'',
 							'',
 							'',
@@ -209,8 +196,10 @@ class MyBBAuthPlugin extends BMPlugin
 	}
 
 	/**
+	 *
 	 * user page handler
 	 *
+	 * @return false|null
 	 */
 	public function FileHandler($file, $action)
 	{

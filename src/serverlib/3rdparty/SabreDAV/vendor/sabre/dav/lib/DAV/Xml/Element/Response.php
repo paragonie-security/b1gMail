@@ -192,7 +192,12 @@ class Response implements Element {
         // called. But we don't want this, because a singlular element without
         // child-elements implies 'no value' in {DAV:}prop, so we want to skip
         // deserializers and just set null for those.
-        $reader->elementMap['{DAV:}prop'] = function(Reader $reader) {
+        $reader->elementMap['{DAV:}prop'] = /**
+         * @return (mixed|null)[]
+         *
+         * @psalm-return array<string, mixed|null>
+         */
+        function(Reader $reader): array {
 
             if ($reader->isEmptyElement) {
                 $reader->next();

@@ -54,6 +54,7 @@ class MkCol extends PropPatch {
     }
 
     /**
+     *
      * Returns true or false if the MKCOL operation has at least the specified
      * resource type.
      *
@@ -62,7 +63,7 @@ class MkCol extends PropPatch {
      *
      * @param string|string[] $resourceType
      */
-    function hasResourceType($resourceType) {
+    function hasResourceType($resourceType): bool {
 
         return count(array_diff((array)$resourceType, $this->resourceType)) === 0;
 

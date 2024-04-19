@@ -138,11 +138,12 @@ abstract class Smarty_Template_Resource_Base
     }
 
     /**
+     *
      * Get compiled time stamp
      *
-     * @return int
+     * @return bool|int
      */
-    public function getTimeStamp()
+    public function getTimeStamp(): int|bool
     {
         if ($this->exists && !$this->timestamp) {
             $this->timestamp = filemtime($this->filepath);

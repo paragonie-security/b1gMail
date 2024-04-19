@@ -17,11 +17,13 @@ use Sabre\VObject;
 class VFreeBusy extends VObject\Component {
 
     /**
+     *
      * Checks based on the contained FREEBUSY information, if a timeslot is
      * available.
      *
-     * @param DateTime $start
-     * @param Datetime $end
+     * @param \DateTime $start
+     * @param \Datetime $end
+     *
      * @return bool
      */
     public function isFree(\DateTime $start, \Datetime $end) {
@@ -65,19 +67,24 @@ class VFreeBusy extends VObject\Component {
     }
 
     /**
+     *
      * A simple list of validation rules.
      *
      * This is simply a list of properties, and how many times they either
      * must or must not appear.
      *
      * Possible values per property:
-     *   * 0 - Must not appear.
-     *   * 1 - Must appear exactly once.
-     *   * + - Must appear at least once.
-     *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
+     * 0 - Must not appear.
+     * 1 - Must appear exactly once.
+     * + - Must appear at least once.
+     * - Can appear any number of times.
+     * ? - May appear, but not more than once.
      *
      * @var array
+     *
+     * @return (int|string)[]
+     *
+     * @psalm-return array{UID: 1, DTSTAMP: 1, CONTACT: '?', DTSTART: '?', DTEND: '?', ORGANIZER: '?', URL: '?', ATTENDEE: '*', COMMENT: '*', FREEBUSY: '*', 'REQUEST-STATUS': '*'}
      */
     public function getValidationRules() {
 

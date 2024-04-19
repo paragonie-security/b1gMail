@@ -151,12 +151,13 @@ class Template extends Smarty {
     }
 
     /**
+     *
      * adds a JS file to be included in the page
      *
      * @param string $area Area (nli/li/admin)
      * @param string $file Filename
      */
-    function addJSFile($area, $file) {
+    function addJSFile($area, $file): bool {
         if (isset($this->_jsFiles[$area])) {
             if (!in_array($file, $this->_jsFiles[$area])) {
                 if (file_Exists($file)) {
@@ -171,12 +172,13 @@ class Template extends Smarty {
     }
 
     /**
+     *
      * adds a CSS file to be included in the page
      *
      * @param string $area Area (nli/li/admin)
      * @param string $file Filename
      */
-    function addCSSFile($area, $file) {
+    function addCSSFile($area, $file): bool {
         if (isset($this->_cssFiles[$area])) {
             if (!in_array($file, $this->_cssFiles[$area])) {
                 $this->_cssFiles[$area][] = $file;
@@ -472,9 +474,12 @@ class Template extends Smarty {
 }
 
 /**
+ *
  * helper functions
+ *
+ * @psalm-return -1|0|1
  */
-function TemplateTabSort($a, $b) {
+function TemplateTabSort($a, $b): int {
     $aOrder = isset($a['order']) ? $a['order'] : 599;
     $bOrder = isset($b['order']) ? $b['order'] : 599;
 
@@ -488,9 +493,10 @@ function TemplateTabSort($a, $b) {
 }
 
 /**
+ *
  * functions registered with smarty
  */
-function TemplateFileDateSig($params, $smarty) {
+function TemplateFileDateSig($params, $smarty): string {
     $fileName = $smarty->template_dir[0] . $params['file'];
     if (!file_exists($fileName)) {
         return '';
@@ -531,7 +537,7 @@ function TemplateBanner($params, $smarty) {
 
     return '';
 }
-function TemplateImplode($params, $smarty) {
+function TemplateImplode($params, $smarty): string {
     return implode($params['glue'], $params['pieces']);
 }
 function TemplateLang($params, $smarty) {
@@ -549,7 +555,10 @@ function TemplateLang($params, $smarty) {
 
     return '#UNKNOWN_PHRASE(' . $phrase . ')#';
 }
-function TemplateHalfHourToTime($params, $smarty) {
+/**
+ * @return false|int|string
+ */
+function TemplateHalfHourToTime($params, $smarty): string|false|int {
     $value = $params['value'];
 
     if (isset($params['dateStart'])) {
@@ -569,7 +578,7 @@ function TemplateHalfHourToTime($params, $smarty) {
         return sprintf('%d:%02d', ($value - 1) / 2, 30);
     }
 }
-function TemplateComment($params, $smarty) {
+function TemplateComment($params, $smarty): string {
     if (!DEBUG) {
         return '';
     }
@@ -657,7 +666,7 @@ function TemplateDate($params, $smarty) {
         }
     }
 }
-function TemplateSize($params, $smarty) {
+function TemplateSize($params, $smarty): string {
     global $lang_user;
 
     $size = $params['bytes'];
@@ -716,7 +725,7 @@ function cutHTML($str, $length, $add = '') {
         return implode('', $result);
     }
 }
-function TemplateFieldDate($params, $smarty) {
+function TemplateFieldDate($params, $smarty): string {
     global $bm_prefs;
 
     $val = $params['value'];
@@ -793,7 +802,7 @@ function TemplateText($params, $smarty) {
         return $text;
     }
 }
-function TemplateAddressList($params, $smarty) {
+function TemplateAddressList($params, $smarty): string {
     $list = '';
     $short = isset($params['short']);
 
@@ -863,7 +872,7 @@ function TemplateAddressList($params, $smarty) {
 
     return trim($list);
 }
-function TemplateProgressBar($params, $smarty) {
+function TemplateProgressBar($params, $smarty): string {
     $value = $params['value'];
     $max = $params['max'];
     $width = $params['width'];
@@ -894,7 +903,7 @@ function TemplateMiniCalendar($params, $smarty) {
     $calendar = _new('BMCalendar', [$userRow['id']]);
     return $calendar->GenerateMiniCalendar(-1, -1);
 }
-function TemplateFileSelector($params, $smarty) {
+function TemplateFileSelector($params, $smarty): string {
     global $lang_user, $groupRow;
 
     $name = $params['name'];
@@ -933,7 +942,7 @@ function TemplateFileSelector($params, $smarty) {
         $name,
     );
 }
-function TemplatePageNav($params, $smarty) {
+function TemplatePageNav($params, $smarty): string {
     $tpl_on = $params['on'];
     $tpl_off = $params['off'];
     $aktuelle_seite = $params['page'];
@@ -978,7 +987,7 @@ function TemplatePageNav($params, $smarty) {
 
     return $ret;
 }
-function TemplateStoreTime($params, $smarty) {
+function TemplateStoreTime($params, $smarty): string {
     global $lang_user;
 
     $time = $params['value'];
@@ -1001,7 +1010,7 @@ function TemplateStoreTime($params, $smarty) {
         return '-';
     }
 }
-function TemplateHook($params, $smarty) {
+function TemplateHook($params, $smarty): string {
     $result = '';
 
     if (DEBUG && isset($_REQUEST['_showHooks'])) {
@@ -1028,7 +1037,7 @@ function TemplateHook($params, $smarty) {
 
     return $result;
 }
-function TemplateMobileNr($params, $smarty) {
+function TemplateMobileNr($params, $smarty): string {
     global $groupRow;
 
     $value = isset($params['value']) ? $params['value'] : '';

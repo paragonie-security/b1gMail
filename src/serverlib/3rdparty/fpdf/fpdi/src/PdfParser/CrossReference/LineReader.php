@@ -53,15 +53,7 @@ class LineReader extends AbstractReader implements ReaderInterface
         return false;
     }
 
-    /**
-     * Get all found offsets.
-     *
-     * @return array
-     */
-    public function getOffsets()
-    {
-        return $this->offsets;
-    }
+
 
     /**
      * Extracts the cross reference data from the stream reader.
@@ -97,10 +89,14 @@ class LineReader extends AbstractReader implements ReaderInterface
     }
 
     /**
+     *
      * Read the cross-reference entries.
      *
      * @param string $xrefContent
+     *
      * @throws CrossReferenceException
+     *
+     * @return void
      */
     protected function read($xrefContent)
     {

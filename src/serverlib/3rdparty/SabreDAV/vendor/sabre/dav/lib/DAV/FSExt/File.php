@@ -15,14 +15,16 @@ use Sabre\DAV\FS\Node;
 class File extends Node implements DAV\PartialUpdate\IPatchSupport {
 
     /**
+     *
      * Updates the data
      *
      * Data is a readable stream resource.
      *
      * @param resource|string $data
-     * @return string
+     *
+     * @return null|string
      */
-    function put($data) {
+    function put($data): string|null {
 
         file_put_contents($this->path, $data);
         clearstatcache(true, $this->path);
@@ -125,28 +127,8 @@ class File extends Node implements DAV\PartialUpdate\IPatchSupport {
 
     }
 
-    /**
-     * Returns the mime-type for a file
-     *
-     * If null is returned, we'll assume application/octet-stream
-     *
-     * @return string|null
-     */
-    function getContentType() {
 
-        return null;
 
-    }
 
-    /**
-     * Returns the size of the file, in bytes
-     *
-     * @return int
-     */
-    function getSize() {
-
-        return filesize($this->path);
-
-    }
 
 }

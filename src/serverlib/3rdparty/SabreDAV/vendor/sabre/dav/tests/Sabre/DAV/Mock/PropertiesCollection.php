@@ -34,6 +34,7 @@ class PropertiesCollection extends Collection implements IProperties {
     }
 
     /**
+     *
      * Updates properties on this node.
      *
      * This method received a PropPatch object, which contains all the
@@ -43,7 +44,8 @@ class PropertiesCollection extends Collection implements IProperties {
      * Read the PropPatch documentation for more information.
      *
      * @param array $mutations
-     * @return bool|array
+     *
+     * @return void
      */
     function propPatch(PropPatch $proppatch): void {
 

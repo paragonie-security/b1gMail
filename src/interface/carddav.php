@@ -47,17 +47,26 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return($result);
 	}
 
-	public function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch)
+	/**
+	 * @return false
+	 */
+	public function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch): bool
 	{
 		return false;
 	}
 
-	public function createAddressBook($principalUri, $url, array $properties)
+	/**
+	 * @return false
+	 */
+	public function createAddressBook($principalUri, $url, array $properties): bool
 	{
 		return false;
 	}
 
-	public function deleteAddressBook($addressBookId)
+	/**
+	 * @return false
+	 */
+	public function deleteAddressBook($addressBookId): bool
 	{
 		return false;
 	}
@@ -116,6 +125,11 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return($result);
 	}
 
+	/**
+	 * @return (mixed|string)[]|false|null
+	 *
+	 * @psalm-return array{id: mixed, uri: string, lastmodified: mixed, carddata: mixed}|false|null
+	 */
 	public function getCard($addressBookId, $cardUri)
 	{
 		global $os;
@@ -152,7 +166,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		}
 	}
 
-	private function createGroupCard($cardData, $cardUri)
+	private function createGroupCard(\Sabre\VObject\Document $cardData, string $cardUri): bool
 	{
 		global $os;
 
@@ -201,7 +215,10 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return(null);
 	}
 
-	public function updateCard($addressBookId, $cardUri, $cardData)
+	/**
+	 * @return false|null
+	 */
+	public function updateCard($addressBookId, $cardUri, $cardData): bool|null
 	{
 		global $os;
 
@@ -209,7 +226,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		if($contactID === false)
 			return(false);
 
-		$origCardData = $cardData;
+		
 		$cardData = Sabre\VObject\Reader::read($cardData, Sabre\VObject\Reader::OPTION_FORGIVING);
 
 		if($contactID[0] == BMCL_TYPE_CONTACT)
@@ -242,7 +259,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return(null);
 	}
 
-	private function updateGroupMembers($groupID, $cardData): void
+	private function updateGroupMembers($groupID, \Sabre\VObject\Document $cardData): void
 	{
 		global $os;
 
@@ -284,6 +301,9 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		}
 	}
 
+	/**
+	 * @return false|null
+	 */
 	public function deleteCard($addressBookId, $cardUri)
 	{
 		global $os;
@@ -302,7 +322,12 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		}
 	}
 
-	private function contactIdByUID($uid)
+	/**
+	 * @param string|string[] $uid
+	 *
+	 * @psalm-param array<string>|string $uid
+	 */
+	private function contactIdByUID(array|string $uid)
 	{
 		global $os;
 
@@ -320,7 +345,12 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return 0;
 	}
 
-	private function cardURItoID($cardUri)
+	/**
+	 * @return (int|mixed)[]|false
+	 *
+	 * @psalm-return false|list{0|3, int|mixed}
+	 */
+	private function cardURItoID(string $cardUri): array|false
 	{
 		global $db, $os;
 
@@ -368,7 +398,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return false;
 	}
 
-	private function vObjectToRow($obj, $baseRow = null)
+	private function vObjectToRow(\Sabre\VObject\Document $obj, $baseRow = null)
 	{
 		if($baseRow !== null)
 			$row = $baseRow;
@@ -390,7 +420,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		{
 			foreach($obj->ADR as $item)
 			{
-				$prefix = '';
+				
 
 				foreach($item['TYPE'] as $type)
 				{
@@ -497,7 +527,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return($row);
 	}
 
-	private function groupToVObject($row)
+	private function groupToVObject($row): \Sabre\VObject\Component\VCard
 	{
 		global $os;
 
@@ -518,7 +548,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return $obj;
 	}
 
-	private function rowToVObject($row)
+	private function rowToVObject($row): \Sabre\VObject\Component\VCard
 	{
 		global $os;
 
@@ -579,6 +609,9 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 
 class BMCardDAVAuthBackend extends BMAuthBackend
 {
+	/**
+	 * @return bool
+	 */
 	function checkPermissions()
 	{
 		return($this->groupRow['organizerdav'] == 'yes');
@@ -596,7 +629,7 @@ class BMCardDAVAuthBackend extends BMAuthBackend
 	}
 }
 
-$os = new BMOrganizerState;
+new BMOrganizerState;
 
 $principalBackend 	= new BMPrincipalBackend;
 $carddavBackend		= new BMCardDAVBackend;

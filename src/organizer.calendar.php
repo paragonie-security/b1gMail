@@ -374,7 +374,7 @@ else if($_REQUEST['action'] == 'createDate'
 	}
 
 	$row = $calendar->Form2Row();
-	$dateID = $calendar->AddDate($row, $attendees);
+	$calendar->AddDate($row, $attendees);
 	header('Location: organizer.calendar.php?sid=' . session_id() . '&date=' . $row['startdate']);
 	exit();
 }

@@ -57,11 +57,10 @@ class Node extends DAV\File implements INode, DAVACL\IACL {
     }
 
     /**
-     * Returns the path name for this notification
      *
-     * @return id
+     * Returns the path name for this notification
      */
-    function getName() {
+    function getName(): string {
 
         return $this->notification->getId() . '.xml';
 
@@ -83,10 +82,8 @@ class Node extends DAV\File implements INode, DAVACL\IACL {
     /**
      * This method must return an xml element, using the
      * Sabre\CalDAV\Notifications\INotificationType classes.
-     *
-     * @return INotificationType
      */
-    function getNotificationType() {
+    function getNotificationType(): Sabre\CalDAV\Notifications\INotificationType {
 
         return $this->notification;
 

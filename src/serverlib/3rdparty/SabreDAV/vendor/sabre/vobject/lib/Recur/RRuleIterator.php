@@ -93,7 +93,7 @@ class RRuleIterator implements Iterator {
      */
     public function next(): void {
 
-        $previousStamp = $this->currentDate->getTimeStamp();
+        $this->currentDate->getTimeStamp();
 
         // Otherwise, we find the next event in the normal RRULE
         // sequence.
@@ -137,20 +137,7 @@ class RRuleIterator implements Iterator {
 
     }
 
-    /**
-     * This method allows you to quickly go to the next occurrence after the
-     * specified date.
-     *
-     * @param DateTime $dt
-     * @return void
-     */
-    public function fastForward(\DateTime $dt): void {
 
-        while($this->valid() && $this->currentDate < $dt ) {
-            $this->next();
-        }
-
-    }
 
     /**
      * The reference start date/time for the rrule.
@@ -504,7 +491,7 @@ class RRuleIterator implements Iterator {
     protected function nextYearly() {
 
         $currentMonth = $this->currentDate->format('n');
-        $currentYear = $this->currentDate->format('Y');
+        $this->currentDate->format('Y');
         $currentDayOfMonth = $this->currentDate->format('j');
 
         // No sub-rules, so we just advance by year
@@ -867,7 +854,10 @@ class RRuleIterator implements Iterator {
         'SA' => 6,
     );
 
-    protected function getHours()
+    /**
+     * @psalm-return list<mixed>
+     */
+    protected function getHours(): array
     {
         $recurrenceHours = array();
         foreach($this->byHour as $byHour) {
@@ -877,7 +867,10 @@ class RRuleIterator implements Iterator {
         return $recurrenceHours;
     }
 
-    protected function getDays() {
+    /**
+     * @psalm-return list{0?: mixed,...}
+     */
+    protected function getDays(): array {
 
         $recurrenceDays = array();
         foreach($this->byDay as $byDay) {
@@ -892,7 +885,10 @@ class RRuleIterator implements Iterator {
         return $recurrenceDays;
     }
 
-    protected function getMonths() {
+    /**
+     * @psalm-return list<mixed>
+     */
+    protected function getMonths(): array {
 
         $recurrenceMonths = array();
         foreach($this->byMonth as $byMonth) {

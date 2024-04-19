@@ -30,17 +30,7 @@ class BMCalendar
 {
     private $_userID;
 
-    /**
-     * constructor.
-     *
-     * @param int $userID User ID
-     *
-     * @return BMCalendar
-     */
-    public function __construct($userID)
-    {
-        $this->_userID = $userID;
-    }
+
 
     /**
      * Get start day of week.
@@ -85,43 +75,35 @@ class BMCalendar
     }
 
     /**
+     *
      * get day of week.
      *
      * @param int $day   Day
      * @param int $month Month
      * @param int $year  Year
      *
-     * @return int
+     * @return numeric-string
      */
-    public static function GetDayOfWeek($day, $month, $year)
+    public static function GetDayOfWeek($day, $month, $year): string
     {
         return date('w', mktime(1, 1, 1, $month, $day, $year));
     }
 
     /**
+     *
      * get days in month.
      *
      * @param int $month Month
      * @param int $year  Year
      *
-     * @return int
+     * @return numeric-string
      */
-    public static function GetDaysInMonth($month, $year)
+    public static function GetDaysInMonth($month, $year): string
     {
         return date('t', mktime(1, 1, 1, $month, 1, $year));
     }
 
-    /**
-     * get days in year.
-     *
-     * @param int $year Year
-     *
-     * @return int
-     */
-    public static function GetDaysInYear($year)
-    {
-        return checkdate(2, 29, $year) ? 366 : 365;
-    }
+
 
     /**
      * prepare date for another time.
@@ -158,7 +140,7 @@ class BMCalendar
             return $result;
         }
 
-        $flags = $row['flags'];
+        $row['flags'];
         $repeatFlags = $row['repeat_flags'];
         $repeatValue = max(1, $row['repeat_value']);
         $repeatTimes = $row['repeat_times'];

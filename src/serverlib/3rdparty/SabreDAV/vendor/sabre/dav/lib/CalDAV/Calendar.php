@@ -131,26 +131,7 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
 
     }
 
-    /**
-     * This method receives a list of paths in it's first argument.
-     * It must return an array with Node objects.
-     *
-     * If any children are not found, you do not have to return them.
-     *
-     * @param string[] $paths
-     * @return array
-     */
-    function getMultipleChildren(array $paths) {
 
-        $objs = $this->caldavBackend->getMultipleCalendarObjects($this->calendarInfo['id'], $paths);
-        $children = [];
-        foreach ($objs as $obj) {
-            $obj['acl'] = $this->getChildACL();
-            $children[] = new CalendarObject($this->caldavBackend, $this->calendarInfo, $obj);
-        }
-        return $children;
-
-    }
 
     /**
      * Checks if a child-node exists.
@@ -455,23 +436,24 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
     }
 
     /**
+     *
      * The getChanges method returns all the changes that have happened, since
      * the specified syncToken and the current collection.
      *
      * This function should return an array, such as the following:
      *
      * [
-     *   'syncToken' => 'The current synctoken',
-     *   'added'   => [
-     *      'new.txt',
-     *   ],
-     *   'modified'   => [
-     *      'modified.txt',
-     *   ],
-     *   'deleted' => [
-     *      'foo.php.bak',
-     *      'old.txt'
-     *   ]
+     * 'syncToken' => 'The current synctoken',
+     * 'added'   => [
+     * 'new.txt',
+     * ],
+     * 'modified'   => [
+     * 'modified.txt',
+     * ],
+     * 'deleted' => [
+     * 'foo.php.bak',
+     * 'old.txt'
+     * ]
      * ];
      *
      * The syncToken property should reflect the *current* syncToken of the
@@ -507,9 +489,8 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
      * @param string $syncToken
      * @param int $syncLevel
      * @param int $limit
-     * @return array
      */
-    function getChanges($syncToken, $syncLevel, $limit = null) {
+    function getChanges($syncToken, $syncLevel, $limit = null): array|null {
 
         if (!$this->caldavBackend instanceof Backend\SyncSupport) {
             return null;

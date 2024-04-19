@@ -34,21 +34,7 @@ class BMPOP3
     private $_timeout;
     private $_enableStreamTimeout;
 
-    /**
-     * constructor.
-     *
-     * @param string $host
-     * @param int    $port
-     *
-     * @return BMPOP3
-     */
-    public function __construct($host, $port)
-    {
-        $this->_host = $host;
-        $this->_port = $port;
-        $this->_timeout = SOCKET_TIMEOUT;
-        $this->_enableStreamTimeout = false;
-    }
+
 
     /**
      * set timeout for connection.
@@ -155,11 +141,14 @@ class BMPOP3
     }
 
     /**
+     *
      * get list of mails.
      *
-     * @return array
+     * @return (false|float|int|null|string)[][]|false
+     *
+     * @psalm-return array<float|int|string, array{num: float|int|null|string, size: float|int|null|string, uid: false|float|int|null|string}>|false
      */
-    public function GetMailList()
+    public function GetMailList(): array|false|false|false|false|false|false|false|false
     {
         $result = [];
         $msgNum = $msgSize = $msgUID = 0;

@@ -46,19 +46,6 @@ class UUIDUtil {
         );
     }
 
-    /**
-     * Checks if a string is a valid UUID.
-     *
-     * @param string $uuid
-     * @return bool
-     */
-    static function validateUUID($uuid) {
 
-        return preg_match(
-            '/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i',
-            $uuid
-        ) !== 0;
-
-    }
 
 }

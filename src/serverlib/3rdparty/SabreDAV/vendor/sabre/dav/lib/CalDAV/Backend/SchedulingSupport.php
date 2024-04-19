@@ -30,18 +30,7 @@ interface SchedulingSupport extends BackendInterface {
      */
     function getSchedulingObject($principalUri, $objectUri);
 
-    /**
-     * Returns all scheduling objects for the inbox collection.
-     *
-     * These objects should be returned as an array. Every item in the array
-     * should follow the same structure as returned from getSchedulingObject.
-     *
-     * The main difference is that 'calendardata' is optional.
-     *
-     * @param string $principalUri
-     * @return array
-     */
-    function getSchedulingObjects($principalUri);
+
 
     /**
      * Deletes a scheduling object from the inbox collection.
@@ -52,14 +41,6 @@ interface SchedulingSupport extends BackendInterface {
      */
     function deleteSchedulingObject($principalUri, $objectUri);
 
-    /**
-     * Creates a new scheduling object. This should land in a users' inbox.
-     *
-     * @param string $principalUri
-     * @param string $objectUri
-     * @param string $objectData
-     * @return void
-     */
-    function createSchedulingObject($principalUri, $objectUri, $objectData);
+
 
 }

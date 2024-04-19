@@ -293,7 +293,7 @@ class Smarty_Internal_Templatelexer
         return $this->{'yylex' . $this->_yy_state}();
     }
 
-    public function yypushstate($state): void
+    public function yypushstate(int $state): void
     {
         if ($this->yyTraceFILE) {
             fprintf($this->yyTraceFILE, "%sState push %s\n", $this->yyTracePrompt,
@@ -320,7 +320,10 @@ class Smarty_Internal_Templatelexer
         }
     }
 
-    public function yybegin($state): void
+    /**
+     * @psalm-param 3 $state
+     */
+    public function yybegin(int $state): void
     {
         $this->_yy_state = $state;
         if ($this->yyTraceFILE) {
@@ -388,7 +391,10 @@ class Smarty_Internal_Templatelexer
         $this->token = Smarty_Internal_Templateparser::TP_TEXT;
     }
 
-    public function yy_r1_2()
+    /**
+     * @return false
+     */
+    public function yy_r1_2(): bool
     {
         $to = $this->dataLength;
         preg_match("/[*]{$this->compiler->getRdelPreg()}[\n]?/", $this->data, $match, PREG_OFFSET_CAPTURE,
@@ -424,7 +430,10 @@ class Smarty_Internal_Templatelexer
         $this->yypushstate(self::LITERAL);
     } // end function
 
-    public function yy_r1_14()
+    /**
+     * @return true
+     */
+    public function yy_r1_14(): bool
     {
         $this->yypushstate(self::TAG);
         return true;
@@ -648,7 +657,10 @@ class Smarty_Internal_Templatelexer
         $this->yypopstate();
     }
 
-    public function yy_r3_2()
+    /**
+     * @return true
+     */
+    public function yy_r3_2(): bool
     {
         $this->yypushstate(self::TAG);
         return true;
@@ -1036,13 +1048,19 @@ class Smarty_Internal_Templatelexer
         $this->token = Smarty_Internal_Templateparser::TP_TEXT;
     }
 
-    public function yy_r5_7()
+    /**
+     * @return true
+     */
+    public function yy_r5_7(): bool
     {
         $this->yypushstate(self::TAG);
         return true;
     }
 
-    public function yy_r5_9()
+    /**
+     * @return true
+     */
+    public function yy_r5_9(): bool
     {
         $this->yypushstate(self::TAG);
         return true;

@@ -10,13 +10,16 @@ abstract class BenchMark {
     protected $iterations = 10000;
     protected $totalTime;
 
+    /**
+     * @return void
+     */
     function setUp() {
 
     }
 
     abstract function test();
 
-    function go() {
+    function go(): float {
 
         $this->setUp();
         $this->startTime = microtime(true);

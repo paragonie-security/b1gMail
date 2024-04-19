@@ -45,23 +45,7 @@ class BMSearchIndex
 	 */
 	private $txCounter = 0;
 
-	/**
-	 * constructor
-	 *
-	 * @param int $userID User ID
-	 */
-	public function __construct($userID)
-	{
-		$this->userID 	= $userID;
 
-		$dbFileName 	= $this->getDBFileName();
-		if(!file_exists($dbFileName))
-			@touch($dbFileName);
-		@chmod($dbFileName, 0666);
-		$this->sdb 		= new SQLite3($dbFileName);
-
-		$this->initDB();
-	}
 
 	/**
 	 * destructor
@@ -298,7 +282,7 @@ class BMSearchIndex
 		{
 			if(strlen($text) > BMSEARCH_TEXTSIZE_LIMIT)
 				$text = substr($text, 0, BMSEARCH_TEXTSIZE_LIMIT);
-			$lcText = strtolower($text);
+			
 			$tokens = $this->splitQuery($text);
 			$words = array();
 
@@ -447,42 +431,7 @@ class BMSearchIndex
 		$this->sdb->query('VACUUM');
 	}
 
-	/**
-	 * ensure that all tables/indexes exist
-	 *
-	 */
-	private function initDB(): void
-	{
-		$this->sdb->busyTimeout(15000);
 
-		$this->sdb->query('CREATE TABLE IF NOT EXISTS [word] ('
-			. '	[wordid] INTEGER PRIMARY KEY,'
-			. '	[word] TEXT'
-			. ')');
-		$this->sdb->query('CREATE TABLE IF NOT EXISTS [index] ('
-			. '	[indexid] INTEGER PRIMARY KEY,'
-			. '	[wordid] INTEGER,'
-			. '	[itemid] INTEGER,'
-			. '	[count] INTEGER'
-			. ')');
-		$this->sdb->query('CREATE TABLE IF NOT EXISTS [text] ('
-			. '	[itemid] INTEGER,'
-			. '	[text] TEXT,'
-			. '	PRIMARY KEY([itemid])'
-			. ')');
 
-		$this->sdb->query('CREATE INDEX IF NOT EXISTS [index_word] ON [word]([word])');
-		$this->sdb->query('CREATE INDEX IF NOT EXISTS [index_wordid] ON [index]([wordid])');
-		$this->sdb->query('CREATE INDEX IF NOT EXISTS [index_itemid] ON [index]([itemid])');
-	}
 
-	/**
-	 * get index db file name
-	 *
-	 * @return string
-	 */
-	private function getDBFileName()
-	{
-		return(DataFilename($this->userID, 'idx'));
-	}
 }

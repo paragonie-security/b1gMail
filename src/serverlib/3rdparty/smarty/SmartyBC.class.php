@@ -327,28 +327,26 @@ class SmartyBC extends Smarty
     }
 
     /**
+     *
      * clear cached content for the given template and cache id
      *
      * @param string $tpl_file   name of template file
      * @param string $cache_id   name of cache_id
      * @param string $compile_id name of compile_id
      * @param string $exp_time   expiration time
-     *
-     * @return boolean
      */
-    public function clear_cache($tpl_file = null, $cache_id = null, $compile_id = null, $exp_time = null)
+    public function clear_cache($tpl_file = null, $cache_id = null, $compile_id = null, $exp_time = null): int
     {
         return $this->clearCache($tpl_file, $cache_id, $compile_id, $exp_time);
     }
 
     /**
+     *
      * clear the entire contents of cache (all templates)
      *
      * @param string $exp_time expire time
-     *
-     * @return boolean
      */
-    public function clear_all_cache($exp_time = null)
+    public function clear_all_cache($exp_time = null): int
     {
         return $this->clearCache(null, null, null, $exp_time);
     }
@@ -378,6 +376,7 @@ class SmartyBC extends Smarty
     }
 
     /**
+     *
      * clears compiled version of specified template resource,
      * or all compiled template files if one is not specified.
      * This function is for advanced use only, not normally needed.
@@ -386,9 +385,9 @@ class SmartyBC extends Smarty
      * @param string $compile_id
      * @param string $exp_time
      *
-     * @return boolean results of {@link smarty_core_rm_auto()}
+     * @return int results of {@link smarty_core_rm_auto()}
      */
-    public function clear_compiled_tpl($tpl_file = null, $compile_id = null, $exp_time = null)
+    public function clear_compiled_tpl($tpl_file = null, $compile_id = null, $exp_time = null): int
     {
         return $this->clearCompiledTemplate($tpl_file, $compile_id, $exp_time);
     }

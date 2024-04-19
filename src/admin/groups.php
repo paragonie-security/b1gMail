@@ -85,7 +85,7 @@ if($_REQUEST['action'] == 'groups')
 					$tpl->assign('groupsToDelete',	$groupsToDelete);
 					$tpl->assign('groups',			$groups);
 					$tpl->assign('page',			'groups.delete.tpl');
-					$stop = true;
+					
 				}
 			}
 		}
@@ -260,7 +260,7 @@ if($_REQUEST['action'] == 'groups')
 	{
 		foreach($_REQUEST['groups'] as $groupID=>$newGroupID)
 		{
-			$groupNames = array();
+			
 			$res = $db->Query('SELECT `titel`,`id` FROM {pre}gruppen WHERE `id` IN(?,?)',
 				$groupID, $newGroupID);
 			while($row = $res->FetchArray(MYSQLI_ASSOC))

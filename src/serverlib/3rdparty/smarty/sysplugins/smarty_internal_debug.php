@@ -169,21 +169,15 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
             microtime(true) - $this->template_data[ $this->index ][ $key ][ 'start_time' ];
     }
 
-    /**
-     * Register template object
-     *
-     * @param \Smarty_Internal_Template $template cached template
-     */
-    public function register_template(Smarty_Internal_Template $template)
-    {
-    }
+
 
     /**
+     *
      * Register data object
      *
      * @param \Smarty_Data $data data object
      */
-    public static function register_data(Smarty_Data $data)
+    public static function register_data(Smarty_Data $data): void
     {
     }
 
@@ -377,19 +371,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
         }
     }
 
-    /**
-     * Ignore template
-     *
-     * @param \Smarty_Internal_Template $template
-     */
-    public function ignore(Smarty_Internal_Template $template): void
-    {
-        // calculate Uid if not already done
-        if ($template->source->uid === '') {
-            $template->source->filepath;
-        }
-        $this->ignore_uid[ $template->source->uid ] = true;
-    }
+
 
     /**
      * handle 'URL' debugging mode

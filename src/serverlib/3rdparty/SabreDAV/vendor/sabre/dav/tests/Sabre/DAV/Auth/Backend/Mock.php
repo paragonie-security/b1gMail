@@ -22,6 +22,7 @@ class Mock implements BackendInterface {
     }
 
     /**
+     *
      * When this method is called, the backend must check if authentication was
      * successful.
      *
@@ -47,9 +48,12 @@ class Mock implements BackendInterface {
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return array
+     *
+     * @return (bool|mixed|string)[]|string
+     *
+     * @psalm-return 'incorrect!'|list{bool, 'fail!'|mixed}
      */
-    function check(RequestInterface $request, ResponseInterface $response) {
+    function check(RequestInterface $request, ResponseInterface $response): array|string {
 
         if ($this->invalidCheckResponse) {
             return 'incorrect!';

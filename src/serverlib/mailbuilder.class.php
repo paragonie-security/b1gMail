@@ -47,21 +47,7 @@ class BMMailBuilder
 	var $_userID;
 	var $_sendMail;
 
-	/**
-	 * constructor
-	 *
-	 */
-	function __construct($trustedMail = false)
-	{
-		// init
-		$this->_fp = false;
-		$this->_headerFields = array();
-		$this->_parts = array();
-		$this->_initHeaderFields();
-		$this->_trustedMail = $trustedMail;
-		$this->_userID = USERID_UNKNOWN;
-		$this->_sendMail = false;
-	}
+
 
 	/**
 	 * set sender user ID
@@ -158,7 +144,7 @@ class BMMailBuilder
 	 *
 	 * @return resource
 	 */
-	function Build($forSending = false, $recipients = false)
+	function Build(bool $forSending = false, $recipients = false)
 	{
 		// add trust signature?
 		if($this->_trustedMail)
@@ -256,9 +242,10 @@ class BMMailBuilder
 	}
 
 	/**
+	 *
 	 * send the mail
 	 *
-	 * @return resource File pointer of sent mail
+	 * @return false|resource File pointer of sent mail
 	 */
 	function Send()
 	{
@@ -346,7 +333,7 @@ class BMMailBuilder
 	 * @param array $headerFields Header fields
 	 * @param bool $rootHeaders Root headers?
 	 */
-	function _writePartHeader($headerFields, $rootHeaders = false, $doEncode = true): void
+	function _writePartHeader($headerFields, $rootHeaders = false, bool $doEncode = true): void
 	{
 		foreach($headerFields as $key=>$value)
 		{
@@ -404,28 +391,7 @@ class BMMailBuilder
 		}
 	}
 
-	/**
-	 * generate a message id
-	 *
-	 * @return string
-	 */
-	function _generateMessageID()
-	{
-		global $bm_prefs;
-		return(sprintf('<%s@%s>',
-			GenerateRandomKey('messageID'),
-			$bm_prefs['b1gmta_host']));
-	}
 
-	/**
-	 * initialize header fields
-	 *
-	 */
-	function _initHeaderFields(): void
-	{
-		$this->AddHeaderField('Date',			date('r'));
-		$this->AddHeaderField('MIME-Version',	'1.0');
-		$this->AddHeaderField('Message-ID',		$this->_generateMessageID());
-		$this->AddHeaderField('X-Mailer',		'b1gMail/' . B1GMAIL_VERSION);
-	}
+
+
 }

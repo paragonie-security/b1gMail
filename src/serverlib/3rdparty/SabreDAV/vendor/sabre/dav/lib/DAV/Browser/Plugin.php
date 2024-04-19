@@ -82,12 +82,14 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This method intercepts GET requests that have ?sabreAction=info
      * appended to the URL
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return bool|null
      */
     function httpGetEarly(RequestInterface $request, ResponseInterface $response) {
 
@@ -99,11 +101,13 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * This method intercepts GET requests to collections and returns the html
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $response) {
 
@@ -156,11 +160,13 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Handles POST requests for tree operations.
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpPOST(RequestInterface $request, ResponseInterface $response) {
 
@@ -264,7 +270,7 @@ class Plugin extends DAV\ServerPlugin {
      */
     function generateDirectoryIndex($path) {
 
-        $html = $this->generateHeader($path ? $path : '/', $path);
+        $this->generateHeader($path ? $path : '/', $path);
 
         $node = $this->server->tree->getNodeForPath($path);
         if ($node instanceof DAV\ICollection) {
@@ -335,7 +341,7 @@ class Plugin extends DAV\ServerPlugin {
 
         // Allprops request
         $propFind = new PropFindAll($path);
-        $properties = $this->server->getPropertiesByNode($propFind, $node);
+        $this->server->getPropertiesByNode($propFind, $node);
 
         $properties = $propFind->getResultForMultiStatus()[200];
 
@@ -381,7 +387,7 @@ class Plugin extends DAV\ServerPlugin {
      */
     function generatePluginListing() {
 
-        $html = $this->generateHeader('Plugins');
+        $this->generateHeader('Plugins');
 
         $html .= "<section><h1>Plugins</h1>";
         $html .= "<table class=\"propTable\">";
@@ -407,6 +413,7 @@ class Plugin extends DAV\ServerPlugin {
     }
 
     /**
+     *
      * Generates the first block of HTML, including the <head> tag and page
      * header.
      *
@@ -414,9 +421,8 @@ class Plugin extends DAV\ServerPlugin {
      *
      * @param string $title
      * @param string $path
-     * @return void
      */
-    function generateHeader($title, $path = null) {
+    function generateHeader($title, $path = null): string {
 
         $version = DAV\Version::VERSION;
 

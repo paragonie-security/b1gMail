@@ -16,14 +16,16 @@ use Sabre\VObject;
 class VTodo extends VObject\Component {
 
     /**
+     *
      * Returns true or false depending on if the event falls in the specified
      * time-range. This is used for filtering purposes.
      *
      * The rules used to determine if an event falls within the specified
      * time-range is based on the CalDAV specification.
      *
-     * @param DateTime $start
-     * @param DateTime $end
+     * @param \DateTime $start
+     * @param \DateTime $end
+     *
      * @return bool
      */
     public function isInTimeRange(\DateTime $start, \DateTime $end) {
@@ -66,19 +68,24 @@ class VTodo extends VObject\Component {
     }
 
     /**
+     *
      * A simple list of validation rules.
      *
      * This is simply a list of properties, and how many times they either
      * must or must not appear.
      *
      * Possible values per property:
-     *   * 0 - Must not appear.
-     *   * 1 - Must appear exactly once.
-     *   * + - Must appear at least once.
-     *   * * - Can appear any number of times.
-     *   * ? - May appear, but not more than once.
+     * 0 - Must not appear.
+     * 1 - Must appear exactly once.
+     * + - Must appear at least once.
+     * - Can appear any number of times.
+     * ? - May appear, but not more than once.
      *
      * @var array
+     *
+     * @return (int|string)[]
+     *
+     * @psalm-return array{UID: 1, DTSTAMP: 1, CLASS: '?', COMPLETED: '?', CREATED: '?', DESCRIPTION: '?', DTSTART: '?', GEO: '?', 'LAST-MODIFIED': '?', LOCATION: '?', ORGANIZER: '?', PERCENT: '?', PRIORITY: '?', 'RECURRENCE-ID': '?', SEQUENCE: '?', STATUS: '?', SUMMARY: '?', URL: '?', RRULE: '?', DUE: '?', DURATION: '?', ATTACH: '*', ATTENDEE: '*', CATEGORIES: '*', COMMENT: '*', CONTACT: '*', EXDATE: '*', 'REQUEST-STATUS': '*', 'RELATED-TO': '*', RESOURCES: '*', RDATE: '*'}
      */
     public function getValidationRules() {
 

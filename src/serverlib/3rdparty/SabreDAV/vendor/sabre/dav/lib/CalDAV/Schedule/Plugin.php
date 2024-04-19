@@ -154,11 +154,13 @@ class Plugin extends ServerPlugin {
     }
 
     /**
+     *
      * This method handles POST request for the outbox.
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpPost(RequestInterface $request, ResponseInterface $response) {
 
@@ -645,6 +647,7 @@ class Plugin extends ServerPlugin {
     }
 
     /**
+     *
      * This method is responsible for parsing a free-busy query request and
      * returning it's result.
      *
@@ -652,9 +655,8 @@ class Plugin extends ServerPlugin {
      * @param VObject\Component $vObject
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return string
      */
-    protected function handleFreeBusyRequest(IOutbox $outbox, VObject\Component $vObject, RequestInterface $request, ResponseInterface $response) {
+    protected function handleFreeBusyRequest(IOutbox $outbox, VObject\Component $vObject, RequestInterface $request, ResponseInterface $response): void {
 
         $vFreeBusy = $vObject->VFREEBUSY;
         $organizer = $vFreeBusy->organizer;

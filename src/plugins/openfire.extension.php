@@ -194,7 +194,7 @@ class modopenfire extends BMPlugin
         }
     }
 
-    private function _getUrl()
+    private function _getUrl(): string
     {
         global $db;
 
@@ -211,7 +211,7 @@ class modopenfire extends BMPlugin
         return $http_modus.'://'.$jabber_row['domain'].':'.$jabber_row['port'].'/plugins/userService/userservice?secret='.$jabber_row['secretkey'];
     }
 
-    private function _enableAuth()
+    private function _enableAuth(): bool
     {
         global $db;
 
@@ -226,17 +226,17 @@ class modopenfire extends BMPlugin
         return false;
     }
 
-    private function _sendhttp($url): void
+    private function _sendhttp(string $url): void
     {
         if (!class_exists('BMHTTP')) {
             include B1GMAIL_DIR.'serverlib/http.class.php';
         }
 
         $http = _new('BMHTTP', [$url]);
-        $result = $http->DownloadToString();
+        $http->DownloadToString();
     }
 
-    private function _toRawUrl($text)
+    private function _toRawUrl(string $text): string
     {
         global $bm_prefs;
 

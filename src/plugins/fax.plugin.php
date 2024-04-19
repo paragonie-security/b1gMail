@@ -88,13 +88,18 @@ class BMHTTP_POST extends BMHTTP
 	}
 
 	/**
+	 *
 	 * make post request and return response
 	 *
 	 * @param string $postData Data to post to the URL
 	 * @param string $contentType Data content type
+	 * @param null|string[] $headers
+	 *
 	 * @return string
+	 *
+	 * @psalm-param array{location: string,...}|null $headers
 	 */
-	function DownloadToString_POST($postData, $contentType = 'application/x-www-form-urlencoded', &$headers = NULL)
+	function DownloadToString_POST($postData, $contentType = 'application/x-www-form-urlencoded', array|null &$headers = NULL)
 	{
 		$crlf = "\r\n";
 
@@ -176,36 +181,7 @@ class FaxPlugin extends BMPlugin
 	 */
 	var $_needNewPage;
 
-	/**
-	 * constructor
-	 *
-	 * @return FaxPlugin
-	 */
-	function __construct()
-	{
-		// fpdf dir
-		$this->_fpdfDir				= B1GMAIL_DIR . 'serverlib/3rdparty/fpdf/';
 
-		// plugin info
-		$this->type					= BMPLUGIN_DEFAULT;
-		$this->name					= 'b1gMail Fax PlugIn';
-		$this->author				= 'b1gMail Project';
-		$this->version				= '1.45';
-		$this->update_url			= 'https://service.b1gmail.org/plugin_updates/';
-		$this->website				= 'https://www.b1gmail.org/';
-
-		// admin pages
-		$this->admin_pages			= true;
-		$this->admin_page_title		= 'Fax';
-		$this->admin_page_icon		= 'modfax_logo.png';
-
-		// group option
-		$this->RegisterGroupOption('fax', FIELD_CHECKBOX, 'Fax?', '', false);
-		if(method_exists('BMPlugin', 'ToolInterfaceCheckLogin'))
-		{
-			$this->RegisterGroupOption('tbx_fax', FIELD_CHECKBOX, 'Fax in Toolbox?', '', false);
-		}
-	}
 
 	/**
 	 * onload
@@ -716,7 +692,7 @@ class FaxPlugin extends BMPlugin
 		   foreach($$srcArray as $key=>$val)
 		   {
 			  if(function_exists('CharsetDecode') && !in_array(strtolower($currentCharset), array('iso-8859-1', 'iso-8859-15')))
-				 $val = CharsetDecode($val, 'iso-8859-15');
+				 CharsetDecode($val, 'iso-8859-15');
 			  ${$destArray}[$key] = $val;
 		   }
 		}
@@ -792,7 +768,7 @@ class FaxPlugin extends BMPlugin
 			// getFaxPrice (params: toNo, pageCount)
 			if($method == 'GetFaxPrice')
 			{
-				$faxGateID 	= 0;
+				
 				$to			= $this->_parseNo($params[2]);
 				$price 		= $this->_calculatePrice($to, $params[3], $faxgateID);
 
@@ -830,7 +806,7 @@ class FaxPlugin extends BMPlugin
 					{
 						// get fax data
 						$tempFileID 	= RequestTempFile($userInfo['userID'], time()+TIME_ONE_HOUR);
-						$tempFileName 	= TempFileName($tempFileID);
+						TempFileName($tempFileID);
 						$fpIn 			= fopen('php://input', 'rb');
 						$fpOut 			= fopen(TempFileName($tempFileID), 'wb');
 						if($fpIn && $fpOut)
@@ -915,11 +891,11 @@ class FaxPlugin extends BMPlugin
 
 		if($thisUser->SMSEnabled())
 		{
-			$pos = 802;
+			
 		}
 		else
 		{
-			$pos = 901;
+			
 
 			$result[] = array(
 				'sep'		=> true,
@@ -972,7 +948,7 @@ class FaxPlugin extends BMPlugin
 				continue;
 
 			// get status code
-			$codeText = '';
+			
 			$codeRegs = array();
 			if($statusPrefs['code_field'] == 'subject')
 			{
@@ -991,8 +967,8 @@ class FaxPlugin extends BMPlugin
 				continue;
 
 			// check for success
-			$successText = '';
-			$success = false;
+			
+			
 			if($statusPrefs['success_field'] == 'subject')
 			{
 				$successText = $mail->GetHeaderValue('subject');
@@ -3408,10 +3384,10 @@ class FaxPlugin extends BMPlugin
 }
 
 /**
- * create FPDI subclass with signature support
  *
+ * create FPDI subclass with signature support
  */
-function _FaxPluginCreateFPDISubclass()
+function _FaxPluginCreateFPDISubclass(): void
 {
 	/**
 	 * FPDI subclass with signature support

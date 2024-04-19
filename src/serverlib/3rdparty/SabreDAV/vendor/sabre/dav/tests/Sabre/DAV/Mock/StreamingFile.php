@@ -15,6 +15,7 @@ namespace Sabre\DAV\Mock;
 class StreamingFile extends File {
 
     /**
+     *
      * Updates the data
      *
      * The data argument is a readable stream resource.
@@ -32,7 +33,6 @@ class StreamingFile extends File {
      * return an ETag, and just return null.
      *
      * @param resource $data
-     * @return string|null
      */
     function put($data): void {
 

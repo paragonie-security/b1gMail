@@ -67,11 +67,13 @@ class CorePlugin extends ServerPlugin {
     }
 
     /**
+     *
      * This is the default implementation for the GET method.
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return bool
+     *
+     * @return false|null
      */
     function httpGet(RequestInterface $request, ResponseInterface $response) {
 
@@ -269,15 +271,17 @@ class CorePlugin extends ServerPlugin {
     }
 
     /**
+     *
      * HTTP Delete
      *
      * The HTTP delete method, deletes a given uri
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return void
+     *
+     * @return false
      */
-    function httpDelete(RequestInterface $request, ResponseInterface $response) {
+    function httpDelete(RequestInterface $request, ResponseInterface $response): bool {
 
         $path = $request->getPath();
 
@@ -295,6 +299,7 @@ class CorePlugin extends ServerPlugin {
     }
 
     /**
+     *
      * WebDAV PROPFIND
      *
      * This WebDAV method requests information about an uri resource, or a list of resources
@@ -308,9 +313,10 @@ class CorePlugin extends ServerPlugin {
      *
      * @param RequestInterface $request
      * @param ResponseInterface $response
-     * @return void
+     *
+     * @return false
      */
-    function httpPropFind(RequestInterface $request, ResponseInterface $response) {
+    function httpPropFind(RequestInterface $request, ResponseInterface $response): bool {
 
         $path = $request->getPath();
 
@@ -374,7 +380,7 @@ class CorePlugin extends ServerPlugin {
         $path = $request->getPath();
 
         try {
-            $propPatch = $this->server->xml->expect('{DAV:}propertyupdate', $request->getBody());
+            $this->server->xml->expect('{DAV:}propertyupdate', $request->getBody());
         } catch (ParseException $e) {
             throw new BadRequest($e->getMessage(), null, $e);
         }
@@ -563,7 +569,7 @@ class CorePlugin extends ServerPlugin {
             }
 
             try {
-                $mkcol = $this->server->xml->expect('{DAV:}mkcol', $requestBody);
+                $this->server->xml->expect('{DAV:}mkcol', $requestBody);
             } catch (\Sabre\Xml\ParseException $e) {
                 throw new Exception\BadRequest($e->getMessage(), null, $e);
             }

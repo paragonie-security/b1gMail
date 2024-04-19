@@ -6,6 +6,7 @@
  * @subpackage PluginsFunction
  */
 /**
+ *
  * Smarty {mailto} function plugin
  * Type:     function
  * Name:     mailto
@@ -16,10 +17,10 @@
  * - address    - (required) - e-mail address
  * - text       - (optional) - text to display, default is address
  * - encode     - (optional) - can be one of:
- *                             * none : no encoding (default)
- *                             * javascript : encode with javascript
- *                             * javascript_charcode : encode with javascript charcode
- *                             * hex : encode with hexadecimal (no javascript)
+ * none : no encoding (default)
+ * javascript : encode with javascript
+ * javascript_charcode : encode with javascript charcode
+ * hex : encode with hexadecimal (no javascript)
  * - cc         - (optional) - address(es) to carbon copy
  * - bcc        - (optional) - address(es) to blind carbon copy
  * - subject    - (optional) - e-mail subject
@@ -36,15 +37,17 @@
  * {mailto address="me@domain.com" cc="you@domain.com,they@domain.com"}
  * {mailto address="me@domain.com" extra='class="mailto"'}
  *
- * @link    http://www.smarty.net/manual/en/language.function.mailto.php {mailto}
+ * @link http://www.smarty.net/manual/en/language.function.mailto.php {mailto}
  *           (Smarty online manual)
+ *
  * @version 1.2
- * @author  Monte Ohrt <monte at ohrt dot com>
- * @author  credits to Jason Sweat (added cc, bcc and subject functionality)
+ *
+ * @author Monte Ohrt <monte at ohrt dot com>
+ * @author credits to Jason Sweat (added cc, bcc and subject functionality)
  *
  * @param array $params parameters
  *
- * @return string
+ * @return null|string
  */
 function smarty_function_mailto($params)
 {

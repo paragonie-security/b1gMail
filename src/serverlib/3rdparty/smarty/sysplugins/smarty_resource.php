@@ -162,25 +162,7 @@ abstract class Smarty_Resource
         return $resource->buildUniqueResourceName($smarty, $name);
     }
 
-    /**
-     * initialize Source Object for given resource
-     * wrapper for backward compatibility to versions < 3.1.22
-     * Either [$_template] or [$smarty, $template_resource] must be specified
-     *
-     * @param Smarty_Internal_Template $_template         template object
-     * @param Smarty                   $smarty            smarty object
-     * @param string                   $template_resource resource identifier
-     *
-     * @return \Smarty_Template_Source Source Object
-     * @throws \SmartyException
-     */
-    public static function source(
-        Smarty_Internal_Template $_template = null,
-        Smarty $smarty = null,
-        $template_resource = null
-    ) {
-        return Smarty_Template_Source::load($_template, $smarty, $template_resource);
-    }
+
 
     /**
      * Load template's source into current template object

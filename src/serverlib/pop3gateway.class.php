@@ -38,13 +38,14 @@ class BMPOP3Gateway
     var $_pop3;
 
     /**
+     *
      * run pop3 fetcher.
      *
      * @param $maxMails Max mails to process
      *
-     * @return array Mail count, processed mail count
+     * @return array|false Mail count, processed mail count
      */
-    public function Run($maxMails = -1)
+    public function Run($maxMails = -1): array|false
     {
         // connect
         if (!$this->ConnectToPOP3Box()) {

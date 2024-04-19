@@ -40,6 +40,7 @@ class Uri implements Xml\Element {
     }
 
     /**
+     *
      * The xmlSerialize metod is called during xml writing.
      *
      * Use the $writer argument to write its own xml serialization.
@@ -55,7 +56,8 @@ class Uri implements Xml\Element {
      *
      * If you are opening new elements, you must also close them again.
      *
-     * @param Writer $writer
+     * @param Xml\Writer $writer
+     *
      * @return void
      */
     function xmlSerialize(Xml\Writer $writer): void {

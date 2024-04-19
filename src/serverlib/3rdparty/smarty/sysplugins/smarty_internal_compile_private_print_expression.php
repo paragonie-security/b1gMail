@@ -145,10 +145,11 @@ class Smarty_Internal_Compile_Private_Print_Expression extends Smarty_Internal_C
      * @param string                                $name     name of variable filter
      * @param string                                $output   embedded output
      *
-     * @return string
+     * @return false|string
+     *
      * @throws \SmartyException
      */
-    private function compile_variable_filter(Smarty_Internal_TemplateCompilerBase $compiler, $name, $output)
+    private function compile_variable_filter(Smarty_Internal_TemplateCompilerBase $compiler, $name, $output): string|false
     {
         $function = $compiler->getPlugin($name, 'variablefilter');
         if ($function) {

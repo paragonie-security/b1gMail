@@ -75,17 +75,7 @@ class PdfIndirectObject extends PdfType
         return $v;
     }
 
-    /**
-     * Ensures that the passed value is a PdfIndirectObject instance.
-     *
-     * @param mixed $indirectObject
-     * @return self
-     * @throws PdfTypeException
-     */
-    public static function ensure($indirectObject)
-    {
-        return PdfType::ensureType(self::class, $indirectObject, 'Indirect object expected.');
-    }
+
 
     /**
      * The object number.

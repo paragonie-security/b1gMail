@@ -30,15 +30,7 @@ class VCardBuilder
 {
     private $_fields;
 
-    /**
-     * constructor.
-     *
-     * @return VCardBuilder
-     */
-    public function __construct($fields)
-    {
-        $this->_fields = $fields;
-    }
+
 
     /**
      * build vcard.
@@ -125,18 +117,7 @@ class VCardReader
 {
     private $_fp;
 
-    /**
-     * constructor.
-     *
-     * @param resource $fp VCF File handle
-     *
-     * @return VCardReader
-     */
-    public function __construct($fp)
-    {
-        $this->_fp = $fp;
-        fseek($this->_fp, 0, SEEK_SET);
-    }
+
 
     /**
      * parse key field.
@@ -159,7 +140,7 @@ class VCardReader
         $items = array_slice($items, 1);
         foreach ($items as $item) {
             $eqPos = strpos($item, '=');
-            $key = $value = '';
+            $value = '';
 
             if ($eqPos !== false) {
                 $key = strtoupper(trim(substr($item, 0, $eqPos)));
@@ -191,7 +172,7 @@ class VCardReader
      */
     private function _parseValueField($value)
     {
-        $return = [];
+        
         $values = explode(';', $value);
         $values = stripslashes_array($values);
 

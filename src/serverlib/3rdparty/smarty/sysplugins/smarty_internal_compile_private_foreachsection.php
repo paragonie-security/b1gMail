@@ -193,11 +193,12 @@ class Smarty_Internal_Compile_Private_ForeachSection extends Smarty_Internal_Com
     }
 
     /**
+     *
      * Find matches in {block} tag source
      *
      * @param \Smarty_Internal_TemplateCompilerBase $compiler
      */
-    public function matchBlockSource(Smarty_Internal_TemplateCompilerBase $compiler)
+    public function matchBlockSource(Smarty_Internal_TemplateCompilerBase $compiler): void
     {
     }
 

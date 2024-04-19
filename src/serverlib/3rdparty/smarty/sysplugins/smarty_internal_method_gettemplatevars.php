@@ -112,7 +112,7 @@ class Smarty_Internal_Method_GetTemplateVars
         }
         if ($errorEnable && $data->_getSmartyObj()->error_unassigned) {
             // force a notice
-            $x = $$varName;
+            
         }
         return new Smarty_Undefined_Variable;
     }

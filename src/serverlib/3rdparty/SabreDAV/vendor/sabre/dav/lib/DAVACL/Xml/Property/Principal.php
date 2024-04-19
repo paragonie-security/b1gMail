@@ -124,6 +124,7 @@ class Principal extends DAV\Xml\Property\Href {
     }
 
     /**
+     *
      * Generate html representation for this value.
      *
      * The html output is 100% trusted, and no effort is being made to sanitize
@@ -135,7 +136,8 @@ class Principal extends DAV\Xml\Property\Href {
      * be used to construct local links.
      *
      * @param HtmlOutputHelper $html
-     * @return string
+     *
+     * @return null|string
      */
     function toHtml(HtmlOutputHelper $html) {
 

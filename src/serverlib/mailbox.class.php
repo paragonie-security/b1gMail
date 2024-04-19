@@ -41,22 +41,7 @@ class BMMailbox
 	var $_mailboxGeneration;
 	var $_mailboxStructureGeneration;
 
-	/**
-	 * constructor
-	 *
-	 * @param int $userID User ID
-	 * @param string $userMail User's primary mail address
-	 * @return BMMailbox
-	 */
-	function __construct($userID, $userMail, $userObject)
-	{
-		$this->_userID = $userID;
-		$this->_userMail = $userMail;
-		$this->_userObject = $userObject;
-		$this->_userGroup = false;
-		$this->_mailboxGeneration = $userObject->_row['mailbox_generation'];
-		$this->_mailboxStructureGeneration = $userObject->_row['mailbox_structure_generation'];
-	}
+
 
 	/**
 	 * increment mailbox generation
@@ -652,7 +637,7 @@ class BMMailbox
 		return($result);
 	}
 
-	function GetSharedFolderList($sortColumn = 'titel', $sortOrder = 'ASC', $withParentTitle = false, $withStats = false)
+	function GetSharedFolderList($sortColumn = 'titel', $sortOrder = 'ASC', $withParentTitle = false, $withStats = false): array
 	{
 		global $db;
 
@@ -1591,10 +1576,13 @@ class BMMailbox
 	}
 
 	/**
+	 *
 	 * set mail color
 	 *
 	 * @param int $id
 	 * @param int $color
+	 *
+	 * @return false|null
 	 */
 	function ColorMail($id, $color)
 	{
@@ -1618,10 +1606,13 @@ class BMMailbox
 	}
 
 	/**
+	 *
 	 * set mail notes
 	 *
 	 * @param int $id Mail ID
 	 * @param string $notes Notes
+	 *
+	 * @return false|null
 	 */
 	function SetMailNotes($id, $notes)
 	{
@@ -2914,7 +2905,7 @@ class BMMailbox
 			}
 
 			// receive stats
-			$oldOffset = ftell($mail->_fp);
+			
 			fseek($mail->_fp, 0, SEEK_END);
 			$mailSize = ftell($mail->_fp);
 			fseek($mail->_fp, 0, SEEK_SET);

@@ -54,19 +54,6 @@ class ShareableCalendar extends Calendar implements IShareableCalendar {
 
     }
 
-    /**
-     * Marks this calendar as published.
-     *
-     * Publishing a calendar should automatically create a read-only, public,
-     * subscribable calendar.
-     *
-     * @param bool $value
-     * @return void
-     */
-    function setPublishStatus($value): void {
 
-        $this->caldavBackend->setPublishStatus($this->calendarInfo['id'], $value);
-
-    }
 
 }
