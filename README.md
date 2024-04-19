@@ -1,3 +1,11 @@
+# Note
+
+This fork was created quickly for [a discussion on Reddit /r/php](https://old.reddit.com/r/PHP/comments/1c6o04x/does_anyone_still_need_php_5_support_in_2024/l09p8rg/?context=4).
+
+We do not own this code, nor do we attest to its quality or security.
+
+----
+
 <div align="center">
   <a href="https://www.b1gmail.eu">
     <img width="300" height="212" src="https://www.b1gmail.eu/b1gmaillogo.png">
