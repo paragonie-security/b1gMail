@@ -65,7 +65,7 @@ class BMMailProcessor
 	 *
 	 * @param int $flags Flags
 	 */
-	function Setb1gMailServerFlags($flags)
+	function Setb1gMailServerFlags($flags): void
 	{
 		$this->bmsFlags = $flags;
 	}
@@ -75,7 +75,7 @@ class BMMailProcessor
 	 *
 	 * @param int $folder Folder ID
 	 */
-	function SetTargetFolder($folder)
+	function SetTargetFolder($folder): void
 	{
 		$this->_targetFolder = $folder;
 	}
@@ -85,7 +85,7 @@ class BMMailProcessor
 	 *
 	 * @param array $recipients Mail addresses
 	 */
-	function SetRecipients($recipients)
+	function SetRecipients($recipients): void
 	{
 		$this->_recipients = $recipients;
 	}
@@ -94,7 +94,7 @@ class BMMailProcessor
 	 * clear recipient list
 	 *
 	 */
-	function ClearRecipients()
+	function ClearRecipients(): void
 	{
 		$this->_recipients = array();
 	}
@@ -104,7 +104,7 @@ class BMMailProcessor
 	 *
 	 * @param string $recipient Mail address
 	 */
-	function AddRecipient($recipient)
+	function AddRecipient($recipient): void
 	{
 		$this->_recipients[] = $recipient;
 	}
@@ -113,7 +113,7 @@ class BMMailProcessor
 	 * process internal mail
 	 *
 	 */
-	function ProcessInternalMail($uid)
+	function ProcessInternalMail($uid): void
 	{
 		global $db;
 
@@ -134,7 +134,7 @@ class BMMailProcessor
 	 * process routine
 	 *
 	 */
-	function ProcessMail($failProcessing = STORE_RESULT_OK)
+	function ProcessMail($failProcessing = STORE_RESULT_OK): void
 	{
 		global $db;
 
@@ -258,7 +258,7 @@ class BMMailProcessor
 	 * @param int $storeResult Store result
 	 * @param array $recipientErrors Erroneous recipients
 	 */
-	function Bounce($storeResult, $recipientErrors)
+	function Bounce($storeResult, $recipientErrors): void
 	{
 		global $bm_prefs;
 
@@ -473,7 +473,7 @@ class BMMailProcessor
 	 * parse mail recipients
 	 *
 	 */
-	function ParseRecipients()
+	function ParseRecipients(): void
 	{
 		global $bm_prefs, $db;
 
@@ -591,7 +591,7 @@ class BMMailProcessor
 	 * determine recipients
 	 *
 	 */
-	function DetermineRecipients()
+	function DetermineRecipients(): void
 	{
 		global $bm_prefs;
 

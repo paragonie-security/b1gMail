@@ -29,7 +29,7 @@ class BMCaptchaProvider_KeyCAPTCHA extends BMAbstractCaptchaProvider
 		return(true);
 	}
 
-	public function generate()
+	public function generate(): void
 	{
 		return;
 	}

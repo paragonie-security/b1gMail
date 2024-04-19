@@ -4,14 +4,14 @@ namespace Sabre\HTTP;
 
 class MessageTest extends \PHPUnit_Framework_TestCase {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $message = new MessageMock();
         $this->assertInstanceOf('Sabre\HTTP\Message', $message);
 
     }
 
-    function testStreamBody() {
+    function testStreamBody(): void {
 
         $body = 'foo';
         $h = fopen('php://memory', 'r+');
@@ -29,7 +29,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testStringBody() {
+    function testStringBody(): void {
 
         $body = 'foo';
 
@@ -53,7 +53,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
      * seek the stream to a certain point, set the content-length and let the
      * request object do the rest.
      */
-    function testLongStreamToStringBody() {
+    function testLongStreamToStringBody(): void {
 
         $body = fopen('php://memory', 'r+');
         fwrite($body, 'abcdefg');
@@ -70,7 +70,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetEmptyBodyStream() {
+    function testGetEmptyBodyStream(): void {
 
         $message = new MessageMock();
         $body = $message->getBodyAsStream();
@@ -79,7 +79,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetEmptyBodyString() {
+    function testGetEmptyBodyString(): void {
 
         $message = new MessageMock();
         $body = $message->getBodyAsString();
@@ -88,7 +88,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testHeaders() {
+    function testHeaders(): void {
 
         $message = new MessageMock();
         $message->setHeader('X-Foo', 'bar');
@@ -107,7 +107,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetHeaders() {
+    function testSetHeaders(): void {
 
         $message = new MessageMock();
 
@@ -133,7 +133,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAddHeaders() {
+    function testAddHeaders(): void {
 
         $message = new MessageMock();
 
@@ -159,7 +159,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSendBody() {
+    function testSendBody(): void {
 
         $message = new MessageMock();
 
@@ -179,7 +179,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMultipleHeaders() {
+    function testMultipleHeaders(): void {
 
         $message = new MessageMock();
         $message->setHeader('a', '1');
@@ -209,7 +209,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testHasHeaders() {
+    function testHasHeaders(): void {
 
         $message = new MessageMock();
 

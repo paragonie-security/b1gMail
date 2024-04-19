@@ -7,7 +7,7 @@ use Sabre\DAV;
 
 class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest {
 
-    function setUp() {
+    function setUp(): void {
 
         $this->namespaceMap[CalDAV\Plugin::NS_CALDAV] = 'cal';
         $this->namespaceMap[CalDAV\Plugin::NS_CALENDARSERVER] = 'cs';
@@ -15,7 +15,7 @@ class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $prop = new ScheduleCalendarTransp(ScheduleCalendarTransp::OPAQUE);
         $this->assertEquals(
@@ -28,7 +28,7 @@ class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest {
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testBadValue() {
+    function testBadValue(): void {
 
         new ScheduleCalendarTransp('ahhh');
 
@@ -37,7 +37,7 @@ class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerializeOpaque() {
+    function testSerializeOpaque(): void {
 
         $property = new ScheduleCalendarTransp(ScheduleCalendarTransp::OPAQUE);
         $xml = $this->write(['{DAV:}root' => $property]);
@@ -54,7 +54,7 @@ class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerializeTransparent() {
+    function testSerializeTransparent(): void {
 
         $property = new ScheduleCalendarTransp(ScheduleCalendarTransp::TRANSPARENT);
         $xml = $this->write(['{DAV:}root' => $property]);
@@ -68,7 +68,7 @@ class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest {
 
     }
 
-    function testUnserializeTransparent() {
+    function testUnserializeTransparent(): void {
 
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;
@@ -92,7 +92,7 @@ XML;
 
     }
 
-    function testUnserializeOpaque() {
+    function testUnserializeOpaque(): void {
 
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;

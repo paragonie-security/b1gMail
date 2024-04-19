@@ -14,7 +14,7 @@ class ServerPropsTest extends AbstractServer {
 
     }
 
-    function setUp() {
+    function setUp(): void {
 
         if (file_exists(SABRE_TEMPDIR.'../.sabredav')) unlink(SABRE_TEMPDIR.'../.sabredav');
         parent::setUp();
@@ -25,14 +25,14 @@ class ServerPropsTest extends AbstractServer {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         parent::tearDown();
         if (file_exists(SABRE_TEMPDIR.'../.locksdb')) unlink(SABRE_TEMPDIR.'../.locksdb');
 
     }
 
-    private function sendRequest($body, $path = '/', $headers = ['Depth' => '0']) {
+    private function sendRequest($body, $path = '/', $headers = ['Depth' => '0']): void {
 
         $request = new HTTP\Request('PROPFIND', $path, $headers, $body);
 
@@ -41,7 +41,7 @@ class ServerPropsTest extends AbstractServer {
 
     }
 
-    function testPropFindEmptyBody() {
+    function testPropFindEmptyBody(): void {
 
         $this->sendRequest("");
         $this->assertEquals(207, $this->response->status);
@@ -67,7 +67,7 @@ class ServerPropsTest extends AbstractServer {
 
     }
 
-    function testPropFindEmptyBodyFile() {
+    function testPropFindEmptyBodyFile(): void {
 
         $this->sendRequest("", '/test2.txt', []);
         $this->assertEquals(207, $this->response->status);
@@ -93,7 +93,7 @@ class ServerPropsTest extends AbstractServer {
 
     }
 
-    function testSupportedLocks() {
+    function testSupportedLocks(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">
@@ -127,7 +127,7 @@ class ServerPropsTest extends AbstractServer {
         $this->assertEquals(2,count($data),'We expected two \'d:write\' tags');
     }
 
-    function testLockDiscovery() {
+    function testLockDiscovery(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">
@@ -147,7 +147,7 @@ class ServerPropsTest extends AbstractServer {
 
     }
 
-    function testUnknownProperty() {
+    function testUnknownProperty(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">
@@ -178,7 +178,7 @@ class ServerPropsTest extends AbstractServer {
 
     }
 
-    function testParsePropPatchRequest() {
+    function testParsePropPatchRequest(): void {
 
         $body = '<?xml version="1.0"?>
 <d:propertyupdate xmlns:d="DAV:" xmlns:s="http://sabredav.org/NS/test">

@@ -146,7 +146,7 @@ class BMDashboard
      *
      * @param string $widgetName Widget name
      */
-    public function showWidgetPrefs($widgetName)
+    public function showWidgetPrefs($widgetName): void
     {
         global $plugins, $tpl;
 

@@ -7,7 +7,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider getHeaderValuesData
      */
-    function testGetHeaderValues($input, $output) {
+    function testGetHeaderValues($input, $output): void {
 
         $this->assertEquals(
             $output,
@@ -46,7 +46,7 @@ class FunctionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider preferData
      */
-    function testPrefer($input, $output) {
+    function testPrefer($input, $output): void {
 
         $this->assertEquals(
             $output,

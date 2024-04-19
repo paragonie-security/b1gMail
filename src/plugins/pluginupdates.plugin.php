@@ -67,7 +67,7 @@ class PluginUpdatesPlugin extends BMPlugin
         return true;
     }
 
-    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
     {
         if ($lang == 'deutsch') {
             $lang_admin['pluginupd_notification'] = 'F&uuml;r die folgenden Plugins stehen Updates zur Verf&uuml;gung:';
@@ -76,7 +76,7 @@ class PluginUpdatesPlugin extends BMPlugin
         }
     }
 
-    public function OnCron()
+    public function OnCron(): void
     {
         global $plugins, $db;
 

@@ -86,7 +86,7 @@ abstract class BMAbstractCaptchaProvider implements BMCaptchaProviderInterface
 	 *
 	 * @return void
 	 */
-	public function setInternalName($name)
+	public function setInternalName($name): void
 	{
 		$this->internalName = $name;
 	}
@@ -209,7 +209,7 @@ class BMCaptcha
 	 *
 	 * @return void
 	 */
-	private static function loadAllProviders()
+	private static function loadAllProviders(): void
 	{
 		$captchaDir = BMCaptcha::getCaptchaDir();
 
@@ -239,7 +239,7 @@ class BMCaptcha
 	 *
 	 * @return void
 	 */
-	public static function registerProvider($file, $provider)
+	public static function registerProvider($file, $provider): void
 	{
 		BMCaptcha::$providers[] = $file . '/' . $provider;
 	}

@@ -38,7 +38,7 @@ class Binary extends Property {
      * @param string|array $value
      * @return void
      */
-    public function setValue($value) {
+    public function setValue($value): void {
 
         if(is_array($value)) {
 
@@ -65,7 +65,7 @@ class Binary extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $this->value = base64_decode($val);
 
@@ -117,7 +117,7 @@ class Binary extends Property {
      * @param array $value
      * @return void
      */
-    public function setJsonValue(array $value) {
+    public function setJsonValue(array $value): void {
 
         $value = array_map('base64_decode', $value);
         parent::setJsonValue($value);

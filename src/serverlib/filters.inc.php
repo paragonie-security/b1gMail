@@ -309,7 +309,7 @@ class BMMailFilter_Bayes_Word
 	 * @param int $bayesNonSpam Non spam mails
 	 * @param int $bayesSpam Spam mails
 	 */
-	function Calculate($bayesNonSpam, $bayesSpam)
+	function Calculate($bayesNonSpam, $bayesSpam): void
 	{
 		// calculate probability
 		$allNonSpam 	= max($bayesNonSpam, 1);
@@ -402,7 +402,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 * @param string $string String to extract words from
 	 * @param string $prefix Token prefix: H(TML) / S(ubject) / T(ext) / (A)ttachment name
 	 */
-	function ExtractWords($string, $prefix)
+	function ExtractWords($string, $prefix): void
 	{
 		if(strlen($string) > BMMAILFILTER_BAYES_TEXTLIMIT)
 			$string = substr($string, 0, BMMAILFILTER_BAYES_TEXTLIMIT);
@@ -445,7 +445,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 * find words
 	 *
 	 */
-	function FindWords()
+	function FindWords(): void
 	{
 		$this->_words = array();
 
@@ -478,7 +478,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 * @param int $inNonSpam In non spam
 	 * @param bool $calc Calc?
 	 */
-	function SetWordProps($hash, $inSpam, $inNonSpam, $calc = true)
+	function SetWordProps($hash, $inSpam, $inNonSpam, $calc = true): void
 	{
 		foreach($this->_words as $key=>$val)
 			if($this->_words[$key]->token == $hash)
@@ -495,7 +495,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 *
 	 * @param bool $calc Calc?
 	 */
-	function LookupWords($calc = true)
+	function LookupWords($calc = true): void
 	{
 		global $db;
 
@@ -524,7 +524,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 * sort words by word interest
 	 *
 	 */
-	function SortWords()
+	function SortWords(): void
 	{
 		// put interest values in an array
 		$sortArray = array();
@@ -565,7 +565,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 * mark mail as spam (wrapper for Train())
 	 *
 	 */
-	function MarkAsSpam()
+	function MarkAsSpam(): void
 	{
 		$this->Train(true);
 	}
@@ -574,7 +574,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 * mark mail as non spam (wrapper for Train())
 	 *
 	 */
-	function MarkAsNonSpam()
+	function MarkAsNonSpam(): void
 	{
 		$this->Train(false);
 	}
@@ -584,7 +584,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 *
 	 * @param bool $isSpam Mail is spam?
 	 */
-	function TrainWords($isSpam)
+	function TrainWords($isSpam): void
 	{
 		global $db;
 
@@ -615,7 +615,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 *
 	 * @param bool $isSpam Mail is spam?
 	 */
-	function Train($isSpam)
+	function Train($isSpam): void
 	{
 		if(!$this->_mail->trained)
 		{
@@ -650,7 +650,7 @@ class BMMailFilter_Bayes extends BMMailFilter
 	 * update bayes training stats
 	 *
 	 */
-	function UpdateStats()
+	function UpdateStats(): void
 	{
 		global $db;
 

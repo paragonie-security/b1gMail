@@ -58,7 +58,7 @@ class PreconditionFailed extends DAV\Exception {
      * @param \DOMElement $errorNode
      * @return void
      */
-    function serialize(DAV\Server $server, \DOMElement $errorNode) {
+    function serialize(DAV\Server $server, \DOMElement $errorNode): void {
 
         if ($this->header) {
             $prop = $errorNode->ownerDocument->createElement('s:header');

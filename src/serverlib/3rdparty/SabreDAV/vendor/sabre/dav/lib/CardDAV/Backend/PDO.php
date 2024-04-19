@@ -99,7 +99,7 @@ class PDO extends AbstractBackend implements SyncSupport {
      * @param \Sabre\DAV\PropPatch $propPatch
      * @return void
      */
-    function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch) {
+    function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch): void {
 
         $supportedProperties = [
             '{DAV:}displayname',
@@ -190,7 +190,7 @@ class PDO extends AbstractBackend implements SyncSupport {
      * @param int $addressBookId
      * @return void
      */
-    function deleteAddressBook($addressBookId) {
+    function deleteAddressBook($addressBookId): void {
 
         $stmt = $this->pdo->prepare('DELETE FROM ' . $this->cardsTableName . ' WHERE addressbookid = ?');
         $stmt->execute([$addressBookId]);

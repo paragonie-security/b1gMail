@@ -50,7 +50,7 @@ class DB
      *
      * @param string $charset
      */
-    public function SetCharset($charset)
+    public function SetCharset($charset): void
     {
         $this->_current_charset = $charset;
         mysqli_set_charset($this->_handle, $charset);
@@ -294,7 +294,7 @@ class DB_Result
     /**
      * free result.
      */
-    public function Free()
+    public function Free(): void
     {
         @mysqli_free_result($this->_result);
     }
@@ -306,7 +306,7 @@ class DB_Result
      * @param string $quoteChar     Quoting character
      * @param string $sepChar       Seperator character
      */
-    public function ExportCSV($lineBreakChar = "\n", $quoteChar = '"', $sepChar = ';')
+    public function ExportCSV($lineBreakChar = "\n", $quoteChar = '"', $sepChar = ';'): void
     {
         // get fields
         $fields = [];

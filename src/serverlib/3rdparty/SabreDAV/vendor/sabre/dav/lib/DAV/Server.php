@@ -231,7 +231,7 @@ class Server extends EventEmitter {
      *
      * @return void
      */
-    function exec() {
+    function exec(): void {
 
         try {
 
@@ -323,7 +323,7 @@ class Server extends EventEmitter {
      * @param string $uri
      * @return void
      */
-    function setBaseUri($uri) {
+    function setBaseUri($uri): void {
 
         // If the baseUri does not end with a slash, we must add it
         if ($uri[strlen($uri) - 1] !== '/')
@@ -395,7 +395,7 @@ class Server extends EventEmitter {
      * @param ServerPlugin $plugin
      * @return void
      */
-    function addPlugin(ServerPlugin $plugin) {
+    function addPlugin(ServerPlugin $plugin): void {
 
         $this->plugins[$plugin->getPluginName()] = $plugin;
         $plugin->initialize($this);
@@ -438,7 +438,7 @@ class Server extends EventEmitter {
      * @param $sendResponse Whether to send the HTTP response to the DAV client.
      * @return void
      */
-    function invokeMethod(RequestInterface $request, ResponseInterface $response, $sendResponse = true) {
+    function invokeMethod(RequestInterface $request, ResponseInterface $response, $sendResponse = true): void {
 
         $method = $request->getMethod();
 
@@ -845,7 +845,7 @@ class Server extends EventEmitter {
      * @param PropFind $propFind
      * @return void
      */
-    private function addPathNodesRecursively(&$propFindRequests, PropFind $propFind) {
+    private function addPathNodesRecursively(&$propFindRequests, PropFind $propFind): void {
 
         $newDepth = $propFind->getDepth();
         $path = $propFind->getPath();
@@ -1082,7 +1082,7 @@ class Server extends EventEmitter {
      * @param string $uri
      * @return void
      */
-    function createDirectory($uri) {
+    function createDirectory($uri): void {
 
         $this->createCollection($uri, new MkCol(['{DAV:}collection'], []));
 

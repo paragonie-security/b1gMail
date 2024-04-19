@@ -48,7 +48,7 @@ END:VCALENDAR
         ),
     );
 
-    function testIssue205() {
+    function testIssue205(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',

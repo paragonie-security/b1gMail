@@ -54,7 +54,7 @@ class NeedPrivileges extends DAV\Exception\Forbidden {
      * @param \DOMElement $errorNode
      * @return void
      */
-    function serialize(DAV\Server $server, \DOMElement $errorNode) {
+    function serialize(DAV\Server $server, \DOMElement $errorNode): void {
 
         $doc = $errorNode->ownerDocument;
 

@@ -7,7 +7,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider dataset
      */
-    function testTextMatch($haystack, $needle, $collation, $matchType, $result) {
+    function testTextMatch($haystack, $needle, $collation, $matchType, $result): void {
 
         $this->assertEquals($result, StringUtil::textMatch($haystack, $needle, $collation, $matchType));
 
@@ -67,7 +67,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    public function testBadCollation() {
+    public function testBadCollation(): void {
 
         StringUtil::textMatch('foobar','foo','blabla','contains');
 
@@ -77,13 +77,13 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    public function testBadMatchType() {
+    public function testBadMatchType(): void {
 
         StringUtil::textMatch('foobar','foo','i;octet','booh');
 
     }
 
-    public function testEnsureUTF8_ascii() {
+    public function testEnsureUTF8_ascii(): void {
 
         $inputString = "harkema";
         $outputString = "harkema";
@@ -95,7 +95,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testEnsureUTF8_latin1() {
+    public function testEnsureUTF8_latin1(): void {
 
         $inputString = "m\xfcnster";
         $outputString = "münster";
@@ -107,7 +107,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testEnsureUTF8_utf8() {
+    public function testEnsureUTF8_utf8(): void {
 
         $inputString = "m\xc3\xbcnster";
         $outputString = "münster";

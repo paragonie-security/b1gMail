@@ -7,7 +7,7 @@ use
 
 class KeyValueTest extends \PHPUnit_Framework_TestCase {
 
-    function testKeyValue() {
+    function testKeyValue(): void {
  
         $input = <<<BLA
 <?xml version="1.0"?>

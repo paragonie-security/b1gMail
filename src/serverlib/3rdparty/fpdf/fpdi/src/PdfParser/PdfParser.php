@@ -84,7 +84,7 @@ class PdfParser
      *
      * @internal
      */
-    public function cleanUp()
+    public function cleanUp(): void
     {
         $this->xref = null;
     }

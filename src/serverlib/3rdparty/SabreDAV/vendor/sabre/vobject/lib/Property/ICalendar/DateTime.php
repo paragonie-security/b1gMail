@@ -40,7 +40,7 @@ class DateTime extends Property {
      * @param array $parts
      * @return void
      */
-    public function setParts(array $parts) {
+    public function setParts(array $parts): void {
 
         if (isset($parts[0]) && $parts[0] instanceof \DateTime) {
             $this->setDateTimes($parts);
@@ -60,7 +60,7 @@ class DateTime extends Property {
      * @param string|array|\DateTime $value
      * @return void
      */
-    public function setValue($value) {
+    public function setValue($value): void {
 
         if (is_array($value) && isset($value[0]) && $value[0] instanceof \DateTime) {
             $this->setDateTimes($value);
@@ -81,7 +81,7 @@ class DateTime extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $this->setValue(explode($this->delimiter, $val));
 
@@ -182,7 +182,7 @@ class DateTime extends Property {
      * @param bool isFloating If set to true, timezones will be ignored.
      * @return void
      */
-    public function setDateTime(\DateTime $dt, $isFloating = false) {
+    public function setDateTime(\DateTime $dt, $isFloating = false): void {
 
         $this->setDateTimes(array($dt), $isFloating);
 
@@ -198,7 +198,7 @@ class DateTime extends Property {
      * @param bool isFloating If set to true, timezones will be ignored.
      * @return void
      */
-    public function setDateTimes(array $dt, $isFloating = false) {
+    public function setDateTimes(array $dt, $isFloating = false): void {
 
         $values = array();
 
@@ -302,7 +302,7 @@ class DateTime extends Property {
      * @param array $value
      * @return void
      */
-    public function setJsonValue(array $value) {
+    public function setJsonValue(array $value): void {
 
         // dates and times in jCal have one difference to dates and times in
         // iCalendar. In jCal date-parts are separated by dashes, and
@@ -328,7 +328,7 @@ class DateTime extends Property {
      * @param mixed $value
      * @return void
      */
-    public function offsetSet($name, $value) {
+    public function offsetSet($name, $value): void {
 
         parent::offsetSet($name, $value);
         if (strtoupper($name)!=='VALUE') {

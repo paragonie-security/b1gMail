@@ -13,7 +13,7 @@ class CreateSubscriptionTest extends \Sabre\DAVServerTest {
     /**
      * OS X 10.7 - 10.9.1
      */
-    function testMKCOL() {
+    function testMKCOL(): void {
 
         $body = <<<XML
 <A:mkcol xmlns:A="DAV:">
@@ -54,7 +54,7 @@ XML;
     /**
      * OS X 10.9.2 and up
      */
-    function testMKCALENDAR() {
+    function testMKCALENDAR(): void {
 
         $body = <<<XML
 <B:mkcalendar xmlns:B="urn:ietf:params:xml:ns:caldav">
@@ -103,7 +103,7 @@ XML;
 
     }
 
-    function assertSubscription($subscription) {
+    function assertSubscription($subscription): void {
 
         $this->assertEquals('', $subscription['{http://calendarserver.org/ns/}subscribed-strip-attachments']);
         $this->assertEquals('', $subscription['{http://calendarserver.org/ns/}subscribed-strip-todos']);

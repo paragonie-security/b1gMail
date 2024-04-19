@@ -19,7 +19,7 @@ class SchedulingObjectTest extends \PHPUnit_Framework_TestCase {
     protected $data;
     protected $data2;
 
-    function setup() {
+    function setup(): void {
 
         if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
         $this->backend = new Backend\MockScheduling();
@@ -46,14 +46,14 @@ ICS;
 
     }
 
-    function teardown() {
+    function teardown(): void {
 
         unset($this->inbox);
         unset($this->backend);
 
     }
 
-    function testSetup() {
+    function testSetup(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -68,7 +68,7 @@ ICS;
     /**
      * @expectedException InvalidArgumentException
      */
-    function testInvalidArg1() {
+    function testInvalidArg1(): void {
 
         $obj = new SchedulingObject(
             new Backend\MockScheduling(array(),array()),
@@ -81,7 +81,7 @@ ICS;
     /**
      * @expectedException InvalidArgumentException
      */
-    function testInvalidArg2() {
+    function testInvalidArg2(): void {
 
         $obj = new SchedulingObject(
             new Backend\MockScheduling(array(),array()),
@@ -95,7 +95,7 @@ ICS;
      * @depends testSetup
      * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testPut() {
+    function testPut(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -107,7 +107,7 @@ ICS;
     /**
      * @depends testSetup
      */
-    function testDelete() {
+    function testDelete(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -123,7 +123,7 @@ ICS;
     /**
      * @depends testSetup
      */
-    function testGetLastModified() {
+    function testGetLastModified(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -138,7 +138,7 @@ ICS;
     /**
      * @depends testSetup
      */
-    function testGetSize() {
+    function testGetSize(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -150,7 +150,7 @@ ICS;
 
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -160,7 +160,7 @@ ICS;
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -170,7 +170,7 @@ ICS;
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $expected = array(
             array(
@@ -208,7 +208,7 @@ ICS;
 
     }
 
-    function testDefaultACL() {
+    function testDefaultACL(): void {
 
         $backend = new Backend\MockScheduling([], []);
         $calendarObject = new SchedulingObject($backend, ['calendarid' => 1, 'uri' => 'foo', 'principaluri' => 'principals/user1' ]);
@@ -247,7 +247,7 @@ ICS;
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -257,7 +257,7 @@ ICS;
 
     }
 
-    function testGet() {
+    function testGet(): void {
 
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
@@ -268,7 +268,7 @@ ICS;
 
     }
 
-    function testGetRefetch() {
+    function testGetRefetch(): void {
 
         $backend = new Backend\MockScheduling();
         $backend->createSchedulingObject('principals/user1', 'foo', 'foo'); 
@@ -283,7 +283,7 @@ ICS;
 
     }
 
-    function testGetEtag1() {
+    function testGetEtag1(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -299,7 +299,7 @@ ICS;
 
     }
 
-    function testGetEtag2() {
+    function testGetEtag2(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -314,7 +314,7 @@ ICS;
 
     }
 
-    function testGetSupportedPrivilegesSet() {
+    function testGetSupportedPrivilegesSet(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -328,7 +328,7 @@ ICS;
 
     }
 
-    function testGetSize1() {
+    function testGetSize1(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -342,7 +342,7 @@ ICS;
 
     }
 
-    function testGetSize2() {
+    function testGetSize2(): void {
 
         $objectInfo = array(
             'uri' => 'foo',
@@ -356,7 +356,7 @@ ICS;
 
     }
 
-    function testGetContentType() {
+    function testGetContentType(): void {
 
         $objectInfo = array(
             'uri' => 'foo',
@@ -369,7 +369,7 @@ ICS;
 
     }
 
-    function testGetContentType2() {
+    function testGetContentType2(): void {
 
         $objectInfo = array(
             'uri' => 'foo',
@@ -382,7 +382,7 @@ ICS;
         $this->assertEquals('text/calendar; charset=utf-8; component=VEVENT', $obj->getContentType());
 
     }
-    function testGetACL2() {
+    function testGetACL2(): void {
 
         $objectInfo = array(
             'uri' => 'foo',

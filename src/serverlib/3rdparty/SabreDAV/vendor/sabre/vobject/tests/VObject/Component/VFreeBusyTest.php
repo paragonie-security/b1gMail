@@ -7,7 +7,7 @@ use Sabre\VObject\Reader;
 
 class VFreeBusyTest extends \PHPUnit_Framework_TestCase {
 
-    function testIsFree() {
+    function testIsFree(): void {
 
         $input = <<<BLA
 BEGIN:VCALENDAR
@@ -38,7 +38,7 @@ BLA;
 
     }
 
-    public function testValidate() {
+    public function testValidate(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR

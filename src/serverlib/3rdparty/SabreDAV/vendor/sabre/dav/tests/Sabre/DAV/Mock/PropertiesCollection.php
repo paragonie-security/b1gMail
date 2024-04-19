@@ -45,7 +45,7 @@ class PropertiesCollection extends Collection implements IProperties {
      * @param array $mutations
      * @return bool|array
      */
-    function propPatch(PropPatch $proppatch) {
+    function propPatch(PropPatch $proppatch): void {
 
         $proppatch->handleRemaining(function($updateProperties) {
 

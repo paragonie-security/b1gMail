@@ -31,7 +31,7 @@ class MapGetToPropFind extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $this->server = $server;
         $this->server->on('method:GET', [$this, 'httpGet'], 90);

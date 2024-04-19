@@ -32,7 +32,7 @@ trait EventEmitterTrait {
      * @param int $priority
      * @return void
      */
-    function on($eventName, callable $callBack, $priority = 100) {
+    function on($eventName, callable $callBack, $priority = 100): void {
 
         if (!isset($this->listeners[$eventName])) {
             $this->listeners[$eventName] = [
@@ -56,7 +56,7 @@ trait EventEmitterTrait {
      * @param int $priority
      * @return void
      */
-    function once($eventName, callable $callBack, $priority = 100) {
+    function once($eventName, callable $callBack, $priority = 100): void {
 
         $wrapper = null;
         $wrapper = function() use ($eventName, $callBack, &$wrapper) {
@@ -198,7 +198,7 @@ trait EventEmitterTrait {
      * @param string $eventName
      * @return void
      */
-    function removeAllListeners($eventName = null) {
+    function removeAllListeners($eventName = null): void {
 
         if (!is_null($eventName)) {
             unset($this->listeners[$eventName]);

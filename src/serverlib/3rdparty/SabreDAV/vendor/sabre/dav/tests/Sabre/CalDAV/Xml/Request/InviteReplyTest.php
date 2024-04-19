@@ -11,7 +11,7 @@ class InviteReplyTest extends XmlTest {
         '{http://calendarserver.org/ns/}invite-reply' => 'Sabre\\CalDAV\\Xml\\Request\\InviteReply',
     ];
 
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -34,7 +34,7 @@ XML;
 
     }
 
-    function testDeserializeDeclined() {
+    function testDeserializeDeclined(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -60,7 +60,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeNoHostUrl() {
+    function testDeserializeNoHostUrl(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>

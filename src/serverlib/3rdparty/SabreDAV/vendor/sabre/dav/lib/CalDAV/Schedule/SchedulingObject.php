@@ -90,7 +90,7 @@ class SchedulingObject extends \Sabre\CalDAV\CalendarObject implements IScheduli
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->caldavBackend->deleteSchedulingObject($this->objectData['principaluri'], $this->objectData['uri']);
 

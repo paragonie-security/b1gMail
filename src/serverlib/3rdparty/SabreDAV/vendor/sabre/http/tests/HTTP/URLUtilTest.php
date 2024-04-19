@@ -4,7 +4,7 @@ namespace Sabre\HTTP;
 
 class URLUtilTest extends \PHPUnit_Framework_TestCase{
 
-    function testEncodePath() {
+    function testEncodePath(): void {
 
         $str = '';
         for ($i = 0;$i < 128;$i++) $str .= chr($i);
@@ -26,7 +26,7 @@ class URLUtilTest extends \PHPUnit_Framework_TestCase{
 
     }
 
-    function testEncodePathSegment() {
+    function testEncodePathSegment(): void {
 
         $str = '';
         for ($i = 0;$i < 128;$i++) $str .= chr($i);
@@ -50,7 +50,7 @@ class URLUtilTest extends \PHPUnit_Framework_TestCase{
 
     }
 
-    function testDecode() {
+    function testDecode(): void {
 
         $str = 'Hello%20Test+Test2.txt';
         $newStr = URLUtil::decodePath($str);
@@ -61,7 +61,7 @@ class URLUtilTest extends \PHPUnit_Framework_TestCase{
     /**
      * @depends testDecode
      */
-    function testDecodeUmlaut() {
+    function testDecodeUmlaut(): void {
 
         $str = 'Hello%C3%BC.txt';
         $newStr = URLUtil::decodePath($str);
@@ -72,7 +72,7 @@ class URLUtilTest extends \PHPUnit_Framework_TestCase{
     /**
      * @depends testDecodeUmlaut
      */
-    function testDecodeUmlautLatin1() {
+    function testDecodeUmlautLatin1(): void {
 
         $str = 'Hello%FC.txt';
         $newStr = URLUtil::decodePath($str);
@@ -85,7 +85,7 @@ class URLUtilTest extends \PHPUnit_Framework_TestCase{
      *
      * @depends testDecode
      */
-    function testDecodeAccentsWindows7() {
+    function testDecodeAccentsWindows7(): void {
 
         $str = '/webdav/%C3%A0fo%C3%B3';
         $newStr = URLUtil::decodePath($str);
@@ -93,7 +93,7 @@ class URLUtilTest extends \PHPUnit_Framework_TestCase{
 
     }
 
-    function testSplitPath() {
+    function testSplitPath(): void {
 
         $strings = [
 
@@ -130,7 +130,7 @@ class URLUtilTest extends \PHPUnit_Framework_TestCase{
     /**
      * @dataProvider resolveData
      */
-    function testResolve($base, $update, $expected) {
+    function testResolve($base, $update, $expected): void {
 
         $this->assertEquals(
             $expected,

@@ -9,7 +9,7 @@ class BinaryTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testMimeDir() {
+    function testMimeDir(): void {
 
         $vcard = new VObject\Component\VCard();
         $vcard->add('PHOTO', array('a','b'));

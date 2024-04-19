@@ -56,7 +56,7 @@ abstract class AbstractBasic implements BackendInterface {
      * @param string $realm
      * @return void
      */
-    function setRealm($realm) {
+    function setRealm($realm): void {
 
         $this->realm = $realm;
 
@@ -130,7 +130,7 @@ abstract class AbstractBasic implements BackendInterface {
      * @param ResponseInterface $response
      * @return void
      */
-    function challenge(RequestInterface $request, ResponseInterface $response) {
+    function challenge(RequestInterface $request, ResponseInterface $response): void {
 
         $auth = new HTTP\Auth\Basic(
             $this->realm,

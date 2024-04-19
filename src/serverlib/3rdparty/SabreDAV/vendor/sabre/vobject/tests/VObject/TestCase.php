@@ -17,7 +17,7 @@ class TestCase extends \PHPUnit_Framework_TestCase {
      * @param resource|string|Component $actual
      * @param string $message
      */
-    function assertVObjEquals($expected, $actual, $message = '') {
+    function assertVObjEquals($expected, $actual, $message = ''): void {
 
         $self = $this;
         $getObj = function($input) use ($self) {

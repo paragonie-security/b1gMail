@@ -1118,7 +1118,7 @@ class BMWebdisk
 	 *
 	 * @param int $folderID Folder ID
 	 */
-	function UpdateFolderAccess($folderID)
+	function UpdateFolderAccess($folderID): void
 	{
 		global $db;
 
@@ -1133,7 +1133,7 @@ class BMWebdisk
 	 *
 	 * @param int $fileID File ID
 	 */
-	function UpdateFileAccess($fileID)
+	function UpdateFileAccess($fileID): void
 	{
 		global $db;
 

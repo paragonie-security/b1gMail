@@ -4,7 +4,7 @@ namespace Sabre\HTTP;
 
 class ClientTest extends \PHPUnit_Framework_TestCase {
 
-    function testCreateCurlSettingsArrayGET() {
+    function testCreateCurlSettingsArrayGET(): void {
 
         $client = new ClientMock();
         $client->addCurlSetting(CURLOPT_POSTREDIR, 0);
@@ -36,7 +36,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateCurlSettingsArrayHEAD() {
+    function testCreateCurlSettingsArrayHEAD(): void {
 
         $client = new ClientMock();
         $request = new Request('HEAD', 'http://example.org/', ['X-Foo' => 'bar']);
@@ -65,7 +65,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateCurlSettingsArrayGETAfterHEAD() {
+    function testCreateCurlSettingsArrayGETAfterHEAD(): void {
 
         $client = new ClientMock();
         $request = new Request('HEAD', 'http://example.org/', ['X-Foo' => 'bar']);
@@ -101,7 +101,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateCurlSettingsArrayPUTStream() {
+    function testCreateCurlSettingsArrayPUTStream(): void {
 
         $client = new ClientMock();
 
@@ -132,7 +132,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateCurlSettingsArrayPUTString() {
+    function testCreateCurlSettingsArrayPUTString(): void {
 
         $client = new ClientMock();
         $request = new Request('PUT', 'http://example.org/', ['X-Foo' => 'bar'], 'boo');
@@ -159,7 +159,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSend() {
+    function testSend(): void {
 
         $client = new ClientMock();
         $request = new Request('GET', 'http://example.org/');
@@ -174,7 +174,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSendClientError() {
+    function testSendClientError(): void {
 
         $client = new ClientMock();
         $request = new Request('GET', 'http://example.org/');
@@ -197,7 +197,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSendHttpError() {
+    function testSendHttpError(): void {
 
         $client = new ClientMock();
         $request = new Request('GET', 'http://example.org/');
@@ -218,7 +218,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSendRetry() {
+    function testSendRetry(): void {
 
         $client = new ClientMock();
         $request = new Request('GET', 'http://example.org/');
@@ -248,7 +248,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testHttpErrorException() {
+    function testHttpErrorException(): void {
 
         $client = new ClientMock();
         $client->setThrowExceptions(true);
@@ -268,7 +268,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParseCurlResult() {
+    function testParseCurlResult(): void {
 
         $client = new ClientMock();
         $client->on('curlStuff', function(&$return) {
@@ -295,7 +295,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParseCurlError() {
+    function testParseCurlError(): void {
 
         $client = new ClientMock();
         $client->on('curlStuff', function(&$return) {
@@ -317,7 +317,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDoRequest() {
+    function testDoRequest(): void {
 
         $client = new ClientMock();
         $request = new Request('GET', 'http://example.org/');
@@ -345,7 +345,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDoRequestCurlError() {
+    function testDoRequestCurlError(): void {
 
         $client = new ClientMock();
         $request = new Request('GET', 'http://example.org/');

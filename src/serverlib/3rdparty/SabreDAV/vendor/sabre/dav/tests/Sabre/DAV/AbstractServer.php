@@ -17,7 +17,7 @@ abstract class AbstractServer extends \PHPUnit_Framework_TestCase {
     protected $server;
     protected $tempDir = SABRE_TEMPDIR;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->response = new HTTP\ResponseMock();
         $this->server = new Server($this->getRootNode());
@@ -32,7 +32,7 @@ abstract class AbstractServer extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         $this->deleteTree(SABRE_TEMPDIR,false);
 
@@ -44,7 +44,7 @@ abstract class AbstractServer extends \PHPUnit_Framework_TestCase {
 
     }
 
-    private function deleteTree($path,$deleteRoot = true) {
+    private function deleteTree($path,$deleteRoot = true): void {
 
         foreach(scandir($path) as $node) {
 

@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class NotRecognizedPrincipalTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $ex = new NotRecognizedPrincipal('message');
 

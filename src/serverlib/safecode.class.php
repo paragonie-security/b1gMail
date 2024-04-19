@@ -61,7 +61,7 @@ class BMCaptchaGenerator
 	 * read fonts
 	 *
 	 */
-	private function _readFonts()
+	private function _readFonts(): void
 	{
 		$this->fontList = array();
 		$d = dir($this->fontPath);
@@ -75,7 +75,7 @@ class BMCaptchaGenerator
 	 * read backgrounds
 	 *
 	 */
-	private function _readBGs()
+	private function _readBGs(): void
 	{
 		$this->bgList = array();
 		$d = dir($this->bgPath);
@@ -89,7 +89,7 @@ class BMCaptchaGenerator
 	 * generate captcha
 	 *
 	 */
-	private function _generateCaptcha()
+	private function _generateCaptcha(): void
 	{
 		$this->img 		= imagecreatetruecolor($this->w, $this->h);
 		$this->white 	= imagecolorallocate($this->img, 255, 255, 255);
@@ -105,7 +105,7 @@ class BMCaptchaGenerator
 	 * draw background
 	 *
 	 */
-	private function _drawBG()
+	private function _drawBG(): void
 	{
 		// get random bg
 		$bgFile = $this->_randomBG();
@@ -129,7 +129,7 @@ class BMCaptchaGenerator
 	 * place letters
 	 *
 	 */
-	private function _placeLetters()
+	private function _placeLetters(): void
 	{
 		for($i=0; $i<strlen($this->code); $i++)
 		{
@@ -230,7 +230,7 @@ class BMCaptchaGenerator
 		return($this->bgList[ mt_rand(0, count($this->bgList)-1) ]);
 	}
 
-	private function _drawPerturbation()
+	private function _drawPerturbation(): void
 	{
 		$points = mt_rand($this->perturbation*25, $this->perturbation*100);
 		for($i=0; $i<$points; $i++)
@@ -242,7 +242,7 @@ class BMCaptchaGenerator
 	 * draw border
 	 *
 	 */
-	private function _drawBorder()
+	private function _drawBorder(): void
 	{
 		imagerectangle($this->img, 0, 0, $this->w-1, $this->h-1, $this->black);
 	}
@@ -251,7 +251,7 @@ class BMCaptchaGenerator
 	 * output
 	 *
 	 */
-	public function Output()
+	public function Output(): void
 	{
 		$this->_generateCaptcha();
 		header('Content-Type: image/png');
@@ -286,7 +286,7 @@ class Safecode
 	 *
 	 * @param int $id
 	 */
-	function ReleaseCode($id)
+	function ReleaseCode($id): void
 	{
 		global $db;
 
@@ -349,7 +349,7 @@ class Safecode
 	 *
 	 * @param int $id
 	 */
-	function DumpCode($id, $perturbation = -1)
+	function DumpCode($id, $perturbation = -1): void
 	{
 		global $bm_prefs;
 

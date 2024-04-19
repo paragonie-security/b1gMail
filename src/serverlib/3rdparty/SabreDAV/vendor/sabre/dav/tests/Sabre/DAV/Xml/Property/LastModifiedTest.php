@@ -8,7 +8,7 @@ use DateTimeZone;
 
 class LastModifiedTest extends XmlTest {
 
-    function testSerializeDateTime() {
+    function testSerializeDateTime(): void {
 
         $dt = new DateTime('2015-03-24 11:47:00', new DateTimeZone('America/Vancouver'));
         $val = ['{DAV:}getlastmodified' => new GetLastModified($dt)];
@@ -23,7 +23,7 @@ XML;
 
     }
 
-    function testSerializeTimeStamp() {
+    function testSerializeTimeStamp(): void {
 
         $dt = new DateTime('2015-03-24 11:47:00', new DateTimeZone('America/Vancouver'));
         $dt = $dt->getTimeStamp();
@@ -39,7 +39,7 @@ XML;
 
     }
 
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>

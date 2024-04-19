@@ -111,7 +111,7 @@ class BMChart
 	 * @param int $yFrom
 	 * @param int $yTo
 	 */
-	function SetData($data, $yFrom = -1, $yTo = -1, $xFrom = -1, $xTo = -1)
+	function SetData($data, $yFrom = -1, $yTo = -1, $xFrom = -1, $xTo = -1): void
 	{
 		$this->data = $data;
 
@@ -238,7 +238,7 @@ class BMChart
 	 * init
 	 *
 	 */
-	function _init()
+	function _init(): void
 	{
 		// register colors
 		$this->_white = imagecolorallocate($this->img, 255, 255, 255);
@@ -289,7 +289,7 @@ class BMChart
 	 * @param int $w
 	 * @param int $color
 	 */
-	function _centerText($text, $x, $y, $w, $color)
+	function _centerText($text, $x, $y, $w, $color): void
 	{
 		$x = $w/2 - strlen($text)*3 + $x;
 		imagestring($this->img, 2, $x, $y, $text, $color);
@@ -304,7 +304,7 @@ class BMChart
 	 * @param int $h
 	 * @param int $color
 	 */
-	function _centerTextV($text, $x, $y, $h, $color)
+	function _centerTextV($text, $x, $y, $h, $color): void
 	{
 		$y = $h/2 - strlen($text)*3 + $y;
 		imagestringup($this->img, 2, $x, $y, $text, $color);
@@ -319,7 +319,7 @@ class BMChart
 	 * @param int $w
 	 * @param int $color
 	 */
-	function _rightText($text, $x, $y, $w, $color)
+	function _rightText($text, $x, $y, $w, $color): void
 	{
 		$x = $x+$w - strlen($text)*6;
 		imagestring($this->img, 2, $x, $y, $text, $color);
@@ -329,7 +329,7 @@ class BMChart
 	 * display chart (send to browser)
 	 *
 	 */
-	function Display()
+	function Display(): void
 	{
 		// output
 		header('Content-Type: image/png');

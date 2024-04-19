@@ -9,14 +9,14 @@ require_once 'Sabre/DAV/AbstractServer.php';
 
 class MapGetToPropFindTest extends DAV\AbstractServer {
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->server->addPlugin(new MapGetToPropFind());
 
     }
 
-    function testCollectionGet() {
+    function testCollectionGet(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/',

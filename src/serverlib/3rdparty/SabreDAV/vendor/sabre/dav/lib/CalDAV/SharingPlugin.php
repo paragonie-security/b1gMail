@@ -80,7 +80,7 @@ class SharingPlugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $this->server = $server;
         $server->resourceTypeMapping['Sabre\\CalDAV\\ISharedCalendar'] = '{' . Plugin::NS_CALENDARSERVER . '}shared';
@@ -112,7 +112,7 @@ class SharingPlugin extends DAV\ServerPlugin {
      * @param DAV\INode $node
      * @return void
      */
-    function propFindEarly(DAV\PropFind $propFind, DAV\INode $node) {
+    function propFindEarly(DAV\PropFind $propFind, DAV\INode $node): void {
 
         if ($node instanceof IShareableCalendar) {
 
@@ -177,7 +177,7 @@ class SharingPlugin extends DAV\ServerPlugin {
      * @param DAV\INode $node
      * @return void
      */
-    function propFindLate(DAV\PropFind $propFind, DAV\INode $node) {
+    function propFindLate(DAV\PropFind $propFind, DAV\INode $node): void {
 
         if ($node instanceof IShareableCalendar) {
             if ($rt = $propFind->get('{DAV:}resourcetype')) {
@@ -208,7 +208,7 @@ class SharingPlugin extends DAV\ServerPlugin {
      * @param DAV\PropPatch $propPatch
      * @return void
      */
-    function propPatch($path, DAV\PropPatch $propPatch) {
+    function propPatch($path, DAV\PropPatch $propPatch): void {
 
         $node = $this->server->tree->getNodeForPath($path);
         if (!$node instanceof IShareableCalendar)

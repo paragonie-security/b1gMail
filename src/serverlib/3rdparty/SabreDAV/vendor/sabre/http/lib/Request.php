@@ -68,7 +68,7 @@ class Request extends Message implements RequestInterface {
      * @param string $method
      * @return void
      */
-    function setMethod($method) {
+    function setMethod($method): void {
 
         $this->method = $method;
 
@@ -91,7 +91,7 @@ class Request extends Message implements RequestInterface {
      * @param string $url
      * @return void
      */
-    function setUrl($url) {
+    function setUrl($url): void {
 
         $this->url = $url;
 
@@ -122,7 +122,7 @@ class Request extends Message implements RequestInterface {
      * @param string $url
      * @return void
      */
-    function setAbsoluteUrl($url) {
+    function setAbsoluteUrl($url): void {
 
         $this->absoluteUrl = $url;
 
@@ -154,7 +154,7 @@ class Request extends Message implements RequestInterface {
      * @param string $url
      * @return void
      */
-    function setBaseUrl($url) {
+    function setBaseUrl($url): void {
 
         $this->baseUrl = $url;
 
@@ -232,7 +232,7 @@ class Request extends Message implements RequestInterface {
      * @param array $postData
      * @return void
      */
-    function setPostData(array $postData) {
+    function setPostData(array $postData): void {
 
         $this->postData = $postData;
 
@@ -280,7 +280,7 @@ class Request extends Message implements RequestInterface {
      * @param array $data
      * @return void
      */
-    function setRawServerData(array $data) {
+    function setRawServerData(array $data): void {
 
         $this->rawServerData = $data;
 

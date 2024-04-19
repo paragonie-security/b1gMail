@@ -10,7 +10,7 @@ require_once 'Sabre/DAV/AbstractServer.php';
 
 class SupportedMethodSetTest extends DAV\AbstractServer {
 
-    function sendPROPFIND($body) {
+    function sendPROPFIND($body): void {
 
         $request = new HTTP\Request('PROPFIND', '/', ['Depth' => '0' ]);
         $request->setBody($body);
@@ -22,7 +22,7 @@ class SupportedMethodSetTest extends DAV\AbstractServer {
 
     /**
      */
-    function testMethods() {
+    function testMethods(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">
@@ -52,7 +52,7 @@ class SupportedMethodSetTest extends DAV\AbstractServer {
 
     }
 
-    function testGetObj() {
+    function testGetObj(): void {
 
         $result = $this->server->getProperties('/', ['{DAV:}supported-method-set']);
         $this->assertTrue($result['{DAV:}supported-method-set']->has('PROPFIND'));

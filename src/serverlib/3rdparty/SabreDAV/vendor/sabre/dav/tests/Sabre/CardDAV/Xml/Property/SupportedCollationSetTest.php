@@ -7,7 +7,7 @@ use Sabre\DAV;
 
 class SupportedCollationSetTest extends DAV\Xml\XmlTest {
 
-    function testSimple() {
+    function testSimple(): void {
 
         $property = new SupportedCollationSet();
         $this->assertInstanceOf('Sabre\CardDAV\Xml\Property\SupportedCollationSet', $property);
@@ -17,7 +17,7 @@ class SupportedCollationSetTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $property = new SupportedCollationSet();
         

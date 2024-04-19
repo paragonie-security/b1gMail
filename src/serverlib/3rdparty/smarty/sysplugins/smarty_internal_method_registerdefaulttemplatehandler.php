@@ -47,7 +47,7 @@ class Smarty_Internal_Method_RegisterDefaultTemplateHandler
      *
      * @throws \SmartyException
      */
-    public static function _getDefaultTemplate(Smarty_Template_Source $source)
+    public static function _getDefaultTemplate(Smarty_Template_Source $source): void
     {
         if ($source->isConfig) {
             $default_handler = $source->smarty->default_config_handler_func;

@@ -7,7 +7,7 @@ use Sabre\VObject\Component\VEvent;
 
 class DurationTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetDateInterval() {
+    function testGetDateInterval(): void {
 
         $vcal = new VCalendar();
         $event = $vcal->add('VEVENT', array('DURATION' => array('PT1H')));

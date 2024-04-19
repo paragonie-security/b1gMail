@@ -7,7 +7,7 @@ use Sabre\DAV;
 
 class InviteTest extends DAV\Xml\XmlTest {
 
-    function setUp() {
+    function setUp(): void {
 
         $this->namespaceMap[CalDAV\Plugin::NS_CALDAV] = 'cal';
         $this->namespaceMap[CalDAV\Plugin::NS_CALENDARSERVER] = 'cs';
@@ -15,7 +15,7 @@ class InviteTest extends DAV\Xml\XmlTest {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $sccs = new Invite([]);
         $this->assertInstanceOf('Sabre\CalDAV\Xml\Property\Invite', $sccs);
@@ -25,7 +25,7 @@ class InviteTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $property = new Invite([
             [
@@ -110,7 +110,7 @@ class InviteTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSerialize
      */
-    function testUnserialize() {
+    function testUnserialize(): void {
 
         $input = [
             [
@@ -162,7 +162,7 @@ class InviteTest extends DAV\Xml\XmlTest {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testUnserializeNoStatus() {
+    function testUnserializeNoStatus(): void {
 
 $xml = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:" xmlns:cal="' . CalDAV\Plugin::NS_CALDAV . '" xmlns:cs="' . CalDAV\Plugin::NS_CALENDARSERVER . '">

@@ -12,7 +12,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
      */
     abstract function getBackend();
 
-    function testSetup() {
+    function testSetup(): void {
 
        $backend = $this->getBackend();
        $this->assertInstanceOf('Sabre\\DAV\\Locks\\Backend\\AbstractBackend', $backend);
@@ -22,7 +22,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testGetLocks() {
+    function testGetLocks(): void {
 
         $backend = $this->getBackend();
 
@@ -46,7 +46,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetLocks
      */
-    function testGetLocksParent() {
+    function testGetLocksParent(): void {
 
         $backend = $this->getBackend();
 
@@ -71,7 +71,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetLocks
      */
-    function testGetLocksParentDepth0() {
+    function testGetLocksParentDepth0(): void {
 
         $backend = $this->getBackend();
 
@@ -90,7 +90,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetLocksChildren() {
+    function testGetLocksChildren(): void {
 
         $backend = $this->getBackend();
 
@@ -117,7 +117,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetLocks
      */
-    function testLockRefresh() {
+    function testLockRefresh(): void {
 
         $backend = $this->getBackend();
 
@@ -145,7 +145,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetLocks
      */
-    function testUnlock() {
+    function testUnlock(): void {
 
         $backend = $this->getBackend();
 
@@ -170,7 +170,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testUnlock
      */
-    function testUnlockUnknownToken() {
+    function testUnlockUnknownToken(): void {
 
         $backend = $this->getBackend();
 

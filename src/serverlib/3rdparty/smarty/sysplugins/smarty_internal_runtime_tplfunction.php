@@ -19,7 +19,7 @@ class Smarty_Internal_Runtime_TplFunction
      *
      * @throws \SmartyException
      */
-    public function callTemplateFunction(Smarty_Internal_Template $tpl, $name, $params, $nocache)
+    public function callTemplateFunction(Smarty_Internal_Template $tpl, $name, $params, $nocache): void
     {
         $funcParam = isset($tpl->tplFunctions[ $name ]) ? $tpl->tplFunctions[ $name ] :
             (isset($tpl->smarty->tplFunctions[ $name ]) ? $tpl->smarty->tplFunctions[ $name ] : null);
@@ -60,7 +60,7 @@ class Smarty_Internal_Runtime_TplFunction
      * @param bool                                                            $override     if true replace existing
      *                                                                                      functions with same name
      */
-    public function registerTplFunctions(Smarty_Internal_TemplateBase $obj, $tplFunctions, $override = true)
+    public function registerTplFunctions(Smarty_Internal_TemplateBase $obj, $tplFunctions, $override = true): void
     {
         $obj->tplFunctions =
             $override ? array_merge($obj->tplFunctions, $tplFunctions) : array_merge($tplFunctions, $obj->tplFunctions);
@@ -154,7 +154,7 @@ class Smarty_Internal_Runtime_TplFunction
      * @param \Smarty_Internal_Template $tpl
      * @param string                    $name stack name
      */
-    public function saveTemplateVariables(Smarty_Internal_Template $tpl, $name)
+    public function saveTemplateVariables(Smarty_Internal_Template $tpl, $name): void
     {
         $tpl->_cache[ 'varStack' ][] =
             array('tpl' => $tpl->tpl_vars, 'config' => $tpl->config_vars, 'name' => "_tplFunction_{$name}");
@@ -166,7 +166,7 @@ class Smarty_Internal_Runtime_TplFunction
      * @param \Smarty_Internal_Template $tpl
      * @param string                    $name stack name
      */
-    public function restoreTemplateVariables(Smarty_Internal_Template $tpl, $name)
+    public function restoreTemplateVariables(Smarty_Internal_Template $tpl, $name): void
     {
         if (isset($tpl->_cache[ 'varStack' ])) {
             $vars = array_pop($tpl->_cache[ 'varStack' ]);

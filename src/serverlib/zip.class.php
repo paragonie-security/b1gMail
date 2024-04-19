@@ -148,7 +148,7 @@ class BMZIP
      * @param int    $uncompressedSize
      * @param string $fileName
      */
-    private function _beginFile($crc32, $compressedSize, $uncompressedSize, $fileName)
+    private function _beginFile($crc32, $compressedSize, $uncompressedSize, $fileName): void
     {
         // local header
         $header = pack('VvvvvvVVVvv',

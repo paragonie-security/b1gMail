@@ -13,7 +13,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     protected $server;
     protected $plugin;
 
-    function setUp() {
+    function setUp(): void {
 
         $nodes = [
             new DAV\SimpleCollection('testdir'),
@@ -29,7 +29,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testGet() {
+    function testGet(): void {
 
         $this->server->httpRequest->setMethod('GET');
         $this->server->httpRequest->setUrl('/testdir');
@@ -38,7 +38,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDoesntExist() {
+    function testGetDoesntExist(): void {
 
         $this->server->httpRequest->setMethod('GET');
         $this->server->httpRequest->setUrl('/foo');
@@ -51,7 +51,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testHEAD() {
+    function testHEAD(): void {
 
         $this->server->httpRequest->setMethod('HEAD');
         $this->server->httpRequest->setUrl('/testdir');
@@ -63,7 +63,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testOPTIONS() {
+    function testOPTIONS(): void {
 
         $this->server->httpRequest->setMethod('OPTIONS');
         $this->server->httpRequest->setUrl('/testdir');
@@ -75,7 +75,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testPUT() {
+    function testPUT(): void {
 
         $this->server->httpRequest->setMethod('PUT');
         $this->server->httpRequest->setUrl('/testdir');
@@ -87,7 +87,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testPROPPATCH() {
+    function testPROPPATCH(): void {
 
         $this->server->httpRequest->setMethod('PROPPATCH');
         $this->server->httpRequest->setUrl('/testdir');
@@ -99,7 +99,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testCOPY() {
+    function testCOPY(): void {
 
         $this->server->httpRequest->setMethod('COPY');
         $this->server->httpRequest->setUrl('/testdir');
@@ -111,7 +111,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testMOVE() {
+    function testMOVE(): void {
 
         $this->server->httpRequest->setMethod('MOVE');
         $this->server->httpRequest->setUrl('/testdir');
@@ -123,7 +123,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testACL() {
+    function testACL(): void {
 
         $this->server->httpRequest->setMethod('ACL');
         $this->server->httpRequest->setUrl('/testdir');
@@ -135,7 +135,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testLOCK() {
+    function testLOCK(): void {
 
         $this->server->httpRequest->setMethod('LOCK');
         $this->server->httpRequest->setUrl('/testdir');
@@ -147,7 +147,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testBeforeBind() {
+    function testBeforeBind(): void {
 
         $this->server->emit('beforeBind', ['testdir/file']);
 
@@ -156,13 +156,13 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    function testBeforeUnbind() {
+    function testBeforeUnbind(): void {
 
         $this->server->emit('beforeUnbind', ['testdir']);
 
     }
 
-    function testPropFind() {
+    function testPropFind(): void {
 
         $propFind = new DAV\PropFind('testdir', [
             '{DAV:}displayname',
@@ -189,7 +189,7 @@ class BlockAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testBeforeGetPropertiesNoListing() {
+    function testBeforeGetPropertiesNoListing(): void {
 
         $this->plugin->hideNodesFromListings = true;
         $propFind = new DAV\PropFind('testdir', [

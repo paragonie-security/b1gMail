@@ -48,7 +48,7 @@ class DateAndOrTime extends Property {
      * @param array $parts
      * @return void
      */
-    public function setParts(array $parts) {
+    public function setParts(array $parts): void {
 
         if (count($parts)>1) {
             throw new \InvalidArgumentException('Only one value allowed');
@@ -71,7 +71,7 @@ class DateAndOrTime extends Property {
      * @param string|array|\DateTime $value
      * @return void
      */
-    public function setValue($value) {
+    public function setValue($value): void {
 
         if ($value instanceof \DateTime) {
             $this->setDateTime($value);
@@ -87,7 +87,7 @@ class DateAndOrTime extends Property {
      * @param \DateTime $dt
      * @return void
      */
-    public function setDateTime(\DateTime $dt) {
+    public function setDateTime(\DateTime $dt): void {
 
         $values = array();
 
@@ -260,7 +260,7 @@ class DateAndOrTime extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $this->setValue($val);
 

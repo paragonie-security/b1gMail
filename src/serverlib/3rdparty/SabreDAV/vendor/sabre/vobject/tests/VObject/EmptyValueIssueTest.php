@@ -9,7 +9,7 @@ namespace Sabre\VObject;
  */
 class EmptyValueIssueTest extends \PHPUnit_Framework_TestCase {
 
-    function testDecodeValue() {
+    function testDecodeValue(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR

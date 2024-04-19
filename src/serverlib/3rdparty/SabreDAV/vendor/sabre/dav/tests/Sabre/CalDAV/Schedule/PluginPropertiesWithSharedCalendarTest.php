@@ -12,7 +12,7 @@ class PluginPropertiesWithSharedCalendarTest extends \Sabre\DAVServerTest {
     protected $setupCalDAVScheduling = true;
     protected $setupCalDAVSharing = true;
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->caldavBackend->createCalendar(
@@ -34,7 +34,7 @@ class PluginPropertiesWithSharedCalendarTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testPrincipalProperties() {
+    function testPrincipalProperties(): void {
 
         $props = $this->server->getPropertiesForPath('/principals/user1',array(
             '{urn:ietf:params:xml:ns:caldav}schedule-inbox-URL',

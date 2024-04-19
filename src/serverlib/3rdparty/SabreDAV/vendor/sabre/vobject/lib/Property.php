@@ -91,7 +91,7 @@ abstract class Property extends Node {
      * @param string|array $value
      * @return void
      */
-    function setValue($value) {
+    function setValue($value): void {
 
         $this->value = $value;
 
@@ -130,7 +130,7 @@ abstract class Property extends Node {
      * @param array $parts
      * @return void
      */
-    function setParts(array $parts) {
+    function setParts(array $parts): void {
 
         $this->value = $parts;
 
@@ -167,7 +167,7 @@ abstract class Property extends Node {
      * @param string|null|array $value
      * @return Node
      */
-    function add($name, $value = null) {
+    function add($name, $value = null): void {
         $noName = false;
         if ($name === null) {
             $name = Parameter::guessParameterNameByValue($value);
@@ -278,7 +278,7 @@ abstract class Property extends Node {
      * @param array $value
      * @return void
      */
-    function setJsonValue(array $value) {
+    function setJsonValue(array $value): void {
 
         if (count($value)===1) {
             $this->setValue(reset($value));
@@ -385,7 +385,7 @@ abstract class Property extends Node {
      * @param mixed $value
      * @return void
      */
-    function offsetSet($name, $value) {
+    function offsetSet($name, $value): void {
 
         if (is_int($name)) {
             parent::offsetSet($name, $value);
@@ -407,7 +407,7 @@ abstract class Property extends Node {
      * @param string $name
      * @return void
      */
-    function offsetUnset($name) {
+    function offsetUnset($name): void {
 
         if (is_int($name)) {
             parent::offsetUnset($name);

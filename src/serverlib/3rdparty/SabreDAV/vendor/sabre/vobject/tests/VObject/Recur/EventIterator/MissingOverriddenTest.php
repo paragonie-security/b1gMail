@@ -9,7 +9,7 @@ use
 
 class RecurrenceIteratorMissingOverriddenTest extends \PHPUnit_Framework_TestCase {
 
-    function testExpand() {
+    function testExpand(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR

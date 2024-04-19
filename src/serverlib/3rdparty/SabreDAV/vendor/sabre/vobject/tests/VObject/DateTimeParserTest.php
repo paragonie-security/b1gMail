@@ -8,7 +8,7 @@ use DateInterval;
 
 class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
 
-    function testParseICalendarDuration() {
+    function testParseICalendarDuration(): void {
 
         $this->assertEquals('+1 weeks', DateTimeParser::parseDuration('P1W',true));
         $this->assertEquals('+5 days',  DateTimeParser::parseDuration('P5D',true));
@@ -20,7 +20,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParseICalendarDurationDateInterval() {
+    function testParseICalendarDurationDateInterval(): void {
 
         $expected = new DateInterval('P7D');
         $this->assertEquals($expected, DateTimeParser::parseDuration('P1W'));
@@ -35,13 +35,13 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException LogicException
      */
-    function testParseICalendarDurationFail() {
+    function testParseICalendarDurationFail(): void {
 
         DateTimeParser::parseDuration('P1X',true);
 
     }
 
-    function testParseICalendarDateTime() {
+    function testParseICalendarDateTime(): void {
 
         $dateTime = DateTimeParser::parseDateTime('20100316T141405');
 
@@ -55,7 +55,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
      * @depends testParseICalendarDateTime
      * @expectedException LogicException
      */
-    function testParseICalendarDateTimeBadFormat() {
+    function testParseICalendarDateTimeBadFormat(): void {
 
         $dateTime = DateTimeParser::parseDateTime('20100316T141405 ');
 
@@ -64,7 +64,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testParseICalendarDateTime
      */
-    function testParseICalendarDateTimeUTC() {
+    function testParseICalendarDateTimeUTC(): void {
 
         $dateTime = DateTimeParser::parseDateTime('20100316T141405Z');
 
@@ -76,7 +76,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testParseICalendarDateTime
      */
-    function testParseICalendarDateTimeUTC2() {
+    function testParseICalendarDateTimeUTC2(): void {
 
         $dateTime = DateTimeParser::parseDateTime('20101211T160000Z');
 
@@ -88,7 +88,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testParseICalendarDateTime
      */
-    function testParseICalendarDateTimeCustomTimeZone() {
+    function testParseICalendarDateTimeCustomTimeZone(): void {
 
         $dateTime = DateTimeParser::parseDateTime('20100316T141405', new DateTimeZone('Europe/Amsterdam'));
 
@@ -97,7 +97,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParseICalendarDate() {
+    function testParseICalendarDate(): void {
 
         $dateTime = DateTimeParser::parseDate('20100316');
 
@@ -113,7 +113,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
     /**
      * TCheck if a date with year > 4000 will not throw an exception. iOS seems to use 45001231 in yearly recurring events
      */
-    function testParseICalendarDateGreaterThan4000() {
+    function testParseICalendarDateGreaterThan4000(): void {
 
         $dateTime = DateTimeParser::parseDate('45001231');
 
@@ -129,7 +129,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
     /**
      * Check if a datetime with year > 4000 will not throw an exception. iOS seems to use 45001231T235959 in yearly recurring events
      */
-    function testParseICalendarDateTimeGreaterThan4000() {
+    function testParseICalendarDateTimeGreaterThan4000(): void {
 
         $dateTime = DateTimeParser::parseDateTime('45001231T235959');
 
@@ -146,7 +146,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
      * @depends testParseICalendarDate
      * @expectedException LogicException
      */
-    function testParseICalendarDateBadFormat() {
+    function testParseICalendarDateBadFormat(): void {
 
         $dateTime = DateTimeParser::parseDate('20100316T141405');
 
@@ -155,7 +155,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider vcardDates
      */
-    function testVCardDate($input, $output) {
+    function testVCardDate($input, $output): void {
 
         $this->assertEquals(
             $output,
@@ -168,7 +168,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
      * @dataProvider vcardDates
      * @expectedException \InvalidArgumentException
      */
-    function testBadVCardDate() {
+    function testBadVCardDate(): void {
 
         DateTimeParser::parseVCardDateTime('1985---01');
 
@@ -178,7 +178,7 @@ class DateTimeParserTest extends \PHPUnit_Framework_TestCase {
      * @dataProvider vcardDates
      * @expectedException \InvalidArgumentException
      */
-    function testBadVCardTime() {
+    function testBadVCardTime(): void {
 
         DateTimeParser::parseVCardTime('23:12:166');
 

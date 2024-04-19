@@ -7,14 +7,14 @@ use Sabre\HTTP;
 
 class AclRestrictionsTest extends \PHPUnit_Framework_TestCase {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $prop = new AclRestrictions();
         $this->assertInstanceOf('Sabre\DAVACL\Xml\Property\AclRestrictions', $prop);
 
     }
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $prop = new AclRestrictions();
         $xml = (new DAV\Server())->xml->write('{DAV:}root', $prop);

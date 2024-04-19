@@ -11,7 +11,7 @@ class MimeDirTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\VObject\ParseException
      */
-    function testParseError() {
+    function testParseError(): void {
 
         $mimeDir = new MimeDir();
         $mimeDir->parse(fopen(__FILE__,'a'));

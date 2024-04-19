@@ -36,7 +36,7 @@ class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection
 
     }
 
-    public function addChange(array $added, array $modified, array $deleted) {
+    public function addChange(array $added, array $modified, array $deleted): void {
 
         $this->token++;
         $this->changeLog[$this->token] = [

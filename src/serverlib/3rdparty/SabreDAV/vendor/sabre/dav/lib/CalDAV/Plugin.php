@@ -165,7 +165,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $this->server = $server;
 
@@ -306,7 +306,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\INode $node
      * @return void
      */
-    function propFind(DAV\PropFind $propFind, DAV\INode $node) {
+    function propFind(DAV\PropFind $propFind, DAV\INode $node): void {
 
         $ns = '{' . self::NS_CALDAV . '}';
 
@@ -417,7 +417,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param CalendarMultiGetReport $report
      * @return void
      */
-    function calendarMultiGetReport($report) {
+    function calendarMultiGetReport($report): void {
 
         $needsJson = $report->contentType === 'application/calendar+json';
 
@@ -485,7 +485,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param Xml\Request\CalendarQueryReport $report
      * @return void
      */
-    function calendarQueryReport($report) {
+    function calendarQueryReport($report): void {
 
         $path = $this->server->getRequestUri();
 
@@ -719,7 +719,7 @@ class Plugin extends DAV\ServerPlugin {
      *                       changed &$data.
      * @return void
      */
-    function beforeWriteContent($path, DAV\IFile $node, &$data, &$modified) {
+    function beforeWriteContent($path, DAV\IFile $node, &$data, &$modified): void {
 
         if (!$node instanceof ICalendarObject)
             return;
@@ -757,7 +757,7 @@ class Plugin extends DAV\ServerPlugin {
      *                       changed &$data.
      * @return void
      */
-    function beforeCreateFile($path, &$data, DAV\ICollection $parentNode, &$modified) {
+    function beforeCreateFile($path, &$data, DAV\ICollection $parentNode, &$modified): void {
 
         if (!$parentNode instanceof ICalendar)
             return;
@@ -941,7 +941,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param ResponseInterface $response
      * @return void
      */
-    function httpAfterGet(RequestInterface $request, ResponseInterface $response) {
+    function httpAfterGet(RequestInterface $request, ResponseInterface $response): void {
 
         if (strpos($response->getHeader('Content-Type'), 'text/calendar') === false) {
             return;

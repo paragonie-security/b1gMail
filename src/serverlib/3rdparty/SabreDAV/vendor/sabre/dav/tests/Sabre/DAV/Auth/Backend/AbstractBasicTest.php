@@ -9,7 +9,7 @@ require_once 'Sabre/HTTP/ResponseMock.php';
 
 class AbstractBasicTest extends \PHPUnit_Framework_TestCase {
 
-    function testCheckNoHeaders() {
+    function testCheckNoHeaders(): void {
 
         $request = new HTTP\Request();
         $response = new HTTP\Response();
@@ -22,7 +22,7 @@ class AbstractBasicTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCheckUnknownUser() {
+    function testCheckUnknownUser(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'PHP_AUTH_USER' => 'username',
@@ -38,7 +38,7 @@ class AbstractBasicTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCheckSuccess() {
+    function testCheckSuccess(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'PHP_AUTH_USER' => 'username',
@@ -54,7 +54,7 @@ class AbstractBasicTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRequireAuth() {
+    function testRequireAuth(): void {
 
         $request = new HTTP\Request();
         $response = new HTTP\Response();

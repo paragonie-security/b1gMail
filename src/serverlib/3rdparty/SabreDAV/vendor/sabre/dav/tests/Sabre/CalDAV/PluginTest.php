@@ -25,7 +25,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
      */
     protected $caldavBackend;
 
-    function setup() {
+    function setup(): void {
 
         $this->caldavBackend = new Backend\Mock(array(
             array(
@@ -97,7 +97,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $this->assertEquals(array('MKCALENDAR'), $this->plugin->getHTTPMethods('calendars/user1/randomnewcalendar'));
         $this->assertEquals(array('calendar-access','calendar-proxy'), $this->plugin->getFeatures());
@@ -108,7 +108,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUnknownMethodPassThrough() {
+    function testUnknownMethodPassThrough(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'MKBREAKFAST',
@@ -122,7 +122,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReportPassThrough() {
+    function testReportPassThrough(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD'    => 'REPORT',
@@ -138,7 +138,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMkCalendarBadLocation() {
+    function testMkCalendarBadLocation(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'MKCALENDAR',
@@ -191,7 +191,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMkCalendarNoParentNode() {
+    function testMkCalendarNoParentNode(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'MKCALENDAR',
@@ -244,7 +244,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMkCalendarExistingCalendar() {
+    function testMkCalendarExistingCalendar(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'MKCALENDAR',
@@ -297,7 +297,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMkCalendarSucceed() {
+    function testMkCalendarSucceed(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'MKCALENDAR',
@@ -385,7 +385,7 @@ END:VCALENDAR';
 
     }
 
-    function testMkCalendarEmptyBodySucceed() {
+    function testMkCalendarEmptyBodySucceed(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'MKCALENDAR',
@@ -431,7 +431,7 @@ END:VCALENDAR';
 
     }
 
-    function testMkCalendarBadXml() {
+    function testMkCalendarBadXml(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'MKCALENDAR',
@@ -448,7 +448,7 @@ END:VCALENDAR';
 
     }
 
-    function testPrincipalProperties() {
+    function testPrincipalProperties(): void {
 
         $httpRequest = HTTP\Sapi::createFromServerArray(array(
             'HTTP_HOST' => 'sabredav.org',
@@ -489,7 +489,7 @@ END:VCALENDAR';
 
     }
 
-    function testSupportedReportSetPropertyNonCalendar() {
+    function testSupportedReportSetPropertyNonCalendar(): void {
 
         $props = $this->server->getPropertiesForPath('/calendars/user1',array(
             '{DAV:}supported-report-set',
@@ -514,7 +514,7 @@ END:VCALENDAR';
     /**
      * @depends testSupportedReportSetPropertyNonCalendar
      */
-    function testSupportedReportSetProperty() {
+    function testSupportedReportSetProperty(): void {
 
         $props = $this->server->getPropertiesForPath('/calendars/user1/UUID-123467',array(
             '{DAV:}supported-report-set',
@@ -539,7 +539,7 @@ END:VCALENDAR';
 
     }
 
-    function testSupportedReportSetUserCalendars() {
+    function testSupportedReportSetUserCalendars(): void {
 
         $this->server->addPlugin(new \Sabre\DAV\Sync\Plugin());
 
@@ -567,7 +567,7 @@ END:VCALENDAR';
     /**
      * @depends testSupportedReportSetProperty
      */
-    function testCalendarMultiGetReport() {
+    function testCalendarMultiGetReport(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -616,7 +616,7 @@ XML;
     /**
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarMultiGetReportExpand() {
+    function testCalendarMultiGetReportExpand(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -674,7 +674,7 @@ XML;
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarQueryReport() {
+    function testCalendarQueryReport(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -736,7 +736,7 @@ XML;
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarQueryReportWindowsPhone() {
+    function testCalendarQueryReportWindowsPhone(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -799,7 +799,7 @@ XML;
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarQueryReportBadDepth() {
+    function testCalendarQueryReportBadDepth(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -834,7 +834,7 @@ XML;
     /**
      * @depends testCalendarQueryReport
      */
-    function testCalendarQueryReportNoCalData() {
+    function testCalendarQueryReportNoCalData(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -883,7 +883,7 @@ XML;
     /**
      * @depends testCalendarQueryReport
      */
-    function testCalendarQueryReportNoFilters() {
+    function testCalendarQueryReportNoFilters(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -911,7 +911,7 @@ XML;
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarQueryReport1Object() {
+    function testCalendarQueryReport1Object(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -973,7 +973,7 @@ XML;
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarQueryReport1ObjectNoCalData() {
+    function testCalendarQueryReport1ObjectNoCalData(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -1019,7 +1019,7 @@ XML;
 
     }
 
-    function testHTMLActionsPanel() {
+    function testHTMLActionsPanel(): void {
 
         $output = '';
         $r = $this->server->emit('onHTMLActionsPanel', [$this->server->tree->getNodeForPath('calendars/user1'), &$output]);
@@ -1032,7 +1032,7 @@ XML;
     /**
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarMultiGetReportNoEnd() {
+    function testCalendarMultiGetReportNoEnd(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -1063,7 +1063,7 @@ XML;
     /**
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarMultiGetReportNoStart() {
+    function testCalendarMultiGetReportNoStart(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -1094,7 +1094,7 @@ XML;
     /**
      * @depends testCalendarMultiGetReport
      */
-    function testCalendarMultiGetReportEndBeforeStart() {
+    function testCalendarMultiGetReportEndBeforeStart(): void {
 
         $body =
             '<?xml version="1.0"?>' .
@@ -1125,7 +1125,7 @@ XML;
     /**
      * @depends testSupportedReportSetPropertyNonCalendar
      */
-    function testCalendarProperties() {
+    function testCalendarProperties(): void {
 
         $ns = '{urn:ietf:params:xml:ns:caldav}';
         $props = $this->server->getProperties('calendars/user1/UUID-123467', [

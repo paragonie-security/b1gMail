@@ -32,7 +32,7 @@ class Smarty_Internal_Resource_Extends extends Smarty_Resource
      *
      * @throws SmartyException
      */
-    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null)
+    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null): void
     {
         $uid = '';
         $sources = array();
@@ -65,7 +65,7 @@ class Smarty_Internal_Resource_Extends extends Smarty_Resource
      *
      * @param Smarty_Template_Source $source source object
      */
-    public function populateTimestamp(Smarty_Template_Source $source)
+    public function populateTimestamp(Smarty_Template_Source $source): void
     {
         $source->exists = true;
         /* @var \Smarty_Template_Source $_s */

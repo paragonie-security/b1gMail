@@ -57,7 +57,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return void
      */
-    public function next() {
+    public function next(): void {
 
         $this->key++;
 
@@ -90,7 +90,7 @@ class ElementList implements \Iterator, \Countable, \ArrayAccess {
      *
      * @return void
      */
-    public function rewind() {
+    public function rewind(): void {
 
         $this->key = 0;
 

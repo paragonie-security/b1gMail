@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class EmClientTest extends \PHPUnit_Framework_TestCase {
 
-    function testParseTz() {
+    function testParseTz(): void {
 
         $str = 'BEGIN:VCALENDAR
 X-WR-CALNAME:Blackhawks Schedule 2011-12

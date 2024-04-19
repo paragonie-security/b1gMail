@@ -4,7 +4,7 @@ namespace Sabre\VObject\ITip;
 
 class BrokerProcessMessageTest extends BrokerTester {
 
-    function testRequestNew() {
+    function testRequestNew(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -31,7 +31,7 @@ ICS;
 
     }
 
-    function testRequestUpdate() {
+    function testRequestUpdate(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -68,7 +68,7 @@ ICS;
 
     }
 
-    function testCancel() {
+    function testCancel(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -106,7 +106,7 @@ ICS;
 
     }
 
-    function testCancelNoExistingEvent() {
+    function testCancelNoExistingEvent(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -126,7 +126,7 @@ ICS;
 
     }
 
-    function testUnsupportedComponent() {
+    function testUnsupportedComponent(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -145,7 +145,7 @@ ICS;
 
     }
 
-    function testUnsupportedMethod() {
+    function testUnsupportedMethod(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR

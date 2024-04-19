@@ -59,7 +59,7 @@ class MockScheduling extends Mock implements SchedulingSupport {
      * @param string $objectUri
      * @return void
      */
-    public function deleteSchedulingObject($principalUri, $objectUri) {
+    public function deleteSchedulingObject($principalUri, $objectUri): void {
 
         if (isset($this->schedulingObjects[$principalUri][$objectUri])) {
             unset($this->schedulingObjects[$principalUri][$objectUri]);
@@ -75,7 +75,7 @@ class MockScheduling extends Mock implements SchedulingSupport {
      * @param string $objectData;
      * @return void
      */
-    public function createSchedulingObject($principalUri, $objectUri, $objectData) {
+    public function createSchedulingObject($principalUri, $objectUri, $objectData): void {
 
         if (!isset($this->schedulingObjects[$principalUri])) {
             $this->schedulingObjects[$principalUri] = [];

@@ -333,7 +333,7 @@ ICS;
     /**
      * @dataProvider getInput
      */
-    function testGenerator($input, $expected, $timeZone = null) {
+    function testGenerator($input, $expected, $timeZone = null): void {
 
         $gen = new FreeBusyGenerator(
             new \DateTime('20110101T110000Z', new \DateTimeZone('UTC')),
@@ -363,7 +363,7 @@ ICS;
 
     }
 
-    function testGeneratorBaseObject() {
+    function testGeneratorBaseObject(): void {
 
         $obj = new Component\VCalendar();
         $obj->METHOD = 'PUBLISH';
@@ -381,7 +381,7 @@ ICS;
     /**
      * @expectedException InvalidArgumentException
      */
-    function testInvalidArg() {
+    function testInvalidArg(): void {
 
         $gen = new FreeBusyGenerator(
             new \DateTime('2012-01-01'),

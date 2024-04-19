@@ -77,7 +77,7 @@ class BMSearchIndex
 	 *
 	 * @param int $itemID
 	 */
-	public function deleteItem($itemID)
+	public function deleteItem($itemID): void
 	{
 		$stmt = $this->sdb->prepare('DELETE FROM [index] WHERE [itemid]=:itemid');
 		$stmt->bindValue(':itemid', $itemID);
@@ -292,7 +292,7 @@ class BMSearchIndex
 	 * @param string $text
 	 * @param int $itemID
 	 */
-	public function addTextToIndex($text, $itemID)
+	public function addTextToIndex($text, $itemID): void
 	{
 		if(strlen($text) >= 3)
 		{
@@ -332,7 +332,7 @@ class BMSearchIndex
 	 * @param array $words Array of words, each entry has to have a 'word' and a 'count' entry
 	 * @param int $itemID
 	 */
-	public function addToIndex($words, $itemID)
+	public function addToIndex($words, $itemID): void
 	{
 		$wordArray = array();
 		foreach($words as $item)
@@ -434,7 +434,7 @@ class BMSearchIndex
 	 * optimize the search index, i.e. remove unused words and vacuum database
 	 *
 	 */
-	public function optimize()
+	public function optimize(): void
 	{
 		if($this->userID != 18)
 			return;
@@ -451,7 +451,7 @@ class BMSearchIndex
 	 * ensure that all tables/indexes exist
 	 *
 	 */
-	private function initDB()
+	private function initDB(): void
 	{
 		$this->sdb->busyTimeout(15000);
 

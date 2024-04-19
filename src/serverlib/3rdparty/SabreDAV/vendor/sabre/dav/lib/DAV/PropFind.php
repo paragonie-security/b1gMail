@@ -91,7 +91,7 @@ class PropFind {
      * @param mixed $valueOrCallBack
      * @return void
      */
-    function handle($propertyName, $valueOrCallBack) {
+    function handle($propertyName, $valueOrCallBack): void {
 
         if ($this->itemsLeft && isset($this->result[$propertyName]) && $this->result[$propertyName][0] === 404) {
             if (is_callable($valueOrCallBack)) {
@@ -118,7 +118,7 @@ class PropFind {
      * @param int $status
      * @return void
      */
-    function set($propertyName, $value, $status = null) {
+    function set($propertyName, $value, $status = null): void {
 
         if (is_null($status)) {
             $status = is_null($value) ? 404 : 200;
@@ -173,7 +173,7 @@ class PropFind {
      * @param string $path
      * @return void
      */
-    function setPath($path) {
+    function setPath($path): void {
 
         $this->path = $path;
 
@@ -207,7 +207,7 @@ class PropFind {
      * @param int $depth
      * @return void
      */
-    function setDepth($depth) {
+    function setDepth($depth): void {
 
         $this->depth = $depth;
 

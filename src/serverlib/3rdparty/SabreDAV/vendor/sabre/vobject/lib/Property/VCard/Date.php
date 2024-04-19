@@ -36,7 +36,7 @@ class Date extends DateAndOrTime {
      * @param \DateTime $dt
      * @return void
      */
-    public function setDateTime(\DateTime $dt) {
+    public function setDateTime(\DateTime $dt): void {
 
         $this->value = $dt->format('Ymd');
 

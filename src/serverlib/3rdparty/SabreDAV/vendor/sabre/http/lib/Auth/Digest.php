@@ -59,7 +59,7 @@ class Digest extends AbstractAuth {
      *
      * @return void
      */
-    function init() {
+    function init(): void {
 
         $digest = $this->getDigest();
         $this->digestParts = $this->parseDigest($digest);
@@ -82,7 +82,7 @@ class Digest extends AbstractAuth {
      * @param int $qop
      * @return void
      */
-    function setQOP($qop) {
+    function setQOP($qop): void {
 
         $this->qop = $qop;
 
@@ -166,7 +166,7 @@ class Digest extends AbstractAuth {
      *
      * @return void
      */
-    function requireLogin() {
+    function requireLogin(): void {
 
         $qop = '';
         switch ($this->qop) {

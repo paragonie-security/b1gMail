@@ -9,7 +9,7 @@ require_once 'Sabre/DAV/AbstractServer.php';
 
 class GetIfConditionsTest extends AbstractServer {
 
-    function testNoConditions() {
+    function testNoConditions(): void {
 
         $request = new HTTP\Request();
 
@@ -18,7 +18,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function testLockToken() {
+    function testLockToken(): void {
 
         $request = new HTTP\Request('GET', '/path/', ['If' => '(<opaquelocktoken:token1>)']);
         $conditions = $this->server->getIfConditions($request);
@@ -43,7 +43,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function testNotLockToken() {
+    function testNotLockToken(): void {
 
         $serverVars = array(
             'HTTP_IF' => '(Not <opaquelocktoken:token1>)',
@@ -72,7 +72,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function testLockTokenUrl() {
+    function testLockTokenUrl(): void {
 
         $serverVars = array(
             'HTTP_IF' => '<http://www.example.com/> (<opaquelocktoken:token1>)',
@@ -100,7 +100,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function test2LockTokens() {
+    function test2LockTokens(): void {
 
         $serverVars = array(
             'HTTP_IF' => '(<opaquelocktoken:token1>) (Not <opaquelocktoken:token2>)',
@@ -134,7 +134,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function test2UriLockTokens() {
+    function test2UriLockTokens(): void {
 
         $serverVars = array(
             'HTTP_IF' => '<http://www.example.org/node1> (<opaquelocktoken:token1>) <http://www.example.org/node2> (Not <opaquelocktoken:token2>)',
@@ -172,7 +172,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function test2UriMultiLockTokens() {
+    function test2UriMultiLockTokens(): void {
 
         $serverVars = array(
             'HTTP_IF' => '<http://www.example.org/node1> (<opaquelocktoken:token1>) (<opaquelocktoken:token2>) <http://www.example.org/node2> (Not <opaquelocktoken:token3>)',
@@ -215,7 +215,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function testEtag() {
+    function testEtag(): void {
 
         $serverVars = array(
             'HTTP_IF' => '(["etag1"])',
@@ -243,7 +243,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function test2Etags() {
+    function test2Etags(): void {
 
         $serverVars = array(
             'HTTP_IF' => '<http://www.example.org/> (["etag1"]) (["etag2"])',
@@ -275,7 +275,7 @@ class GetIfConditionsTest extends AbstractServer {
 
     }
 
-    function testComplexIf() {
+    function testComplexIf(): void {
 
         $serverVars = array(
             'HTTP_IF' => '<http://www.example.org/node1> (<opaquelocktoken:token1> ["etag1"]) ' .

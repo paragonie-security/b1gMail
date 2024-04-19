@@ -12,7 +12,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
     protected $setupACL = true;
     protected $autoLogin = 'user1';
 
-    function setUp() {
+    function setUp(): void {
 
         $this->caldavCalendars = array(
             array(
@@ -43,7 +43,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $this->assertInstanceOf('Sabre\\CalDAV\\SharingPlugin', $this->server->getPlugin('caldav-sharing'));
         $this->assertEquals(
@@ -53,13 +53,13 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testGetFeatures() {
+    function testGetFeatures(): void {
 
         $this->assertEquals(array('calendarserver-sharing'), $this->caldavSharingPlugin->getFeatures());
 
     }
 
-    function testBeforeGetShareableCalendar() {
+    function testBeforeGetShareableCalendar(): void {
 
         // Forcing the server to authenticate:
         $this->authPlugin->beforeMethod(new HTTP\Request(), new HTTP\Response());
@@ -73,7 +73,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testBeforeGetSharedCalendar() {
+    function testBeforeGetSharedCalendar(): void {
 
         $props = $this->server->getProperties('calendars/user1/cal2', array(
             '{' . Plugin::NS_CALENDARSERVER . '}shared-url',
@@ -85,7 +85,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testUpdateProperties() {
+    function testUpdateProperties(): void {
 
         $this->caldavBackend->updateShares(1,
             array(
@@ -107,7 +107,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testUpdatePropertiesPassThru() {
+    function testUpdatePropertiesPassThru(): void {
 
         $result = $this->server->updateProperties('calendars/user1/cal3', array(
             '{DAV:}foo' => 'bar',
@@ -119,7 +119,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testUnknownMethodNoPOST() {
+    function testUnknownMethodNoPOST(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PATCH',
@@ -132,7 +132,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testUnknownMethodNoXML() {
+    function testUnknownMethodNoXML(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -146,7 +146,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testUnknownMethodNoNode() {
+    function testUnknownMethodNoNode(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -160,7 +160,7 @@ class SharingPluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testShareRequest() {
+    function testShareRequest(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -203,7 +203,7 @@ RRR;
 
     }
 
-    function testShareRequestNoShareableCalendar() {
+    function testShareRequestNoShareableCalendar(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -231,7 +231,7 @@ RRR;
 
     }
 
-    function testInviteReply() {
+    function testInviteReply(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -252,7 +252,7 @@ RRR;
 
     }
 
-    function testInviteBadXML() {
+    function testInviteBadXML(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -270,7 +270,7 @@ RRR;
 
     }
 
-    function testInviteWrongUrl() {
+    function testInviteWrongUrl(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -293,7 +293,7 @@ RRR;
 
     }
 
-    function testPublish() {
+    function testPublish(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -312,7 +312,7 @@ RRR;
 
     }
 
-    function testUnpublish() {
+    function testUnpublish(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -331,7 +331,7 @@ RRR;
 
     }
 
-    function testPublishWrongUrl() {
+    function testPublishWrongUrl(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -350,7 +350,7 @@ RRR;
 
     }
 
-    function testUnpublishWrongUrl() {
+    function testUnpublishWrongUrl(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -369,7 +369,7 @@ RRR;
 
     }
 
-    function testUnknownXmlDoc() {
+    function testUnknownXmlDoc(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',

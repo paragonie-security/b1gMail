@@ -21,7 +21,7 @@ class Mock implements Xml\Element {
      * @param Xml\Writer $writer
      * @return void
      */
-    function xmlSerialize(Xml\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer): void {
 
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');

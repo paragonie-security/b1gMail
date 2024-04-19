@@ -9,7 +9,7 @@ class ValidateFilterTest extends AbstractPluginTest {
     /**
      * @dataProvider data
      */
-    function testFilter($input, $filters, $test, $result, $message = null) {
+    function testFilter($input, $filters, $test, $result, $message = null): void {
 
         if ($result) {
             $this->assertTrue($this->plugin->validateFilters($input, $filters, $test), $message);

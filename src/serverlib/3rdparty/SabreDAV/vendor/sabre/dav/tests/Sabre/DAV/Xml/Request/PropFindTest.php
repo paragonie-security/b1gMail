@@ -6,7 +6,7 @@ use Sabre\DAV\Xml\XmlTest;
 
 class PropFindTest extends XmlTest {
 
-    function testDeserializeProp() {
+    function testDeserializeProp(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -26,7 +26,7 @@ class PropFindTest extends XmlTest {
 
     }
 
-    function testDeserializeAllProp() {
+    function testDeserializeAllProp(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:">

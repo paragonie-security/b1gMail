@@ -90,7 +90,7 @@ class BMUser
 	 *
 	 * @param $recipientCount Number of recipients
 	 */
-	public function AddSendStat($recipientCount)
+	public function AddSendStat($recipientCount): void
 	{
 		global $db;
 
@@ -105,7 +105,7 @@ class BMUser
 	 *
 	 * @param int $size Size of email
 	 */
-	public function AddRecvStat($size)
+	public function AddRecvStat($size): void
 	{
 		global $db;
 
@@ -1350,7 +1350,7 @@ class BMUser
 	 * log out
 	 *
 	 */
-	public function Logout()
+	public function Logout(): void
 	{
 		ModuleFunction('OnLogout', array($_SESSION['bm_userID']));
 
@@ -2426,7 +2426,7 @@ class BMUser
 	 * @param int $id Filter ID
 	 * @param int $direction Direction (-1 = up, 1 = down)
 	 */
-	public function MoveFilter($id, $direction)
+	public function MoveFilter($id, $direction): void
 	{
 		global $db;
 
@@ -3245,7 +3245,7 @@ class BMUser
 	 * @param string $hash Certificate hash
 	 * @param array $certs Chain certs
 	 */
-	public function SetChainCerts($hash, $certs)
+	public function SetChainCerts($hash, $certs): void
 	{
 		$this->SetPref('ChainCerts_' . $hash, serialize($certs));
 	}
@@ -3439,7 +3439,7 @@ class BMUser
 	 * @param int $certID Certificate hash
 	 * @param string $data PEM data
 	 */
-	public function SetPrivateKey($certID, $data)
+	public function SetPrivateKey($certID, $data): void
 	{
 		$this->SetPref('PrivateKey_' . $certID, $data);
 	}

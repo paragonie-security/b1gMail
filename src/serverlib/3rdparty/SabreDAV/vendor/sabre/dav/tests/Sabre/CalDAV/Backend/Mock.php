@@ -86,7 +86,7 @@ class Mock extends AbstractBackend {
      * @param string $calendarId
      * @return void
      */
-    public function deleteCalendar($calendarId) {
+    public function deleteCalendar($calendarId): void {
 
         foreach($this->calendars as $k=>$calendar) {
             if ($calendar['id'] === $calendarId) {

@@ -99,7 +99,7 @@ class Inbox extends DAV\Collection implements IInbox {
      * @param resource|string $data Initial payload
      * @return null|string
      */
-    function createFile($name, $data = null) {
+    function createFile($name, $data = null): void {
 
         $this->caldavBackend->createSchedulingObject($this->principalUri, $name, $data);
 

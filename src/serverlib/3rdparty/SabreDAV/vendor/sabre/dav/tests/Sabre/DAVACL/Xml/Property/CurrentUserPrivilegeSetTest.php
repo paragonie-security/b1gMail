@@ -9,7 +9,7 @@ use Sabre\Xml\Reader;
 
 class CurrentUserPrivilegeSetTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $privileges = [
             '{DAV:}read',
@@ -34,7 +34,7 @@ XML;
 
     }
 
-    function testUnserialize() {
+    function testUnserialize(): void {
 
         $source = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -65,7 +65,7 @@ XML;
 
     }
 
-    function testToHtml() {
+    function testToHtml(): void {
 
         $privileges = ['{DAV:}read', '{DAV:}write'];
 

@@ -4,7 +4,7 @@ namespace Sabre\HTTP;
 
 class SapiTest extends \PHPUnit_Framework_TestCase {
 
-    function testConstructFromServerArray() {
+    function testConstructFromServerArray(): void {
 
         $request = Sapi::createFromServerArray([
             'REQUEST_URI'     => '/foo',
@@ -30,7 +30,7 @@ class SapiTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testConstructPHPAuth() {
+    function testConstructPHPAuth(): void {
 
         $request = Sapi::createFromServerArray([
             'REQUEST_URI'     => '/foo',
@@ -47,7 +47,7 @@ class SapiTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testConstructPHPAuthDigest() {
+    function testConstructPHPAuthDigest(): void {
 
         $request = Sapi::createFromServerArray([
             'REQUEST_URI'     => '/foo',
@@ -63,7 +63,7 @@ class SapiTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testConstructRedirectAuth() {
+    function testConstructRedirectAuth(): void {
 
         $request = Sapi::createFromServerArray([
             'REQUEST_URI'                 => '/foo',
@@ -85,7 +85,7 @@ class SapiTest extends \PHPUnit_Framework_TestCase {
      * Unfortunately we have no way of testing if the HTTP response code got
      * changed.
      */
-    function testSend() {
+    function testSend(): void {
 
         if (!function_exists('xdebug_get_headers')) {
             $this->markTestSkipped('XDebug needs to be installed for this test to run');
@@ -121,7 +121,7 @@ class SapiTest extends \PHPUnit_Framework_TestCase {
      * @runInSeparateProcess
      * @depends testSend
      */
-    function testSendLimitedByContentLengthString() {
+    function testSendLimitedByContentLengthString(): void {
 
         $response = new Response(200);
 
@@ -143,7 +143,7 @@ class SapiTest extends \PHPUnit_Framework_TestCase {
      * @runInSeparateProcess
      * @depends testSend
      */
-    function testSendLimitedByContentLengthStream() {
+    function testSendLimitedByContentLengthStream(): void {
 
         $response = new Response(200, ['Content-Length' => 19]);
 

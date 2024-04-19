@@ -16,7 +16,7 @@ class SpecificationTest extends \PHPUnit_Framework_TestCase {
 
     protected $server;
 
-    public function setUp() {
+    public function setUp(): void {
 
         $tree = array(
             new File(SABRE_TEMPDIR . '/foobar.txt')
@@ -31,7 +31,7 @@ class SpecificationTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
@@ -40,7 +40,7 @@ class SpecificationTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider data
      */
-    public function testUpdateRange($headerValue, $httpStatus, $endResult, $contentLength = 4) {
+    public function testUpdateRange($headerValue, $httpStatus, $endResult, $contentLength = 4): void {
 
         $headers = [
             'Content-Type' => 'application/x-sabredav-partialupdate',

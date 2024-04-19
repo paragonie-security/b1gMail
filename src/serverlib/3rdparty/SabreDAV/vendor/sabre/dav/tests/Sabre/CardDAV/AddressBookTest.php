@@ -14,7 +14,7 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
     protected $ab;
     protected $backend;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->backend = new Backend\Mock();
         $this->ab = new AddressBook(
@@ -29,13 +29,13 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetName() {
+    function testGetName(): void {
 
         $this->assertEquals('book1', $this->ab->getName());
 
     }
 
-    function testGetChild() {
+    function testGetChild(): void {
 
         $card = $this->ab->getChild('card1');
         $this->assertInstanceOf('Sabre\\CardDAV\\Card', $card);
@@ -46,13 +46,13 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotFound
      */
-    function testGetChildNotFound() {
+    function testGetChildNotFound(): void {
 
         $card = $this->ab->getChild('card3');
 
     }
 
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $cards = $this->ab->getChildren();
         $this->assertEquals(2, count($cards));
@@ -65,13 +65,13 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testCreateDirectory() {
+    function testCreateDirectory(): void {
 
         $this->ab->createDirectory('name');
 
     }
 
-    function testCreateFile() {
+    function testCreateFile(): void {
 
         $file = fopen('php://memory','r+');
         fwrite($file,'foo');
@@ -82,7 +82,7 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDelete() {
+    function testDelete(): void {
 
         $this->ab->delete();
         $this->assertEquals(array(), $this->backend->addressBooks);
@@ -92,19 +92,19 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetName() {
+    function testSetName(): void {
 
         $this->ab->setName('foo');
 
     }
 
-    function testGetLastModified() {
+    function testGetLastModified(): void {
 
         $this->assertNull($this->ab->getLastModified());
 
     }
 
-    function testUpdateProperties() {
+    function testUpdateProperties(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}displayname' => 'barrr',
@@ -116,7 +116,7 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetProperties() {
+    function testGetProperties(): void {
 
         $props = $this->ab->getProperties(array('{DAV:}displayname'));
         $this->assertEquals(array(
@@ -125,7 +125,7 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testACLMethods() {
+    function testACLMethods(): void {
 
         $this->assertEquals('principals/user1', $this->ab->getOwner());
         $this->assertNull($this->ab->getGroup());
@@ -147,13 +147,13 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
        $this->ab->setACL(array());
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $this->assertNull(
             $this->ab->getSupportedPrivilegeSet()
@@ -161,18 +161,18 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetSyncTokenNoSyncSupport() {
+    function testGetSyncTokenNoSyncSupport(): void {
 
         $this->assertNull(null, $this->ab->getSyncToken());
 
     }
-    function testGetChangesNoSyncSupport() {
+    function testGetChangesNoSyncSupport(): void {
 
         $this->assertNull($this->ab->getChanges(1,null));
 
     }
 
-    function testGetSyncToken() {
+    function testGetSyncToken(): void {
 
         if (!SABRE_HASSQLITE) {
             $this->markTestSkipped('Sqlite is required for this test to run');
@@ -181,7 +181,7 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $ab->getSyncToken());
     }
 
-    function testGetSyncToken2() {
+    function testGetSyncToken2(): void {
 
         if (!SABRE_HASSQLITE) {
             $this->markTestSkipped('Sqlite is required for this test to run');
@@ -190,7 +190,7 @@ class AddressBookTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $ab->getSyncToken());
     }
 
-    function testGetChanges() {
+    function testGetChanges(): void {
 
         if (!SABRE_HASSQLITE) {
             $this->markTestSkipped('Sqlite is required for this test to run');

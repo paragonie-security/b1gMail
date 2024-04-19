@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class IDirectoryTest extends \PHPUnit_Framework_TestCase {
 
-    function testResourceType() {
+    function testResourceType(): void {
 
         $tree = array(
             new DirectoryMock('directory')

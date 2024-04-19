@@ -9,7 +9,7 @@ class ShareableCalendarTest extends \PHPUnit_Framework_TestCase {
     protected $backend;
     protected $instance;
 
-    function setUp() {
+    function setUp(): void {
 
         $props = array(
             'id' => 1,
@@ -30,7 +30,7 @@ class ShareableCalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateShares() {
+    function testUpdateShares(): void {
 
         $this->instance->updateShares(array(
             array(
@@ -51,7 +51,7 @@ class ShareableCalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPublish() {
+    function testPublish(): void {
 
         $this->assertNull($this->instance->setPublishStatus(true));
         $this->assertNull($this->instance->setPublishStatus(false));

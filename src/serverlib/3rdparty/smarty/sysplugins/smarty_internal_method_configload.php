@@ -53,7 +53,7 @@ class Smarty_Internal_Method_ConfigLoad
      *
      * @throws \Exception
      */
-    public function _loadConfigFile(Smarty_Internal_Data $data, $config_file, $sections = null, $scope = 0)
+    public function _loadConfigFile(Smarty_Internal_Data $data, $config_file, $sections = null, $scope = 0): void
     {
         /* @var \Smarty $smarty */
         $smarty = $data->_getSmartyObj();
@@ -76,7 +76,7 @@ class Smarty_Internal_Method_ConfigLoad
      * @param \Smarty_Internal_Template $tpl
      * @param array                     $new_config_vars
      */
-    public function _loadConfigVars(Smarty_Internal_Template $tpl, $new_config_vars)
+    public function _loadConfigVars(Smarty_Internal_Template $tpl, $new_config_vars): void
     {
         $this->_assignConfigVars($tpl->parent->config_vars, $tpl, $new_config_vars);
         $tagScope = $tpl->source->scope;
@@ -111,7 +111,7 @@ class Smarty_Internal_Method_ConfigLoad
      * @param \Smarty_Internal_Template $tpl
      * @param array                     $new_config_vars loaded config variables
      */
-    public function _assignConfigVars(&$config_vars, Smarty_Internal_Template $tpl, $new_config_vars)
+    public function _assignConfigVars(&$config_vars, Smarty_Internal_Template $tpl, $new_config_vars): void
     {
         // copy global config vars
         foreach ($new_config_vars[ 'vars' ] as $variable => $value) {
@@ -144,7 +144,7 @@ class Smarty_Internal_Method_ConfigLoad
      * @param \Smarty_Internal_Template $tpl
      * @param array                     $config_vars
      */
-    public function _updateVarStack(Smarty_Internal_Template $tpl, $config_vars)
+    public function _updateVarStack(Smarty_Internal_Template $tpl, $config_vars): void
     {
         $i = 0;
         while (isset($tpl->_cache[ 'varStack' ][ $i ])) {

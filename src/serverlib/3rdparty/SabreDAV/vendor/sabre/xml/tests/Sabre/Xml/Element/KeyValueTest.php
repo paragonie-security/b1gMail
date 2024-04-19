@@ -7,7 +7,7 @@ use Sabre\Xml\Writer;
 
 class KeyValueTest extends \PHPUnit_Framework_TestCase {
 
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -86,7 +86,7 @@ BLA;
      * This test was added to find out why an element gets eaten by the
      * SabreDAV MKCOL parser.
      */
-    function testElementEater() {
+    function testElementEater(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -132,7 +132,7 @@ BLA;
     }
 
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $value = [
             '{http://sabredav.org/ns}elem1' => null,
@@ -179,7 +179,7 @@ XML;
      * I discovered that when there's no whitespace between elements, elements
      * can get skipped.
      */
-    function testElementSkipProblem() {
+    function testElementSkipProblem(): void {
 
         $input = <<<BLA
 <?xml version="1.0" encoding="utf-8"?>

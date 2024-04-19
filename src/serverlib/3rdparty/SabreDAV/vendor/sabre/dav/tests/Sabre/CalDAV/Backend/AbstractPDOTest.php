@@ -10,7 +10,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     protected $pdo;
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $backend = new PDO($this->pdo);
         $this->assertTrue($backend instanceof PDO);
@@ -20,7 +20,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testConstruct
      */
-    function testGetCalendarsForUserNoCalendars() {
+    function testGetCalendarsForUserNoCalendars(): void {
 
         $backend = new PDO($this->pdo);
         $calendars = $backend->getCalendarsForUser('principals/user2');
@@ -31,7 +31,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testConstruct
      */
-    function testCreateCalendarAndFetch() {
+    function testCreateCalendarAndFetch(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array(
@@ -64,7 +64,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testConstruct
      */
-    function testUpdateCalendarAndFetch() {
+    function testUpdateCalendarAndFetch(): void {
 
         $backend = new PDO($this->pdo);
 
@@ -112,7 +112,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testUpdateCalendarAndFetch
      */
-    function testUpdateCalendarUnknownProperty() {
+    function testUpdateCalendarUnknownProperty(): void {
 
         $backend = new PDO($this->pdo);
 
@@ -139,7 +139,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarAndFetch
      */
-    function testDeleteCalendar() {
+    function testDeleteCalendar(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array(
@@ -158,7 +158,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
      * @depends testCreateCalendarAndFetch
      * @expectedException \Sabre\DAV\Exception
      */
-    function testCreateCalendarIncorrectComponentSet() {;
+    function testCreateCalendarIncorrectComponentSet(): void {;
 
         $backend = new PDO($this->pdo);
 
@@ -169,7 +169,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateCalendarObject() {
+    function testCreateCalendarObject(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -189,7 +189,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
         ), $result->fetch(\PDO::FETCH_ASSOC));
 
     }
-    function testGetMultipleObjects() {
+    function testGetMultipleObjects(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -242,7 +242,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\BadRequest
      * @depends testCreateCalendarObject
      */
-    function testCreateCalendarObjectNoComponent() {
+    function testCreateCalendarObjectNoComponent(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -256,7 +256,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testCreateCalendarObjectDuration() {
+    function testCreateCalendarObjectDuration(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -280,7 +280,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testCreateCalendarObjectNoDTEND() {
+    function testCreateCalendarObjectNoDTEND(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -304,7 +304,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testCreateCalendarObjectWithDTEND() {
+    function testCreateCalendarObjectWithDTEND(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -328,7 +328,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testCreateCalendarObjectInfiniteReccurence() {
+    function testCreateCalendarObjectInfiniteReccurence(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -352,7 +352,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testCreateCalendarObjectEndingReccurence() {
+    function testCreateCalendarObjectEndingReccurence(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -376,7 +376,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testCreateCalendarObjectTask() {
+    function testCreateCalendarObjectTask(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -400,7 +400,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testGetCalendarObjects() {
+    function testGetCalendarObjects(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -422,7 +422,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testGetCalendarObjectByUID() {
+    function testGetCalendarObjectByUID(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',[]);
@@ -443,7 +443,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testUpdateCalendarObject() {
+    function testUpdateCalendarObject(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -465,7 +465,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCalendarObject
      */
-    function testDeleteCalendarObject() {
+    function testDeleteCalendarObject(): void {
 
         $backend = new PDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2','somerandomid',array());
@@ -479,7 +479,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCalendarQueryNoResult() {
+    function testCalendarQueryNoResult(): void {
 
         $abstract = new PDO($this->pdo);
         $filters = array(
@@ -503,7 +503,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCalendarQueryTodo() {
+    function testCalendarQueryTodo(): void {
 
         $backend = new PDO($this->pdo);
         $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
@@ -530,7 +530,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
         ), $backend->calendarQuery(1, $filters));
 
     }
-    function testCalendarQueryTodoNotMatch() {
+    function testCalendarQueryTodoNotMatch(): void {
 
         $backend = new PDO($this->pdo);
         $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
@@ -565,7 +565,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCalendarQueryNoFilter() {
+    function testCalendarQueryNoFilter(): void {
 
         $backend = new PDO($this->pdo);
         $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
@@ -585,7 +585,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCalendarQueryTimeRange() {
+    function testCalendarQueryTimeRange(): void {
 
         $backend = new PDO($this->pdo);
         $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
@@ -616,7 +616,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
         ), $backend->calendarQuery(1, $filters));
 
     }
-    function testCalendarQueryTimeRangeNoEnd() {
+    function testCalendarQueryTimeRangeNoEnd(): void {
 
         $backend = new PDO($this->pdo);
         $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
@@ -648,7 +648,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChanges() {
+    function testGetChanges(): void {
 
         $backend = new PDO($this->pdo);
         $id = $backend->createCalendar(
@@ -694,7 +694,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
         ], $result);
     }
 
-    function testCreateSubscriptions() {
+    function testCreateSubscriptions(): void {
 
         $props = [
             '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/cal.ics', false),
@@ -729,7 +729,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    function testCreateSubscriptionFail() {
+    function testCreateSubscriptionFail(): void {
 
         $props = [
         ];
@@ -739,7 +739,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateSubscriptions() {
+    function testUpdateSubscriptions(): void {
 
         $props = [
             '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/cal.ics', false),
@@ -782,7 +782,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateSubscriptionsFail() {
+    function testUpdateSubscriptionsFail(): void {
 
         $props = [
             '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/cal.ics', false),
@@ -814,7 +814,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDeleteSubscriptions() {
+    function testDeleteSubscriptions(): void {
 
         $props = [
             '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/cal.ics', false),
@@ -840,7 +840,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(0, count($subs));
     }
 
-    function testSchedulingMethods() {
+    function testSchedulingMethods(): void {
 
         $backend = new PDO($this->pdo);
 

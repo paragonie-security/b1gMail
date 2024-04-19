@@ -6,7 +6,7 @@ use Sabre\HTTP;
 
 class ServerMKCOLTest extends AbstractServer {
 
-    function testMkcol() {
+    function testMkcol(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -32,7 +32,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMkcol
      */
-    function testMKCOLUnknownBody() {
+    function testMKCOLUnknownBody(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -56,7 +56,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMkcol
      */
-    function testMKCOLBrokenXML() {
+    function testMKCOLBrokenXML(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -81,7 +81,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMkcol
      */
-    function testMKCOLUnknownXML() {
+    function testMKCOLUnknownXML(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -106,7 +106,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMkcol
      */
-    function testMKCOLNoResourceType() {
+    function testMKCOLNoResourceType(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -138,7 +138,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMkcol
      */
-    function testMKCOLIncorrectResourceType() {
+    function testMKCOLIncorrectResourceType(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -170,7 +170,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMKCOLIncorrectResourceType
      */
-    function testMKCOLSuccess() {
+    function testMKCOLSuccess(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -202,7 +202,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMKCOLIncorrectResourceType
      */
-    function testMKCOLWhiteSpaceResourceType() {
+    function testMKCOLWhiteSpaceResourceType(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',
@@ -236,7 +236,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMKCOLIncorrectResourceType
      */
-    function testMKCOLNoParent() {
+    function testMKCOLNoParent(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testnoparent/409me',
@@ -261,7 +261,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMKCOLIncorrectResourceType
      */
-    function testMKCOLParentIsNoCollection() {
+    function testMKCOLParentIsNoCollection(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt/409me',
@@ -286,7 +286,7 @@ class ServerMKCOLTest extends AbstractServer {
     /**
      * @depends testMKCOLIncorrectResourceType
      */
-    function testMKCOLAlreadyExists() {
+    function testMKCOLAlreadyExists(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
@@ -313,7 +313,7 @@ class ServerMKCOLTest extends AbstractServer {
      * @depends testMKCOLSuccess
      * @depends testMKCOLAlreadyExists
      */
-    function testMKCOLAndProps() {
+    function testMKCOLAndProps(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/testcol',

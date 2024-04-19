@@ -62,7 +62,7 @@ class Smarty_Internal_Resource_Php extends Smarty_Internal_Resource_File
      * @param Smarty_Template_Compiled $compiled  compiled object
      * @param Smarty_Internal_Template $_template template object (is ignored)
      */
-    public function populateCompiledFilepath(Smarty_Template_Compiled $compiled, Smarty_Internal_Template $_template)
+    public function populateCompiledFilepath(Smarty_Template_Compiled $compiled, Smarty_Internal_Template $_template): void
     {
         $compiled->filepath = $_template->source->filepath;
         $compiled->timestamp = $_template->source->timestamp;
@@ -84,7 +84,7 @@ class Smarty_Internal_Resource_Php extends Smarty_Internal_Resource_File
      * @return void
      * @throws SmartyException          if template cannot be loaded or allow_php_templates is disabled
      */
-    public function renderUncompiled(Smarty_Template_Source $source, Smarty_Internal_Template $_template)
+    public function renderUncompiled(Smarty_Template_Source $source, Smarty_Internal_Template $_template): void
     {
         if (!$source->smarty->allow_php_templates) {
             throw new SmartyException('PHP templates are disabled');

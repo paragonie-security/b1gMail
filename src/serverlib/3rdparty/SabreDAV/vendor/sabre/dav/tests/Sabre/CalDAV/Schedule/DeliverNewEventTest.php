@@ -13,7 +13,7 @@ class DeliverNewEventTest extends \Sabre\DAVServerTest {
     public $setupACL = true;
     public $autoLogin = 'user1';
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->caldavBackend->createCalendar(
@@ -33,7 +33,7 @@ class DeliverNewEventTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testDelivery() {
+    function testDelivery(): void {
 
         $request = new Request('PUT', '/calendars/user1/default/foo.ics');
         $request->setBody(<<<ICS

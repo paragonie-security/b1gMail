@@ -97,7 +97,7 @@ class Node extends DAV\File implements INode, DAVACL\IACL {
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->caldavBackend->deleteNotification($this->getOwner(), $this->notification);
 

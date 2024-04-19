@@ -88,7 +88,7 @@ class ClassLoader
     /**
      * @param array $classMap Class to filename map
      */
-    public function addClassMap(array $classMap)
+    public function addClassMap(array $classMap): void
     {
         if ($this->classMap) {
             $this->classMap = array_merge($this->classMap, $classMap);
@@ -105,7 +105,7 @@ class ClassLoader
      * @param array|string $paths   The PSR-0 root directories
      * @param bool         $prepend Whether to prepend the directories
      */
-    public function add($prefix, $paths, $prepend = false)
+    public function add($prefix, $paths, $prepend = false): void
     {
         if (!$prefix) {
             if ($prepend) {
@@ -152,7 +152,7 @@ class ClassLoader
      *
      * @throws \InvalidArgumentException
      */
-    public function addPsr4($prefix, $paths, $prepend = false)
+    public function addPsr4($prefix, $paths, $prepend = false): void
     {
         if (!$prefix) {
             // Register directories for the root namespace.
@@ -197,7 +197,7 @@ class ClassLoader
      * @param string       $prefix The prefix
      * @param array|string $paths  The PSR-0 base directories
      */
-    public function set($prefix, $paths)
+    public function set($prefix, $paths): void
     {
         if (!$prefix) {
             $this->fallbackDirsPsr0 = (array) $paths;
@@ -215,7 +215,7 @@ class ClassLoader
      *
      * @throws \InvalidArgumentException
      */
-    public function setPsr4($prefix, $paths)
+    public function setPsr4($prefix, $paths): void
     {
         if (!$prefix) {
             $this->fallbackDirsPsr4 = (array) $paths;
@@ -234,7 +234,7 @@ class ClassLoader
      *
      * @param bool $useIncludePath
      */
-    public function setUseIncludePath($useIncludePath)
+    public function setUseIncludePath($useIncludePath): void
     {
         $this->useIncludePath = $useIncludePath;
     }
@@ -256,7 +256,7 @@ class ClassLoader
      *
      * @param bool $classMapAuthoritative
      */
-    public function setClassMapAuthoritative($classMapAuthoritative)
+    public function setClassMapAuthoritative($classMapAuthoritative): void
     {
         $this->classMapAuthoritative = $classMapAuthoritative;
     }
@@ -276,7 +276,7 @@ class ClassLoader
      *
      * @param bool $prepend Whether to prepend the autoloader or not
      */
-    public function register($prepend = false)
+    public function register($prepend = false): void
     {
         spl_autoload_register(array($this, 'loadClass'), true, $prepend);
     }
@@ -284,7 +284,7 @@ class ClassLoader
     /**
      * Unregisters this instance as an autoloader.
      */
-    public function unregister()
+    public function unregister(): void
     {
         spl_autoload_unregister(array($this, 'loadClass'));
     }

@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class ResponseTest extends DAV\Xml\XmlTest {
 
-    function testSimple() {
+    function testSimple(): void {
 
         $innerProps = [
             200 => [
@@ -28,7 +28,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $innerProps = [
             200 => [
@@ -71,7 +71,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
      *
      * @depends testSerialize
      */
-    function testSerializeEmptyNamespace() {
+    function testSerializeEmptyNamespace(): void {
 
         $innerProps = [
             200 => [
@@ -104,7 +104,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
      *
      * @depends testSerialize
      */
-    function testSerializeCustomNamespace() {
+    function testSerializeCustomNamespace(): void {
 
         $innerProps = [
             200 => [
@@ -134,7 +134,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSerialize
      */
-    function testSerializeComplexProperty() {
+    function testSerializeComplexProperty(): void {
 
         $innerProps = [
             200 => [
@@ -166,7 +166,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
      * @depends testSerialize
      * @expectedException \InvalidArgumentException
      */
-    function testSerializeBreak() {
+    function testSerializeBreak(): void {
 
         $innerProps = [
             200 => [
@@ -179,7 +179,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
 
     }
 
-    function testDeserializeComplexProperty() {
+    function testDeserializeComplexProperty(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:response xmlns:d="DAV:">
@@ -215,7 +215,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerializeUrlencoding() {
+    function testSerializeUrlencoding(): void {
 
         $innerProps = [
             200 => [
@@ -254,7 +254,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
      * In those cases we MUST specify at least one DAV:propstat anyway, with
      * no properties.
      */
-    function testSerializeNoProperties() {
+    function testSerializeNoProperties(): void {
 
         $innerProps = [];
 
@@ -280,7 +280,7 @@ class ResponseTest extends DAV\Xml\XmlTest {
      * In the case of {DAV:}prop, a deserializer should never get called, if
      * the property element is empty.
      */
-    function testDeserializeComplexPropertyEmpty() {
+    function testDeserializeComplexPropertyEmpty(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:response xmlns:d="DAV:">

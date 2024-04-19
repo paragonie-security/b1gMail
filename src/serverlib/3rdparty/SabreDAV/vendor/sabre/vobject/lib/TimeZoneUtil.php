@@ -234,7 +234,7 @@ class TimeZoneUtil {
      * This method will load in all the tz mapping information, if it's not yet
      * done.
      */
-    static public function loadTzMaps() {
+    static public function loadTzMaps(): void {
 
         if (!is_null(self::$map)) return;
 

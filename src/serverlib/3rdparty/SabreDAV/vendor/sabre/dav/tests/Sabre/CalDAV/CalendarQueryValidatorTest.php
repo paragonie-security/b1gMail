@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class CalendarQueryValidatorTest extends \PHPUnit_Framework_TestCase {
 
-    function testTopLevelFail() {
+    function testTopLevelFail(): void {
 
         $validator = new CalendarQueryValidator();
         $vcal = <<<ICS
@@ -23,7 +23,7 @@ ICS;
     /**
      * @dataProvider provider
      */
-    function testValid($icalObject, $filters, $outcome) {
+    function testValid($icalObject, $filters, $outcome): void {
 
         $validator = new CalendarQueryValidator();
 

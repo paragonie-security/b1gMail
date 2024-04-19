@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class UUIDUtilTest extends \PHPUnit_Framework_TestCase {
 
-    function testValidateUUID() {
+    function testValidateUUID(): void {
 
         $this->assertTrue(
             UUIDUtil::validateUUID('11111111-2222-3333-4444-555555555555')
@@ -24,7 +24,7 @@ class UUIDUtilTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValidateUUID
      */
-    function testGetUUID() {
+    function testGetUUID(): void {
 
         $this->assertTrue(
             UUIDUtil::validateUUID(

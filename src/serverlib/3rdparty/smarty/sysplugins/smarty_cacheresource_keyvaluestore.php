@@ -52,7 +52,7 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
      *
      * @return void
      */
-    public function populate(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template)
+    public function populate(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template): void
     {
         $cached->filepath = $_template->source->uid . '#' . $this->sanitize($cached->source->resource) . '#' .
                             $this->sanitize($cached->cache_id) . '#' . $this->sanitize($cached->compile_id);
@@ -66,7 +66,7 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
      *
      * @return void
      */
-    public function populateTimestamp(Smarty_Template_Cached $cached)
+    public function populateTimestamp(Smarty_Template_Cached $cached): void
     {
         if (!$this->fetch(
             $cached->filepath,
@@ -476,7 +476,7 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
      *
      * @return bool|void
      */
-    public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached)
+    public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {
         $cached->is_locked = true;
         $key = 'LOCK#' . $cached->filepath;
@@ -491,7 +491,7 @@ abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
      *
      * @return bool|void
      */
-    public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached)
+    public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {
         $cached->is_locked = false;
         $key = 'LOCK#' . $cached->filepath;

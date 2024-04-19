@@ -8,7 +8,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     abstract function getPDO();
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);
@@ -19,7 +19,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testConstruct
      */
-    function testUserInfo() {
+    function testUserInfo(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);

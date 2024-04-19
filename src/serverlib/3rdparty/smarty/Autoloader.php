@@ -46,7 +46,7 @@ class Smarty_Autoloader
      *
      * @param bool $prepend Whether to prepend the autoloader or not.
      */
-    public static function registerBC($prepend = false)
+    public static function registerBC($prepend = false): void
     {
         /**
          * register the class autoloader
@@ -71,7 +71,7 @@ class Smarty_Autoloader
      *
      * @param bool $prepend Whether to prepend the autoloader or not.
      */
-    public static function register($prepend = false)
+    public static function register($prepend = false): void
     {
         self::$SMARTY_DIR = defined('SMARTY_DIR') ? SMARTY_DIR : dirname(__FILE__) . DIRECTORY_SEPARATOR;
         self::$SMARTY_SYSPLUGINS_DIR = defined('SMARTY_SYSPLUGINS_DIR') ? SMARTY_SYSPLUGINS_DIR :
@@ -88,7 +88,7 @@ class Smarty_Autoloader
      *
      * @param string $class A class name.
      */
-    public static function autoload($class)
+    public static function autoload($class): void
     {
         if ($class[ 0 ] !== 'S' || strpos($class, 'Smarty') !== 0) {
             return;

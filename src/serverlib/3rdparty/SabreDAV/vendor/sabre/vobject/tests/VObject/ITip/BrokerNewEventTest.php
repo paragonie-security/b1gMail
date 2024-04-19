@@ -4,7 +4,7 @@ namespace Sabre\VObject\ITip;
 
 class BrokerNewEventTest extends \PHPUnit_Framework_TestCase {
 
-    function testNoAttendee() {
+    function testNoAttendee(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -20,7 +20,7 @@ ICS;
 
     }
 
-    function testVTODO() {
+    function testVTODO(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -34,7 +34,7 @@ ICS;
 
     }
 
-    function testSimpleInvite() {
+    function testSimpleInvite(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -86,7 +86,7 @@ ICS;
     /**
      * @expectedException \Sabre\VObject\ITip\ITipException
      */
-    function testBrokenEventUIDMisMatch() {
+    function testBrokenEventUIDMisMatch(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -111,7 +111,7 @@ ICS;
     /**
      * @expectedException \Sabre\VObject\ITip\ITipException
      */
-    function testBrokenEventOrganizerMisMatch() {
+    function testBrokenEventOrganizerMisMatch(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -134,7 +134,7 @@ ICS;
 
     }
 
-    function testRecurrenceInvite() {
+    function testRecurrenceInvite(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -262,7 +262,7 @@ ICS
 
     }
 
-    function testRecurrenceInvite2() {
+    function testRecurrenceInvite2(): void {
 
         // This method tests a nearly identical path, but in this case the
         // master event does not have an EXDATE.
@@ -390,7 +390,7 @@ ICS
 
     }
 
-    function testScheduleAgentClient() {
+    function testScheduleAgentClient(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -415,7 +415,7 @@ ICS;
     /**
      * @expectedException Sabre\VObject\ITip\ITipException
      */
-    function testMultipleUID() {
+    function testMultipleUID(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -450,7 +450,7 @@ ICS;
      * @expectedException Sabre\VObject\ITip\SameOrganizerForAllComponentsException
      *
      */
-    function testChangingOrganizers() {
+    function testChangingOrganizers(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -480,7 +480,7 @@ ICS;
         $result = $this->parse($message, array());
 
     }
-    function testNoOrganizerHasAttendee() {
+    function testNoOrganizerHasAttendee(): void {
 
         $message = <<<ICS
 BEGIN:VCALENDAR
@@ -497,7 +497,7 @@ ICS;
 
     }
 
-    function parse($message, $expected = array()) {
+    function parse($message, $expected = array()): void {
 
         $broker = new Broker();
         $result = $broker->parseEvent($message, 'mailto:strunk@example.org');

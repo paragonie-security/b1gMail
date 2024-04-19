@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class LineFoldingIssueTest extends \PHPUnit_Framework_TestCase {
 
-    function testRead() {
+    function testRead(): void {
 
         $event = <<<ICS
 BEGIN:VCALENDAR\r

@@ -11,7 +11,7 @@ class InviteTest extends DAV\Xml\XmlTest {
     /**
      * @dataProvider dataProvider
      */
-    function testSerializers($notification, $expected) {
+    function testSerializers($notification, $expected): void {
 
         $notification = new Invite($notification);
 
@@ -195,7 +195,7 @@ FOO
     /**
      * @expectedException InvalidArgumentException
      */
-    function testMissingArg() {
+    function testMissingArg(): void {
 
         new Invite(array());
 
@@ -204,7 +204,7 @@ FOO
     /**
      * @expectedException InvalidArgumentException
      */
-    function testUnknownArg() {
+    function testUnknownArg(): void {
 
         new Invite(array(
             'foo-i-will-break' => true,

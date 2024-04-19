@@ -13,7 +13,7 @@ use Sabre\VObject\Reader;
  */
 abstract class BrokerTester extends \Sabre\VObject\TestCase {
 
-    function parse($oldMessage, $newMessage, $expected = array(), $currentUser = 'mailto:one@example.org') {
+    function parse($oldMessage, $newMessage, $expected = array(), $currentUser = 'mailto:one@example.org'): void {
 
         $broker = new Broker();
         $result = $broker->parseEvent($newMessage, $currentUser, $oldMessage);
@@ -41,7 +41,7 @@ abstract class BrokerTester extends \Sabre\VObject\TestCase {
 
     }
 
-    function process($input, $existingObject = null, $expected = false) {
+    function process($input, $existingObject = null, $expected = false): void {
 
         $version = \Sabre\VObject\Version::VERSION;
 

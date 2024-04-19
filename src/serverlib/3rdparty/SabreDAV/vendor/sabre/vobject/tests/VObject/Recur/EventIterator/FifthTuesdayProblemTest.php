@@ -13,7 +13,7 @@ class FifthTuesdayProblemTest extends \PHPUnit_Framework_TestCase {
      *
      * @medium
      */
-    function testGetDTEnd() {
+    function testGetDTEnd(): void {
 
         $ics = <<<ICS
 BEGIN:VCALENDAR

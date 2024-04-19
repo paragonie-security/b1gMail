@@ -148,7 +148,7 @@ class AddressBook extends DAV\Collection implements IAddressBook, DAV\IPropertie
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->carddavBackend->deleteAddressBook($this->addressBookInfo['id']);
 

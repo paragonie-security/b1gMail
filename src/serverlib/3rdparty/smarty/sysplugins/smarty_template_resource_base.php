@@ -103,7 +103,7 @@ abstract class Smarty_Template_Resource_Base
      *
      * @throws \Exception
      */
-    public function getRenderedTemplateCode(Smarty_Internal_Template $_template, $unifunc = null)
+    public function getRenderedTemplateCode(Smarty_Internal_Template $_template, $unifunc = null): void
     {
         $smarty = &$_template->smarty;
         $_template->isRenderingCache = $this->isCache;

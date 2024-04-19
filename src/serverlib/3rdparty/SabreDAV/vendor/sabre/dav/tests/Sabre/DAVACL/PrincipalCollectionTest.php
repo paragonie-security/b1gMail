@@ -8,7 +8,7 @@ use Sabre\HTTP;
 
 class PrincipalCollectionTest extends \PHPUnit_Framework_TestCase {
 
-    public function testBasic() {
+    public function testBasic(): void {
 
         $backend = new PrincipalBackend\Mock();
         $pc = new PrincipalCollection($backend);
@@ -21,7 +21,7 @@ class PrincipalCollectionTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testBasic
      */
-    public function testGetChildren() {
+    public function testGetChildren(): void {
 
         $backend = new PrincipalBackend\Mock();
         $pc = new PrincipalCollection($backend);
@@ -39,7 +39,7 @@ class PrincipalCollectionTest extends \PHPUnit_Framework_TestCase {
      * @depends testBasic
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    public function testGetChildrenDisable() {
+    public function testGetChildrenDisable(): void {
 
         $backend = new PrincipalBackend\Mock();
         $pc = new PrincipalCollection($backend);
@@ -49,7 +49,7 @@ class PrincipalCollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testFindByUri() {
+    public function testFindByUri(): void {
 
         $backend = new PrincipalBackend\Mock();
         $pc = new PrincipalCollection($backend);

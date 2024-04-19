@@ -142,7 +142,7 @@ class Template extends Smarty {
      * @param string $id Hook ID
      * @param string $tpl File name of template to be included
      */
-    function registerHook($id, $tpl) {
+    function registerHook($id, $tpl): void {
         if (!isset($this->hookTable[$id])) {
             $this->hookTable[$id] = [$tpl];
         } else {

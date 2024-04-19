@@ -60,7 +60,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         /* Events */
         $server->on('propFind',            [$this, 'propFindEarly']);
@@ -136,7 +136,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\INode $node
      * @return void
      */
-    function propFindEarly(DAV\PropFind $propFind, DAV\INode $node) {
+    function propFindEarly(DAV\PropFind $propFind, DAV\INode $node): void {
 
         $ns = '{' . self::NS_CARDDAV . '}';
 
@@ -232,7 +232,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param Xml\Request\AddressBookMultiGetReport $report
      * @return void
      */
-    function addressbookMultiGetReport($report) {
+    function addressbookMultiGetReport($report): void {
 
         $contentType = $report->contentType;
         $version = $report->version;
@@ -285,7 +285,7 @@ class Plugin extends DAV\ServerPlugin {
      *                       changed &$data.
      * @return void
      */
-    function beforeWriteContent($path, DAV\IFile $node, &$data, &$modified) {
+    function beforeWriteContent($path, DAV\IFile $node, &$data, &$modified): void {
 
         if (!$node instanceof ICard)
             return;
@@ -307,7 +307,7 @@ class Plugin extends DAV\ServerPlugin {
      *                       changed &$data.
      * @return void
      */
-    function beforeCreateFile($path, &$data, DAV\ICollection $parentNode, &$modified) {
+    function beforeCreateFile($path, &$data, DAV\ICollection $parentNode, &$modified): void {
 
         if (!$parentNode instanceof IAddressBook)
             return;
@@ -659,7 +659,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\INode $node
      * @return void
      */
-    function propFindLate(DAV\PropFind $propFind, DAV\INode $node) {
+    function propFindLate(DAV\PropFind $propFind, DAV\INode $node): void {
 
         // If the request was made using the SOGO connector, we must rewrite
         // the content-type property. By default SabreDAV will send back
@@ -713,7 +713,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param ResponseInterface $response
      * @return void
      */
-    function httpAfterGet(RequestInterface $request, ResponseInterface $response) {
+    function httpAfterGet(RequestInterface $request, ResponseInterface $response): void {
 
         if (strpos($response->getHeader('Content-Type'), 'text/vcard') === false) {
             return;

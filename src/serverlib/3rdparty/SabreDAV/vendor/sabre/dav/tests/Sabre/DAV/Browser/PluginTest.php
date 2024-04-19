@@ -11,7 +11,7 @@ class PluginTest extends DAV\AbstractServer{
 
     protected $plugin;
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->server->addPlugin($this->plugin = new Plugin());
@@ -19,7 +19,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testCollectionGet() {
+    function testCollectionGet(): void {
 
         $request = new HTTP\Request('GET', '/dir');
         $this->server->httpRequest = $request;
@@ -44,7 +44,7 @@ class PluginTest extends DAV\AbstractServer{
     /**
      * Adding the If-None-Match should have 0 effect, but it threw an error.
      */
-    function testCollectionGetIfNoneMatch() {
+    function testCollectionGetIfNoneMatch(): void {
 
         $request = new HTTP\Request('GET', '/dir');
         $request->setHeader('If-None-Match', '"foo-bar"');
@@ -66,7 +66,7 @@ class PluginTest extends DAV\AbstractServer{
         $this->assertTrue(strpos($body, '<a href="/dir/child.txt">')!==false);
 
     }
-    function testCollectionGetRoot() {
+    function testCollectionGetRoot(): void {
 
         $request = new HTTP\Request('GET', '/');
         $this->server->httpRequest = ($request);
@@ -89,7 +89,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testGETPassthru() {
+    function testGETPassthru(): void {
 
         $request = new HTTP\Request('GET', '/random');
         $response = new HTTP\Response();
@@ -99,7 +99,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testPostOtherContentType() {
+    function testPostOtherContentType(): void {
 
         $request = new HTTP\Request('POST', '/', ['Content-Type' => 'text/xml']);
         $this->server->httpRequest = $request;
@@ -109,7 +109,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testPostNoSabreAction() {
+    function testPostNoSabreAction(): void {
 
         $request = new HTTP\Request('POST', '/', ['Content-Type' => 'application/x-www-form-urlencoded']);
         $request->setPostData([]);
@@ -120,7 +120,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testPostMkCol() {
+    function testPostMkCol(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/',
@@ -147,7 +147,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testGetAsset() {
+    function testGetAsset(): void {
 
         $request = new HTTP\Request('GET', '/?sabreAction=asset&assetName=favicon.ico');
         $this->server->httpRequest = $request;
@@ -164,7 +164,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testGetAsset404() {
+    function testGetAsset404(): void {
 
         $request = new HTTP\Request('GET', '/?sabreAction=asset&assetName=flavicon.ico');
         $this->server->httpRequest = $request;
@@ -174,7 +174,7 @@ class PluginTest extends DAV\AbstractServer{
 
     }
 
-    function testGetAssetEscapeBasePath() {
+    function testGetAssetEscapeBasePath(): void {
 
         $request = new HTTP\Request('GET', '/?sabreAction=asset&assetName=./../assets/favicon.ico');
         $this->server->httpRequest = $request;

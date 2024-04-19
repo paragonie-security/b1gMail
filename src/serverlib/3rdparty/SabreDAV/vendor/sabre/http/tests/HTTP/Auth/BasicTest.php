@@ -7,7 +7,7 @@ use Sabre\HTTP\Response;
 
 class BasicTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetCredentials() {
+    function testGetCredentials(): void {
 
         $request = new Request('GET', '/', [
             'Authorization' => 'Basic ' . base64_encode('user:pass:bla')
@@ -22,7 +22,7 @@ class BasicTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetInvalidCredentialsColonMissing() {
+    function testGetInvalidCredentialsColonMissing(): void {
 
         $request = new Request('GET', '/', [
             'Authorization' => 'Basic ' . base64_encode('userpass')
@@ -34,7 +34,7 @@ class BasicTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetCredentialsNoheader() {
+    function testGetCredentialsNoheader(): void {
 
         $request = new Request('GET', '/', []);
         $basic = new Basic('Dagger', $request, new Response());
@@ -43,7 +43,7 @@ class BasicTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetCredentialsNotBasic() {
+    function testGetCredentialsNotBasic(): void {
 
         $request = new Request('GET', '/', [
             'Authorization' => 'QBasic ' . base64_encode('user:pass:bla')
@@ -54,7 +54,7 @@ class BasicTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRequireLogin() {
+    function testRequireLogin(): void {
 
         $response = new Response();
         $basic = new Basic('Dagger', new Request(), $response);

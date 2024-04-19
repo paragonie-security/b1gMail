@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class Issue166Test extends \PHPUnit_Framework_TestCase {
 
-    function testFlaw() {
+    function testFlaw(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR

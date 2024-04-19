@@ -7,14 +7,14 @@ class MessageDecoratorTest extends \PHPUnit_Framework_TestCase {
     protected $inner;
     protected $outer;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->inner = new Request();
         $this->outer = new RequestDecorator($this->inner);
 
     }
 
-    function testBody() {
+    function testBody(): void {
 
         $this->outer->setBody('foo');
         $this->assertEquals('foo', stream_get_contents($this->inner->getBodyAsStream()));
@@ -26,7 +26,7 @@ class MessageDecoratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testHeaders() {
+    function testHeaders(): void {
 
         $this->outer->setHeaders([
             'a' => 'b',
@@ -50,7 +50,7 @@ class MessageDecoratorTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(['a' => ['b'], 'c' => ['d'], 'e' => ['f']], $this->outer->getHeaders());
     }
 
-    function testHeader() {
+    function testHeader(): void {
 
         $this->assertFalse($this->outer->hasHeader('a'));
         $this->assertFalse($this->inner->hasHeader('a'));
@@ -78,7 +78,7 @@ class MessageDecoratorTest extends \PHPUnit_Framework_TestCase {
         $this->assertNull($this->outer->getHeader('A'));
     }
 
-    function testHttpVersion() {
+    function testHttpVersion(): void {
 
         $this->outer->setHttpVersion('1.0');
 

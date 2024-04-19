@@ -39,7 +39,7 @@ class PLZEditorPlugin extends BMPlugin
         $this->admin_page_title = 'PLZ-Editor';
     }
 
-    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
     {
         if ($lang == 'deutsch') {
             $lang_admin['plzeditor_title'] = 'PLZ-Editor';
@@ -64,7 +64,7 @@ class PLZEditorPlugin extends BMPlugin
         }
     }
 
-    public function AdminHandler()
+    public function AdminHandler(): void
     {
         global $tpl, $bm_prefs, $lang_admin;
 

@@ -101,7 +101,7 @@ abstract class Message implements MessageInterface {
      *
      * @param resource|string $body
      */
-    function setBody($body) {
+    function setBody($body): void {
 
         $this->body = $body;
 
@@ -197,7 +197,7 @@ abstract class Message implements MessageInterface {
      * @param string|string[] $value
      * @return void
      */
-    function setHeader($name, $value) {
+    function setHeader($name, $value): void {
 
         $this->headers[strtolower($name)] = [$name, (array)$value];
 
@@ -214,7 +214,7 @@ abstract class Message implements MessageInterface {
      * @param array $headers
      * @return void
      */
-    function setHeaders(array $headers) {
+    function setHeaders(array $headers): void {
 
         foreach ($headers as $name => $value) {
             $this->setHeader($name, $value);
@@ -233,7 +233,7 @@ abstract class Message implements MessageInterface {
      * @param string $value
      * @return void
      */
-    function addHeader($name, $value) {
+    function addHeader($name, $value): void {
 
         $lName = strtolower($name);
         if (isset($this->headers[$lName])) {
@@ -258,7 +258,7 @@ abstract class Message implements MessageInterface {
      * @param array $headers
      * @return void
      */
-    function addHeaders(array $headers) {
+    function addHeaders(array $headers): void {
 
         foreach ($headers as $name => $value) {
             $this->addHeader($name, $value);
@@ -295,7 +295,7 @@ abstract class Message implements MessageInterface {
      * @param string $version
      * @return void
      */
-    function setHttpVersion($version) {
+    function setHttpVersion($version): void {
 
         $this->httpVersion = $version;
 

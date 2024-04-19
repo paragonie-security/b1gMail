@@ -9,7 +9,7 @@ namespace Sabre\VObject;
  */
 class CliTest extends \PHPUnit_Framework_TestCase {
 
-    public function setUp() {
+    public function setUp(): void {
 
         $this->cli = new CliMock();
         $this->cli->stderr = fopen('php://memory','r+');
@@ -17,7 +17,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testInvalidArg() {
+    public function testInvalidArg(): void {
 
         $this->assertEquals(
             1,
@@ -28,7 +28,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testQuiet() {
+    public function testQuiet(): void {
 
         $this->assertEquals(
             1,
@@ -41,7 +41,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHelp() {
+    public function testHelp(): void {
 
         $this->assertEquals(
             0,
@@ -52,7 +52,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testFormat() {
+    public function testFormat(): void {
 
         $this->assertEquals(
             1,
@@ -66,7 +66,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testFormatInvalid() {
+    public function testFormatInvalid(): void {
 
         $this->assertEquals(
             1,
@@ -80,7 +80,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testInputFormatInvalid() {
+    public function testInputFormatInvalid(): void {
 
         $this->assertEquals(
             1,
@@ -95,7 +95,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    public function testNoInputFile() {
+    public function testNoInputFile(): void {
 
         $this->assertEquals(
             1,
@@ -107,7 +107,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testTooManyArgs() {
+    public function testTooManyArgs(): void {
 
         $this->assertEquals(
             1,
@@ -116,7 +116,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testUnknownCommand() {
+    public function testUnknownCommand(): void {
 
         $this->assertEquals(
             1,
@@ -125,7 +125,7 @@ class CliTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testConvertJson() {
+    public function testConvertJson(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -153,7 +153,7 @@ ICS
 
     }
 
-    public function testConvertJCardPretty() {
+    public function testConvertJCardPretty(): void {
 
         if (version_compare(PHP_VERSION, '5.4.0') < 0) {
             $this->markTestSkipped('This test required PHP 5.4.0');
@@ -196,7 +196,7 @@ JCARD;
 
     }
 
-    public function testConvertJCalFail() {
+    public function testConvertJCalFail(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -217,7 +217,7 @@ ICS
 
     }
 
-    public function testConvertMimeDir() {
+    public function testConvertMimeDir(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -278,7 +278,7 @@ VCF;
 
     }
 
-    public function testConvertDefaultFormats() {
+    public function testConvertDefaultFormats(): void {
 
         $inputStream = fopen('php://memory','r+');
         $outputFile = SABRE_TEMPDIR . 'bar.json';
@@ -293,7 +293,7 @@ VCF;
 
     }
 
-    public function testConvertDefaultFormats2() {
+    public function testConvertDefaultFormats2(): void {
 
         $outputFile = SABRE_TEMPDIR . 'bar.ics';
 
@@ -307,7 +307,7 @@ VCF;
 
     }
 
-    public function testVCard3040() {
+    public function testVCard3040(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -347,7 +347,7 @@ VCF;
 
     }
 
-    public function testVCard4030() {
+    public function testVCard4030(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -387,7 +387,7 @@ VCF;
 
     }
 
-    public function testVCard4021() {
+    public function testVCard4021(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -411,7 +411,7 @@ VCARD
 
     }
 
-    function testValidate() {
+    function testValidate(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -436,7 +436,7 @@ VCARD
 
     }
 
-    function testValidateFail() {
+    function testValidateFail(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -457,7 +457,7 @@ VCARD
 
     }
 
-    function testValidateFail2() {
+    function testValidateFail2(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -478,7 +478,7 @@ VCARD
 
     }
 
-    function testRepair() {
+    function testRepair(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -501,7 +501,7 @@ VCARD
         $this->assertRegExp("/^BEGIN:VCARD\r\nVERSION:2.1\r\nUID:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\r\nEND:VCARD\r\n$/", stream_get_contents($this->cli->stdout));
     }
 
-    function testRepairNothing() {
+    function testRepairNothing(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -541,7 +541,7 @@ VCARD
      *
      * The colorizer is not a critical component, it's mostly a debugging tool.
      */
-    function testColorCalendar() {
+    function testColorCalendar(): void {
 
         $inputStream = fopen('php://memory','r+');
 
@@ -589,7 +589,7 @@ VCARD
      *
      * The colorizer is not a critical component, it's mostly a debugging tool.
      */
-    function testColorVCard() {
+    function testColorVCard(): void {
 
         $inputStream = fopen('php://memory','r+');
 

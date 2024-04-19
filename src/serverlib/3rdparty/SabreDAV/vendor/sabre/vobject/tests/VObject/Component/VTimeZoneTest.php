@@ -7,7 +7,7 @@ use Sabre\VObject\Reader;
 
 class VTimeZoneTest extends \PHPUnit_Framework_TestCase {
 
-    function testValidate() {
+    function testValidate(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR
@@ -31,7 +31,7 @@ HI;
 
     }
 
-    function testGetTimeZone() {
+    function testGetTimeZone(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR

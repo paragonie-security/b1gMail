@@ -9,7 +9,7 @@ require_once 'Sabre/HTTP/ResponseMock.php';
 
 class MultiGetTest extends AbstractPluginTest {
 
-    function testMultiGet() {
+    function testMultiGet(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',
@@ -52,7 +52,7 @@ class MultiGetTest extends AbstractPluginTest {
 
     }
 
-    function testMultiGetVCard4() {
+    function testMultiGetVCard4(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',

@@ -51,7 +51,7 @@ END:VCALENDAR
         ),
     );
 
-    function testExpand() {
+    function testExpand(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',

@@ -10,7 +10,7 @@ require_once 'Sabre/HTTP/ResponseMock.php';
 
 class AddressBookQueryTest extends AbstractPluginTest {
 
-    function testQuery() {
+    function testQuery(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',
@@ -60,7 +60,7 @@ class AddressBookQueryTest extends AbstractPluginTest {
 
     }
 
-    function testQueryDepth0() {
+    function testQueryDepth0(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',
@@ -105,7 +105,7 @@ class AddressBookQueryTest extends AbstractPluginTest {
 
     }
 
-    function testQueryNoMatch() {
+    function testQueryNoMatch(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',
@@ -143,7 +143,7 @@ class AddressBookQueryTest extends AbstractPluginTest {
 
     }
 
-    function testQueryLimit() {
+    function testQueryLimit(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',
@@ -189,7 +189,7 @@ class AddressBookQueryTest extends AbstractPluginTest {
 
     }
 
-    function testJson() {
+    function testJson(): void {
 
         $request = new HTTP\Request(
             'REPORT',
@@ -234,7 +234,7 @@ class AddressBookQueryTest extends AbstractPluginTest {
 
     }
 
-    function testVCard4() {
+    function testVCard4(): void {
 
         $request = new HTTP\Request(
             'REPORT',
@@ -279,7 +279,7 @@ class AddressBookQueryTest extends AbstractPluginTest {
 
     }
 
-    function testAddressBookDepth0() {
+    function testAddressBookDepth0(): void {
 
         $request = new HTTP\Request(
             'REPORT',

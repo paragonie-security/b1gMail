@@ -11,7 +11,7 @@ class Issue26Test extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testExpand() {
+    function testExpand(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR

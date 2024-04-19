@@ -247,7 +247,7 @@ class wbb2AuthPlugin extends BMPlugin
 	 * admin handler
 	 *
 	 */
-	public function AdminHandler()
+	public function AdminHandler(): void
 	{
 		global $tpl, $plugins, $lang_admin;
 		
@@ -272,7 +272,7 @@ class wbb2AuthPlugin extends BMPlugin
 	 * admin prefs page
 	 *
 	 */
-	public function _prefsPage()
+	public function _prefsPage(): void
 	{
 		global $tpl, $db, $bm_prefs;
 		

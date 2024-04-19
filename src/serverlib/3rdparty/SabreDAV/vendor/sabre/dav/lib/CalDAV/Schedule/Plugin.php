@@ -96,7 +96,7 @@ class Plugin extends ServerPlugin {
      * @param Server $server
      * @return void
      */
-    function initialize(Server $server) {
+    function initialize(Server $server): void {
 
         $this->server = $server;
         $server->on('method:POST',          [$this, 'httpPost']);
@@ -197,7 +197,7 @@ class Plugin extends ServerPlugin {
      * @param INode $node
      * @return void
      */
-    function propFind(PropFind $propFind, INode $node) {
+    function propFind(PropFind $propFind, INode $node): void {
 
         if (!$node instanceof DAVACL\IPrincipal) return;
 
@@ -272,7 +272,7 @@ class Plugin extends ServerPlugin {
      * @param mixed $isNew Whether this was a new item or we're updating one
      * @return void
      */
-    function calendarObjectChange(RequestInterface $request, ResponseInterface $response, VCalendar $vCal, $calendarPath, &$modified, $isNew) {
+    function calendarObjectChange(RequestInterface $request, ResponseInterface $response, VCalendar $vCal, $calendarPath, &$modified, $isNew): void {
 
         if (!$this->scheduleReply($this->server->httpRequest)) {
             return;
@@ -301,7 +301,7 @@ class Plugin extends ServerPlugin {
      * @param ITip\Message $itipMessage
      * @return void
      */
-    function deliver(ITip\Message $iTipMessage) {
+    function deliver(ITip\Message $iTipMessage): void {
 
         $this->server->emit('schedule', [$iTipMessage]);
         if (!$iTipMessage->scheduleStatus) {
@@ -325,7 +325,7 @@ class Plugin extends ServerPlugin {
      * @param string $path
      * @return void
      */
-    function beforeUnbind($path) {
+    function beforeUnbind($path): void {
 
         // FIXME: We shouldn't trigger this functionality when we're issuing a
         // MOVE. This is a hack.
@@ -363,7 +363,7 @@ class Plugin extends ServerPlugin {
      * @param ITip\Message $iTipMessage
      * @return void
      */
-    function scheduleLocalDelivery(ITip\Message $iTipMessage) {
+    function scheduleLocalDelivery(ITip\Message $iTipMessage): void {
 
         $aclPlugin = $this->server->getPlugin('acl');
 
@@ -594,7 +594,7 @@ class Plugin extends ServerPlugin {
      * @param ResponseInterface $response
      * @return void
      */
-    function outboxRequest(IOutbox $outboxNode, RequestInterface $request, ResponseInterface $response) {
+    function outboxRequest(IOutbox $outboxNode, RequestInterface $request, ResponseInterface $response): void {
 
         $outboxPath = $request->getPath();
 

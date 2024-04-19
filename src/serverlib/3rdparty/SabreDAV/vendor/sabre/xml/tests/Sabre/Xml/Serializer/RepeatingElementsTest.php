@@ -6,7 +6,7 @@ use Sabre\Xml\Service;
 
 class RepeatingElementsTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $service = new Service();
         $service->namespaceMap['urn:test'] = null;

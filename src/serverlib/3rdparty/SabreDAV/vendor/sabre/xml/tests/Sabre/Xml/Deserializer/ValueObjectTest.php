@@ -7,7 +7,7 @@ use
 
 class ValueObjectTest extends \PHPUnit_Framework_TestCase {
 
-    function testDeserializeValueObject() {
+    function testDeserializeValueObject(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -44,7 +44,7 @@ XML;
 
     }
 
-    function testDeserializeValueObjectIgnoredElement() {
+    function testDeserializeValueObjectIgnoredElement(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -82,7 +82,7 @@ XML;
 
     }
 
-    function testDeserializeValueObjectAutoArray() {
+    function testDeserializeValueObjectAutoArray(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -125,7 +125,7 @@ XML;
         );
 
     }
-    function testDeserializeValueObjectEmpty() {
+    function testDeserializeValueObjectEmpty(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>

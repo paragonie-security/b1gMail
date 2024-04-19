@@ -95,7 +95,7 @@ class Writer extends XMLWriter {
      * @param mixed $value
      * @return void
      */
-    function write($value) {
+    function write($value): void {
 
         Serializer\standardSerializer($this, $value);
 
@@ -186,7 +186,7 @@ class Writer extends XMLWriter {
      * @param string $content
      * @return bool
      */
-    function writeElement($name, $content = null) {
+    function writeElement($name, $content = null): void {
 
         $this->startElement($name);
         if (!is_null($content)) {
@@ -208,7 +208,7 @@ class Writer extends XMLWriter {
      * @param array $attributes
      * @return void
      */
-    function writeAttributes(array $attributes) {
+    function writeAttributes(array $attributes): void {
 
         foreach ($attributes as $name => $value) {
             $this->writeAttribute($name, $value);

@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class ReaderTest extends \PHPUnit_Framework_TestCase {
 
-    function testReadComponent() {
+    function testReadComponent(): void {
 
         $data = "BEGIN:VCALENDAR\r\nEND:VCALENDAR";
 
@@ -15,7 +15,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(0, count($result->children));
 
     }
-    function testReadStream() {
+    function testReadStream(): void {
 
         $data = "BEGIN:VCALENDAR\r\nEND:VCALENDAR";
 
@@ -31,7 +31,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadComponentUnixNewLine() {
+    function testReadComponentUnixNewLine(): void {
 
         $data = "BEGIN:VCALENDAR\nEND:VCALENDAR";
 
@@ -43,7 +43,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadComponentLineFold() {
+    function testReadComponentLineFold(): void {
 
         $data = "BEGIN:\r\n\tVCALENDAR\r\nE\r\n ND:VCALENDAR";
 
@@ -58,7 +58,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\VObject\ParseException
      */
-    function testReadCorruptComponent() {
+    function testReadCorruptComponent(): void {
 
         $data = "BEGIN:VCALENDAR\r\nEND:FOO";
 
@@ -69,7 +69,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\VObject\ParseException
      */
-    function testReadCorruptSubComponent() {
+    function testReadCorruptSubComponent(): void {
 
         $data = "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nEND:FOO\r\nEND:VCALENDAR";
 
@@ -77,7 +77,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadProperty() {
+    function testReadProperty(): void {
 
         $data = "BEGIN:VCALENDAR\r\nSUMMARY:propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -89,7 +89,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyWithNewLine() {
+    function testReadPropertyWithNewLine(): void {
 
         $data = "BEGIN:VCALENDAR\r\nSUMMARY:Line1\\nLine2\\NLine3\\\\Not the 4th line!\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -101,7 +101,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadMappedProperty() {
+    function testReadMappedProperty(): void {
 
         $data = "BEGIN:VCALENDAR\r\nDTSTART:20110529\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -113,7 +113,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadMappedPropertyGrouped() {
+    function testReadMappedPropertyGrouped(): void {
 
         $data = "BEGIN:VCALENDAR\r\nfoo.DTSTART:20110529\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -128,14 +128,14 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\VObject\ParseException
      */
-    function testReadBrokenLine() {
+    function testReadBrokenLine(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;propValue";
         $result = Reader::read($data);
 
     }
 
-    function testReadPropertyInComponent() {
+    function testReadPropertyInComponent(): void {
 
         $data = array(
             "BEGIN:VCALENDAR",
@@ -154,7 +154,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadNestedComponent() {
+    function testReadNestedComponent(): void {
 
         $data = array(
             "BEGIN:VCALENDAR",
@@ -179,7 +179,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyParameter() {
+    function testReadPropertyParameter(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;PARAMNAME=paramvalue:propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -195,7 +195,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyRepeatingParameter() {
+    function testReadPropertyRepeatingParameter(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;N=1;N=2;N=3,4;N=\"5\",6;N=\"7,8\";N=9,10;N=^'11^':propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -212,7 +212,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyRepeatingNamelessGuessedParameter() {
+    function testReadPropertyRepeatingNamelessGuessedParameter(): void {
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;WORK;VOICE;PREF:propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
 
@@ -228,7 +228,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyNoName() {
+    function testReadPropertyNoName(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;PRODIGY:propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -245,7 +245,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyParameterExtraColon() {
+    function testReadPropertyParameterExtraColon(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;PARAMNAME=paramvalue:propValue:anotherrandomstring\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -261,7 +261,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadProperty2Parameters() {
+    function testReadProperty2Parameters(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;PARAMNAME=paramvalue;PARAMNAME2=paramvalue2:propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -279,7 +279,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyParameterQuoted() {
+    function testReadPropertyParameterQuoted(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;PARAMNAME=\"paramvalue\":propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -295,7 +295,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyParameterNewLines() {
+    function testReadPropertyParameterNewLines(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;PARAMNAME=paramvalue1^nvalue2^^nvalue3:propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -312,7 +312,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadPropertyParameterQuotedColon() {
+    function testReadPropertyParameterQuotedColon(): void {
 
         $data = "BEGIN:VCALENDAR\r\nPROPNAME;PARAMNAME=\"param:value\":propValue\r\nEND:VCALENDAR";
         $result = Reader::read($data);
@@ -327,7 +327,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadForgiving() {
+    function testReadForgiving(): void {
 
         $data = array(
             "BEGIN:VCALENDAR",
@@ -357,7 +357,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadWithInvalidLine() {
+    function testReadWithInvalidLine(): void {
 
         $data = array(
             "BEGIN:VCALENDAR",
@@ -393,7 +393,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase {
      *
      * @expectedException \Sabre\VObject\ParseException
      */
-    public function testReadIncompleteFile() {
+    public function testReadIncompleteFile(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR
@@ -429,13 +429,13 @@ ICS;
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testReadBrokenInput() {
+    public function testReadBrokenInput(): void {
 
         Reader::read(false);
 
     }
 
-    public function testReadBOM() {
+    public function testReadBOM(): void {
 
         $data = chr(0xef) . chr(0xbb) . chr(0xbf) . "BEGIN:VCALENDAR\r\nEND:VCALENDAR";
         $result = Reader::read($data);

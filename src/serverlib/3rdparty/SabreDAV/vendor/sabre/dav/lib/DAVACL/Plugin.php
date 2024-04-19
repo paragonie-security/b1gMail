@@ -671,7 +671,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $this->server = $server;
         $server->on('propFind',            [$this, 'propFind'], 20);
@@ -722,7 +722,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param ResponseInterface $response
      * @return void
      */
-    function beforeMethod(RequestInterface $request, ResponseInterface $response) {
+    function beforeMethod(RequestInterface $request, ResponseInterface $response): void {
 
         $method = $request->getMethod();
         $path = $request->getPath();
@@ -790,7 +790,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param string $uri
      * @return void
      */
-    function beforeBind($uri) {
+    function beforeBind($uri): void {
 
         list($parentUri) = Uri\split($uri);
         $this->checkPrivileges($parentUri, '{DAV:}bind');
@@ -806,7 +806,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param string $uri
      * @return void
      */
-    function beforeUnbind($uri) {
+    function beforeUnbind($uri): void {
 
         list($parentUri) = Uri\split($uri);
         $this->checkPrivileges($parentUri, '{DAV:}unbind', self::R_RECURSIVEPARENTS);
@@ -947,7 +947,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\PropPatch $propPatch
      * @return void
      */
-    function propPatch($path, DAV\PropPatch $propPatch) {
+    function propPatch($path, DAV\PropPatch $propPatch): void {
 
         $propPatch->handle('{DAV:}group-member-set', function($value) use ($path) {
             if (is_null($value)) {

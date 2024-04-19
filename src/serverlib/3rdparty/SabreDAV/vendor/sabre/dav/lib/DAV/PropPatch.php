@@ -77,7 +77,7 @@ class PropPatch {
      * @param callable $callback
      * @return void
      */
-    function handle($properties, callable $callback) {
+    function handle($properties, callable $callback): void {
 
         $usedProperties = [];
         foreach ((array)$properties as $propertyName) {
@@ -113,7 +113,7 @@ class PropPatch {
      * @param callable $callback
      * @return void
      */
-    function handleRemaining(callable $callback) {
+    function handleRemaining(callable $callback): void {
 
         $properties = $this->getRemainingMutations();
         if (!$properties) {
@@ -140,7 +140,7 @@ class PropPatch {
      * @param int $resultCode
      * @return void
      */
-    function setResultCode($properties, $resultCode) {
+    function setResultCode($properties, $resultCode): void {
 
         foreach ((array)$properties as $propertyName) {
             $this->result[$propertyName] = $resultCode;
@@ -158,7 +158,7 @@ class PropPatch {
      * @param int $resultCode
      * @return void
      */
-    function setRemainingResultCode($resultCode) {
+    function setRemainingResultCode($resultCode): void {
 
         $this->setResultCode(
             $this->getRemainingMutations(),
@@ -266,7 +266,7 @@ class PropPatch {
      * @param callable $callback
      * @return void
      */
-    private function doCallBackSingleProp($propertyName, callable $callback) {
+    private function doCallBackSingleProp($propertyName, callable $callback): void {
 
         $result = $callback($this->mutations[$propertyName]);
         if (is_bool($result)) {
@@ -300,7 +300,7 @@ class PropPatch {
      * @param callable $callback
      * @return void
      */
-    private function doCallBackMultiProp(array $propertyList, callable $callback) {
+    private function doCallBackMultiProp(array $propertyList, callable $callback): void {
 
         $argument = [];
         foreach ($propertyList as $propertyName) {

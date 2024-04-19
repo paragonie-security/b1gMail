@@ -10,7 +10,7 @@ class CalendarQueryReportTest extends XmlTest {
         '{urn:ietf:params:xml:ns:caldav}calendar-query' => 'Sabre\\CalDAV\\Xml\\Request\CalendarQueryReport',
     ];
 
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -47,7 +47,7 @@ XML;
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeNoFilter() {
+    function testDeserializeNoFilter(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -62,7 +62,7 @@ XML;
 
     }
 
-    function testDeserializeComplex() {
+    function testDeserializeComplex(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -217,7 +217,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeDoubleTopCompFilter() {
+    function testDeserializeDoubleTopCompFilter(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -242,7 +242,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeMissingExpandEnd() {
+    function testDeserializeMissingExpandEnd(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -266,7 +266,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeExpandEndBeforeStart() {
+    function testDeserializeExpandEndBeforeStart(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -290,7 +290,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeTimeRangeOnVCALENDAR() {
+    function testDeserializeTimeRangeOnVCALENDAR(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -314,7 +314,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeTimeRangeEndBeforeStart() {
+    function testDeserializeTimeRangeEndBeforeStart(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -340,7 +340,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeTimeRangePropEndBeforeStart() {
+    function testDeserializeTimeRangePropEndBeforeStart(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>

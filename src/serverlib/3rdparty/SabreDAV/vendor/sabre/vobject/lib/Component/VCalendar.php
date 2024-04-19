@@ -250,7 +250,7 @@ class VCalendar extends VObject\Document {
      *                     times.
      * @return void
      */
-    function expand(DateTime $start, DateTime $end, DateTimeZone $timeZone = null) {
+    function expand(DateTime $start, DateTime $end, DateTimeZone $timeZone = null): void {
 
         $newEvents = array();
 

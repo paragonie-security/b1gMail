@@ -55,7 +55,7 @@ class XmlFragment implements Element {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         $reader = new Reader();
 

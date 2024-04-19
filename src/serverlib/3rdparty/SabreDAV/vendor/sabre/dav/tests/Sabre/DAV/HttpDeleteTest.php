@@ -19,7 +19,7 @@ class HttpDeleteTest extends DAVServerTest {
      *
      * @return void
      */
-    public function setUpTree() {
+    public function setUpTree(): void {
 
         $this->tree = new Mock\Collection('root', [
             'file1' => 'foo',
@@ -34,7 +34,7 @@ class HttpDeleteTest extends DAVServerTest {
     /**
      * A successful DELETE
      */
-    public function testDelete() {
+    public function testDelete(): void {
 
         $request = new HTTP\Request('DELETE', '/file1');
 
@@ -59,7 +59,7 @@ class HttpDeleteTest extends DAVServerTest {
     /**
      * Deleting a Directory
      */
-    public function testDeleteDirectory() {
+    public function testDeleteDirectory(): void {
 
         $request = new HTTP\Request('DELETE', '/dir');
 
@@ -84,7 +84,7 @@ class HttpDeleteTest extends DAVServerTest {
     /**
      * DELETE on a node that does not exist
      */
-    public function testDeleteNotFound() {
+    public function testDeleteNotFound(): void {
 
         $request = new HTTP\Request('DELETE', '/file2');
         $response = $this->request($request);
@@ -100,7 +100,7 @@ class HttpDeleteTest extends DAVServerTest {
     /**
      * DELETE with preconditions
      */
-    public function testDeletePreconditions() {
+    public function testDeletePreconditions(): void {
 
         $request = new HTTP\Request('DELETE', '/file1', [
             'If-Match' => '"' . md5('foo') . '"',
@@ -119,7 +119,7 @@ class HttpDeleteTest extends DAVServerTest {
     /**
      * DELETE with incorrect preconditions
      */
-    public function testDeletePreconditionsFailed() {
+    public function testDeletePreconditionsFailed(): void {
 
         $request = new HTTP\Request('DELETE', '/file1', [
             'If-Match' => '"' . md5('bar') . '"',

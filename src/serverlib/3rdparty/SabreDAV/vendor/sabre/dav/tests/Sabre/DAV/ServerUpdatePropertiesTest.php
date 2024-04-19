@@ -5,7 +5,7 @@ use Sabre\HTTP;
 
 class ServerUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
-    function testUpdatePropertiesFail() {
+    function testUpdatePropertiesFail(): void {
 
         $tree = array(
             new SimpleCollection('foo'),
@@ -23,7 +23,7 @@ class ServerUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdatePropertiesProtected() {
+    function testUpdatePropertiesProtected(): void {
 
         $tree = array(
             new SimpleCollection('foo'),
@@ -46,7 +46,7 @@ class ServerUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdatePropertiesEventFail() {
+    function testUpdatePropertiesEventFail(): void {
 
         $tree = array(
             new SimpleCollection('foo'),
@@ -81,7 +81,7 @@ class ServerUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testUpdatePropertiesEventSuccess() {
+    function testUpdatePropertiesEventSuccess(): void {
 
         $tree = array(
             new SimpleCollection('foo'),
@@ -111,7 +111,7 @@ class ServerUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function updatePropSuccess(&$propertyDelta, &$result, $node) {
+    function updatePropSuccess(&$propertyDelta, &$result, $node): void {
 
         $result[200] = array(
             '{DAV:}foo' => null,

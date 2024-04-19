@@ -102,7 +102,7 @@ class BMWebdiskFile extends BMWebdiskNode implements Sabre\DAV\IFile
 		return($this->fileID);
 	}
 
-	public function setName($name)
+	public function setName($name): void
 	{
 		global $wds;
 
@@ -114,7 +114,7 @@ class BMWebdiskFile extends BMWebdiskNode implements Sabre\DAV\IFile
 		$this->path = $parentPath . '/' . $newName;
 	}
 
-	public function put($data)
+	public function put($data): void
 	{
 		global $wds, $db;
 
@@ -182,7 +182,7 @@ class BMWebdiskFile extends BMWebdiskNode implements Sabre\DAV\IFile
 		return($sourceFP);
 	}
 
-	public function delete()
+	public function delete(): void
 	{
 		global $wds;
 
@@ -258,7 +258,7 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 		return($this->folderID);
 	}
 
-	public function setName($name)
+	public function setName($name): void
 	{
 		global $wds;
 
@@ -270,7 +270,7 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 		$this->path = $parentPath . '/' . $newName;
 	}
 
-	public function createFile($name, $data = null)
+	public function createFile($name, $data = null): void
 	{
 		global $wds, $db;
 
@@ -312,7 +312,7 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 		BMBlobStorage::createDefaultWebdiskProvider($wds->userRow['id'])->storeBlob(BMBLOB_TYPE_WEBDISK, $fileID, $data);
 	}
 
-	public function createDirectory($name)
+	public function createDirectory($name): void
 	{
 		global $wds;
 
@@ -369,7 +369,7 @@ class BMWebdiskDirectory extends BMWebdiskNode implements Sabre\DAV\ICollection,
 			|| $wds->webdisk->FolderExists($this->getFolderID(), $name));
 	}
 
-	public function delete()
+	public function delete(): void
 	{
 		global $wds;
 
@@ -402,7 +402,7 @@ class BMWebdiskAuthBackend extends BMAuthBackend
 		return($this->groupRow['webdav'] == 'yes');
 	}
 
-	function setupState()
+	function setupState(): void
 	{
 		global $wds;
 

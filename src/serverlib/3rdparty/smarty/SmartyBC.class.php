@@ -65,7 +65,7 @@ class SmartyBC extends Smarty
      * @param string $tpl_var the template variable name
      * @param mixed  &$value  the referenced value to assign
      */
-    public function assign_by_ref($tpl_var, &$value)
+    public function assign_by_ref($tpl_var, &$value): void
     {
         $this->assignByRef($tpl_var, $value);
     }
@@ -77,7 +77,7 @@ class SmartyBC extends Smarty
      * @param mixed   &$value  the referenced value to append
      * @param boolean $merge   flag if array elements shall be merged
      */
-    public function append_by_ref($tpl_var, &$value, $merge = false)
+    public function append_by_ref($tpl_var, &$value, $merge = false): void
     {
         $this->appendByRef($tpl_var, $value, $merge);
     }
@@ -87,7 +87,7 @@ class SmartyBC extends Smarty
      *
      * @param string $tpl_var the template variable to clear
      */
-    public function clear_assign($tpl_var)
+    public function clear_assign($tpl_var): void
     {
         $this->clearAssign($tpl_var);
     }
@@ -102,7 +102,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function register_function($function, $function_impl, $cacheable = true, $cache_attrs = null)
+    public function register_function($function, $function_impl, $cacheable = true, $cache_attrs = null): void
     {
         $this->registerPlugin('function', $function, $function_impl, $cacheable, $cache_attrs);
     }
@@ -112,7 +112,7 @@ class SmartyBC extends Smarty
      *
      * @param string $function name of template function
      */
-    public function unregister_function($function)
+    public function unregister_function($function): void
     {
         $this->unregisterPlugin('function', $function);
     }
@@ -135,7 +135,7 @@ class SmartyBC extends Smarty
         $allowed = array(),
         $smarty_args = true,
         $block_methods = array()
-    ) {
+    ): void {
         settype($allowed, 'array');
         settype($smarty_args, 'boolean');
         $this->registerObject($object, $object_impl, $allowed, $smarty_args, $block_methods);
@@ -146,7 +146,7 @@ class SmartyBC extends Smarty
      *
      * @param string $object name of template object
      */
-    public function unregister_object($object)
+    public function unregister_object($object): void
     {
         $this->unregisterObject($object);
     }
@@ -161,7 +161,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function register_block($block, $block_impl, $cacheable = true, $cache_attrs = null)
+    public function register_block($block, $block_impl, $cacheable = true, $cache_attrs = null): void
     {
         $this->registerPlugin('block', $block, $block_impl, $cacheable, $cache_attrs);
     }
@@ -171,7 +171,7 @@ class SmartyBC extends Smarty
      *
      * @param string $block name of template function
      */
-    public function unregister_block($block)
+    public function unregister_block($block): void
     {
         $this->unregisterPlugin('block', $block);
     }
@@ -185,7 +185,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function register_compiler_function($function, $function_impl, $cacheable = true)
+    public function register_compiler_function($function, $function_impl, $cacheable = true): void
     {
         $this->registerPlugin('compiler', $function, $function_impl, $cacheable);
     }
@@ -195,7 +195,7 @@ class SmartyBC extends Smarty
      *
      * @param string $function name of template function
      */
-    public function unregister_compiler_function($function)
+    public function unregister_compiler_function($function): void
     {
         $this->unregisterPlugin('compiler', $function);
     }
@@ -208,7 +208,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function register_modifier($modifier, $modifier_impl)
+    public function register_modifier($modifier, $modifier_impl): void
     {
         $this->registerPlugin('modifier', $modifier, $modifier_impl);
     }
@@ -218,7 +218,7 @@ class SmartyBC extends Smarty
      *
      * @param string $modifier name of template modifier
      */
-    public function unregister_modifier($modifier)
+    public function unregister_modifier($modifier): void
     {
         $this->unregisterPlugin('modifier', $modifier);
     }
@@ -229,7 +229,7 @@ class SmartyBC extends Smarty
      * @param string $type      name of resource
      * @param array  $functions array of functions to handle resource
      */
-    public function register_resource($type, $functions)
+    public function register_resource($type, $functions): void
     {
         $this->registerResource($type, $functions);
     }
@@ -239,7 +239,7 @@ class SmartyBC extends Smarty
      *
      * @param string $type name of resource
      */
-    public function unregister_resource($type)
+    public function unregister_resource($type): void
     {
         $this->unregisterResource($type);
     }
@@ -252,7 +252,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function register_prefilter($function)
+    public function register_prefilter($function): void
     {
         $this->registerFilter('pre', $function);
     }
@@ -262,7 +262,7 @@ class SmartyBC extends Smarty
      *
      * @param callable $function
      */
-    public function unregister_prefilter($function)
+    public function unregister_prefilter($function): void
     {
         $this->unregisterFilter('pre', $function);
     }
@@ -275,7 +275,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function register_postfilter($function)
+    public function register_postfilter($function): void
     {
         $this->registerFilter('post', $function);
     }
@@ -285,7 +285,7 @@ class SmartyBC extends Smarty
      *
      * @param callable $function
      */
-    public function unregister_postfilter($function)
+    public function unregister_postfilter($function): void
     {
         $this->unregisterFilter('post', $function);
     }
@@ -298,7 +298,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function register_outputfilter($function)
+    public function register_outputfilter($function): void
     {
         $this->registerFilter('output', $function);
     }
@@ -308,7 +308,7 @@ class SmartyBC extends Smarty
      *
      * @param callable $function
      */
-    public function unregister_outputfilter($function)
+    public function unregister_outputfilter($function): void
     {
         $this->unregisterFilter('output', $function);
     }
@@ -321,7 +321,7 @@ class SmartyBC extends Smarty
      *
      * @throws \SmartyException
      */
-    public function load_filter($type, $name)
+    public function load_filter($type, $name): void
     {
         $this->loadFilter($type, $name);
     }
@@ -372,7 +372,7 @@ class SmartyBC extends Smarty
     /**
      * clear all the assigned template variables.
      */
-    public function clear_all_assign()
+    public function clear_all_assign(): void
     {
         $this->clearAllAssign();
     }
@@ -437,7 +437,7 @@ class SmartyBC extends Smarty
      * @param string $section
      * @param string $scope
      */
-    public function config_load($file, $section = null, $scope = 'global')
+    public function config_load($file, $section = null, $scope = 'global'): void
     {
         $this->ConfigLoad($file, $section, $scope);
     }
@@ -459,7 +459,7 @@ class SmartyBC extends Smarty
      *
      * @param string $var
      */
-    public function clear_config($var = null)
+    public function clear_config($var = null): void
     {
         $this->clearConfig($var);
     }
@@ -470,7 +470,7 @@ class SmartyBC extends Smarty
      * @param string  $error_msg
      * @param integer $error_type
      */
-    public function trigger_error($error_msg, $error_type = E_USER_WARNING)
+    public function trigger_error($error_msg, $error_type = E_USER_WARNING): void
     {
         trigger_error("Smarty error: $error_msg", $error_type);
     }

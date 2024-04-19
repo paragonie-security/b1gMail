@@ -14,7 +14,7 @@ class ServerRangeTest extends AbstractServer{
 
     }
 
-    function testRange() {
+    function testRange(): void {
 
         $request = new HTTP\Request(
             'GET',
@@ -44,7 +44,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testStartRange() {
+    function testStartRange(): void {
 
         $request = new HTTP\Request(
             'GET',
@@ -75,7 +75,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testEndRange() {
+    function testEndRange(): void {
 
         $request = new HTTP\Request(
             'GET',
@@ -106,7 +106,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testTooHighRange() {
+    function testTooHighRange(): void {
 
         $request = new HTTP\Request(
             'GET',
@@ -124,7 +124,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testCrazyRange() {
+    function testCrazyRange(): void {
 
         $request = new HTTP\Request(
             'GET',
@@ -142,7 +142,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testIfRangeEtag() {
+    function testIfRangeEtag(): void {
 
         $node = $this->server->tree->getNodeForPath('test.txt');
 
@@ -175,7 +175,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testIfRangeEtagIncorrect() {
+    function testIfRangeEtagIncorrect(): void {
 
         $node = $this->server->tree->getNodeForPath('test.txt');
 
@@ -210,7 +210,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testIfRangeModificationDate() {
+    function testIfRangeModificationDate(): void {
 
         $node = $this->server->tree->getNodeForPath('test.txt');
 
@@ -246,7 +246,7 @@ class ServerRangeTest extends AbstractServer{
     /**
      * @depends testRange
      */
-    function testIfRangeModificationDateModified() {
+    function testIfRangeModificationDateModified(): void {
 
         $node = $this->server->tree->getNodeForPath('test.txt');
 

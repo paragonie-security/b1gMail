@@ -260,7 +260,7 @@ class JoomlaAuthPlugin extends BMPlugin
 	 * admin handler
 	 *
 	 */
-	function AdminHandler()
+	function AdminHandler(): void
 	{
 		global $tpl, $plugins, $lang_admin;
 
@@ -286,7 +286,7 @@ class JoomlaAuthPlugin extends BMPlugin
 	 * admin prefs page
 	 *
 	 */
-	function _prefsPage()
+	function _prefsPage(): void
 	{
 		global $tpl, $db, $bm_prefs;
 

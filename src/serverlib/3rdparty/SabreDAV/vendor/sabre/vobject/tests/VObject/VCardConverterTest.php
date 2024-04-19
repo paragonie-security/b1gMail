@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class VCardConverterTest extends TestCase {
 
-    function testConvert30to40() {
+    function testConvert30to40(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -47,7 +47,7 @@ OUT;
 
     }
 
-    function testConvert40to40() {
+    function testConvert40to40(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -85,7 +85,7 @@ OUT;
 
     }
 
-    function testConvert21to40() {
+    function testConvert21to40(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -124,7 +124,7 @@ OUT;
 
     }
 
-    function testConvert30to30() {
+    function testConvert30to30(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -164,7 +164,7 @@ OUT;
 
     }
 
-    function testConvert40to30() {
+    function testConvert40to30(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -205,7 +205,7 @@ OUT;
 
     }
 
-    function testConvertGroupCard() {
+    function testConvertGroupCard(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -251,7 +251,7 @@ OUT;
 
     }
 
-    function testBDAYConversion() {
+    function testBDAYConversion(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -300,7 +300,7 @@ OUT;
     /**
      * @expectedException InvalidArgumentException
      */
-    function testUnknownSourceVCardVersion() {
+    function testUnknownSourceVCardVersion(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -327,7 +327,7 @@ IN;
     /**
      * @expectedException InvalidArgumentException
      */
-    function testUnknownTargetVCardVersion() {
+    function testUnknownTargetVCardVersion(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -342,7 +342,7 @@ IN;
 
     }
 
-    function testConvertIndividualCard() {
+    function testConvertIndividualCard(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -386,7 +386,7 @@ OUT;
 
     }
 
-    function testAnniversary() {
+    function testAnniversary(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -433,7 +433,7 @@ OUT;
 
     }
 
-    function testMultipleAnniversaries() {
+    function testMultipleAnniversaries(): void {
 
         $input = <<<IN
 BEGIN:VCARD
@@ -488,7 +488,7 @@ OUT;
 
     }
 
-    function testNoLabel() {
+    function testNoLabel(): void {
 
       $input = <<<VCF
 BEGIN:VCARD

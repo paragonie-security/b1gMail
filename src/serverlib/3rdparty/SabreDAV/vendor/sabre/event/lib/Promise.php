@@ -140,7 +140,7 @@ class Promise {
      * @param mixed $value
      * @return void
      */
-    function fulfill($value = null) {
+    function fulfill($value = null): void {
         if ($this->state !== self::PENDING) {
             throw new PromiseAlreadyResolvedException('This promise is already resolved, and you\'re not allowed to resolve a promise more than once');
         }
@@ -157,7 +157,7 @@ class Promise {
      * @param mixed $reason
      * @return void
      */
-    function reject($reason = null) {
+    function reject($reason = null): void {
         if ($this->state !== self::PENDING) {
             throw new PromiseAlreadyResolvedException('This promise is already resolved, and you\'re not allowed to resolve a promise more than once');
         }

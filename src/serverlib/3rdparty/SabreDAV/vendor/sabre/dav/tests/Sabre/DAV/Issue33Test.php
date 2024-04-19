@@ -8,13 +8,13 @@ require_once 'Sabre/TestUtil.php';
 
 class Issue33Test extends \PHPUnit_Framework_TestCase {
 
-    function setUp() {
+    function setUp(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
     }
 
-    function testCopyMoveInfo() {
+    function testCopyMoveInfo(): void {
 
         $bar = new SimpleCollection('bar');
         $root = new SimpleCollection('webdav',array($bar));
@@ -40,7 +40,7 @@ class Issue33Test extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testTreeMove() {
+    function testTreeMove(): void {
 
         mkdir(SABRE_TEMPDIR . '/issue33');
         $dir = new FS\Directory(SABRE_TEMPDIR . '/issue33');
@@ -55,7 +55,7 @@ class Issue33Test extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDirName() {
+    function testDirName(): void {
 
         $dirname1 = 'bar';
         $dirname2 = urlencode('%C3%A0fo%C3%B3');;
@@ -68,7 +68,7 @@ class Issue33Test extends \PHPUnit_Framework_TestCase {
      * @depends testTreeMove
      * @depends testCopyMoveInfo
      */
-    function testEverything() {
+    function testEverything(): void {
 
         // Request object
         $serverVars = array(

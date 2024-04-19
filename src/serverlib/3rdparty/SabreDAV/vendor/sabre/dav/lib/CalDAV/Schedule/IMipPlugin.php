@@ -60,7 +60,7 @@ class IMipPlugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $server->on('schedule', [$this, 'schedule'], 120);
 
@@ -86,7 +86,7 @@ class IMipPlugin extends DAV\ServerPlugin {
      * @param ITip\Message $iTipMessage
      * @return void
      */
-    function schedule(ITip\Message $iTipMessage) {
+    function schedule(ITip\Message $iTipMessage): void {
 
         // Not sending any emails if the system considers the update
         // insignificant.

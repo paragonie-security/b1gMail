@@ -16,7 +16,7 @@ class HomeCollectionTest extends \PHPUnit_Framework_TestCase {
     protected $path;
     protected $name = 'thuis';
 
-    function setUp() {
+    function setUp(): void {
 
         $principalBackend = new PrincipalBackend();
 
@@ -28,13 +28,13 @@ class HomeCollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
     }
 
-    function testGetName() {
+    function testGetName(): void {
 
         $this->assertEquals(
             $this->name,
@@ -43,7 +43,7 @@ class HomeCollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChild() {
+    function testGetChild(): void {
 
         $child = $this->sut->getChild('user1');
         $this->assertInstanceOf('Sabre\\DAVACL\\FS\\Collection', $child);
@@ -68,7 +68,7 @@ class HomeCollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
 
         $this->assertNull(
             $this->sut->getOwner()
@@ -76,7 +76,7 @@ class HomeCollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $this->assertNull(
             $this->sut->getGroup()
@@ -84,7 +84,7 @@ class HomeCollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $acl = [
             [
@@ -104,13 +104,13 @@ class HomeCollectionTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    function testSetAcl() {
+    function testSetAcl(): void {
 
         $this->sut->setACL([]);
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $this->assertNull(
             $this->sut->getSupportedPrivilegeSet()

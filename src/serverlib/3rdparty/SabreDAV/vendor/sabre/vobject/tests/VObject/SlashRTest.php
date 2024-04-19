@@ -8,7 +8,7 @@ namespace Sabre\VObject;
  */
 class SlashRTest extends \PHPUnit_Framework_TestCase {
 
-    function testEncode() {
+    function testEncode(): void {
 
         $vcal = new Component\VCalendar();
         $prop = $vcal->add('test', "abc\r\ndef");

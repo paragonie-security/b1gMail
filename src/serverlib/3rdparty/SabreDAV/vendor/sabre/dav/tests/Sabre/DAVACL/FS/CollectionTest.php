@@ -4,20 +4,20 @@ namespace Sabre\DAVACL\FS;
 
 class CollectionTest extends FileTest {
 
-    function setUp() {
+    function setUp(): void {
 
         $this->path = SABRE_TEMPDIR;
         $this->sut = new Collection($this->path, $this->acl, $this->owner);
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
     }
 
-    function testGetChildFile() {
+    function testGetChildFile(): void {
 
         file_put_contents(SABRE_TEMPDIR . '/file.txt', 'hello');
         $child = $this->sut->getChild('file.txt');
@@ -29,7 +29,7 @@ class CollectionTest extends FileTest {
 
     }
 
-    function testGetChildDirectory() {
+    function testGetChildDirectory(): void {
 
         mkdir(SABRE_TEMPDIR . '/dir');
         $child = $this->sut->getChild('dir');

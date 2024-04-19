@@ -10,7 +10,7 @@ require_once 'Sabre/DAV/AbstractServer.php';
 
 class SupportedReportSetTest extends DAV\AbstractServer {
 
-    function sendPROPFIND($body) {
+    function sendPROPFIND($body): void {
 
         $serverVars = [
             'REQUEST_URI'         => '/',
@@ -28,7 +28,7 @@ class SupportedReportSetTest extends DAV\AbstractServer {
 
     /**
      */
-    function testNoReports() {
+    function testNoReports(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">
@@ -61,7 +61,7 @@ class SupportedReportSetTest extends DAV\AbstractServer {
     /**
      * @depends testNoReports
      */
-    function testCustomReport() {
+    function testCustomReport(): void {
 
         // Intercepting the report property
         $this->server->on('propFind', function(DAV\PropFind $propFind, DAV\INode $node) {

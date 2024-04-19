@@ -94,7 +94,7 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
      */
     protected $autoLogin = null;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->setUpBackends();
         $this->setUpTree();
@@ -173,7 +173,7 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
     /**
      * Override this to provide your own Tree for your test-case.
      */
-    function setUpTree() {
+    function setUpTree(): void {
 
         if ($this->setupCalDAV) {
             $this->tree[] = new CalDAV\CalendarRoot(
@@ -201,7 +201,7 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function setUpBackends() {
+    function setUpBackends(): void {
 
         if ($this->setupCalDAVSharing && is_null($this->caldavBackend)) {
             $this->caldavBackend = new CalDAV\Backend\MockSharing($this->caldavCalendars, $this->caldavCalendarObjects);
@@ -229,7 +229,7 @@ abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function assertHTTPStatus($expectedStatus, HTTP\Request $req) {
+    function assertHTTPStatus($expectedStatus, HTTP\Request $req): void {
 
         $resp = $this->request($req);
         $this->assertEquals((int)$expectedStatus, (int)$resp->status,'Incorrect HTTP status received: ' . $resp->body);

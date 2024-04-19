@@ -13,7 +13,7 @@ class ServerPluginTest extends AbstractServer {
      */
     protected $testPlugin;
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
 
@@ -25,7 +25,7 @@ class ServerPluginTest extends AbstractServer {
 
     /**
      */
-    function testBaseClass() {
+    function testBaseClass(): void {
 
         $p = new ServerPluginMock();
         $this->assertEquals([],$p->getFeatures());
@@ -40,7 +40,7 @@ class ServerPluginTest extends AbstractServer {
 
     }
 
-    function testOptions() {
+    function testOptions(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/',
@@ -67,25 +67,25 @@ class ServerPluginTest extends AbstractServer {
 
     }
 
-    function testGetPlugin() {
+    function testGetPlugin(): void {
 
         $this->assertEquals($this->testPlugin,$this->server->getPlugin(get_class($this->testPlugin)));
 
     }
 
-    function testUnknownPlugin() {
+    function testUnknownPlugin(): void {
 
         $this->assertNull($this->server->getPlugin('SomeRandomClassName'));
 
     }
 
-    function testGetSupportedReportSet() {
+    function testGetSupportedReportSet(): void {
 
         $this->assertEquals(array(), $this->testPlugin->getSupportedReportSet('/'));
 
     }
 
-    function testGetPlugins() {
+    function testGetPlugins(): void {
 
         $this->assertEquals(
             array(

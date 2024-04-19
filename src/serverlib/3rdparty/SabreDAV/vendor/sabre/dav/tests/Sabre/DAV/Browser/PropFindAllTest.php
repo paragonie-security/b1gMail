@@ -4,7 +4,7 @@ namespace Sabre\DAV\Browser;
 
 class PropFindAllTest extends \PHPUnit_Framework_TestCase {
 
-    function testHandleSimple() {
+    function testHandleSimple(): void {
 
         $pf = new PropFindAll('foo');
         $pf->handle('{DAV:}displayname', 'foo');
@@ -15,7 +15,7 @@ class PropFindAllTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testHandleCallBack() {
+    function testHandleCallBack(): void {
 
         $pf = new PropFindAll('foo');
         $pf->handle('{DAV:}displayname', function() { return 'foo'; });
@@ -25,7 +25,7 @@ class PropFindAllTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSet() {
+    function testSet(): void {
 
         $pf = new PropFindAll('foo');
         $pf->set('{DAV:}displayname', 'foo');
@@ -35,7 +35,7 @@ class PropFindAllTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetNull() {
+    function testSetNull(): void {
 
         $pf = new PropFindAll('foo');
         $pf->set('{DAV:}displayname', null);
@@ -45,7 +45,7 @@ class PropFindAllTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGet404Properties() {
+    function testGet404Properties(): void {
 
         $pf = new PropFindAll('foo');
         $pf->set('{DAV:}displayname', null);
@@ -56,7 +56,7 @@ class PropFindAllTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGet404PropertiesNothing() {
+    function testGet404PropertiesNothing(): void {
 
         $pf = new PropFindAll('foo');
         $pf->set('{DAV:}displayname', 'foo');

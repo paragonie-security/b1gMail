@@ -22,7 +22,7 @@ class ScheduleDeliverTest extends \Sabre\DAVServerTest {
         ],
     ];
 
-    function setUp() {
+    function setUp(): void {
 
         $this->calendarObjectUri = '/calendars/user1/cal/object.ics';
 
@@ -30,7 +30,7 @@ class ScheduleDeliverTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testNewInvite() {
+    function testNewInvite(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -64,7 +64,7 @@ ICS;
 
     }
 
-    function testNewOnWrongCollection() {
+    function testNewOnWrongCollection(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -83,7 +83,7 @@ ICS;
 
 
     }
-    function testNewInviteSchedulingDisabled() {
+    function testNewInviteSchedulingDisabled(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -100,7 +100,7 @@ ICS;
         $this->assertItemsInInbox('user2', 0);
 
     }
-    function testUpdatedInvite() {
+    function testUpdatedInvite(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -143,7 +143,7 @@ ICS;
 
 
     }
-    function testUpdatedInviteSchedulingDisabled() {
+    function testUpdatedInviteSchedulingDisabled(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -170,7 +170,7 @@ ICS;
 
     }
 
-    function testUpdatedInviteWrongPath() {
+    function testUpdatedInviteWrongPath(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -198,7 +198,7 @@ ICS;
 
     }
 
-    function testDeletedInvite() {
+    function testDeletedInvite(): void {
 
         $newObject = null;
 
@@ -218,7 +218,7 @@ ICS;
 
     }
 
-    function testDeletedInviteSchedulingDisabled() {
+    function testDeletedInviteSchedulingDisabled(): void {
 
         $newObject = null;
 
@@ -244,7 +244,7 @@ ICS;
      * However, we must not treat it as a cancellation, it just got moved to a
      * different calendar.
      */
-    function testUnbindIgnoredOnMove() {
+    function testUnbindIgnoredOnMove(): void {
 
         $newObject = null;
 
@@ -266,7 +266,7 @@ ICS;
 
     }
 
-    function testDeletedInviteWrongUrl() {
+    function testDeletedInviteWrongUrl(): void {
 
         $newObject = null;
 
@@ -287,7 +287,7 @@ ICS;
 
     }
 
-    function testReply() {
+    function testReply(): void {
 
         $oldObject = <<<ICS
 BEGIN:VCALENDAR
@@ -343,7 +343,7 @@ ICS;
 
 
 
-    function testInviteUnknownUser() {
+    function testInviteUnknownUser(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -376,7 +376,7 @@ ICS;
 
     }
 
-    function testInviteNoInboxUrl() {
+    function testInviteNoInboxUrl(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -412,7 +412,7 @@ ICS;
 
     }
 
-    function testInviteNoCalendarHomeSet() {
+    function testInviteNoCalendarHomeSet(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -447,7 +447,7 @@ ICS;
         );
 
     }
-    function testInviteNoDefaultCalendar() {
+    function testInviteNoDefaultCalendar(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -482,7 +482,7 @@ ICS;
         );
 
     }
-    function testInviteNoScheduler() {
+    function testInviteNoScheduler(): void {
 
         $newObject = <<<ICS
 BEGIN:VCALENDAR
@@ -515,7 +515,7 @@ ICS;
         );
 
     }
-    function testInviteNoACLPlugin() {
+    function testInviteNoACLPlugin(): void {
 
         $this->setupACL = false;
         parent::setUp();
@@ -553,7 +553,7 @@ ICS;
 
     protected $calendarObjectUri;
 
-    function deliver($oldObject, &$newObject, $disableScheduling = false) {
+    function deliver($oldObject, &$newObject, $disableScheduling = false): void {
 
         $this->server->httpRequest->setUrl($this->calendarObjectUri);
         if ($disableScheduling) {
@@ -618,7 +618,7 @@ ICS;
      * @param string $data
      * @return void
      */
-    function putPath($path, $data) {
+    function putPath($path, $data): void {
 
         list($parent, $base) = \Sabre\HTTP\UrlUtil::splitPath($path);
         $parentNode = $this->server->tree->getNodeForPath($parent);
@@ -633,14 +633,14 @@ ICS;
 
     }
 
-    function assertItemsInInbox($user, $count) {
+    function assertItemsInInbox($user, $count): void {
 
         $inboxNode = $this->server->tree->getNodeForPath('calendars/'.$user.'/inbox');
         $this->assertEquals($count, count($inboxNode->getChildren()));
 
     }
 
-    function assertVObjEquals($expected, $actual) {
+    function assertVObjEquals($expected, $actual): void {
 
         $format = function($data) {
 

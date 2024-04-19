@@ -45,7 +45,7 @@ class ProfileCheckPlugin extends BMPlugin
 	 * language stuff
 	 *
 	 */
-	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
 	{
 		if($lang == 'deutsch')
 		{

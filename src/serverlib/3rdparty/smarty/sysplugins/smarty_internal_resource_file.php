@@ -25,7 +25,7 @@ class Smarty_Internal_Resource_File extends Smarty_Resource
      *
      * @throws \SmartyException
      */
-    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null)
+    public function populate(Smarty_Template_Source $source, Smarty_Internal_Template $_template = null): void
     {
         $source->filepath = $this->buildFilepath($source, $_template);
         if ($source->filepath !== false) {
@@ -48,7 +48,7 @@ class Smarty_Internal_Resource_File extends Smarty_Resource
      *
      * @param Smarty_Template_Source $source source object
      */
-    public function populateTimestamp(Smarty_Template_Source $source)
+    public function populateTimestamp(Smarty_Template_Source $source): void
     {
         if (!$source->exists) {
             $source->timestamp = $source->exists = is_file($source->filepath);

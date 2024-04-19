@@ -72,7 +72,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $this->server = $server;
         $this->server->on('method:GET', [$this, 'httpGetEarly'], 90);
@@ -495,7 +495,7 @@ HTML;
      * @param mixed $output
      * @return void
      */
-    function htmlActionsPanel(DAV\INode $node, &$output) {
+    function htmlActionsPanel(DAV\INode $node, &$output): void {
 
         if (!$node instanceof DAV\ICollection)
             return;

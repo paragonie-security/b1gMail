@@ -220,7 +220,7 @@ abstract class Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Data|null $data
      */
-    public function _mergeVars(Smarty_Internal_Data $data = null)
+    public function _mergeVars(Smarty_Internal_Data $data = null): void
     {
         if (isset($data)) {
             if (!empty($this->tpl_vars)) {

@@ -10,7 +10,7 @@ namespace Sabre\VObject;
  */
 class GoogleColonEscaping extends \PHPUnit_Framework_TestCase {
 
-    function testDecode() {
+    function testDecode(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD

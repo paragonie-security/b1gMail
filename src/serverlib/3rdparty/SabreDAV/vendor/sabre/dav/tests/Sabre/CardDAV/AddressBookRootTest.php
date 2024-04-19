@@ -6,7 +6,7 @@ use Sabre\DAVACL;
 
 class AddressBookRootTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetName() {
+    function testGetName(): void {
 
         $pBackend = new DAVACL\PrincipalBackend\Mock();
         $cBackend = new Backend\Mock();
@@ -15,7 +15,7 @@ class AddressBookRootTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChildForPrincipal() {
+    function testGetChildForPrincipal(): void {
 
         $pBackend = new DAVACL\PrincipalBackend\Mock();
         $cBackend = new Backend\Mock();

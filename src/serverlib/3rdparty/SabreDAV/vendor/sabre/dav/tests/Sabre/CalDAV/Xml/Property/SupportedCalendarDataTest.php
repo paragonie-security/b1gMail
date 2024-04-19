@@ -7,7 +7,7 @@ use Sabre\DAV;
 
 class SupportedCalendarDataTest extends DAV\Xml\XmlTest {
 
-    function testSimple() {
+    function testSimple(): void {
 
         $sccs = new SupportedCalendarData();
         $this->assertInstanceOf('Sabre\CalDAV\Xml\Property\SupportedCalendarData', $sccs);
@@ -17,7 +17,7 @@ class SupportedCalendarDataTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $this->namespaceMap[CalDAV\Plugin::NS_CALDAV] = 'cal';
         $property = new SupportedCalendarData();

@@ -54,7 +54,7 @@ class Locked extends DAV\Exception {
      * @param \DOMElement $errorNode
      * @return void
      */
-    function serialize(DAV\Server $server, \DOMElement $errorNode) {
+    function serialize(DAV\Server $server, \DOMElement $errorNode): void {
 
         if ($this->lock) {
             $error = $errorNode->ownerDocument->createElementNS('DAV:', 'd:lock-token-submitted');

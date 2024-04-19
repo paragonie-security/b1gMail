@@ -9,7 +9,7 @@ class VCardTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider validateData
      */
-    function testValidate($input, $expectedWarnings, $expectedRepairedOutput) {
+    function testValidate($input, $expectedWarnings, $expectedRepairedOutput): void {
 
         $vcard = VObject\Reader::read($input);
 
@@ -97,7 +97,7 @@ class VCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDocumentType() {
+    function testGetDocumentType(): void {
 
         $vcard = new VCard(array(), false);
         $vcard->VERSION = '2.1';
@@ -115,7 +115,7 @@ class VCardTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(VCard::UNKNOWN, $vcard->getDocumentType());
     }
 
-    function testPreferredNoPref() {
+    function testPreferredNoPref(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -130,7 +130,7 @@ VCF;
 
     }
 
-    function testPreferredWithPref() {
+    function testPreferredWithPref(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -145,7 +145,7 @@ VCF;
 
     }
 
-    function testPreferredWith40Pref() {
+    function testPreferredWith40Pref(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -161,7 +161,7 @@ VCF;
 
     }
 
-    function testPreferredNotFound() {
+    function testPreferredNotFound(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -174,7 +174,7 @@ VCF;
 
     }
 
-    function testNoUIDCardDAV() {
+    function testNoUIDCardDAV(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -191,7 +191,7 @@ VCF;
 
     }
 
-    function testNoUIDNoCardDAV() {
+    function testNoUIDNoCardDAV(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -207,7 +207,7 @@ VCF;
         );
 
     }
-    function testNoUIDNoCardDAVRepair() {
+    function testNoUIDNoCardDAVRepair(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -224,7 +224,7 @@ VCF;
 
     }
 
-    function testVCard21CardDAV() {
+    function testVCard21CardDAV(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -242,7 +242,7 @@ VCF;
 
     }
 
-    function testVCard21NoCardDAV() {
+    function testVCard21NoCardDAV(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -259,7 +259,7 @@ VCF;
 
     }
 
-    function assertValidate($vcf, $options, $expectedLevel, $expectedMessage = null) {
+    function assertValidate($vcf, $options, $expectedLevel, $expectedMessage = null): void {
 
         $vcal = VObject\Reader::read($vcf);
         $result = $vcal->validate($options);
@@ -268,7 +268,7 @@ VCF;
 
     }
 
-    function assertValidateResult($input, $expectedLevel, $expectedMessage = null) {
+    function assertValidateResult($input, $expectedLevel, $expectedMessage = null): void {
 
         $messages = array();
         foreach($input as $warning) {

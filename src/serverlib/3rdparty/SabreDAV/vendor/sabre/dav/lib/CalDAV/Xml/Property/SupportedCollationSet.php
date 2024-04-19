@@ -40,7 +40,7 @@ class SupportedCollationSet implements XmlSerializable {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         $collations = [
             'i;ascii-casemap',

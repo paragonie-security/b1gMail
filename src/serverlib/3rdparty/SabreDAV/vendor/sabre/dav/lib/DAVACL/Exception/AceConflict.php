@@ -23,7 +23,7 @@ class AceConflict extends DAV\Exception\Conflict {
      * @param \DOMElement $errorNode
      * @return void
      */
-    function serialize(DAV\Server $server, \DOMElement $errorNode) {
+    function serialize(DAV\Server $server, \DOMElement $errorNode): void {
 
         $doc = $errorNode->ownerDocument;
 

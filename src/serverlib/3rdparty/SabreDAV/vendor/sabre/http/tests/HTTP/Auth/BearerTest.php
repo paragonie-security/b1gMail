@@ -7,7 +7,7 @@ use Sabre\HTTP\Response;
 
 class BearerTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetToken() {
+    function testGetToken(): void {
 
         $request = new Request('GET', '/', [
             'Authorization' => 'Bearer 12345'
@@ -22,7 +22,7 @@ class BearerTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetCredentialsNoheader() {
+    function testGetCredentialsNoheader(): void {
 
         $request = new Request('GET', '/', []);
         $bearer = new Bearer('Dagger', $request, new Response());
@@ -31,7 +31,7 @@ class BearerTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetCredentialsNotBearer() {
+    function testGetCredentialsNotBearer(): void {
 
         $request = new Request('GET', '/', [
             'Authorization' => 'QBearer 12345'
@@ -42,7 +42,7 @@ class BearerTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRequireLogin() {
+    function testRequireLogin(): void {
 
         $response = new Response();
         $bearer = new Bearer('Dagger', new Request(), $response);

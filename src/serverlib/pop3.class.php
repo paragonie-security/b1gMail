@@ -56,7 +56,7 @@ class BMPOP3
      * @param int  $timeout             Seconds
      * @param bool $enableStreamTimeout Also enable stream timeout (not just connect timeout)?
      */
-    public function SetTimeout($timeout, $enableStreamTimeout = false)
+    public function SetTimeout($timeout, $enableStreamTimeout = false): void
     {
         $this->_timeout = $timeout;
         $this->_enableStreamTimeout = $enableStreamTimeout;

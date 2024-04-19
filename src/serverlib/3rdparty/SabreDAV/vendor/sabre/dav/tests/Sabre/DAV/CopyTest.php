@@ -6,7 +6,7 @@ use Sabre\HTTP;
 
 class CopyTest extends \PHPUnit_Framework_TestCase {
 
-    public function setUp() {
+    public function setUp(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
@@ -18,7 +18,7 @@ class CopyTest extends \PHPUnit_Framework_TestCase {
      *
      * @expectedException \Sabre\DAV\Exception\Conflict
      */
-    public function testCopyIntoSubPath() {
+    public function testCopyIntoSubPath(): void {
 
         $dir = new FS\Directory(SABRE_TEMPDIR);
         $server = new Server($dir);

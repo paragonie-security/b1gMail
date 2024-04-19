@@ -79,32 +79,32 @@ if(class_exists('DOMDocument'))
 			@$this->root->loadHTML('<?xml encoding="'.$encoding.'">' . $code);
 		}
 
-		public function setReplyMode($replyMode)
+		public function setReplyMode($replyMode): void
 		{
 			$this->replyMode = $replyMode;
 		}
 
-		public function setComposeBaseURL($url)
+		public function setComposeBaseURL($url): void
 		{
 			$this->composeBaseURL = $url;
 		}
 
-		public function setAttachmentBaseURL($url)
+		public function setAttachmentBaseURL($url): void
 		{
 			$this->attachmentBaseURL = $url;
 		}
 
-		public function setLevel($level)
+		public function setLevel($level): void
 		{
 			$this->level = $level;
 		}
 
-		public function setAllowExternal($allowExternal)
+		public function setAllowExternal($allowExternal): void
 		{
 			$this->allowExternal = $allowExternal;
 		}
 
-		public function setAttachments($attachments)
+		public function setAttachments($attachments): void
 		{
 			$this->cidMap = array();
 
@@ -309,32 +309,32 @@ else
 			$this->htmlCode = $code;
 		}
 
-		public function setReplyMode($replyMode)
+		public function setReplyMode($replyMode): void
 		{
 			$this->replyMode = $replyMode;
 		}
 
-		public function setComposeBaseURL($url)
+		public function setComposeBaseURL($url): void
 		{
 			$this->composeBaseURL = $url;
 		}
 
-		public function setAttachmentBaseURL($url)
+		public function setAttachmentBaseURL($url): void
 		{
 			$this->attachmentBaseURL = $url;
 		}
 
-		public function setLevel($level)
+		public function setLevel($level): void
 		{
 			$this->level = $level;
 		}
 
-		public function setAllowExternal($allowExternal)
+		public function setAllowExternal($allowExternal): void
 		{
 			$this->allowExternal = $allowExternal;
 		}
 
-		public function setAttachments($attachments)
+		public function setAttachments($attachments): void
 		{
 			$this->cidMap = array();
 

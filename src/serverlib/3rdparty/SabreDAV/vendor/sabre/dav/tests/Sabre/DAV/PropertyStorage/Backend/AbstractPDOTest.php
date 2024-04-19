@@ -21,7 +21,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPropFind() {
+    function testPropFind(): void {
 
         $backend = $this->getBackend();
 
@@ -32,7 +32,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPropFindNothingToDo() {
+    function testPropFindNothingToDo(): void {
 
         $backend = $this->getBackend();
 
@@ -47,7 +47,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testPropFind
      */
-    function testPropPatchUpdate() {
+    function testPropPatchUpdate(): void {
 
         $backend = $this->getBackend();
 
@@ -65,7 +65,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testPropPatchUpdate
      */
-    function testPropPatchComplex() {
+    function testPropPatchComplex(): void {
 
         $backend = $this->getBackend();
 
@@ -86,7 +86,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testPropPatchComplex
      */
-    function testPropPatchCustom() {
+    function testPropPatchCustom(): void {
 
         $backend = $this->getBackend();
 
@@ -106,7 +106,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testPropFind
      */
-    function testPropPatchRemove() {
+    function testPropPatchRemove(): void {
 
         $backend = $this->getBackend();
 
@@ -124,7 +124,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testPropFind
      */
-    function testDelete() {
+    function testDelete(): void {
 
         $backend = $this->getBackend();
         $backend->delete('dir');
@@ -139,7 +139,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testPropFind
      */
-    function testMove() {
+    function testMove(): void {
 
         $backend = $this->getBackend();
         // Creating a new child property.
@@ -173,7 +173,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testPropFind
      */
-    function testDeepDelete() {
+    function testDeepDelete(): void {
 
         $backend = $this->getBackend();
         $propPatch = new PropPatch(['{DAV:}displayname' => 'child']);

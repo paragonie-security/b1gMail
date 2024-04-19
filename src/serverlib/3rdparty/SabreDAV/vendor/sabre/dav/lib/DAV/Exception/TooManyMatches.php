@@ -28,7 +28,7 @@ class TooManyMatches extends Forbidden {
      * @param \DOMElement $errorNode
      * @return void
      */
-    function serialize(DAV\Server $server, \DOMElement $errorNode) {
+    function serialize(DAV\Server $server, \DOMElement $errorNode): void {
 
         $error = $errorNode->ownerDocument->createElementNS('DAV:', 'd:number-of-matches-within-limits');
         $errorNode->appendChild($error);

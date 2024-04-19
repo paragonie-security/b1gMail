@@ -126,7 +126,7 @@ class Principal extends DAV\Node implements IPrincipal, DAV\IProperties, IACL {
      * @param array $groupMembers
      * @return void
      */
-    function setGroupMemberSet(array $groupMembers) {
+    function setGroupMemberSet(array $groupMembers): void {
 
         $this->principalBackend->setGroupMemberSet($this->principalProperties['uri'], $groupMembers);
 

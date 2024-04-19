@@ -80,7 +80,7 @@ class SignaturePlugin extends BMPlugin
 		return(true);
 	}
 
-	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
 	{
 		if($lang == 'deutsch')
 		{
@@ -100,7 +100,7 @@ class SignaturePlugin extends BMPlugin
 		}
 	}
 
-	function OnSendMail(&$text, $html)
+	function OnSendMail(&$text, $html): void
 	{
 		global $db, $userRow;
 
@@ -128,7 +128,7 @@ class SignaturePlugin extends BMPlugin
 			$signatureID);
 	}
 
-	function AdminHandler()
+	function AdminHandler(): void
 	{
 		global $tpl, $db, $lang_admin;
 

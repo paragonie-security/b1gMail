@@ -7,7 +7,7 @@ use
 
 class QuotedPrintableTest extends \PHPUnit_Framework_TestCase {
 
-    function testReadQuotedPrintableSimple() {
+    function testReadQuotedPrintableSimple(): void {
 
         $data = "BEGIN:VCARD\r\nLABEL;ENCODING=QUOTED-PRINTABLE:Aach=65n\r\nEND:VCARD";
 
@@ -20,7 +20,7 @@ class QuotedPrintableTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadQuotedPrintableNewlineSoft() {
+    function testReadQuotedPrintableNewlineSoft(): void {
 
         $data = "BEGIN:VCARD\r\nLABEL;ENCODING=QUOTED-PRINTABLE:Aa=\r\n ch=\r\n en\r\nEND:VCARD";
         $result = Reader::read($data);
@@ -32,7 +32,7 @@ class QuotedPrintableTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadQuotedPrintableNewlineHard() {
+    function testReadQuotedPrintableNewlineHard(): void {
 
         $data = "BEGIN:VCARD\r\nLABEL;ENCODING=QUOTED-PRINTABLE:Aachen=0D=0A=\r\n Germany\r\nEND:VCARD";
         $result = Reader::read($data);
@@ -45,7 +45,7 @@ class QuotedPrintableTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadQuotedPrintableCompatibilityMS() {
+    function testReadQuotedPrintableCompatibilityMS(): void {
 
         $data = "BEGIN:VCARD\r\nLABEL;ENCODING=QUOTED-PRINTABLE:Aachen=0D=0A=\r\nDeutschland:okay\r\nEND:VCARD";
         $result = Reader::read($data, Reader::OPTION_FORGIVING);
@@ -57,7 +57,7 @@ class QuotedPrintableTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testReadQuotesPrintableCompoundValues() {
+    function testReadQuotesPrintableCompoundValues(): void {
 
         $data = <<<VCF
 BEGIN:VCARD

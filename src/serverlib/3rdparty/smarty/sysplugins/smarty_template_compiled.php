@@ -41,7 +41,7 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
      *
      * @param Smarty_Internal_Template $_template template object
      **/
-    public function populateCompiledFilepath(Smarty_Internal_Template $_template)
+    public function populateCompiledFilepath(Smarty_Internal_Template $_template): void
     {
         $source = &$_template->source;
         $smarty = &$_template->smarty;
@@ -88,7 +88,7 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
      * @return string
      * @throws Exception
      */
-    public function render(Smarty_Internal_Template $_template)
+    public function render(Smarty_Internal_Template $_template): void
     {
         // checks if template exists
         if (!$_template->source->exists) {
@@ -128,7 +128,7 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
      *
      * @throws Exception
      */
-    public function process(Smarty_Internal_Template $_smarty_tpl)
+    public function process(Smarty_Internal_Template $_smarty_tpl): void
     {
         $source = &$_smarty_tpl->source;
         $smarty = &$_smarty_tpl->smarty;
@@ -166,7 +166,7 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
      *
      * @throws Exception
      */
-    public function compileTemplateSource(Smarty_Internal_Template $_template)
+    public function compileTemplateSource(Smarty_Internal_Template $_template): void
     {
         $this->file_dependency = array();
         $this->includes = array();
@@ -239,7 +239,7 @@ class Smarty_Template_Compiled extends Smarty_Template_Resource_Base
      *
      * @param \Smarty_Internal_Template $_smarty_tpl do not change variable name, is used by compiled template
      */
-    private function loadCompiledTemplate(Smarty_Internal_Template $_smarty_tpl)
+    private function loadCompiledTemplate(Smarty_Internal_Template $_smarty_tpl): void
     {
         if (function_exists('opcache_invalidate')
             && (!function_exists('ini_get') || strlen(ini_get("opcache.restrict_api")) < 1)

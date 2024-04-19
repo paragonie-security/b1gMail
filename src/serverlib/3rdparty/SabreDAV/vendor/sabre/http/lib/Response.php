@@ -148,7 +148,7 @@ class Response extends Message implements ResponseInterface {
      * @throws \InvalidArgumentExeption
      * @return void
      */
-    function setStatus($status) {
+    function setStatus($status): void {
 
         if (ctype_digit($status) || is_int($status)) {
 

@@ -22,7 +22,7 @@ class TestPlugin extends ServerPlugin {
 
     }
 
-    function initialize(Server $server) {
+    function initialize(Server $server): void {
 
         $server->on('beforeMethod', [$this,'beforeMethod']);
 

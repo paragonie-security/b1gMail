@@ -176,7 +176,7 @@ class PDO extends AbstractBackend implements CreatePrincipalSupport {
      * @param string $path
      * @param DAV\PropPatch $propPatch
      */
-    function updatePrincipal($path, DAV\PropPatch $propPatch) {
+    function updatePrincipal($path, DAV\PropPatch $propPatch): void {
 
         $propPatch->handle(array_keys($this->fieldMap), function($properties) use ($path) {
 
@@ -333,7 +333,7 @@ class PDO extends AbstractBackend implements CreatePrincipalSupport {
      * @param array $members
      * @return void
      */
-    function setGroupMemberSet($principal, array $members) {
+    function setGroupMemberSet($principal, array $members): void {
 
         // Grabbing the list of principal id's.
         $stmt = $this->pdo->prepare('SELECT id, uri FROM ' . $this->tableName . ' WHERE uri IN (? ' . str_repeat(', ? ', count($members)) . ');');
@@ -375,7 +375,7 @@ class PDO extends AbstractBackend implements CreatePrincipalSupport {
      * @param MkCol $mkCol
      * @return void
      */
-    function createPrincipal($path, MkCol $mkCol) {
+    function createPrincipal($path, MkCol $mkCol): void {
 
         $stmt = $this->pdo->prepare('INSERT INTO ' . $this->tableName . ' (uri) VALUES (?)');
         $stmt->execute([$path]);

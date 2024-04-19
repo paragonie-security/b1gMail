@@ -603,7 +603,7 @@ class Smarty_Security
      * @param array $oldDir
      * @param array $newDir
      */
-    private function _updateResourceDir($oldDir, $newDir)
+    private function _updateResourceDir($oldDir, $newDir): void
     {
         foreach ($oldDir as $directory) {
             //           $directory = $this->smarty->_realpath($directory, true);
@@ -691,7 +691,7 @@ class Smarty_Security
      *
      * @throws SmartyException
      */
-    public function startTemplate($template)
+    public function startTemplate($template): void
     {
         if ($this->max_template_nesting > 0 && $this->_current_template_nesting++ >= $this->max_template_nesting) {
             throw new SmartyException("maximum template nesting level of '{$this->max_template_nesting}' exceeded when calling '{$template->template_resource}'");
@@ -701,7 +701,7 @@ class Smarty_Security
     /**
      * Exit template processing
      */
-    public function endTemplate()
+    public function endTemplate(): void
     {
         if ($this->max_template_nesting > 0) {
             $this->_current_template_nesting--;
@@ -713,7 +713,7 @@ class Smarty_Security
      *
      * @param \Smarty_Internal_Template $template
      */
-    public function registerCallBacks(Smarty_Internal_Template $template)
+    public function registerCallBacks(Smarty_Internal_Template $template): void
     {
         $template->startRenderCallbacks[] = array($this, 'startTemplate');
         $template->endRenderCallbacks[] = array($this, 'endTemplate');

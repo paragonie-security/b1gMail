@@ -132,7 +132,7 @@ class Smarty_Internal_Compile_Private_Php extends Smarty_Internal_CompileBase
      *
      * @throws \SmartyCompilerException
      */
-    public function parsePhp(Smarty_Internal_Templatelexer $lex)
+    public function parsePhp(Smarty_Internal_Templatelexer $lex): void
     {
         $lex->token = Smarty_Internal_Templateparser::TP_PHP;
         $close = 0;

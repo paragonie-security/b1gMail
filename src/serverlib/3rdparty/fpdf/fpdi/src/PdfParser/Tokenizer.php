@@ -50,7 +50,7 @@ class Tokenizer
     /**
      * Clear the token stack.
      */
-    public function clearStack()
+    public function clearStack(): void
     {
         $this->stack = [];
     }
@@ -60,7 +60,7 @@ class Tokenizer
      *
      * @param string $token
      */
-    public function pushStack($token)
+    public function pushStack($token): void
     {
         $this->stack[] = $token;
     }

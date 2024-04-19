@@ -34,7 +34,7 @@ class StreamingFile extends File {
      * @param resource $data
      * @return string|null
      */
-    function put($data) {
+    function put($data): void {
 
         if (is_string($data)) {
             $stream = fopen('php://memory', 'r+');

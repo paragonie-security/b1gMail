@@ -91,7 +91,7 @@ class BMBarChart
      * @param int   $yFrom
      * @param int   $yTo
      */
-    public function SetData($data, $yFrom = -1, $yTo = -1, $xFrom = -1, $xTo = -1)
+    public function SetData($data, $yFrom = -1, $yTo = -1, $xFrom = -1, $xTo = -1): void
     {
         global $lang_admin;
 
@@ -171,7 +171,7 @@ class BMBarChart
     /**
      * init.
      */
-    private function _init()
+    private function _init(): void
     {
         // register colors
         $this->_white = imagecolorallocate($this->img, 255, 255, 255);
@@ -205,7 +205,7 @@ class BMBarChart
      * @param int    $w
      * @param int    $color
      */
-    private function _centerText($text, $x, $y, $w, $color)
+    private function _centerText($text, $x, $y, $w, $color): void
     {
         $x = $w / 2 - strlen($text) * 3 + $x;
         imagestring($this->img, 2, $x, $y, $text, $color);
@@ -214,7 +214,7 @@ class BMBarChart
     /**
      * display chart (send to browser).
      */
-    public function Display()
+    public function Display(): void
     {
         // output
         header('Content-Type: image/png');

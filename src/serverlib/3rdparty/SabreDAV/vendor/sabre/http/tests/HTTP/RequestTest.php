@@ -4,7 +4,7 @@ namespace Sabre\HTTP;
 
 class RequestTest extends \PHPUnit_Framework_TestCase {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $request = new Request('GET', '/foo', [
             'User-Agent' => 'Evert',
@@ -17,7 +17,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetQueryParameters() {
+    function testGetQueryParameters(): void {
 
         $request = new Request('GET', '/foo?a=b&c&d=e');
         $this->assertEquals([
@@ -28,7 +28,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetQueryParametersNoData() {
+    function testGetQueryParametersNoData(): void {
 
         $request = new Request('GET', '/foo');
         $this->assertEquals([], $request->getQueryParameters());
@@ -38,7 +38,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
     /**
      * @backupGlobals
      */
-    function testCreateFromPHPRequest() {
+    function testCreateFromPHPRequest(): void {
 
         $_SERVER['REQUEST_METHOD'] = 'PUT';
 
@@ -47,7 +47,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetAbsoluteUrl() {
+    function testGetAbsoluteUrl(): void {
 
         $s = [
             'HTTP_HOST'   => 'sabredav.org',
@@ -70,7 +70,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetPostData() {
+    function testGetPostData(): void {
 
         $post = [
             'bla' => 'foo',
@@ -81,7 +81,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetPath() {
+    function testGetPath(): void {
 
         $request = new Request();
         $request->setBaseUrl('/foo');
@@ -91,7 +91,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetPathStrippedQuery() {
+    function testGetPathStrippedQuery(): void {
 
         $request = new Request();
         $request->setBaseUrl('/foo');
@@ -101,7 +101,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetPathMissingSlash() {
+    function testGetPathMissingSlash(): void {
 
         $request = new Request();
         $request->setBaseUrl('/foo/');
@@ -114,7 +114,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \LogicException
      */
-    function testGetPathOutsideBaseUrl() {
+    function testGetPathOutsideBaseUrl(): void {
 
         $request = new Request();
         $request->setBaseUrl('/foo/');
@@ -124,7 +124,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testToString() {
+    function testToString(): void {
 
         $request = new Request('PUT', '/foo/bar', ['Content-Type' => 'text/xml']);
         $request->setBody('foo');
@@ -139,7 +139,7 @@ HI;
 
     }
 
-    function testToStringAuthorization() {
+    function testToStringAuthorization(): void {
 
         $request = new Request('PUT', '/foo/bar', ['Content-Type' => 'text/xml', 'Authorization' => 'Basic foobar']);
         $request->setBody('foo');
@@ -158,7 +158,7 @@ HI;
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testConstructorWithArray() {
+    function testConstructorWithArray(): void {
 
         $request = new Request([]);
 

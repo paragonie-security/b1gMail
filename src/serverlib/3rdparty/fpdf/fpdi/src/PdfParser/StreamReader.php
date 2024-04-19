@@ -135,7 +135,7 @@ class StreamReader
     /**
      * Closes the file handle.
      */
-    public function cleanUp()
+    public function cleanUp(): void
     {
         if ($this->closeStream && is_resource($this->stream)) {
             \fclose($this->stream);
@@ -324,7 +324,7 @@ class StreamReader
      *
      * @param int $offset
      */
-    public function setOffset($offset)
+    public function setOffset($offset): void
     {
         if ($offset > $this->bufferLength || $offset < 0) {
             throw new \OutOfRangeException(
@@ -350,7 +350,7 @@ class StreamReader
      *
      * @param int $offset
      */
-    public function addOffset($offset)
+    public function addOffset($offset): void
     {
         $this->setOffset($this->offset + $offset);
     }
@@ -407,7 +407,7 @@ class StreamReader
      * @param int|null $pos Start position of the new buffer
      * @param int $length Length of the new buffer. Mustn't be negative
      */
-    public function reset($pos = 0, $length = 200)
+    public function reset($pos = 0, $length = 200): void
     {
         if ($pos === null) {
             $pos = $this->position + $this->offset;
@@ -439,7 +439,7 @@ class StreamReader
      * @param int $length
      * @see reset()
      */
-    public function ensure($pos, $length)
+    public function ensure($pos, $length): void
     {
         if (
             $pos >= $this->position

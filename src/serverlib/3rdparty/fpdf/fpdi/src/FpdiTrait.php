@@ -96,7 +96,7 @@ trait FpdiTrait
      *
      * @param bool $allReaders
      */
-    public function cleanUp($allReaders = false)
+    public function cleanUp($allReaders = false): void
     {
         $readers = $allReaders ? array_keys($this->readers) : $this->createdReaders;
         foreach ($readers as $id) {

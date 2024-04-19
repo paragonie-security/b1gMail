@@ -7,7 +7,7 @@ use DateTime;
 
 class OverrideFirstEventTest extends \PHPUnit_Framework_TestCase {
 
-    function testOverrideFirstEvent() {
+    function testOverrideFirstEvent(): void {
 
         $input =  <<<ICS
 BEGIN:VCALENDAR
@@ -75,7 +75,7 @@ ICS;
 
     }
 
-    function testRemoveFirstEvent() {
+    function testRemoveFirstEvent(): void {
 
         $input =  <<<ICS
 BEGIN:VCALENDAR

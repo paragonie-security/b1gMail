@@ -90,7 +90,7 @@ class SupportedMethodSet implements XmlSerializable, HtmlOutput {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->getValue() as $val) {
             $writer->startElement('{DAV:}supported-method');

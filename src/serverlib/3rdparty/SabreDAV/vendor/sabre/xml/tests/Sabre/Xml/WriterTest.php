@@ -6,7 +6,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase {
 
     protected $writer;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->writer = new Writer();
         $this->writer->namespaceMap = [
@@ -18,7 +18,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function compare($input, $output) {
+    function compare($input, $output): void {
 
         $this->writer->write($input);
         $this->assertEquals($output, $this->writer->outputMemory());
@@ -26,7 +26,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testSimple() {
+    function testSimple(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => 'text',
@@ -42,7 +42,7 @@ HI
     /**
      * @depends testSimple
      */
-    function testSimpleQuotes() {
+    function testSimpleQuotes(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => '"text"',
@@ -55,7 +55,7 @@ HI
 
     }
 
-    function testSimpleAttributes() {
+    function testSimpleAttributes(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -72,7 +72,7 @@ HI
         );
 
     }
-    function testMixedSyntax() {
+    function testMixedSyntax(): void {
         $this->compare([
             '{http://sabredav.org/ns}root' => [
                 '{http://sabredav.org/ns}single'   => 'value',
@@ -117,7 +117,7 @@ HI
         );
     }
 
-    function testNull() {
+    function testNull(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => null,
@@ -130,7 +130,7 @@ HI
 
     }
 
-    function testArrayFormat2() {
+    function testArrayFormat2(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -153,7 +153,7 @@ HI
 
     }
 
-    function testArrayOfValues() {
+    function testArrayOfValues(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -180,7 +180,7 @@ HI
     /**
      * @depends testArrayFormat2
      */
-    function testArrayFormat2NoValue() {
+    function testArrayFormat2NoValue(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -202,7 +202,7 @@ HI
 
     }
 
-    function testCustomNamespace() {
+    function testCustomNamespace(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -219,7 +219,7 @@ HI
 
     }
 
-    function testEmptyNamespace() {
+    function testEmptyNamespace(): void {
 
         // Empty namespaces are allowed, so we should support this.
         $this->compare([
@@ -237,7 +237,7 @@ HI
 
     }
 
-    function testAttributes() {
+    function testAttributes(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => [
@@ -262,7 +262,7 @@ HI
 
     }
 
-    function testBaseElement() {
+    function testBaseElement(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => new Element\Base('hello')
@@ -275,7 +275,7 @@ HI
 
     }
 
-    function testElementObj() {
+    function testElementObj(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => new Element\Mock()
@@ -290,7 +290,7 @@ HI
 
     }
 
-    function testEmptyNamespacePrefix() {
+    function testEmptyNamespacePrefix(): void {
 
         $this->writer->namespaceMap['http://sabredav.org/ns'] = null;
         $this->compare([
@@ -306,7 +306,7 @@ HI
 
     }
 
-    function testEmptyNamespacePrefixEmptyString() {
+    function testEmptyNamespacePrefixEmptyString(): void {
 
         $this->writer->namespaceMap['http://sabredav.org/ns'] = '';
         $this->compare([
@@ -322,7 +322,7 @@ HI
 
     }
 
-    function testWriteElement() {
+    function testWriteElement(): void {
 
         $this->writer->writeElement("{http://sabredav.org/ns}foo", 'content');
 
@@ -337,7 +337,7 @@ HI;
 
     }
 
-    function testWriteElementComplex() {
+    function testWriteElementComplex(): void {
 
         $this->writer->writeElement("{http://sabredav.org/ns}foo", new Element\KeyValue(['{http://sabredav.org/ns}bar' => 'test']));
 
@@ -356,13 +356,13 @@ HI;
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testWriteBadObject() {
+    function testWriteBadObject(): void {
 
         $this->writer->write(new \StdClass());
 
     }
 
-    function testStartElementSimple() {
+    function testStartElementSimple(): void {
 
         $this->writer->startElement("foo");
         $this->writer->endElement();
@@ -377,7 +377,7 @@ HI;
 
     }
 
-    function testCallback() {
+    function testCallback(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => function(Writer $writer) {
@@ -395,7 +395,7 @@ HI
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testResource() {
+    function testResource(): void {
 
         $this->compare([
             '{http://sabredav.org/ns}root' => fopen('php://memory', 'r'),
@@ -408,7 +408,7 @@ HI
 
     }
 
-    function testClassMap() {
+    function testClassMap(): void {
 
         $obj = (object)[
             'key1' => 'value1',

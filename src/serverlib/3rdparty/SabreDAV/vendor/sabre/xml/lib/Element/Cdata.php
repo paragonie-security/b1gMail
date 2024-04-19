@@ -55,7 +55,7 @@ class Cdata implements Xml\XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Xml\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer): void {
 
         $writer->writeCData($this->value);
 

@@ -43,7 +43,7 @@ class File extends AbstractDigest {
      * @param string $filename
      * @return void
      */
-    function loadFile($filename) {
+    function loadFile($filename): void {
 
         foreach (file($filename, FILE_IGNORE_NEW_LINES) as $line) {
 

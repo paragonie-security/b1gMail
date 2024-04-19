@@ -9,7 +9,7 @@ class EvolutionTest extends BrokerTester {
      *
      * We're adding a seprate test just for it.
      */
-    function testNewEvolutionEvent() {
+    function testNewEvolutionEvent(): void {
 
         $ics = <<<ICS
 BEGIN:VCALENDAR
@@ -1743,7 +1743,7 @@ ICS;
      * again mangled by iCal. This triggered a few bugs related to email
      * address scheme casing.
      */
-    public function testAttendeeModify() {
+    public function testAttendeeModify(): void {
 
         $old = <<<ICS
 BEGIN:VCALENDAR

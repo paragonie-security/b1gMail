@@ -7,7 +7,7 @@ use
 
 class JsonTest extends \PHPUnit_Framework_TestCase {
 
-    function testRoundTripJCard() {
+    function testRoundTripJCard(): void {
 
         $input = array(
             "vcard",
@@ -197,7 +197,7 @@ VCF;
 
     }
 
-    function testRoundTripJCal() {
+    function testRoundTripJCal(): void {
 
         $input = array(
             "vcalendar",
@@ -354,7 +354,7 @@ VCF;
 
     }
 
-    function testParseStreamArg() {
+    function testParseStreamArg(): void {
 
         $input = array(
             "vcard",
@@ -377,7 +377,7 @@ VCF;
     /**
      * @expectedException \Sabre\VObject\ParseException
      */
-    function testParseInvalidData() {
+    function testParseInvalidData(): void {
 
         $json = new Json();
         $input = array(

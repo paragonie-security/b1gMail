@@ -6,7 +6,7 @@ use Sabre\VObject;
 
 class BooleanTest extends \PHPUnit_Framework_TestCase {
 
-    function testMimeDir() {
+    function testMimeDir(): void {
 
         $input = "BEGIN:VCARD\r\nX-AWESOME;VALUE=BOOLEAN:TRUE\r\nX-SUCKS;VALUE=BOOLEAN:FALSE\r\nEND:VCARD\r\n";
 

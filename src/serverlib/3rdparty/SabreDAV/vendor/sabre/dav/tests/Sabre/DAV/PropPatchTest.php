@@ -6,7 +6,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     protected $propPatch;
 
-    public function setUp() {
+    public function setUp(): void {
 
         $this->propPatch = new PropPatch([
             '{DAV:}displayname' => 'foo',
@@ -15,7 +15,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHandleSingleSuccess() {
+    public function testHandleSingleSuccess(): void {
 
         $hasRan = false;
 
@@ -33,7 +33,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHandleSingleFail() {
+    public function testHandleSingleFail(): void {
 
         $hasRan = false;
 
@@ -51,7 +51,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHandleSingleCustomResult() {
+    public function testHandleSingleCustomResult(): void {
 
         $hasRan = false;
 
@@ -69,7 +69,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHandleSingleDeleteSuccess() {
+    public function testHandleSingleDeleteSuccess(): void {
 
         $hasRan = false;
 
@@ -89,7 +89,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    public function testHandleNothing() {
+    public function testHandleNothing(): void {
 
         $hasRan = false;
 
@@ -104,7 +104,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testHandleSingleSuccess
      */
-    public function testHandleRemaining() {
+    public function testHandleRemaining(): void {
 
         $hasRan = false;
 
@@ -121,7 +121,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($hasRan);
 
     }
-    public function testHandleRemainingNothingToDo() {
+    public function testHandleRemainingNothingToDo(): void {
 
         $hasRan = false;
 
@@ -134,7 +134,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testSetResultCode() {
+    public function testSetResultCode(): void {
 
         $this->propPatch->setResultCode('{DAV:}displayname', 201);
         $this->assertTrue($this->propPatch->commit());
@@ -143,7 +143,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testSetResultCodeFail() {
+    public function testSetResultCodeFail(): void {
 
         $this->propPatch->setResultCode('{DAV:}displayname', 402);
         $this->assertFalse($this->propPatch->commit());
@@ -152,7 +152,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testSetRemainingResultCode() {
+    public function testSetRemainingResultCode(): void {
 
         $this->propPatch->setRemainingResultCode(204);
         $this->assertTrue($this->propPatch->commit());
@@ -161,7 +161,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testCommitNoHandler() {
+    public function testCommitNoHandler(): void {
 
         $this->assertFalse($this->propPatch->commit());
         $result = $this->propPatch->getResult();
@@ -169,7 +169,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHandlerNotCalled() {
+    public function testHandlerNotCalled(): void {
 
         $hasRan = false;
 
@@ -185,7 +185,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testDependencyFail() {
+    public function testDependencyFail(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}a' => 'foo',
@@ -220,7 +220,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \UnexpectedValueException
      */
-    public function testHandleSingleBrokenResult() {
+    public function testHandleSingleBrokenResult(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}a' => 'foo',
@@ -236,7 +236,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHandleMultiValueSuccess() {
+    public function testHandleMultiValueSuccess(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}a' => 'foo',
@@ -268,7 +268,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    public function testHandleMultiValueFail() {
+    public function testHandleMultiValueFail(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}a' => 'foo',
@@ -299,7 +299,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testHandleMultiValueCustomResult() {
+    public function testHandleMultiValueCustomResult(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}a' => 'foo',
@@ -338,7 +338,7 @@ class PropPatchTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \UnexpectedValueException
      */
-    public function testHandleMultiValueBroken() {
+    public function testHandleMultiValueBroken(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}a' => 'foo',

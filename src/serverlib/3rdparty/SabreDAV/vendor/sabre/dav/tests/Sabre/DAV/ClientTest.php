@@ -9,7 +9,7 @@ require_once 'Sabre/DAV/ClientMock.php';
 
 class ClientTest extends \PHPUnit_Framework_TestCase {
 
-    function setUp() {
+    function setUp(): void {
 
         if (!function_exists('curl_init')) {
             $this->markTestSkipped('CURL must be installed to test the client');
@@ -17,7 +17,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $client = new ClientMock(array(
             'baseUri' => '/',
@@ -29,13 +29,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testConstructNoBaseUri() {
+    function testConstructNoBaseUri(): void {
 
         $client = new ClientMock(array());
 
     }
 
-    function testAuth() {
+    function testAuth(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -48,7 +48,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testBasicAuth() {
+    function testBasicAuth(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -62,7 +62,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDigestAuth() {
+    function testDigestAuth(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -76,7 +76,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testNTLMAuth() {
+    function testNTLMAuth(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -90,7 +90,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testProxy() {
+    function testProxy(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -101,7 +101,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testEncoding() {
+    function testEncoding(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -112,7 +112,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPropFind() {
+    function testPropFind(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -151,7 +151,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception
      */
-    function testPropFindError() {
+    function testPropFindError(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -162,7 +162,7 @@ XML;
 
     }
 
-    function testPropFindDepth1() {
+    function testPropFindDepth1(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -202,7 +202,7 @@ XML;
 
     }
 
-    function testPropPatch() {
+    function testPropPatch(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',
@@ -234,7 +234,7 @@ XML;
 
     }
 
-    function testOPTIONS() {
+    function testOPTIONS(): void {
 
         $client = new ClientMock([
             'baseUri' => '/',

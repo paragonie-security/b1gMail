@@ -7,7 +7,7 @@ use
 
 class AbstractTest extends \PHPUnit_Framework_TestCase {
 
-    function testUpdateCalendar() {
+    function testUpdateCalendar(): void {
 
         $abstract = new AbstractMock();
         $propPatch = new PropPatch( ['{DAV:}displayname' => 'anything'] );
@@ -19,7 +19,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCalendarQuery() {
+    function testCalendarQuery(): void {
 
         $abstract = new AbstractMock();
         $filters = array(
@@ -44,7 +44,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetCalendarObjectByUID() {
+    function testGetCalendarObjectByUID(): void {
 
         $abstract = new AbstractMock();
         $this->assertNull(
@@ -63,7 +63,7 @@ class AbstractTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetMultipleCalendarObjects() {
+    function testGetMultipleCalendarObjects(): void {
 
         $abstract = new AbstractMock();
         $result = $abstract->getMultipleCalendarObjects(1, [

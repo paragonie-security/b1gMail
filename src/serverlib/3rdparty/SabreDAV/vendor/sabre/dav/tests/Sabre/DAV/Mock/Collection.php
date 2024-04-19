@@ -103,7 +103,7 @@ class Collection extends DAV\Collection {
      * @param string $name
      * @return void
      */
-    function createDirectory($name) {
+    function createDirectory($name): void {
 
         $this->children[] = new self($name);
 
@@ -126,7 +126,7 @@ class Collection extends DAV\Collection {
      * @param string $name
      * @return void
      */
-    function deleteChild($name) {
+    function deleteChild($name): void {
 
         foreach ($this->children as $key => $value) {
 
@@ -144,7 +144,7 @@ class Collection extends DAV\Collection {
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         foreach ($this->getChildren() as $child) {
             $this->deleteChild($child->getName());

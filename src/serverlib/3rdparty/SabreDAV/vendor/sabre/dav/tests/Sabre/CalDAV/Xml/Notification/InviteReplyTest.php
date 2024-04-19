@@ -11,7 +11,7 @@ class InviteReplyTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider dataProvider
      */
-    function testSerializers($notification, $expected) {
+    function testSerializers($notification, $expected): void {
 
         $notification = new InviteReply($notification);
 
@@ -117,7 +117,7 @@ FOO
     /**
      * @expectedException InvalidArgumentException
      */
-    function testMissingArg() {
+    function testMissingArg(): void {
 
         new InviteReply(array());
 
@@ -126,7 +126,7 @@ FOO
     /**
      * @expectedException InvalidArgumentException
      */
-    function testUnknownArg() {
+    function testUnknownArg(): void {
 
         new InviteReply(array(
             'foo-i-will-break' => true,

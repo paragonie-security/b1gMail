@@ -237,7 +237,7 @@ class CalendarHome implements DAV\IExtendedCollection, DAVACL\IACL {
      * @throws DAV\Exception\InvalidResourceType
      * @return void
      */
-    function createExtendedCollection($name, MkCol $mkCol) {
+    function createExtendedCollection($name, MkCol $mkCol): void {
 
         $isCalendar = false;
         $isSubscription = false;

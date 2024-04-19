@@ -217,7 +217,7 @@ class Service {
      * @param object $className
      * @return void
      */
-    function mapValueObject($elementName, $className) {
+    function mapValueObject($elementName, $className): void {
         list($namespace) = self::parseClarkNotation($elementName);
 
         $this->elementMap[$elementName] = function(Reader $reader) use ($className, $namespace) {

@@ -4,21 +4,21 @@ namespace Sabre\VObject;
 
 class DocumentTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetDocumentType() {
+    function testGetDocumentType(): void {
 
         $doc = new MockDocument();
         $this->assertEquals(Document::UNKNOWN, $doc->getDocumentType());
 
     }
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $doc = new MockDocument('VLIST');
         $this->assertEquals('VLIST', $doc->name);
 
     }
 
-    function testCreateComponent() {
+    function testCreateComponent(): void {
 
         $vcal = new Component\VCalendar(array(), false);
 
@@ -42,7 +42,7 @@ class DocumentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreate() {
+    function testCreate(): void {
 
         $vcal = new Component\VCalendar(array(), false);
 
@@ -54,7 +54,7 @@ class DocumentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetClassNameForPropertyValue() {
+    function testGetClassNameForPropertyValue(): void {
 
         $vcal = new Component\VCalendar(array(), false);
         $this->assertEquals('Sabre\\VObject\\Property\\Text', $vcal->getClassNameForPropertyValue('TEXT'));

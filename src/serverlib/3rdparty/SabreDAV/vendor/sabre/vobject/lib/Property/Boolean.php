@@ -28,7 +28,7 @@ class Boolean extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $val = strtoupper($val)==='TRUE'?true:false;
         $this->setValue($val);

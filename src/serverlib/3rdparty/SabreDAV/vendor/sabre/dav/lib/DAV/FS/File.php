@@ -19,7 +19,7 @@ class File extends Node implements DAV\IFile {
      * @param resource $data
      * @return void
      */
-    function put($data) {
+    function put($data): void {
 
         file_put_contents($this->path, $data);
         clearstatcache(true, $this->path);
@@ -42,7 +42,7 @@ class File extends Node implements DAV\IFile {
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         unlink($this->path);
 

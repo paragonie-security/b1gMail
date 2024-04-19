@@ -64,7 +64,7 @@ class Mock extends AbstractBackend {
      * @param \Sabre\DAV\PropPatch $propPatch
      * @return void
      */
-    public function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch) {
+    public function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch): void {
 
         foreach($this->addressBooks as &$book) {
             if ($book['id'] !== $addressBookId)
@@ -81,7 +81,7 @@ class Mock extends AbstractBackend {
 
     }
 
-    function createAddressBook($principalUri, $url, array $properties) {
+    function createAddressBook($principalUri, $url, array $properties): void {
 
         $this->addressBooks[] = array_merge($properties, array(
             'id' => $url,
@@ -91,7 +91,7 @@ class Mock extends AbstractBackend {
 
     }
 
-    function deleteAddressBook($addressBookId) {
+    function deleteAddressBook($addressBookId): void {
 
         foreach($this->addressBooks as $key=>$value) {
             if ($value['id'] === $addressBookId)
@@ -127,19 +127,19 @@ class Mock extends AbstractBackend {
 
     }
 
-    function createCard($addressBookId, $cardUri, $cardData) {
+    function createCard($addressBookId, $cardUri, $cardData): void {
 
         $this->cards[$addressBookId][$cardUri] = $cardData;
 
     }
 
-    function updateCard($addressBookId, $cardUri, $cardData) {
+    function updateCard($addressBookId, $cardUri, $cardData): void {
 
         $this->cards[$addressBookId][$cardUri] = $cardData;
 
     }
 
-    function deleteCard($addressBookId, $cardUri) {
+    function deleteCard($addressBookId, $cardUri): void {
 
         unset($this->cards[$addressBookId][$cardUri]);
 

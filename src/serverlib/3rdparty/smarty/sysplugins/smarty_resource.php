@@ -205,7 +205,7 @@ abstract class Smarty_Resource
      *
      * @param Smarty_Template_Source $source source object
      */
-    public function populateTimestamp(Smarty_Template_Source $source)
+    public function populateTimestamp(Smarty_Template_Source $source): void
     {
         // intentionally left blank
     }

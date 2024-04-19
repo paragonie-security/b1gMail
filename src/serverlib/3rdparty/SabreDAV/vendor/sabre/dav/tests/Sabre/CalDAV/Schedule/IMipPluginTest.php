@@ -8,7 +8,7 @@ use Sabre\DAV\Server;
 
 class IMipPluginTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetPluginInfo() {
+    function testGetPluginInfo(): void {
 
         $plugin = new IMipPlugin('system@example.com');
         $this->assertEquals(
@@ -18,7 +18,7 @@ class IMipPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDeliverReply() {
+    function testDeliverReply(): void {
 
         $message = new Message();
         $message->sender = 'mailto:sender@example.org';
@@ -60,7 +60,7 @@ ICS;
 
     }
 
-    function testDeliverReplyNoMailto() {
+    function testDeliverReplyNoMailto(): void {
 
         $message = new Message();
         $message->sender = 'mailto:sender@example.org';
@@ -90,7 +90,7 @@ ICS;
 
     }
 
-    function testDeliverRequest() {
+    function testDeliverRequest(): void {
 
         $message = new Message();
         $message->sender = 'mailto:sender@example.org';
@@ -132,7 +132,7 @@ ICS;
 
     }
 
-    function testDeliverCancel() {
+    function testDeliverCancel(): void {
 
         $message = new Message();
         $message->sender = 'mailto:sender@example.org';
@@ -187,7 +187,7 @@ ICS;
 
     }
 
-    function testDeliverInsignificantRequest() {
+    function testDeliverInsignificantRequest(): void {
 
         $message = new Message();
         $message->sender = 'mailto:sender@example.org';

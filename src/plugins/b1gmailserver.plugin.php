@@ -742,7 +742,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * initialize language-dependent phrases
 	 *
 	 */
-	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
 	{
 		$_lang_custom = $_lang_user = $_lang_client = $_lang_admin = array();
 
@@ -1281,7 +1281,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * notify subscribed iOS devices via APNS when a new email is stored
 	 *
 	 */
-	function AfterStoreMail($mailID, &$mail, &$mailbox)
+	function AfterStoreMail($mailID, &$mail, &$mailbox): void
 	{
 		global $db;
 
@@ -1345,7 +1345,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * cron tasks
 	 *
 	 */
-	function OnCron()
+	function OnCron(): void
 	{
 		global $db;
 
@@ -1387,7 +1387,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * process BMS event queue
 	 *
 	 */
-	function ProcessEventQueue()
+	function ProcessEventQueue(): void
 	{
 		global $db;
 
@@ -1524,7 +1524,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 *
 	 * @param type $fp resource
 	 */
-	function _closeControlChannel(&$fp)
+	function _closeControlChannel(&$fp): void
 	{
 		$this->_queueControlCommand($fp, 'QUIT');
 		fclose($fp);
@@ -1588,7 +1588,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * admin handler
 	 *
 	 */
-	function AdminHandler()
+	function AdminHandler(): void
 	{
 		global $tpl, $plugins, $lang_admin;
 
@@ -1697,7 +1697,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * common page
 	 *
 	 */
-	function _commonPage()
+	function _commonPage(): void
 	{
 		global $db, $tpl, $lang_admin, $bm_prefs, $currentLanguage;
 
@@ -1840,7 +1840,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * overview page
 	 *
 	 */
-	function _overviewPage()
+	function _overviewPage(): void
 	{
 		global $db, $tpl, $currentLanguage;
 
@@ -1929,7 +1929,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * pop3 page
 	 *
 	 */
-	function _pop3Page()
+	function _pop3Page(): void
 	{
 		global $db, $tpl;
 
@@ -1963,7 +1963,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * imap page
 	 *
 	 */
-	function _imapPage()
+	function _imapPage(): void
 	{
 		global $db, $tpl, $lang_admin;
 
@@ -2201,7 +2201,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * plugins page
 	 *
 	 */
-	function _pluginsPage()
+	function _pluginsPage(): void
 	{
 		global $db, $tpl, $lang_admin;
 
@@ -2261,7 +2261,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * stats page
 	 *
 	 */
-	function _statsPage()
+	function _statsPage(): void
 	{
 		global $db, $tpl, $lang_admin;
 
@@ -2464,7 +2464,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * logs page
 	 *
 	 */
-	function _logsPage()
+	function _logsPage(): void
 	{
 		global $db, $tpl;
 
@@ -2615,7 +2615,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * smtp page
 	 *
 	 */
-	function _smtpPage()
+	function _smtpPage(): void
 	{
 		global $db, $tpl;
 
@@ -2958,7 +2958,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * msgqueue page
 	 *
 	 */
-	function _msgqueuePage()
+	function _msgqueuePage(): void
 	{
 		global $db, $tpl, $lang_admin;
 
@@ -3530,7 +3530,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * @param string $file
 	 * @param string $action
 	 */
-	function FileHandler($file, $action)
+	function FileHandler($file, $action): void
 	{
 		global $lang_user, $thisGroup;
 
@@ -3576,7 +3576,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * @param string $tplFile Template file name
 	 * @param string $userName User name / email address
 	 */
-	function _adOutput($tplFile, $userName)
+	function _adOutput($tplFile, $userName): void
 	{
 		global $tpl, $bm_prefs;
 
@@ -3642,7 +3642,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * Autodiscover handler
 	 *
 	 */
-	function _autoDiscover()
+	function _autoDiscover(): void
 	{
 		global $tpl, $bm_prefs;
 
@@ -3668,7 +3668,7 @@ class B1GMailServerAdmin extends BMPlugin
 	 * Autoconfig handler
 	 *
 	 */
-	function _autoConfig()
+	function _autoConfig(): void
 	{
 		// extract mailaddress
 		$userName = '';

@@ -59,7 +59,7 @@ class Smarty_Internal_Runtime_Capture
      * @param string                    $assign variable name
      * @param string                    $append variable name
      */
-    public function open(Smarty_Internal_Template $_template, $buffer, $assign, $append)
+    public function open(Smarty_Internal_Template $_template, $buffer, $assign, $append): void
     {
         if (!$this->isRegistered) {
             $this->register($_template);
@@ -78,7 +78,7 @@ class Smarty_Internal_Runtime_Capture
      *
      * @param \Smarty_Internal_Template $_template
      */
-    private function register(Smarty_Internal_Template $_template)
+    private function register(Smarty_Internal_Template $_template): void
     {
         $_template->startRenderCallbacks[] = array(
             $this,
@@ -97,7 +97,7 @@ class Smarty_Internal_Runtime_Capture
      *
      * @param \Smarty_Internal_Template $_template
      */
-    public function startRender(Smarty_Internal_Template $_template)
+    public function startRender(Smarty_Internal_Template $_template): void
     {
         $this->countStack[] = $this->captureCount;
         $this->captureCount = 0;
@@ -110,7 +110,7 @@ class Smarty_Internal_Runtime_Capture
      *
      * @throws \SmartyException
      */
-    public function close(Smarty_Internal_Template $_template)
+    public function close(Smarty_Internal_Template $_template): void
     {
         if ($this->captureCount) {
             list($buffer, $assign, $append) = array_pop($this->captureStack);
@@ -163,7 +163,7 @@ class Smarty_Internal_Runtime_Capture
      *
      * @throws \SmartyException
      */
-    public function endRender(Smarty_Internal_Template $_template)
+    public function endRender(Smarty_Internal_Template $_template): void
     {
         if ($this->captureCount) {
             $this->error($_template);

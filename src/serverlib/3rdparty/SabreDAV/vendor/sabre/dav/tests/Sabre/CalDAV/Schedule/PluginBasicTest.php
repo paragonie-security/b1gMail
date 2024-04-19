@@ -7,7 +7,7 @@ class PluginBasicTest extends \Sabre\DAVServerTest {
     public $setupCalDAV = true;
     public $setupCalDAVScheduling = true;
 
-    function testSimple() {
+    function testSimple(): void {
 
         $plugin = new Plugin();
         $this->assertEquals(
@@ -17,14 +17,14 @@ class PluginBasicTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testOptions() {
+    function testOptions(): void {
 
         $plugin = new Plugin();
         $this->assertEquals(['calendar-auto-schedule'], $plugin->getFeatures());
 
     }
 
-    function testGetHTTPMethods() {
+    function testGetHTTPMethods(): void {
 
         $this->assertEquals([], $this->caldavSchedulePlugin->getHTTPMethods('notfound'));
         $this->assertEquals([], $this->caldavSchedulePlugin->getHTTPMethods('calendars/user1'));

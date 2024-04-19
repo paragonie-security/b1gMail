@@ -6,7 +6,7 @@ use Sabre\Xml\Service;
 
 class EnumTest extends \PHPUnit_Framework_TestCase {
 
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $service = new Service();
         $service->elementMap['{urn:test}root'] = 'Sabre\Xml\Deserializer\enum';
@@ -32,7 +32,7 @@ XML;
 
     }
 
-    function testDeserializeDefaultNamespace() {
+    function testDeserializeDefaultNamespace(): void {
 
         $service = new Service();
         $service->elementMap['{urn:test}root'] = function($reader) {

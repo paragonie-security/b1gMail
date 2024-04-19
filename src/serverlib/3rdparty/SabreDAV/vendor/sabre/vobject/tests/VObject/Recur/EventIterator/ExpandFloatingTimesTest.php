@@ -9,7 +9,7 @@ use
 
 class ExpandFloatingTimesTest extends \PHPUnit_Framework_TestCase {
 
-    function testExpand() {
+    function testExpand(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR
@@ -64,7 +64,7 @@ ICS;
 
     }
 
-    function testExpandWithReferenceTimezone() {
+    function testExpandWithReferenceTimezone(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR

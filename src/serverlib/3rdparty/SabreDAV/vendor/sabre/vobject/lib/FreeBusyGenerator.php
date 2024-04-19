@@ -105,7 +105,7 @@ class FreeBusyGenerator {
      * @param Component $vcalendar
      * @return void
      */
-    public function setBaseObject(Component $vcalendar) {
+    public function setBaseObject(Component $vcalendar): void {
 
         $this->baseObject = $vcalendar;
 
@@ -121,7 +121,7 @@ class FreeBusyGenerator {
      * @param mixed $objects
      * @return void
      */
-    public function setObjects($objects) {
+    public function setObjects($objects): void {
 
         if (!is_array($objects)) {
             $objects = array($objects);
@@ -151,7 +151,7 @@ class FreeBusyGenerator {
      * @param DateTime $end
      * @return void
      */
-    public function setTimeRange(\DateTime $start = null, \DateTime $end = null) {
+    public function setTimeRange(\DateTime $start = null, \DateTime $end = null): void {
 
         $this->start = $start;
         $this->end = $end;
@@ -164,7 +164,7 @@ class FreeBusyGenerator {
      * @param DateTimeZone $timeZone
      * @return void
      */
-    public function setTimeZone(DateTimeZone $timeZone) {
+    public function setTimeZone(DateTimeZone $timeZone): void {
 
         $this->timeZone = $timeZone;
 

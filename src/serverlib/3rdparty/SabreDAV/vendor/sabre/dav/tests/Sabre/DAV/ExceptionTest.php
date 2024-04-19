@@ -4,14 +4,14 @@ namespace Sabre\DAV;
 
 class ExceptionTest extends \PHPUnit_Framework_TestCase {
 
-    function testStatus() {
+    function testStatus(): void {
 
         $e = new Exception();
         $this->assertEquals(500,$e->getHTTPCode());
 
     }
 
-    function testExceptionStatuses() {
+    function testExceptionStatuses(): void {
 
         $c = array(
             'Sabre\\DAV\\Exception\\NotAuthenticated'    => 401,

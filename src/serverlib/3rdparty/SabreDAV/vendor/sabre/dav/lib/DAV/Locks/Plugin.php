@@ -55,7 +55,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $this->server = $server;
 
@@ -91,7 +91,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\INode $node
      * @return void
      */
-    function propFind(DAV\PropFind $propFind, DAV\INode $node) {
+    function propFind(DAV\PropFind $propFind, DAV\INode $node): void {
 
         $propFind->handle('{DAV:}supportedlock', function() {
             return new DAV\Xml\Property\SupportedLock();
@@ -315,7 +315,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param string $path
      * @return void
      */
-    function afterUnbind($path) {
+    function afterUnbind($path): void {
 
         $locks = $this->getLocks($path, $includeChildren = true);
         foreach ($locks as $lock) {
@@ -413,7 +413,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param mixed $conditions
      * @return void
      */
-    function validateTokens(RequestInterface $request, &$conditions) {
+    function validateTokens(RequestInterface $request, &$conditions): void {
 
         // First we need to gather a list of locks that must be satisfied.
         $mustLocks = [];

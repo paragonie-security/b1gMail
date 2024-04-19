@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class OutboxTest extends \PHPUnit_Framework_TestCase {
 
-    function testSetup() {
+    function testSetup(): void {
 
         $outbox = new Outbox('principals/user1');
         $this->assertEquals('outbox', $outbox->getName());
@@ -65,7 +65,7 @@ class OutboxTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $outbox = new Outbox('principals/user1');
         $r = $outbox->getSupportedPrivilegeSet();

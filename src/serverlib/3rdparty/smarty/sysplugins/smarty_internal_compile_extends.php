@@ -98,7 +98,7 @@ class Smarty_Internal_Compile_Extends extends Smarty_Internal_Compile_Shared_Inh
      * @throws \SmartyCompilerException
      * @throws \SmartyException
      */
-    private function compileEndChild(Smarty_Internal_TemplateCompilerBase $compiler, $template = null)
+    private function compileEndChild(Smarty_Internal_TemplateCompilerBase $compiler, $template = null): void
     {
         $inlineUids = '';
         if (isset($template) && $compiler->smarty->merge_compiled_includes) {
@@ -125,7 +125,7 @@ class Smarty_Internal_Compile_Extends extends Smarty_Internal_Compile_Shared_Inh
      * @throws \SmartyCompilerException
      * @throws \SmartyException
      */
-    private function compileInclude(Smarty_Internal_TemplateCompilerBase $compiler, $template)
+    private function compileInclude(Smarty_Internal_TemplateCompilerBase $compiler, $template): void
     {
         $compiler->parser->template_postfix[] = new Smarty_Internal_ParseTree_Tag(
             $compiler->parser,

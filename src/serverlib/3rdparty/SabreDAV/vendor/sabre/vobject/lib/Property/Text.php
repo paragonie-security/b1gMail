@@ -95,7 +95,7 @@ class Text extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $this->setValue(MimeDir::unescapeValue($val, $this->delimiter));
 
@@ -107,7 +107,7 @@ class Text extends Property {
      * @param string $val
      * @return void
      */
-    public function setQuotedPrintableValue($val) {
+    public function setQuotedPrintableValue($val): void {
 
         $val = quoted_printable_decode($val);
 

@@ -7,7 +7,7 @@ class ParseTest extends \PHPUnit_Framework_TestCase{
     /**
      * @dataProvider parseData
      */
-    function testParse($in, $out) {
+    function testParse($in, $out): void {
 
         $this->assertEquals(
             $out,

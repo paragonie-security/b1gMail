@@ -4,7 +4,7 @@ namespace Sabre\Event;
 
 class PromiseTest extends \PHPUnit_Framework_TestCase {
 
-    function testSuccess() {
+    function testSuccess(): void {
 
         $finalValue = 0;
         $promise = new Promise();
@@ -18,7 +18,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFail() {
+    function testFail(): void {
 
         $finalValue = 0;
         $promise = new Promise();
@@ -32,7 +32,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testChain() {
+    function testChain(): void {
 
         $finalValue = 0;
         $promise = new Promise();
@@ -49,7 +49,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(7, $finalValue);
 
     }
-    function testChainPromise() {
+    function testChainPromise(): void {
 
         $finalValue = 0;
         $promise = new Promise();
@@ -70,7 +70,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPendingResult() {
+    function testPendingResult(): void {
 
         $finalValue = 0;
         $promise = new Promise();
@@ -84,7 +84,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPendingFail() {
+    function testPendingFail(): void {
 
         $finalValue = 0;
         $promise = new Promise();
@@ -98,7 +98,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testExecutorSuccess() {
+    function testExecutorSuccess(): void {
 
         $promise = (new Promise(function($success, $fail) {
 
@@ -114,7 +114,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testExecutorFail() {
+    function testExecutorFail(): void {
 
         $promise = (new Promise(function($success, $fail) {
 
@@ -137,7 +137,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\Event\PromiseAlreadyResolvedException
      */
-    function testFulfillTwice() {
+    function testFulfillTwice(): void {
 
         $promise = new Promise();
         $promise->fulfill(1);
@@ -148,7 +148,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\Event\PromiseAlreadyResolvedException
      */
-    function testRejectTwice() {
+    function testRejectTwice(): void {
 
         $promise = new Promise();
         $promise->reject(1);
@@ -156,7 +156,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFromFailureHandler() {
+    function testFromFailureHandler(): void {
 
         $ok = 0;
         $promise = new Promise();
@@ -181,7 +181,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAll() {
+    function testAll(): void {
 
         $promise1 = new Promise();
         $promise2 = new Promise();
@@ -200,7 +200,7 @@ class PromiseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAllReject() {
+    function testAllReject(): void {
 
         $promise1 = new Promise();
         $promise2 = new Promise();

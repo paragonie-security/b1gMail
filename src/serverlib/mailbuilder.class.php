@@ -68,7 +68,7 @@ class BMMailBuilder
 	 *
 	 * @param int $userID
 	 */
-	function SetUserID($userID)
+	function SetUserID($userID): void
 	{
 		$this->_userID = $userID;
 	}
@@ -78,7 +78,7 @@ class BMMailBuilder
 	 *
 	 * @param string $address Address
 	 */
-	function SetMailFrom($address)
+	function SetMailFrom($address): void
 	{
 		$this->_mailFrom = ExtractMailAddress($address);
 	}
@@ -89,7 +89,7 @@ class BMMailBuilder
 	 * @param string $key
 	 * @param string $value
 	 */
-	function AddHeaderField($key, $value)
+	function AddHeaderField($key, $value): void
 	{
 		$this->_headerFields[$key] = $value;
 	}
@@ -101,7 +101,7 @@ class BMMailBuilder
 	 * @param string $type Text type (plain or html)
 	 * @param string $charset Text charset
 	 */
-	function AddText($data, $type = 'plain', $charset = 'iso-8859-1', $additionalParams = '')
+	function AddText($data, $type = 'plain', $charset = 'iso-8859-1', $additionalParams = ''): void
 	{
 		$cte = '8bit';
 
@@ -139,7 +139,7 @@ class BMMailBuilder
 	 * @param string $fileName File name
 	 * @param string $contentDisposition Content disposition (attachment or inline)
 	 */
-	function AddAttachment($data, $contentType, $fileName, $contentDisposition = 'attachment')
+	function AddAttachment($data, $contentType, $fileName, $contentDisposition = 'attachment'): void
 	{
 		$this->_parts[] = array(
 			'data'			=> $data,
@@ -321,7 +321,7 @@ class BMMailBuilder
 	 * clean up
 	 *
 	 */
-	function CleanUp()
+	function CleanUp(): void
 	{
 		if($this->_fp !== false)
 			fclose($this->_fp);
@@ -332,7 +332,7 @@ class BMMailBuilder
 	 * associate sent mail with an outbox mail ID
 	 *
 	 */
-	function SetDeliveryStatusOutboxID($outboxID)
+	function SetDeliveryStatusOutboxID($outboxID): void
 	{
 		if($this->_sendMail !== false)
 		{
@@ -346,7 +346,7 @@ class BMMailBuilder
 	 * @param array $headerFields Header fields
 	 * @param bool $rootHeaders Root headers?
 	 */
-	function _writePartHeader($headerFields, $rootHeaders = false, $doEncode = true)
+	function _writePartHeader($headerFields, $rootHeaders = false, $doEncode = true): void
 	{
 		foreach($headerFields as $key=>$value)
 		{
@@ -372,7 +372,7 @@ class BMMailBuilder
 	 *
 	 * @param array $part Part array
 	 */
-	function _writePartBody($part)
+	function _writePartBody($part): void
 	{
 		// encode
 		if($part['base64'])
@@ -421,7 +421,7 @@ class BMMailBuilder
 	 * initialize header fields
 	 *
 	 */
-	function _initHeaderFields()
+	function _initHeaderFields(): void
 	{
 		$this->AddHeaderField('Date',			date('r'));
 		$this->AddHeaderField('MIME-Version',	'1.0');

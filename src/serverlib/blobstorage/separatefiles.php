@@ -126,7 +126,7 @@ class BMBlobStorage_SeparateFiles extends BMAbstractBlobStorage
 		return($result);
 	}
 
-	public function deleteUser()
+	public function deleteUser(): void
 	{
 		global $db;
 

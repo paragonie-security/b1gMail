@@ -37,11 +37,11 @@ class SharedCalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetSharedUrl() {
+    function testGetSharedUrl(): void {
         $this->assertEquals('calendars/owner/original', $this->getInstance()->getSharedUrl());
     }
 
-    function testGetShares() {
+    function testGetShares(): void {
 
         $this->assertEquals(array(array(
             'href' => 'mailto:removeme@example.org',
@@ -52,11 +52,11 @@ class SharedCalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
         $this->assertEquals('principals/owner', $this->getInstance()->getOwner());
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $expected = array(
             array(
@@ -106,7 +106,7 @@ class SharedCalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChildACL() {
+    function testGetChildACL(): void {
 
         $expected = array(
             array(
@@ -150,7 +150,7 @@ class SharedCalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChildACLReadOnly() {
+    function testGetChildACLReadOnly(): void {
 
         $expected = array(
             array(
@@ -189,7 +189,7 @@ class SharedCalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testCreateInstanceMissingArg() {
+    public function testCreateInstanceMissingArg(): void {
 
         $this->getInstance(array(
             'id' => 1,

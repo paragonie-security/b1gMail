@@ -6,7 +6,7 @@ use Sabre\DAV\Xml\XmlTest;
 
 class SyncCollectionTest extends XmlTest {
 
-    function testDeserializeProp() {
+    function testDeserializeProp(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:sync-collection xmlns:d="DAV:">
@@ -29,7 +29,7 @@ class SyncCollectionTest extends XmlTest {
     }
 
 
-    function testDeserializeLimit() {
+    function testDeserializeLimit(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:sync-collection xmlns:d="DAV:">
@@ -54,7 +54,7 @@ class SyncCollectionTest extends XmlTest {
     }
 
 
-    function testDeserializeInfinity() {
+    function testDeserializeInfinity(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:sync-collection xmlns:d="DAV:">
@@ -79,7 +79,7 @@ class SyncCollectionTest extends XmlTest {
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeMissingElem() {
+    function testDeserializeMissingElem(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:sync-collection xmlns:d="DAV:">

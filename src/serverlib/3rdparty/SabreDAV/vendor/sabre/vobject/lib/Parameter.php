@@ -178,7 +178,7 @@ class Parameter extends Node {
      * @param string|array $value
      * @return void
      */
-    public function setValue($value) {
+    public function setValue($value): void {
 
         $this->value = $value;
 
@@ -208,7 +208,7 @@ class Parameter extends Node {
      * @param array $value
      * @return void
      */
-    public function setParts(array $value) {
+    public function setParts(array $value): void {
 
         $this->value = $value;
 
@@ -242,7 +242,7 @@ class Parameter extends Node {
      * @param string|array $part
      * @return void
      */
-    public function addValue($part) {
+    public function addValue($part): void {
 
         if (is_null($this->value)) {
             $this->value = $part;

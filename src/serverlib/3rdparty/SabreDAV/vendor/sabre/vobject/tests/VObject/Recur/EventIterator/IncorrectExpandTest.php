@@ -12,7 +12,7 @@ use
  */
 class RecurrenceIteratorIncorrectExpandTest extends \PHPUnit_Framework_TestCase {
 
-    function testExpand() {
+    function testExpand(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR

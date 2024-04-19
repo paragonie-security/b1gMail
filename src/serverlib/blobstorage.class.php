@@ -131,7 +131,7 @@ abstract class BMAbstractBlobStorage implements BMBlobStorageInterface
 	 *
 	 * @param int $id
 	 */
-	public function setProviderID($id)
+	public function setProviderID($id): void
 	{
 		$this->providerID = $id;
 	}
@@ -141,7 +141,7 @@ abstract class BMAbstractBlobStorage implements BMBlobStorageInterface
 	 *
 	 * @param int $userID
 	 */
-	public function open($userID)
+	public function open($userID): void
 	{
 		$this->userID = $userID;
 	}

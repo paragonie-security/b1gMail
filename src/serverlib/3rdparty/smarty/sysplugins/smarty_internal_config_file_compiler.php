@@ -178,7 +178,7 @@ class Smarty_Internal_Config_File_Compiler
      *
      * @throws SmartyCompilerException
      */
-    public function trigger_config_file_error($args = null)
+    public function trigger_config_file_error($args = null): void
     {
         // get config source line which has error
         $line = $this->lex->line;

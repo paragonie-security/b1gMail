@@ -93,7 +93,7 @@ class SystemStatus implements NotificationInterface {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         switch ($this->type) {
             case self::TYPE_LOW :
@@ -121,7 +121,7 @@ class SystemStatus implements NotificationInterface {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerializeFull(Writer $writer) {
+    function xmlSerializeFull(Writer $writer): void {
 
         $cs = '{' . Plugin::NS_CALENDARSERVER . '}';
         switch ($this->type) {

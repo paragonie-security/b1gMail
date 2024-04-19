@@ -7,14 +7,14 @@ use Sabre\HTTP;
 
 class ApacheTest extends \PHPUnit_Framework_TestCase {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $backend = new Apache();
         $this->assertInstanceOf('Sabre\DAV\Auth\Backend\Apache', $backend);
 
     }
 
-    function testNoHeader() {
+    function testNoHeader(): void {
 
         $request = new HTTP\Request();
         $response = new HTTP\Response();
@@ -26,7 +26,7 @@ class ApacheTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRemoteUser() {
+    function testRemoteUser(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REMOTE_USER' => 'username',
@@ -41,7 +41,7 @@ class ApacheTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRedirectRemoteUser() {
+    function testRedirectRemoteUser(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REDIRECT_REMOTE_USER' => 'username',
@@ -56,7 +56,7 @@ class ApacheTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRequireAuth() {
+    function testRequireAuth(): void {
 
         $request = new HTTP\Request();
         $response = new HTTP\Response();

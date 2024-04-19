@@ -79,7 +79,7 @@ class RRuleIterator implements Iterator {
      *
      * @return void
      */
-    public function rewind() {
+    public function rewind(): void {
 
         $this->currentDate = clone $this->startDate;
         $this->counter = 0;
@@ -91,7 +91,7 @@ class RRuleIterator implements Iterator {
      *
      * @return void
      */
-    public function next() {
+    public function next(): void {
 
         $previousStamp = $this->currentDate->getTimeStamp();
 
@@ -144,7 +144,7 @@ class RRuleIterator implements Iterator {
      * @param DateTime $dt
      * @return void
      */
-    public function fastForward(\DateTime $dt) {
+    public function fastForward(\DateTime $dt): void {
 
         while($this->valid() && $this->currentDate < $dt ) {
             $this->next();

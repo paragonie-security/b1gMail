@@ -45,7 +45,7 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param NotificationInterface $notification
      * @return void
      */
-    function deleteNotification($principalUri, NotificationInterface $notification) {
+    function deleteNotification($principalUri, NotificationInterface $notification): void {
 
         foreach($this->notifications[$principalUri] as $key=>$value) {
             if ($notification === $value) {
@@ -78,7 +78,7 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param array $remove
      * @return void
      */
-    function updateShares($calendarId, array $add, array $remove) {
+    function updateShares($calendarId, array $add, array $remove): void {
 
         if (!isset($this->shares[$calendarId])) {
             $this->shares[$calendarId] = [];
@@ -151,7 +151,7 @@ class MockSharing extends Mock implements NotificationSupport, SharingSupport {
      * @param bool $value
      * @return void
      */
-    function setPublishStatus($calendarId, $value) {
+    function setPublishStatus($calendarId, $value): void {
 
         foreach($this->calendars as $k=>$cal) {
             if ($cal['id'] === $calendarId) {

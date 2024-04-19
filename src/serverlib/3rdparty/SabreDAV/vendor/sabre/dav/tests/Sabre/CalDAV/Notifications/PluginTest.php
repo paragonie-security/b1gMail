@@ -26,7 +26,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
      */
     protected $caldavBackend;
 
-    function setup() {
+    function setup(): void {
 
         $this->caldavBackend = new CalDAV\Backend\MockSharing();
         $principalBackend = new DAVACL\PrincipalBackend\Mock();
@@ -64,7 +64,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $this->assertEquals([], $this->plugin->getFeatures());
         $this->assertEquals('notifications', $this->plugin->getPluginName());
@@ -75,7 +75,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPrincipalProperties() {
+    function testPrincipalProperties(): void {
 
         $httpRequest = new Request('GET', '/', ['Host' => 'sabredav.org']);
         $this->server->httpRequest = $httpRequest;
@@ -95,7 +95,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testNotificationProperties() {
+    function testNotificationProperties(): void {
 
         $notification = new Node(
             $this->caldavBackend,
@@ -115,7 +115,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testNotificationGet() {
+    function testNotificationGet(): void {
 
         $notification = new Node(
             $this->caldavBackend,
@@ -151,7 +151,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGETPassthrough() {
+    function testGETPassthrough(): void {
 
         $server = new DAV\Server();
         $caldav = new Plugin();

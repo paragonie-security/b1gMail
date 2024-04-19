@@ -12,7 +12,7 @@ class CliLog {
 
     }
 
-    function log($msg) {
+    function log($msg): void {
         fwrite($this->stream, $msg . "\n");
     }
 

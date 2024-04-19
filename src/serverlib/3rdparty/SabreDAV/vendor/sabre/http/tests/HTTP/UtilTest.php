@@ -4,7 +4,7 @@ namespace Sabre\HTTP;
 
 class UtilTest extends \PHPUnit_Framework_TestCase {
 
-    function testParseHTTPDate() {
+    function testParseHTTPDate(): void {
 
         $times = [
             'Wed, 13 Oct 2010 10:26:00 GMT',
@@ -24,7 +24,7 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParseHTTPDateFail() {
+    function testParseHTTPDateFail(): void {
 
         $times = [
             //random string
@@ -51,7 +51,7 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testTimezones() {
+    function testTimezones(): void {
 
         $default = date_default_timezone_get();
         date_default_timezone_set('Europe/Amsterdam');
@@ -62,7 +62,7 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testToHTTPDate() {
+    function testToHTTPDate(): void {
 
         $dt = new \DateTime('2011-12-10 12:00:00 +0200');
 
@@ -76,7 +76,7 @@ class UtilTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider negotiateData
      */
-    function testNegotiate($acceptHeader, $available, $expected) {
+    function testNegotiate($acceptHeader, $available, $expected): void {
 
         $this->assertEquals(
             $expected,

@@ -14,7 +14,7 @@ class BySetPosHangTest extends \PHPUnit_Framework_TestCase {
      *
      * See: https://github.com/fruux/sabre-vobject/issues/212
      */
-    function testExpand() {
+    function testExpand(): void {
 
         $ics = <<<ICS
 BEGIN:VCALENDAR

@@ -53,7 +53,7 @@ class Sapi {
      * @param ResponseInterface $response
      * @return void
      */
-    static function sendResponse(ResponseInterface $response) {
+    static function sendResponse(ResponseInterface $response): void {
 
         header('HTTP/' . $response->getHttpVersion() . ' ' . $response->getStatus() . ' ' . $response->getStatusText());
         foreach ($response->getHeaders() as $key => $value) {

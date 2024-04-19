@@ -104,7 +104,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 			throw new Sabre\DAV\Exception('Unsupported component set: ' . $type);
 	}
 
-	public function updateCalendar($calendarId, \Sabre\DAV\PropPatch $propPatch)
+	public function updateCalendar($calendarId, \Sabre\DAV\PropPatch $propPatch): void
 	{
 		global $os;
 
@@ -155,7 +155,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 			throw new Sabre\DAV\Exception\NotFound();
 	}
 
-	public function deleteCalendar($calendarId)
+	public function deleteCalendar($calendarId): void
 	{
 		global $os;
 
@@ -355,7 +355,7 @@ class BMCalDAVBackend extends Sabre\CalDAV\Backend\AbstractBackend
 			throw new Sabre\DAV\Exception\NotFound();
 	}
 
-	public function deleteCalendarObject($calendarId, $objectUri)
+	public function deleteCalendarObject($calendarId, $objectUri): void
 	{
 		global $os;
 
@@ -872,7 +872,7 @@ class BMCalDAVAuthBackend extends BMAuthBackend
 		return($this->groupRow['organizerdav'] == 'yes');
 	}
 
-	function setupState()
+	function setupState(): void
 	{
 		global $os;
 

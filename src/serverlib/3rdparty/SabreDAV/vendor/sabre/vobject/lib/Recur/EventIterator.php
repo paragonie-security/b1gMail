@@ -314,7 +314,7 @@ class EventIterator implements \Iterator {
     /**
      * Sets the iterator back to the starting point.
      */
-    public function rewind() {
+    public function rewind(): void {
 
         $this->recurIterator->rewind();
         // re-creating overridden event index.
@@ -340,7 +340,7 @@ class EventIterator implements \Iterator {
      *
      * @return void
      */
-    public function next() {
+    public function next(): void {
 
         $this->currentOverriddenEvent = null;
         $this->counter++;
@@ -397,7 +397,7 @@ class EventIterator implements \Iterator {
      *
      * @param DateTime $dateTime
      */
-    public function fastForward(DateTime $dateTime) {
+    public function fastForward(DateTime $dateTime): void {
 
         while($this->valid() && $this->getDtEnd() < $dateTime ) {
             $this->next();

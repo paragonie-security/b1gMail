@@ -12,14 +12,14 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     protected $collection;
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->server->addPlugin(new Plugin());
 
     }
 
-    function testGetInfo() {
+    function testGetInfo(): void {
 
         $this->assertArrayHasKey(
             'name',
@@ -28,7 +28,7 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function setUpTree() {
+    function setUpTree(): void {
 
         $this->collection =
             new MockSyncCollection('coll', [
@@ -42,7 +42,7 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testSupportedReportSet() {
+    function testSupportedReportSet(): void {
 
         $result = $this->server->getProperties('/coll', ['{DAV:}supported-report-set']);
         $this->assertFalse($result['{DAV:}supported-report-set']->has('{DAV:}sync-collection'));
@@ -55,7 +55,7 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testGetSyncToken() {
+    function testGetSyncToken(): void {
 
         $result = $this->server->getProperties('/coll', ['{DAV:}sync-token']);
         $this->assertFalse(isset($result['{DAV:}sync-token']));
@@ -73,7 +73,7 @@ class PluginTest extends \Sabre\DAVServerTest {
         $this->assertFalse(isset($result['{DAV:}sync-token']));
     }
 
-    function testSyncInitialSyncCollection() {
+    function testSyncInitialSyncCollection(): void {
 
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
@@ -130,7 +130,7 @@ BLA;
 
     }
 
-    function testSubsequentSyncSyncCollection() {
+    function testSubsequentSyncSyncCollection(): void {
 
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
@@ -189,7 +189,7 @@ BLA;
 
     }
 
-    function testSubsequentSyncSyncCollectionLimit() {
+    function testSubsequentSyncSyncCollectionLimit(): void {
 
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
@@ -241,7 +241,7 @@ BLA;
 
     }
 
-    function testSubsequentSyncSyncCollectionDepthFallBack() {
+    function testSubsequentSyncSyncCollectionDepthFallBack(): void {
 
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
@@ -302,7 +302,7 @@ BLA;
 
     }
 
-    function testSyncNoSyncInfo() {
+    function testSyncNoSyncInfo(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
@@ -331,7 +331,7 @@ BLA;
 
     }
 
-    function testSyncNoSyncCollection() {
+    function testSyncNoSyncCollection(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
@@ -360,7 +360,7 @@ BLA;
 
     }
 
-    function testSyncInvalidToken() {
+    function testSyncInvalidToken(): void {
 
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
@@ -389,7 +389,7 @@ BLA;
         $this->assertEquals(403, $response->status, 'Full response body:' . $response->body);
 
     }
-    function testSyncInvalidTokenNoPrefix() {
+    function testSyncInvalidTokenNoPrefix(): void {
 
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
@@ -419,7 +419,7 @@ BLA;
 
     }
 
-    function testSyncNoSyncToken() {
+    function testSyncNoSyncToken(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
@@ -447,7 +447,7 @@ BLA;
 
     }
 
-    function testSyncNoProp() {
+    function testSyncNoProp(): void {
 
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
@@ -474,7 +474,7 @@ BLA;
 
     }
 
-    function testIfConditions() {
+    function testIfConditions(): void {
 
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
@@ -491,7 +491,7 @@ BLA;
 
     }
 
-    function testIfConditionsNot() {
+    function testIfConditionsNot(): void {
 
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
@@ -508,7 +508,7 @@ BLA;
 
     }
 
-    function testIfConditionsNoSyncToken() {
+    function testIfConditionsNoSyncToken(): void {
 
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([

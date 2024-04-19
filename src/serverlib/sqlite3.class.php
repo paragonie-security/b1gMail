@@ -45,7 +45,7 @@ class SQLite3Stmt
 		$this->stmt = $stmt;
 	}
 
-	public function bindValue($variable, $value, $dataType = SQLITE3_TEXT)
+	public function bindValue($variable, $value, $dataType = SQLITE3_TEXT): void
 	{
 		$dataTypeMap = array(
 			SQLITE3_INTEGER 		=> PDO::PARAM_INT,
@@ -94,7 +94,7 @@ class SQLite3Result
 		return($this->res->fetch($fetchModeMap[$mode]));
 	}
 
-	public function finalize()
+	public function finalize(): void
 	{
 		$this->res->closeCursor();
 	}
@@ -117,12 +117,12 @@ class SQLite3
 		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 
-	public function close()
+	public function close(): void
 	{
 		$this->pdo = null;
 	}
 
-	public function busyTimeout($timeout)
+	public function busyTimeout($timeout): void
 	{
 		$this->pdo->setAttribute(PDO::ATTR_TIMEOUT, $timeout/1000);
 	}

@@ -37,7 +37,7 @@ class Period extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $this->setValue(explode($this->delimiter, $val));
 
@@ -76,7 +76,7 @@ class Period extends Property {
      * @param array $value
      * @return void
      */
-    public function setJsonValue(array $value) {
+    public function setJsonValue(array $value): void {
 
         $value = array_map(
             function($item) {

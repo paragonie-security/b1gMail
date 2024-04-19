@@ -8,7 +8,7 @@ use Sabre\DAV\Xml\Property\Href;
 
 class PropTest extends XmlTest {
 
-    function testDeserializeSimple() {
+    function testDeserializeSimple(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -24,7 +24,7 @@ XML;
         $this->assertDecodeProp($input, $expected);
 
     }
-    function testDeserializeEmpty() {
+    function testDeserializeEmpty(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -37,7 +37,7 @@ XML;
         $this->assertDecodeProp($input, $expected);
 
     }
-    function testDeserializeComplex() {
+    function testDeserializeComplex(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -53,7 +53,7 @@ XML;
         $this->assertDecodeProp($input, $expected);
 
     }
-    function testDeserializeCustom() {
+    function testDeserializeCustom(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -73,7 +73,7 @@ XML;
         $this->assertDecodeProp($input, $expected, $elementMap);
 
     }
-    function testDeserializeCustomCallback() {
+    function testDeserializeCustomCallback(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -100,7 +100,7 @@ XML;
     /**
      * @expectedException \LogicException
      */
-    function testDeserializeCustomBad() {
+    function testDeserializeCustomBad(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -122,7 +122,7 @@ XML;
     /**
      * @expectedException \LogicException
      */
-    function testDeserializeCustomBadObj() {
+    function testDeserializeCustomBadObj(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -141,7 +141,7 @@ XML;
 
     }
 
-    function assertDecodeProp($input, array $expected, array $elementMap = []) {
+    function assertDecodeProp($input, array $expected, array $elementMap = []): void {
 
         $elementMap['{DAV:}root'] = 'Sabre\DAV\Xml\Element\Prop';
 

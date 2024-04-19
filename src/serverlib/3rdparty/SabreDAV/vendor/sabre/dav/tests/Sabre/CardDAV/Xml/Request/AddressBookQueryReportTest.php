@@ -9,7 +9,7 @@ class AddressBookQueryReportTest extends XmlTest {
         '{urn:ietf:params:xml:ns:carddav}addressbook-query' => 'Sabre\\CardDAV\\Xml\\Request\AddressBookQueryReport',
     ];
 
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -46,7 +46,7 @@ XML;
 
     }
 
-    function testDeserializeAllOf() {
+    function testDeserializeAllOf(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -86,7 +86,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeBadTest() {
+    function testDeserializeBadTest(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -107,7 +107,7 @@ XML;
     /**
      * We should error on this, but KDE does this, so we chose to support it.
      */
-    function testDeserializeNoFilter() {
+    function testDeserializeNoFilter(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -133,7 +133,7 @@ XML;
 
     }
 
-    function testDeserializeComplex() {
+    function testDeserializeComplex(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -236,7 +236,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeBadMatchType() {
+    function testDeserializeBadMatchType(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -260,7 +260,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeBadMatchType2() {
+    function testDeserializeBadMatchType2(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -282,7 +282,7 @@ XML;
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testDeserializeDoubleFilter() {
+    function testDeserializeDoubleFilter(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>

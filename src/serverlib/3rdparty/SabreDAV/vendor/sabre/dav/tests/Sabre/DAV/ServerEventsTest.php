@@ -11,7 +11,7 @@ class ServerEventsTest extends AbstractServer {
 
     private $exception;
 
-    function testAfterBind() {
+    function testAfterBind(): void {
 
         $this->server->on('afterBind', [$this,'afterBindHandler']);
         $newPath = 'afterBind';
@@ -22,13 +22,13 @@ class ServerEventsTest extends AbstractServer {
 
     }
 
-    function afterBindHandler($path) {
+    function afterBindHandler($path): void {
 
        $this->tempPath = $path;
 
     }
 
-    function testAfterResponse() {
+    function testAfterResponse(): void {
 
         $mock = $this->getMock('stdClass', array('afterResponseCallback'));
         $mock->expects($this->once())->method('afterResponseCallback');
@@ -44,7 +44,7 @@ class ServerEventsTest extends AbstractServer {
 
     }
 
-    function testBeforeBindCancel() {
+    function testBeforeBindCancel(): void {
 
         $this->server->on('beforeBind', [$this,'beforeBindCancelHandler']);
         $this->assertFalse($this->server->createFile('bla','body'));
@@ -68,7 +68,7 @@ class ServerEventsTest extends AbstractServer {
 
     }
 
-    function testException() {
+    function testException(): void {
 
         $this->server->on('exception', [$this, 'exceptionHandler']);
 
@@ -83,13 +83,13 @@ class ServerEventsTest extends AbstractServer {
 
     }
 
-    function exceptionHandler(Exception $exception) {
+    function exceptionHandler(Exception $exception): void {
 
         $this->exception = $exception;
 
     }
 
-    function testMethod() {
+    function testMethod(): void {
 
         $k = 1;
         $this->server->on('method', function() use (&$k) {

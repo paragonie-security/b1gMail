@@ -6,7 +6,7 @@ use Sabre\VObject\Component\VCard;
 
 class CompoundTest extends \PHPUnit_Framework_TestCase {
 
-    function testSetParts() {
+    function testSetParts(): void {
 
         $arr = array(
             'ABC, Inc.',
@@ -25,7 +25,7 @@ class CompoundTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetParts() {
+    function testGetParts(): void {
 
         $str = 'ABC\, Inc.;North American Division;Marketing\;Sales';
 
@@ -38,7 +38,7 @@ class CompoundTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('Marketing;Sales', $parts[2]);
     }
 
-    function testGetPartsNull() {
+    function testGetPartsNull(): void {
 
         $vcard = new VCard();
         $elem = $vcard->createProperty('ORG', null);

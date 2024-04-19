@@ -59,7 +59,7 @@ class PrincipalCollection extends AbstractPrincipalCollection implements IExtend
      * @throws Exception\InvalidResourceType
      * @return void
      */
-    function createExtendedCollection($name, MkCol $mkCol) {
+    function createExtendedCollection($name, MkCol $mkCol): void {
 
         if (!$mkCol->hasResourceType('{DAV:}principal')) {
             throw new InvalidResourceType('Only resources of type {DAV:}principal may be created here');

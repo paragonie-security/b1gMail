@@ -7,7 +7,7 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase{
     /**
      * @dataProvider normalizeData
      */
-    function testNormalize($in, $out) {
+    function testNormalize($in, $out): void {
 
         $this->assertEquals(
             $out,

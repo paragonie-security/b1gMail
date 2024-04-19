@@ -565,7 +565,7 @@ class BMPlugin
      * @param string $options
      * @param string $default
      */
-    public function RegisterGroupOption($key, $type = FIELD_TEXT, $desc, $options = '', $default = '')
+    public function RegisterGroupOption($key, $type = FIELD_TEXT, $desc, $options = '', $default = ''): void
     {
         $this->_groupOptions[$key] = [
             'type' => $type,
@@ -630,7 +630,7 @@ class BMPlugin
      *
      * @param $reload Reload dashboard?
      */
-    public function _closeWidgetPrefs($reload = true)
+    public function _closeWidgetPrefs($reload = true): void
     {
         echo '<script>'."\n";
         echo '<!--'."\n";
@@ -1032,7 +1032,7 @@ class BMPluginPackage
      *
      * @return bool
      */
-    private static function _Uninstall($signature) { 
+    private static function _Uninstall($signature): void { 
         global $db, $plugins, $cacheManager;
         // get plugins
         $packageFiles = [];
@@ -1226,7 +1226,7 @@ class BMPluginInterface
     /**
      * load plugins from "plugins" directory.
      */
-    public function loadPlugins()
+    public function loadPlugins(): void
     {
         global $plugins;
 
@@ -1258,7 +1258,7 @@ class BMPluginInterface
     /**
      * sort plugins.
      */
-    public function _sortPlugins()
+    public function _sortPlugins(): void
     {
         uasort($this->_plugins, ['BMPluginInterface', '_pluginSort']);
         uasort($this->_inactivePlugins, ['BMPluginInterface', '_pluginSort']);

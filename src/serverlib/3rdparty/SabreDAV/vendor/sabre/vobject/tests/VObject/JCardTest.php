@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class JCardTest extends \PHPUnit_Framework_TestCase {
 
-    function testToJCard() {
+    function testToJCard(): void {
 
         $card = new Component\VCard(array(
             "VERSION" => "4.0",

@@ -18,7 +18,7 @@ class FreeBusyRequestTest extends \PHPUnit_Framework_TestCase {
     protected $authPlugin;
     protected $caldavBackend;
 
-    function setUp() {
+    function setUp(): void {
 
         $calendars = [
             [
@@ -95,7 +95,7 @@ END:VCALENDAR',
 
     }
 
-    function testWrongContentType() {
+    function testWrongContentType(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -109,7 +109,7 @@ END:VCALENDAR',
 
     }
 
-    function testNotFound() {
+    function testNotFound(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -123,7 +123,7 @@ END:VCALENDAR',
 
     }
 
-    function testNotOutbox() {
+    function testNotOutbox(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -140,7 +140,7 @@ END:VCALENDAR',
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testNoItipMethod() {
+    function testNoItipMethod(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -163,7 +163,7 @@ ICS;
     /**
      * @expectedException \Sabre\DAV\Exception\NotImplemented
      */
-    function testNoVFreeBusy() {
+    function testNoVFreeBusy(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -187,7 +187,7 @@ ICS;
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    function testIncorrectOrganizer() {
+    function testIncorrectOrganizer(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -213,7 +213,7 @@ ICS;
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testNoAttendees() {
+    function testNoAttendees(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -238,7 +238,7 @@ ICS;
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testNoDTStart() {
+    function testNoDTStart(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -261,7 +261,7 @@ ICS;
 
     }
 
-    function testSucceed() {
+    function testSucceed(): void {
 
         $this->server->httpRequest = new HTTP\Request(
             'POST',
@@ -322,7 +322,7 @@ ICS;
      * Testing if the freebusy request still works, even if there are no
      * calendars in the target users' account.
      */
-    function testSucceedNoCalendars() {
+    function testSucceedNoCalendars(): void {
 
         // Deleting calendars
         $this->caldavBackend->deleteCalendar(1);

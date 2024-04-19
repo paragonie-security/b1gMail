@@ -10,7 +10,7 @@ class IssueEXDATETest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\VObject\Recur\NoInstancesException
      */
-    function testRecurrence() {
+    function testRecurrence(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR

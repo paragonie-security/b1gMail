@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class ElementListTest extends \PHPUnit_Framework_TestCase {
 
-    function testIterate() {
+    function testIterate(): void {
 
         $cal = new Component\VCalendar();
         $sub = $cal->createComponent('VEVENT');

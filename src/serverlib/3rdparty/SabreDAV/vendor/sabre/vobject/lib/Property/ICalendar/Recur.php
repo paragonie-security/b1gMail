@@ -33,7 +33,7 @@ class Recur extends Property {
      * @param string|array $value
      * @return void
      */
-    public function setValue($value) {
+    public function setValue($value): void {
 
         // If we're getting the data from json, we'll be receiving an object
         if ($value instanceof \StdClass) {
@@ -93,7 +93,7 @@ class Recur extends Property {
      * @param array $parts
      * @return void
      */
-    public function setParts(array $parts) {
+    public function setParts(array $parts): void {
 
         $this->setValue($parts);
 
@@ -122,7 +122,7 @@ class Recur extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $this->setValue($val);
 

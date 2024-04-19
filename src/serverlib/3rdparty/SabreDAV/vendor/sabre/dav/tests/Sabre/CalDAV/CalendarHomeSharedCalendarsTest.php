@@ -40,14 +40,14 @@ class CalendarHomeSharedCalendarsTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $instance = $this->getInstance();
         $this->assertEquals('user1', $instance->getName());
 
     }
 
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $instance = $this->getInstance();
         $children = $instance->getChildren();
@@ -78,7 +78,7 @@ class CalendarHomeSharedCalendarsTest extends \PHPUnit_Framework_TestCase {
 
     }
     
-    function testShareReply() {
+    function testShareReply(): void {
 
         $instance = $this->getInstance();
         $result = $instance->shareReply('uri', SharingPlugin::STATUS_DECLINED, 'curi', '1');

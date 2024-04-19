@@ -10,7 +10,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     abstract function getPDO();
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);
@@ -21,7 +21,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testConstruct
      */
-    function testGetPrincipalsByPrefix() {
+    function testGetPrincipalsByPrefix(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);
@@ -47,7 +47,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testConstruct
      */
-    function testGetPrincipalByPath() {
+    function testGetPrincipalByPath(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);
@@ -64,7 +64,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetGroupMemberSet() {
+    function testGetGroupMemberSet(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);
@@ -74,7 +74,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetGroupMembership() {
+    function testGetGroupMembership(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);
@@ -84,7 +84,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetGroupMemberSet() {
+    function testSetGroupMemberSet(): void {
 
         $pdo = $this->getPDO();
 
@@ -103,7 +103,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSearchPrincipals() {
+    function testSearchPrincipals(): void {
 
         $pdo = $this->getPDO();
 
@@ -123,7 +123,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdatePrincipal() {
+    function testUpdatePrincipal(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);
@@ -146,7 +146,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdatePrincipalUnknownField() {
+    function testUpdatePrincipalUnknownField(): void {
 
         $pdo = $this->getPDO();
         $backend = new PDO($pdo);

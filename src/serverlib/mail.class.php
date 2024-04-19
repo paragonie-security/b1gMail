@@ -74,7 +74,7 @@ class BMMail
 	 *
 	 * @return void
 	 */
-	function Parse()
+	function Parse(): void
 	{
 		global $bm_prefs, $db, $cacheManager;
 
@@ -128,7 +128,7 @@ class BMMail
 	 *
 	 * @param array $row Row (of bm60_mails)
 	 */
-	function _fromRow($row)
+	function _fromRow($row): void
 	{
 		$this->_row			= $row;
 		$this->id			= $row['id'];
@@ -193,7 +193,7 @@ class BMMail
 	 * mark mail as trained
 	 *
 	 */
-	function MarkAsTrained()
+	function MarkAsTrained(): void
 	{
 		global $db;
 
@@ -246,7 +246,7 @@ class BMMail
 	 *
 	 * @param BMSearchIndex $idx
 	 */
-	function AddToIndex(&$idx)
+	function AddToIndex(&$idx): void
 	{
 		$text = $this->GetSearchText();
 		$idx->addTextToIndex($text, $this->id);
@@ -531,7 +531,7 @@ class BMMail
 	 * parse some mail info
 	 *
 	 */
-	function ParseInfo()
+	function ParseInfo(): void
 	{
 		$this->Parse();
 

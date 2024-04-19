@@ -7,7 +7,7 @@ class FileMock implements IPatchSupport {
 
     protected $data = '';
 
-    function put($str) {
+    function put($str): void {
 
         if (is_resource($str)) {
             $str = stream_get_contents($str);
@@ -43,7 +43,7 @@ class FileMock implements IPatchSupport {
      * @param int $offset
      * @return string|null
      */
-    function patch($data, $rangeType, $offset = null) {
+    function patch($data, $rangeType, $offset = null): void {
 
         if (is_resource($data)) {
             $data = stream_get_contents($data);

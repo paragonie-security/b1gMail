@@ -26,7 +26,7 @@ class DigestTest extends \PHPUnit_Framework_TestCase {
 
     const REALM = 'SabreDAV unittest';
 
-    function setUp() {
+    function setUp(): void {
 
         $this->response = new Response();
         $this->request = new Request();
@@ -35,7 +35,7 @@ class DigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDigest() {
+    function testDigest(): void {
 
         list($nonce, $opaque) = $this->getServerTokens();
 
@@ -65,7 +65,7 @@ class DigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testInvalidDigest() {
+    function testInvalidDigest(): void {
 
         list($nonce, $opaque) = $this->getServerTokens();
 
@@ -92,7 +92,7 @@ class DigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testInvalidDigest2() {
+    function testInvalidDigest2(): void {
 
         $this->request->setMethod('GET');
         $this->request->setHeader('Authorization', 'basic blablabla');
@@ -103,7 +103,7 @@ class DigestTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testDigestAuthInt() {
+    function testDigestAuthInt(): void {
 
         $this->auth->setQOP(Digest::QOP_AUTHINT);
         list($nonce, $opaque) = $this->getServerTokens(Digest::QOP_AUTHINT);
@@ -132,7 +132,7 @@ class DigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDigestAuthBoth() {
+    function testDigestAuthBoth(): void {
 
         $this->auth->setQOP(Digest::QOP_AUTHINT | Digest::QOP_AUTH);
         list($nonce, $opaque) = $this->getServerTokens(Digest::QOP_AUTHINT | Digest::QOP_AUTH);

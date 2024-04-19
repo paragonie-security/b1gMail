@@ -704,7 +704,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @deprecated
      */
-    public static function unmuteExpectedErrors()
+    public static function unmuteExpectedErrors(): void
     {
         restore_error_handler();
     }
@@ -1149,7 +1149,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * Empty template objects cache
      */
-    public function _clearTemplateCache()
+    public function _clearTemplateCache(): void
     {
         Smarty_Internal_Template::$isCacheTplObj = array();
         Smarty_Internal_Template::$tplObjCache = array();
@@ -1158,7 +1158,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $use_sub_dirs
      */
-    public function setUseSubDirs($use_sub_dirs)
+    public function setUseSubDirs($use_sub_dirs): void
     {
         $this->use_sub_dirs = $use_sub_dirs;
     }
@@ -1166,7 +1166,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param int $error_reporting
      */
-    public function setErrorReporting($error_reporting)
+    public function setErrorReporting($error_reporting): void
     {
         $this->error_reporting = $error_reporting;
     }
@@ -1174,7 +1174,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $escape_html
      */
-    public function setEscapeHtml($escape_html)
+    public function setEscapeHtml($escape_html): void
     {
         $this->escape_html = $escape_html;
     }
@@ -1194,7 +1194,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @param boolean $auto_literal
      */
-    public function setAutoLiteral($auto_literal = true)
+    public function setAutoLiteral($auto_literal = true): void
     {
         $this->auto_literal = $auto_literal;
     }
@@ -1202,7 +1202,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $force_compile
      */
-    public function setForceCompile($force_compile)
+    public function setForceCompile($force_compile): void
     {
         $this->force_compile = $force_compile;
     }
@@ -1210,7 +1210,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $merge_compiled_includes
      */
-    public function setMergeCompiledIncludes($merge_compiled_includes)
+    public function setMergeCompiledIncludes($merge_compiled_includes): void
     {
         $this->merge_compiled_includes = $merge_compiled_includes;
     }
@@ -1230,7 +1230,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @param string $left_delimiter
      */
-    public function setLeftDelimiter($left_delimiter)
+    public function setLeftDelimiter($left_delimiter): void
     {
         $this->left_delimiter = $left_delimiter;
     }
@@ -1250,7 +1250,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @param string
      */
-    public function setRightDelimiter($right_delimiter)
+    public function setRightDelimiter($right_delimiter): void
     {
         $this->right_delimiter = $right_delimiter;
     }
@@ -1258,7 +1258,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $debugging
      */
-    public function setDebugging($debugging)
+    public function setDebugging($debugging): void
     {
         $this->debugging = $debugging;
     }
@@ -1266,7 +1266,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $config_overwrite
      */
-    public function setConfigOverwrite($config_overwrite)
+    public function setConfigOverwrite($config_overwrite): void
     {
         $this->config_overwrite = $config_overwrite;
     }
@@ -1274,7 +1274,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $config_booleanize
      */
-    public function setConfigBooleanize($config_booleanize)
+    public function setConfigBooleanize($config_booleanize): void
     {
         $this->config_booleanize = $config_booleanize;
     }
@@ -1282,7 +1282,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $config_read_hidden
      */
-    public function setConfigReadHidden($config_read_hidden)
+    public function setConfigReadHidden($config_read_hidden): void
     {
         $this->config_read_hidden = $config_read_hidden;
     }
@@ -1290,7 +1290,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param boolean $compile_locking
      */
-    public function setCompileLocking($compile_locking)
+    public function setCompileLocking($compile_locking): void
     {
         $this->compile_locking = $compile_locking;
     }
@@ -1298,7 +1298,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param string $default_resource_type
      */
-    public function setDefaultResourceType($default_resource_type)
+    public function setDefaultResourceType($default_resource_type): void
     {
         $this->default_resource_type = $default_resource_type;
     }
@@ -1306,7 +1306,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * @param string $caching_type
      */
-    public function setCachingType($caching_type)
+    public function setCachingType($caching_type): void
     {
         $this->caching_type = $caching_type;
     }
@@ -1316,7 +1316,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @param null $errors
      */
-    public function testInstall(&$errors = null)
+    public function testInstall(&$errors = null): void
     {
         Smarty_Internal_TestInstall::testInstall($this, $errors);
     }
@@ -1384,7 +1384,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      * @param string $dirName cache_dir or compile_dir
      * @param string $dir     filepath of folder
      */
-    private function _normalizeDir($dirName, $dir)
+    private function _normalizeDir($dirName, $dir): void
     {
         $this->{$dirName} = $this->_realpath(rtrim($dir, "/\\") . DIRECTORY_SEPARATOR, true);
         if (class_exists('Smarty_Internal_ErrorHandler', false)) {
@@ -1399,7 +1399,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @param bool $isConfig true for config_dir
      */
-    private function _normalizeTemplateConfig($isConfig)
+    private function _normalizeTemplateConfig($isConfig): void
     {
         if ($isConfig) {
             $processed = &$this->_processedConfigDir;

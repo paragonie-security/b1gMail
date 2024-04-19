@@ -160,7 +160,7 @@ class Smarty_Internal_SmartyTemplateCompiler extends Smarty_Internal_TemplateCom
      * @param string   $key       optional key for callback
      * @param bool     $replace   if true replace existing keyed callback
      */
-    public function registerPostCompileCallback($callback, $parameter = array(), $key = null, $replace = false)
+    public function registerPostCompileCallback($callback, $parameter = array(), $key = null, $replace = false): void
     {
         array_unshift($parameter, $callback);
         if (isset($key)) {
@@ -177,7 +177,7 @@ class Smarty_Internal_SmartyTemplateCompiler extends Smarty_Internal_TemplateCom
      *
      * @param string $key callback key
      */
-    public function unregisterPostCompileCallback($key)
+    public function unregisterPostCompileCallback($key): void
     {
         unset($this->postCompileCallbacks[ $key ]);
     }

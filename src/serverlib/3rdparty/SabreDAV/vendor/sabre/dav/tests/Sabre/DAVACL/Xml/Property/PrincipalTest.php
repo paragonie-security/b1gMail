@@ -9,7 +9,7 @@ use Sabre\Xml\Reader;
 
 class PrincipalTest extends \PHPUnit_Framework_TestCase {
 
-    function testSimple() {
+    function testSimple(): void {
 
         $principal = new Principal(Principal::UNAUTHENTICATED);
         $this->assertEquals(Principal::UNAUTHENTICATED, $principal->getType());
@@ -29,7 +29,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
      * @depends testSimple
      * @expectedException Sabre\DAV\Exception
      */
-    function testNoHref() {
+    function testNoHref(): void {
 
         $principal = new Principal(Principal::HREF);
 
@@ -38,7 +38,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testSerializeUnAuthenticated() {
+    function testSerializeUnAuthenticated(): void {
 
         $prin = new Principal(Principal::UNAUTHENTICATED);
 
@@ -55,7 +55,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSerializeUnAuthenticated
      */
-    function testSerializeAuthenticated() {
+    function testSerializeAuthenticated(): void {
 
         $prin = new Principal(Principal::AUTHENTICATED);
         $xml = (new DAV\Server())->xml->write('{DAV:}principal', $prin);
@@ -71,7 +71,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSerializeUnAuthenticated
      */
-    function testSerializeHref() {
+    function testSerializeHref(): void {
 
         $prin = new Principal(Principal::HREF, 'principals/admin');
         $xml = (new DAV\Server())->xml->write('{DAV:}principal', $prin, '/');
@@ -83,7 +83,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUnserializeHref() {
+    function testUnserializeHref(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal xmlns:d="DAV:">' .
@@ -96,7 +96,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUnserializeAuthenticated() {
+    function testUnserializeAuthenticated(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal xmlns:d="DAV:">' .
@@ -108,7 +108,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUnserializeUnauthenticated() {
+    function testUnserializeUnauthenticated(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal xmlns:d="DAV:">' .
@@ -123,7 +123,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testUnserializeUnknown() {
+    function testUnserializeUnknown(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal xmlns:d="DAV:">' .
@@ -148,7 +148,7 @@ class PrincipalTest extends \PHPUnit_Framework_TestCase {
      * @depends testSimple
      * @dataProvider htmlProvider
      */
-    function testToHtml($principal, $output) {
+    function testToHtml($principal, $output): void {
 
         $html = $principal->toHtml(new HtmlOutputHelper('/', []));
 

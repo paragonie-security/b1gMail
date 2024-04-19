@@ -114,7 +114,7 @@ class CalendarObject extends \Sabre\DAV\File implements ICalendarObject, \Sabre\
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->caldavBackend->deleteCalendarObject($this->calendarInfo['id'], $this->objectData['uri']);
 

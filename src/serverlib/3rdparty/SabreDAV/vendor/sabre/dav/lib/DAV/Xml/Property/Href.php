@@ -101,7 +101,7 @@ class Href implements Element, HtmlOutput {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->getHrefs() as $href) {
             if ($this->autoPrefix) {

@@ -6,7 +6,7 @@ use Sabre\HTTP;
 
 class TemporaryFileFilterTest extends AbstractServer {
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $plugin = new TemporaryFileFilterPlugin(SABRE_TEMPDIR . '/tff');
@@ -14,7 +14,7 @@ class TemporaryFileFilterTest extends AbstractServer {
 
     }
 
-    function testPutNormal() {
+    function testPutNormal(): void {
 
         $request = new HTTP\Request('PUT', '/testput.txt', [], 'Testing new file');
 
@@ -29,7 +29,7 @@ class TemporaryFileFilterTest extends AbstractServer {
 
     }
 
-    function testPutTemp() {
+    function testPutTemp(): void {
 
         // mimicking an OS/X resource fork
         $request = new HTTP\Request('PUT', '/._testput.txt', [], 'Testing new file');
@@ -47,7 +47,7 @@ class TemporaryFileFilterTest extends AbstractServer {
 
     }
 
-    function testPutTempIfNoneMatch() {
+    function testPutTempIfNoneMatch(): void {
 
         // mimicking an OS/X resource fork
         $request = new HTTP\Request('PUT', '/._testput.txt', ['If-None-Match' => '*'], 'Testing new file');
@@ -74,7 +74,7 @@ class TemporaryFileFilterTest extends AbstractServer {
 
     }
 
-    function testPutGet() {
+    function testPutGet(): void {
 
         // mimicking an OS/X resource fork
         $request = new HTTP\Request('PUT', '/._testput.txt', [], 'Testing new file');
@@ -103,7 +103,7 @@ class TemporaryFileFilterTest extends AbstractServer {
 
     }
 
-    function testLockNonExistant() {
+    function testLockNonExistant(): void {
 
         mkdir(SABRE_TEMPDIR . '/locksdir');
         $locksBackend = new Locks\Backend\File(SABRE_TEMPDIR . '/locks');
@@ -133,7 +133,7 @@ class TemporaryFileFilterTest extends AbstractServer {
 
     }
 
-    function testPutDelete() {
+    function testPutDelete(): void {
 
         // mimicking an OS/X resource fork
         $request = new HTTP\Request('PUT', '/._testput.txt', [], 'Testing new file');
@@ -160,7 +160,7 @@ class TemporaryFileFilterTest extends AbstractServer {
 
     }
 
-    function testPutPropfind() {
+    function testPutPropfind(): void {
 
         // mimicking an OS/X resource fork
         $request = new HTTP\Request('PUT', '/._testput.txt', [], 'Testing new file');

@@ -17,7 +17,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     protected $calendar;
     protected $principalBackend;
 
-    function setup() {
+    function setup(): void {
 
         if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
         $this->backend = TestUtil::getBackend();
@@ -28,14 +28,14 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function teardown() {
+    function teardown(): void {
 
         unset($this->calendar);
         unset($this->backend);
 
     }
 
-    function testSetup() {
+    function testSetup(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -50,7 +50,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testInvalidArg1() {
+    function testInvalidArg1(): void {
 
         $obj = new CalendarObject(
             new Backend\Mock(array(),array()),
@@ -63,7 +63,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testInvalidArg2() {
+    function testInvalidArg2(): void {
 
         $obj = new CalendarObject(
             new Backend\Mock(array(),array()),
@@ -76,7 +76,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testPut() {
+    function testPut(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -90,7 +90,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testPutStream() {
+    function testPutStream(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -108,7 +108,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testDelete() {
+    function testDelete(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -124,7 +124,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testGetLastModified() {
+    function testGetLastModified(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -139,7 +139,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testGetSize() {
+    function testGetSize(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -151,7 +151,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -161,7 +161,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -171,7 +171,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $expected = array(
             array(
@@ -209,7 +209,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDefaultACL() {
+    function testDefaultACL(): void {
 
         $backend = new Backend\Mock([], []);
         $calendarObject = new CalendarObject($backend, ['principaluri' => 'principals/user1'], ['calendarid' => 1, 'uri' => 'foo']);
@@ -248,7 +248,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -258,7 +258,7 @@ class CalendarObjectTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGet() {
+    function testGet(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($children[0] instanceof CalendarObject);
@@ -304,7 +304,7 @@ END:VCALENDAR";
 
     }
 
-    function testGetRefetch() {
+    function testGetRefetch(): void {
 
         $backend = new Backend\Mock(array(), array(
             1 => array(
@@ -320,7 +320,7 @@ END:VCALENDAR";
 
     }
 
-    function testGetEtag1() {
+    function testGetEtag1(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -336,7 +336,7 @@ END:VCALENDAR";
 
     }
 
-    function testGetEtag2() {
+    function testGetEtag2(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -351,7 +351,7 @@ END:VCALENDAR";
 
     }
 
-    function testGetSupportedPrivilegesSet() {
+    function testGetSupportedPrivilegesSet(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -365,7 +365,7 @@ END:VCALENDAR";
 
     }
 
-    function testGetSize1() {
+    function testGetSize1(): void {
 
         $objectInfo = array(
             'calendardata' => 'foo',
@@ -379,7 +379,7 @@ END:VCALENDAR";
 
     }
 
-    function testGetSize2() {
+    function testGetSize2(): void {
 
         $objectInfo = array(
             'uri' => 'foo',

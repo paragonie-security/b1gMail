@@ -7,7 +7,7 @@ use Sabre\DAV;
 
 class AllowedSharingModesTest extends DAV\Xml\XmlTest {
 
-    function testSimple() {
+    function testSimple(): void {
 
         $sccs = new AllowedSharingModes(true,true);
         $this->assertInstanceOf('Sabre\CalDAV\Xml\Property\AllowedSharingModes', $sccs);
@@ -17,7 +17,7 @@ class AllowedSharingModesTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $property = new AllowedSharingModes(true,true);
 

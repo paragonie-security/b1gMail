@@ -4,7 +4,7 @@ namespace Sabre\VObject\ITip;
 
 class BrokerProcessReplyTest extends BrokerTester {
 
-    function testReplyNoOriginal() {
+    function testReplyNoOriginal(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -26,7 +26,7 @@ ICS;
 
     }
 
-    function testReplyAccept() {
+    function testReplyAccept(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -69,7 +69,7 @@ ICS;
 
     }
 
-    function testReplyRequestStatus() {
+    function testReplyRequestStatus(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -115,7 +115,7 @@ ICS;
     }
 
 
-    function testReplyPartyCrasher() {
+    function testReplyPartyCrasher(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -159,7 +159,7 @@ ICS;
 
     }
 
-    function testReplyNewException() {
+    function testReplyNewException(): void {
 
         // This is a reply to 1 instance of a recurring event. This should
         // automatically create an exception.
@@ -220,7 +220,7 @@ ICS;
 
     }
 
-    function testReplyNewExceptionTz() {
+    function testReplyNewExceptionTz(): void {
 
         // This is a reply to 1 instance of a recurring event. This should
         // automatically create an exception.
@@ -281,7 +281,7 @@ ICS;
 
     }
 
-    function testReplyPartyCrashCreateExcepton() {
+    function testReplyPartyCrashCreateExcepton(): void {
 
         // IN this test there's a recurring event that has an exception. The
         // exception is missing the attendee.
@@ -343,7 +343,7 @@ ICS;
 
     }
 
-    function testReplyNewExceptionNoMasterEvent() {
+    function testReplyNewExceptionNoMasterEvent(): void {
 
         /**
          * This iTip message would normally create a new exception, but the
@@ -389,7 +389,7 @@ ICS;
     /**
      * @depends testReplyAccept
      */
-    function testReplyAcceptUpdateRSVP() {
+    function testReplyAcceptUpdateRSVP(): void {
 
         $itip = <<<ICS
 BEGIN:VCALENDAR
@@ -432,7 +432,7 @@ ICS;
 
     }
 
-    function testReplyNewExceptionFirstOccurence() {
+    function testReplyNewExceptionFirstOccurence(): void {
 
         // This is a reply to 1 instance of a recurring event. This should
         // automatically create an exception.

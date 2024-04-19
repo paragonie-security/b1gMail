@@ -52,7 +52,7 @@ class File extends DAV\File {
      *
      * @return void
      */
-    function setName($name) {
+    function setName($name): void {
 
         $this->name = $name;
 
@@ -132,7 +132,7 @@ class File extends DAV\File {
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->parent->deleteChild($this->name);
 

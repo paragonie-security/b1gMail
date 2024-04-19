@@ -128,7 +128,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
      * @throws \Exception
      * @throws \SmartyException
      */
-    public function display($template = null, $cache_id = null, $compile_id = null, $parent = null)
+    public function display($template = null, $cache_id = null, $compile_id = null, $parent = null): void
     {
         // display template
         $this->_execute($template, $cache_id, $compile_id, $parent, 1);
@@ -355,7 +355,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
     /**
      * @param int $compile_check
      */
-    public function setCompileCheck($compile_check)
+    public function setCompileCheck($compile_check): void
     {
         $this->compile_check = (int)$compile_check;
     }
@@ -363,7 +363,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
     /**
      * @param int $caching
      */
-    public function setCaching($caching)
+    public function setCaching($caching): void
     {
         $this->caching = (int)$caching;
     }
@@ -371,7 +371,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
     /**
      * @param int $cache_lifetime
      */
-    public function setCacheLifetime($cache_lifetime)
+    public function setCacheLifetime($cache_lifetime): void
     {
         $this->cache_lifetime = $cache_lifetime;
     }
@@ -379,7 +379,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
     /**
      * @param string $compile_id
      */
-    public function setCompileId($compile_id)
+    public function setCompileId($compile_id): void
     {
         $this->compile_id = $compile_id;
     }
@@ -387,7 +387,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
     /**
      * @param string $cache_id
      */
-    public function setCacheId($cache_id)
+    public function setCacheId($cache_id): void
     {
         $this->cache_id = $cache_id;
     }

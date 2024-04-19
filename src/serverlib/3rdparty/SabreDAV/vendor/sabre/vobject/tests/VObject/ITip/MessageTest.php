@@ -4,14 +4,14 @@ namespace Sabre\VObject\ITip;
 
 class MessageTest extends \PHPUnit_Framework_TestCase {
 
-    public function testNoScheduleStatus() {
+    public function testNoScheduleStatus(): void {
 
         $message = new Message();
         $this->assertFalse($message->getScheduleStatus());
 
     }
 
-    public function testScheduleStatus() {
+    public function testScheduleStatus(): void {
 
         $message = new Message();
         $message->scheduleStatus = '1.2;Delivered';
@@ -20,7 +20,7 @@ class MessageTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testUnexpectedScheduleStatus() {
+    public function testUnexpectedScheduleStatus(): void {
 
         $message = new Message();
         $message->scheduleStatus = '9.9.9';

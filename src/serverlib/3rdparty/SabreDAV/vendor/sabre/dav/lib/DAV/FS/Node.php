@@ -54,7 +54,7 @@ abstract class Node implements DAV\INode {
      * @param string $name The new name
      * @return void
      */
-    function setName($name) {
+    function setName($name): void {
 
         list($parentPath, ) = URLUtil::splitPath($this->path);
         list(, $newName) = URLUtil::splitPath($name);

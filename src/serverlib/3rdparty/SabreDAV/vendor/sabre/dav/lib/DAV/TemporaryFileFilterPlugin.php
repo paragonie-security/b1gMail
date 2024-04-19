@@ -89,7 +89,7 @@ class TemporaryFileFilterPlugin extends ServerPlugin {
      * @param Server $server
      * @return void
      */
-    function initialize(Server $server) {
+    function initialize(Server $server): void {
 
         $this->server = $server;
         $server->on('beforeMethod',    [$this, 'beforeMethod']);

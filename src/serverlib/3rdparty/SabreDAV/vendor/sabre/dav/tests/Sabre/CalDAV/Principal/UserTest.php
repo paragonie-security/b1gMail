@@ -26,7 +26,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    function testCreateFile() {
+    function testCreateFile(): void {
 
         $u = $this->getInstance();
         $u->createFile('test');
@@ -36,14 +36,14 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    function testCreateDirectory() {
+    function testCreateDirectory(): void {
 
         $u = $this->getInstance();
         $u->createDirectory('test');
 
     }
 
-    function testGetChildProxyRead() {
+    function testGetChildProxyRead(): void {
 
         $u = $this->getInstance();
         $child = $u->getChild('calendar-proxy-read');
@@ -51,7 +51,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChildProxyWrite() {
+    function testGetChildProxyWrite(): void {
 
         $u = $this->getInstance();
         $child = $u->getChild('calendar-proxy-write');
@@ -62,7 +62,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotFound
      */
-    function testGetChildNotFound() {
+    function testGetChildNotFound(): void {
 
         $u = $this->getInstance();
         $child = $u->getChild('foo');
@@ -72,14 +72,14 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotFound
      */
-    function testGetChildNotFound2() {
+    function testGetChildNotFound2(): void {
 
         $u = $this->getInstance();
         $child = $u->getChild('random');
 
     }
 
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $u = $this->getInstance();
         $children = $u->getChildren();
@@ -89,7 +89,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testChildExist() {
+    function testChildExist(): void {
 
         $u = $this->getInstance();
         $this->assertTrue($u->childExists('calendar-proxy-read'));
@@ -98,7 +98,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $expected = array(
             array(

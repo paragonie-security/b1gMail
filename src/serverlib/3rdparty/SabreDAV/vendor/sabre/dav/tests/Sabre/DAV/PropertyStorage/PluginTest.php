@@ -9,7 +9,7 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     protected $setupFiles = true;
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->backend = new Backend\Mock();
@@ -21,7 +21,7 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testGetInfo() {
+    function testGetInfo(): void {
 
         $this->assertArrayHasKey(
             'name',
@@ -30,7 +30,7 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testSetProperty() {
+    function testSetProperty(): void {
 
         $this->server->updateProperties('', ['{DAV:}displayname' => 'hi']);
         $this->assertEquals([
@@ -44,7 +44,7 @@ class PluginTest extends \Sabre\DAVServerTest {
     /**
      * @depends testSetProperty
      */
-    function testGetProperty() {
+    function testGetProperty(): void {
 
         $this->testSetProperty();
         $result = $this->server->getProperties('', ['{DAV:}displayname']);
@@ -58,7 +58,7 @@ class PluginTest extends \Sabre\DAVServerTest {
     /**
      * @depends testSetProperty
      */
-    function testDeleteProperty() {
+    function testDeleteProperty(): void {
 
         $this->testSetProperty();
         $this->server->emit('afterUnbind', ['']);
@@ -66,7 +66,7 @@ class PluginTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testMove() {
+    function testMove(): void {
 
         $this->server->tree->getNodeForPath('files')->createFile('source');
         $this->server->updateProperties('files/source', ['{DAV:}displayname' => 'hi']);
@@ -90,7 +90,7 @@ class PluginTest extends \Sabre\DAVServerTest {
     /**
      * @depends testDeleteProperty
      */
-    function testSetPropertyInFilteredPath() {
+    function testSetPropertyInFilteredPath(): void {
 
         $this->plugin->pathFilter = function($path) {
 
@@ -106,7 +106,7 @@ class PluginTest extends \Sabre\DAVServerTest {
     /**
      * @depends testSetPropertyInFilteredPath
      */
-    function testGetPropertyInFilteredPath() {
+    function testGetPropertyInFilteredPath(): void {
 
         $this->testSetPropertyInFilteredPath();
         $result = $this->server->getProperties('', ['{DAV:}displayname']);

@@ -70,7 +70,7 @@ class PDO implements BackendInterface {
      * @param PropFind $propFind
      * @return void
      */
-    function propFind($path, PropFind $propFind) {
+    function propFind($path, PropFind $propFind): void {
 
         if (!$propFind->isAllProps() && count($propFind->get404Properties()) === 0) {
             return;
@@ -110,7 +110,7 @@ class PDO implements BackendInterface {
      * @param PropPatch $propPatch
      * @return void
      */
-    function propPatch($path, PropPatch $propPatch) {
+    function propPatch($path, PropPatch $propPatch): void {
 
         $propPatch->handleRemaining(function($properties) use ($path) {
 
@@ -153,7 +153,7 @@ class PDO implements BackendInterface {
      * @param string $path
      * @return void
      */
-    function delete($path) {
+    function delete($path): void {
 
         $stmt = $this->pdo->prepare("DELETE FROM propertystorage WHERE path = ? OR path LIKE ? ESCAPE '='");
         $childPath = strtr(
@@ -180,7 +180,7 @@ class PDO implements BackendInterface {
      * @param string $destination
      * @return void
      */
-    function move($source, $destination) {
+    function move($source, $destination): void {
 
         // I don't know a way to write this all in a single sql query that's
         // also compatible across db engines, so we're letting PHP do all the

@@ -211,7 +211,7 @@ class FaxPlugin extends BMPlugin
 	 * onload
 	 *
 	 */
-	function OnLoad()
+	function OnLoad(): void
 	{
 		$this->prefs = $this->_getPrefs();
 	}
@@ -400,7 +400,7 @@ class FaxPlugin extends BMPlugin
 	 * @param array $lang_admin
 	 * @param string $lang
 	 */
-	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
 	{
 		$_lang_custom = $_lang_user = $_lang_client = $_lang_admin = array();
 
@@ -776,7 +776,7 @@ class FaxPlugin extends BMPlugin
 	 * @param array $result
 	 * @param BMToolInterface $ti
 	 */
-	function ToolInterfaceHandler($method, $params, &$result, &$ti)
+	function ToolInterfaceHandler($method, $params, &$result, &$ti): void
 	{
 		$supportedMethods = array('GetFaxPrice', 'SendFax');
 
@@ -1022,7 +1022,7 @@ class FaxPlugin extends BMPlugin
 	 * @param string $file
 	 * @param string $action
 	 */
-	function FileHandler($file, $action)
+	function FileHandler($file, $action): void
 	{
 		global $tpl, $thisUser;
 
@@ -1075,7 +1075,7 @@ class FaxPlugin extends BMPlugin
 	 * HTTP status push
 	 *
 	 */
-	function _httpStatusPush()
+	function _httpStatusPush(): void
 	{
 		global $db;
 
@@ -1119,7 +1119,7 @@ class FaxPlugin extends BMPlugin
 	 * show fax address book
 	 *
 	 */
-	function _addressBookUserPage()
+	function _addressBookUserPage(): void
 	{
 		global $tpl, $userRow;
 
@@ -1150,7 +1150,7 @@ class FaxPlugin extends BMPlugin
 	 * show fax outbox page
 	 *
 	 */
-	function _outboxUserPage()
+	function _outboxUserPage(): void
 	{
 		global $tpl, $userRow, $db, $lang_user, $bm_prefs;
 
@@ -1256,7 +1256,7 @@ class FaxPlugin extends BMPlugin
 	 * show fax compose page
 	 *
 	 */
-	function _composeUserPage()
+	function _composeUserPage(): void
 	{
 		global $tpl, $userRow, $thisUser, $lang_user;
 
@@ -1550,7 +1550,7 @@ class FaxPlugin extends BMPlugin
 	 * admin interface handler
 	 *
 	 */
-	function AdminHandler()
+	function AdminHandler(): void
 	{
 		global $tpl, $lang_admin;
 
@@ -1661,7 +1661,7 @@ class FaxPlugin extends BMPlugin
 	 * show stats admin page
 	 *
 	 */
-	function _statsAdminPage()
+	function _statsAdminPage(): void
 	{
 		global $db, $tpl, $lang_admin;
 
@@ -1778,7 +1778,7 @@ class FaxPlugin extends BMPlugin
 	 * show prefs admin page
 	 *
 	 */
-	function _prefsAdminPage()
+	function _prefsAdminPage(): void
 	{
 		global $db, $tpl;
 
@@ -1868,7 +1868,7 @@ class FaxPlugin extends BMPlugin
 	 * show overview admin page
 	 *
 	 */
-	function _overviewAdminPage()
+	function _overviewAdminPage(): void
 	{
 		global $tpl, $currentLanguage;
 
@@ -1909,7 +1909,7 @@ class FaxPlugin extends BMPlugin
 	 * show signatures admin page
 	 *
 	 */
-	function _signaturesAdminPage()
+	function _signaturesAdminPage(): void
 	{
 		global $tpl, $db;
 
@@ -2074,7 +2074,7 @@ class FaxPlugin extends BMPlugin
 	 * show prefixes admin page
 	 *
 	 */
-	function _prefixesAdminPage()
+	function _prefixesAdminPage(): void
 	{
 		global $tpl, $db;
 
@@ -2175,7 +2175,7 @@ class FaxPlugin extends BMPlugin
 	 * show simple gateways admin page
 	 *
 	 */
-	function _simpleGatewaysAdminPage()
+	function _simpleGatewaysAdminPage(): void
 	{
 		global $tpl, $db;
 
@@ -2208,7 +2208,7 @@ class FaxPlugin extends BMPlugin
 	 * show gateways admin page
 	 *
 	 */
-	function _gatewaysAdminPage()
+	function _gatewaysAdminPage(): void
 	{
 		global $tpl, $db, $currentLanguage;
 
@@ -2418,7 +2418,7 @@ class FaxPlugin extends BMPlugin
 	 * @param int $type Event type
 	 * @param int $count Count (default: 1)
 	 */
-	function _add2Stat($type, $count = 1)
+	function _add2Stat($type, $count = 1): void
 	{
 		global $db;
 
@@ -2487,7 +2487,7 @@ class FaxPlugin extends BMPlugin
 	 *
 	 * @param int $signatureID Signature ID
 	 */
-	function _incSignatureCounter($signatureID)
+	function _incSignatureCounter($signatureID): void
 	{
 		global $db;
 
@@ -3132,7 +3132,7 @@ class FaxPlugin extends BMPlugin
 	 * @param string $toNo Recipient no
 	 * @param int $pageCount Page count
 	 */
-	function _generatePDF_Block_Cover(&$pdf, $block, $fromName, $fromNo, $toNo, $pageCount = 0)
+	function _generatePDF_Block_Cover(&$pdf, $block, $fromName, $fromNo, $toNo, $pageCount = 0): void
 	{
 		global $lang_user, $userRow;
 
@@ -3248,7 +3248,7 @@ class FaxPlugin extends BMPlugin
 	 * @param FPDF $pdf FPDF object
 	 * @param array $block Block
 	 */
-	function _generatePDF_Block_PDFFile(&$pdf, $block)
+	function _generatePDF_Block_PDFFile(&$pdf, $block): void
 	{
 		global $userRow;
 
@@ -3287,7 +3287,7 @@ class FaxPlugin extends BMPlugin
 	 * @param FPDF $pdf FPDF object
 	 * @param array $block Block
 	 */
-	function _generatePDF_Block_Text(&$pdf, $block)
+	function _generatePDF_Block_Text(&$pdf, $block): void
 	{
 		if(!isset($block['text']))
 			return;
@@ -3343,7 +3343,7 @@ class FaxPlugin extends BMPlugin
 	 * aborts script execution on error
 	 *
 	 */
-	function _ensureFPDFisLoaded()
+	function _ensureFPDFisLoaded(): void
 	{
 		if(!defined('FPDF_FONTPATH'))
 			define('FPDF_FONTPATH', $this->_fpdfDir . 'font/');
@@ -3439,7 +3439,7 @@ function _FaxPluginCreateFPDISubclass()
 		 *
 		 * @param array $sig Signature array
 		 */
-		function SetSignature($sig)
+		function SetSignature($sig): void
 		{
 			$this->signatureArray = $sig;
 
@@ -3513,7 +3513,7 @@ function _FaxPluginCreateFPDISubclass()
 		 * place the signature
 		 *
 		 */
-		function _placeSignature()
+		function _placeSignature(): void
 		{
 			$this->Ln();
 

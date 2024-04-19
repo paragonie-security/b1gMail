@@ -25,7 +25,7 @@ class JCalTransformTest extends \Sabre\DAVServerTest {
         ],
     ];
 
-    function testGet() {
+    function testGet(): void {
 
         $headers = [
             'Accept' => 'application/calendar+json',
@@ -58,7 +58,7 @@ class JCalTransformTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testMultiGet() {
+    function testMultiGet(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -107,7 +107,7 @@ XML;
 
     }
 
-    function testCalendarQueryDepth1() {
+    function testCalendarQueryDepth1(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -160,7 +160,7 @@ XML;
 
     }
 
-    function testCalendarQueryDepth0() {
+    function testCalendarQueryDepth0(): void {
 
         $xml = <<<XML
 <?xml version="1.0"?>
@@ -213,7 +213,7 @@ XML;
 
     }
 
-    function testValidateICalendar() {
+    function testValidateICalendar(): void {
 
         $input = [
             'vcalendar',

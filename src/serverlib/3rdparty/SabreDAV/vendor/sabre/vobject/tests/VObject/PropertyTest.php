@@ -8,7 +8,7 @@ use
 
 class PropertyTest extends \PHPUnit_Framework_TestCase {
 
-    function testToString() {
+    function testToString(): void {
 
         $cal = new VCalendar();
 
@@ -20,7 +20,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreate() {
+    function testCreate(): void {
 
         $cal = new VCalendar();
 
@@ -36,7 +36,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetValue() {
+    function testSetValue(): void {
 
         $cal = new VCalendar();
 
@@ -48,7 +48,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParameterExists() {
+    function testParameterExists(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -60,7 +60,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParameterGet() {
+    function testParameterGet(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -70,7 +70,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParameterNotExists() {
+    function testParameterNotExists(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -80,7 +80,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testParameterMultiple() {
+    function testParameterMultiple(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -92,7 +92,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetParameterAsString() {
+    function testSetParameterAsString(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -105,7 +105,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUnsetParameter() {
+    function testUnsetParameter(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -116,7 +116,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -125,7 +125,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeParam() {
+    function testSerializeParam(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue', array(
@@ -137,7 +137,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeNewLine() {
+    function testSerializeNewLine(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('SUMMARY',"line1\nline2");
@@ -146,7 +146,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeLongLine() {
+    function testSerializeLongLine(): void {
 
         $cal = new VCalendar();
         $value = str_repeat('!',200);
@@ -158,7 +158,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeUTF8LineFold() {
+    function testSerializeUTF8LineFold(): void {
 
         $cal = new VCalendar();
         $value = str_repeat('!',65) . "\xc3\xa4bla"; // inserted umlaut-a
@@ -168,7 +168,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetIterator() {
+    function testGetIterator(): void {
 
         $cal = new VCalendar();
         $it = new ElementList(array());
@@ -179,7 +179,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testGetIteratorDefault() {
+    function testGetIteratorDefault(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('propname','propvalue');
@@ -189,7 +189,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAddScalar() {
+    function testAddScalar(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('EMAIL');
@@ -204,7 +204,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAddParameter() {
+    function testAddParameter(): void {
 
         $cal = new VCalendar();
         $prop = $cal->createProperty('EMAIL');
@@ -216,7 +216,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAddParameterTwice() {
+    function testAddParameterTwice(): void {
 
         $cal = new VCalendar();
         $prop = $cal->createProperty('EMAIL');
@@ -232,7 +232,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testClone() {
+    function testClone(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('EMAIL','value');
@@ -245,7 +245,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateParams() {
+    function testCreateParams(): void {
 
         $cal = new VCalendar();
         $property = $cal->createProperty('X-PROP','value', array(
@@ -258,7 +258,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateNonUTF8() {
+    function testValidateNonUTF8(): void {
 
         $calendar = new VCalendar();
         $property = $calendar->createProperty('X-PROP', "Bla\x00");
@@ -269,7 +269,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateControlChars() {
+    function testValidateControlChars(): void {
 
         $s = "chars[";
         foreach (array(
@@ -292,7 +292,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateBadPropertyName() {
+    function testValidateBadPropertyName(): void {
 
         $calendar = new VCalendar();
         $property = $calendar->createProperty("X_*&PROP*", "Bla");
@@ -303,7 +303,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetValue() {
+    function testGetValue(): void {
 
         $calendar = new VCalendar();
         $property = $calendar->createProperty("SUMMARY", null);
@@ -332,7 +332,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
      *
      * @expectedException \LogicException
      */
-    function testArrayAccessSetInt() {
+    function testArrayAccessSetInt(): void {
 
         $calendar = new VCalendar();
         $property = $calendar->createProperty("X-PROP", null);
@@ -347,7 +347,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
      *
      * @expectedException \LogicException
      */
-    function testArrayAccessUnsetInt() {
+    function testArrayAccessUnsetInt(): void {
 
         $calendar = new VCalendar();
         $property = $calendar->createProperty("X-PROP", null);
@@ -357,7 +357,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateBadEncoding() {
+    function testValidateBadEncoding(): void {
 
         $document = new VCalendar();
         $property = $document->add('X-FOO','value');
@@ -370,7 +370,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateBadEncodingVCard4() {
+    function testValidateBadEncodingVCard4(): void {
 
         $document = new VCard(array('VERSION' => '4.0'));
         $property = $document->add('X-FOO','value');
@@ -383,7 +383,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateBadEncodingVCard3() {
+    function testValidateBadEncodingVCard3(): void {
 
         $document = new VCard(array('VERSION' => '3.0'));
         $property = $document->add('X-FOO','value');
@@ -396,7 +396,7 @@ class PropertyTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateBadEncodingVCard21() {
+    function testValidateBadEncodingVCard21(): void {
 
         $document = new VCard(array('VERSION' => '2.1'));
         $property = $document->add('X-FOO','value');

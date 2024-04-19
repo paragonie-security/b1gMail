@@ -62,7 +62,7 @@ class BMMailbox
 	 * increment mailbox generation
 	 *
 	 */
-	function IncGeneration()
+	function IncGeneration(): void
 	{
 		global $db;
 
@@ -75,7 +75,7 @@ class BMMailbox
 	 * increment mailbox structure generation
 	 *
 	 */
-	function IncStructureGeneration()
+	function IncStructureGeneration(): void
 	{
 		global $db;
 
@@ -1910,7 +1910,7 @@ class BMMailbox
 	 * update last notify date
 	 *
 	 */
-	function UpdateLastNotifyDate()
+	function UpdateLastNotifyDate(): void
 	{
 		global $db;
 		$db->Query('UPDATE {pre}users SET last_notify=? WHERE id=?',

@@ -50,7 +50,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      * @param \Smarty_Internal_Template $template template
      * @param null                      $mode     true: display   false: fetch  null: subtemplate
      */
-    public function start_template(Smarty_Internal_Template $template, $mode = null)
+    public function start_template(Smarty_Internal_Template $template, $mode = null): void
     {
         if (isset($mode) && !$template->_isSubTpl()) {
             $this->index++;
@@ -66,7 +66,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template cached template
      */
-    public function end_template(Smarty_Internal_Template $template)
+    public function end_template(Smarty_Internal_Template $template): void
     {
         $key = $this->get_key($template);
         $this->template_data[ $this->index ][ $key ][ 'total_time' ] +=
@@ -79,7 +79,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template
      */
-    public function start_compile(Smarty_Internal_Template $template)
+    public function start_compile(Smarty_Internal_Template $template): void
     {
         static $_is_stringy = array('string' => true, 'eval' => true);
         if (!empty($template->compiler->trace_uid)) {
@@ -109,7 +109,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template
      */
-    public function end_compile(Smarty_Internal_Template $template)
+    public function end_compile(Smarty_Internal_Template $template): void
     {
         if (!empty($template->compiler->trace_uid)) {
             $key = $template->compiler->trace_uid;
@@ -128,7 +128,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template
      */
-    public function start_render(Smarty_Internal_Template $template)
+    public function start_render(Smarty_Internal_Template $template): void
     {
         $key = $this->get_key($template);
         $this->template_data[ $this->index ][ $key ][ 'start_time' ] = microtime(true);
@@ -139,7 +139,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template
      */
-    public function end_render(Smarty_Internal_Template $template)
+    public function end_render(Smarty_Internal_Template $template): void
     {
         $key = $this->get_key($template);
         $this->template_data[ $this->index ][ $key ][ 'render_time' ] +=
@@ -151,7 +151,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template cached template
      */
-    public function start_cache(Smarty_Internal_Template $template)
+    public function start_cache(Smarty_Internal_Template $template): void
     {
         $key = $this->get_key($template);
         $this->template_data[ $this->index ][ $key ][ 'start_time' ] = microtime(true);
@@ -162,7 +162,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template cached template
      */
-    public function end_cache(Smarty_Internal_Template $template)
+    public function end_cache(Smarty_Internal_Template $template): void
     {
         $key = $this->get_key($template);
         $this->template_data[ $this->index ][ $key ][ 'cache_time' ] +=
@@ -196,7 +196,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      * @throws \Exception
      * @throws \SmartyException
      */
-    public function display_debug($obj, $full = false)
+    public function display_debug($obj, $full = false): void
     {
         if (!$full) {
             $this->offset++;
@@ -382,7 +382,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param \Smarty_Internal_Template $template
      */
-    public function ignore(Smarty_Internal_Template $template)
+    public function ignore(Smarty_Internal_Template $template): void
     {
         // calculate Uid if not already done
         if ($template->source->uid === '') {
@@ -396,7 +396,7 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
      *
      * @param Smarty $smarty
      */
-    public function debugUrl(Smarty $smarty)
+    public function debugUrl(Smarty $smarty): void
     {
         if (isset($_SERVER[ 'QUERY_STRING' ])) {
             $_query_string = $_SERVER[ 'QUERY_STRING' ];

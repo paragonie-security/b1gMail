@@ -61,7 +61,7 @@ class BMSMTP
      *
      * @param int $userID
      */
-    public function SetUserID($userID)
+    public function SetUserID($userID): void
     {
         $this->_userID = $userID;
     }
@@ -291,7 +291,7 @@ class BMSMTP
     /**
      * associate sent mail with an outbox mail ID.
      */
-    public function SetDeliveryStatusOutboxID($outboxID)
+    public function SetDeliveryStatusOutboxID($outboxID): void
     {
         if (count($this->_dsIDs) > 0) {
             SetDeliveryStatusOutboxID(array_keys($this->_dsIDs), $outboxID);

@@ -10,7 +10,7 @@ class XmlFragmentTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider xmlProvider
      */
-    function testDeserialize($input, $expected) {
+    function testDeserialize($input, $expected): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -110,7 +110,7 @@ BLA;
     /**
      * @dataProvider xmlProvider
      */
-    function testSerialize($expectedFallback, $input, $expected = null) {
+    function testSerialize($expectedFallback, $input, $expected = null): void {
 
         if (is_null($expected)) {
             $expected = $expectedFallback;

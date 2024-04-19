@@ -55,7 +55,7 @@ class SimpleCollection extends Collection {
      * @param INode $child
      * @return void
      */
-    function addChild(INode $child) {
+    function addChild(INode $child): void {
 
         $this->children[$child->getName()] = $child;
 

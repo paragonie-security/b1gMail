@@ -26,14 +26,14 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $instance = $this->getInstance();
         $this->assertEquals('user1', $instance->getName());
 
     }
 
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $instance = $this->getInstance();
         $children = $instance->getChildren();
@@ -47,7 +47,7 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateSubscription() {
+    function testCreateSubscription(): void {
 
         $instance = $this->getInstance();
         $rt = ['{DAV:}collection', '{http://calendarserver.org/ns/}subscribed'];
@@ -66,7 +66,7 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\DAV\Exception\InvalidResourceType
      */
-    function testNoSubscriptionSupport() {
+    function testNoSubscriptionSupport(): void {
 
         $principal = [
             'uri' => 'principals/user1'

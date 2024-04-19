@@ -11,7 +11,7 @@ class EmailAddressSetTest extends XmlTest {
         'DAV:' => 'd',
     ];
 
-    function testSimple() {
+    function testSimple(): void {
 
         $eas = new EmailAddressSet(['foo@example.org']);
         $this->assertEquals(['foo@example.org'], $eas->getValue());
@@ -21,7 +21,7 @@ class EmailAddressSetTest extends XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $property = new EmailAddressSet(['foo@example.org']);
 

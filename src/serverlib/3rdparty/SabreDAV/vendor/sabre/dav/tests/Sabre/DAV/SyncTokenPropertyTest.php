@@ -11,7 +11,7 @@ class SyncTokenPropertyTest extends \Sabre\DAVServerTest {
      *
      * @dataProvider data
      */
-    function testAlreadyThere1($name, $value) {
+    function testAlreadyThere1($name, $value): void {
 
         $propFind = new PropFind('foo', [
             '{http://calendarserver.org/ns/}getctag',
@@ -32,7 +32,7 @@ class SyncTokenPropertyTest extends \Sabre\DAVServerTest {
      *
      * @dataProvider data
      */
-    function testRefetch($name, $value) {
+    function testRefetch($name, $value): void {
 
         $this->server->tree = new Tree(
             new SimpleCollection('root', [
@@ -55,7 +55,7 @@ class SyncTokenPropertyTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testNoData() {
+    function testNoData(): void {
 
         $this->server->tree = new Tree(
             new SimpleCollection('root', [

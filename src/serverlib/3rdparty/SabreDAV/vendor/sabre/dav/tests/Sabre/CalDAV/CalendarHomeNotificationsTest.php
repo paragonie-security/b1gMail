@@ -8,7 +8,7 @@ class CalendarHomeNotificationsTest extends \PHPUnit_Framework_TestCase {
 
     protected $backend;
 
-    function testGetChildrenNoSupport() {
+    function testGetChildrenNoSupport(): void {
 
         $backend = new Backend\Mock();
         $calendarHome = new CalendarHome($backend,['uri' => 'principals/user']);
@@ -23,7 +23,7 @@ class CalendarHomeNotificationsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\DAV\Exception\NotFound
      */
-    function testGetChildNoSupport() {
+    function testGetChildNoSupport(): void {
 
         $backend = new Backend\Mock();
         $calendarHome = new CalendarHome($backend,['uri' => 'principals/user']);
@@ -31,7 +31,7 @@ class CalendarHomeNotificationsTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $backend = new Backend\MockSharing();
         $calendarHome = new CalendarHome($backend,['uri' => 'principals/user']);
@@ -41,7 +41,7 @@ class CalendarHomeNotificationsTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChild() {
+    function testGetChild(): void {
 
         $backend = new Backend\MockSharing();
         $calendarHome = new CalendarHome($backend,['uri' => 'principals/user']);

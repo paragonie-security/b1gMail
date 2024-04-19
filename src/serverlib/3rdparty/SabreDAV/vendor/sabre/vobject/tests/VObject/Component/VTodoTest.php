@@ -11,7 +11,7 @@ class VTodoTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider timeRangeTestData
      */
-    public function testInTimeRange(VTodo $vtodo,$start,$end,$outcome) {
+    public function testInTimeRange(VTodo $vtodo,$start,$end,$outcome): void {
 
         $this->assertEquals($outcome, $vtodo->isInTimeRange($start, $end));
 
@@ -67,7 +67,7 @@ class VTodoTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testValidate() {
+    public function testValidate(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR
@@ -92,7 +92,7 @@ HI;
 
     }
 
-    public function testValidateInvalid() {
+    public function testValidateInvalid(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR
@@ -118,7 +118,7 @@ HI;
 
     }
 
-    public function testValidateDUEDTSTARTMisMatch() {
+    public function testValidateDUEDTSTARTMisMatch(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR
@@ -147,7 +147,7 @@ HI;
 
     }
 
-    public function testValidateDUEbeforeDTSTART() {
+    public function testValidateDUEbeforeDTSTART(): void {
 
         $input = <<<HI
 BEGIN:VCALENDAR

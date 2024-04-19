@@ -4,7 +4,7 @@ namespace Sabre\DAV;
 
 class SimpleFileTest extends \PHPUnit_Framework_TestCase {
 
-    function testAll() {
+    function testAll(): void {
 
         $file = new SimpleFile('filename.txt','contents','text/plain');
 

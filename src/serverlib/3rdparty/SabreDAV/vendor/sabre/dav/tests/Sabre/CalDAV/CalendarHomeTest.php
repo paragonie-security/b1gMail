@@ -19,7 +19,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      */
     protected $backend;
 
-    function setup() {
+    function setup(): void {
 
         if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
         $this->backend = TestUtil::getBackend();
@@ -29,7 +29,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $this->assertEquals('user1',$this->usercalendars->getName());
 
@@ -39,32 +39,32 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\NotFound
      * @depends testSimple
      */
-    function testGetChildNotFound() {
+    function testGetChildNotFound(): void {
 
         $this->usercalendars->getChild('randomname');
 
     }
 
-    function testChildExists() {
+    function testChildExists(): void {
 
         $this->assertFalse($this->usercalendars->childExists('foo'));
         $this->assertTrue($this->usercalendars->childExists('UUID-123467'));
 
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
 
         $this->assertEquals('principals/user1', $this->usercalendars->getOwner());
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $this->assertNull($this->usercalendars->getGroup());
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $expected = array(
             array(
@@ -100,7 +100,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
         $this->usercalendars->setACL(array());
 
@@ -110,7 +110,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\Forbidden
      * @depends testSimple
      */
-    function testSetName() {
+    function testSetName(): void {
 
         $this->usercalendars->setName('bla');
 
@@ -120,7 +120,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\Forbidden
      * @depends testSimple
      */
-    function testDelete() {
+    function testDelete(): void {
 
         $this->usercalendars->delete();
 
@@ -129,7 +129,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testGetLastModified() {
+    function testGetLastModified(): void {
 
         $this->assertNull($this->usercalendars->getLastModified());
 
@@ -139,7 +139,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      * @depends testSimple
      */
-    function testCreateFile() {
+    function testCreateFile(): void {
 
         $this->usercalendars->createFile('bla');
 
@@ -150,7 +150,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      * @depends testSimple
      */
-    function testCreateDirectory() {
+    function testCreateDirectory(): void {
 
         $this->usercalendars->createDirectory('bla');
 
@@ -159,7 +159,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testCreateExtendedCollection() {
+    function testCreateExtendedCollection(): void {
 
         $mkCol = new MkCol(
             ['{DAV:}collection', '{urn:ietf:params:xml:ns:caldav}calendar'],
@@ -176,7 +176,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\InvalidResourceType
      * @depends testSimple
      */
-    function testCreateExtendedCollectionBadResourceType() {
+    function testCreateExtendedCollectionBadResourceType(): void {
 
         $mkCol = new MkCol(
             ['{DAV:}collection', '{DAV:}blabla'],
@@ -190,7 +190,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\InvalidResourceType
      * @depends testSimple
      */
-    function testCreateExtendedCollectionNotACalendar() {
+    function testCreateExtendedCollectionNotACalendar(): void {
 
         $mkCol = new MkCol(
             ['{DAV:}collection'],
@@ -200,7 +200,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetSupportedPrivilegesSet() {
+    function testGetSupportedPrivilegesSet(): void {
 
         $this->assertNull($this->usercalendars->getSupportedPrivilegeSet());
 
@@ -209,7 +209,7 @@ class CalendarHomeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotImplemented
      */
-    function testShareReplyFail() {
+    function testShareReplyFail(): void {
 
         $this->usercalendars->shareReply('uri', SharingPlugin::STATUS_DECLINED, 'curi', '1');
 

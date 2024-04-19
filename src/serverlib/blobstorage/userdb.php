@@ -41,7 +41,7 @@ class BMBlobStorage_UserDB extends BMAbstractBlobStorage
 	 */
 	private $compressLevel = 8;
 
-	public function open($userID)
+	public function open($userID): void
 	{
 		parent::open($userID);
 
@@ -65,7 +65,7 @@ class BMBlobStorage_UserDB extends BMAbstractBlobStorage
 		return(DataFilename($this->userID, 'blobdb'));
 	}
 
-	private function initDB()
+	private function initDB(): void
 	{
 		$this->sdb->busyTimeout(15000);
 
@@ -178,7 +178,7 @@ class BMBlobStorage_UserDB extends BMAbstractBlobStorage
 		return($result);
 	}
 
-	public function deleteUser()
+	public function deleteUser(): void
 	{
 		$this->sdb->close();
 		$this->sdb = false;
@@ -186,7 +186,7 @@ class BMBlobStorage_UserDB extends BMAbstractBlobStorage
 		@unlink($this->getDBFileName());
 	}
 
-	public function beginTx()
+	public function beginTx(): void
 	{
 		if($this->txCounter == 0)
 		{
@@ -195,7 +195,7 @@ class BMBlobStorage_UserDB extends BMAbstractBlobStorage
 		++$this->txCounter;
 	}
 
-	public function endTx()
+	public function endTx(): void
 	{
 		if(--$this->txCounter == 0)
 		{

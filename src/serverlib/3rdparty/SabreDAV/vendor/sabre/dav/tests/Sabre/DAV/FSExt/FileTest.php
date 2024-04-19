@@ -8,19 +8,19 @@ require_once 'Sabre/TestUtil.php';
 
 class FileTest extends \PHPUnit_Framework_TestCase {
 
-    function setUp() {
+    function setUp(): void {
 
         file_put_contents(SABRE_TEMPDIR . '/file.txt', 'Contents');
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
     }
 
-    function testPut() {
+    function testPut(): void {
 
         $filename = SABRE_TEMPDIR . '/file.txt';
         $file = new File($filename);
@@ -39,7 +39,7 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRange() {
+    function testRange(): void {
 
         $file = new File(SABRE_TEMPDIR . '/file.txt');
         $file->put('0000000');
@@ -49,7 +49,7 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRangeStream() {
+    function testRangeStream(): void {
 
         $stream = fopen('php://memory','r+');
         fwrite($stream, "222");
@@ -64,14 +64,14 @@ class FileTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testGet() {
+    function testGet(): void {
 
         $file = new File(SABRE_TEMPDIR . '/file.txt');
         $this->assertEquals('Contents',stream_get_contents($file->get()));
 
     }
 
-    function testDelete() {
+    function testDelete(): void {
 
         $file = new File(SABRE_TEMPDIR . '/file.txt');
         $file->delete();
@@ -80,7 +80,7 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetETag() {
+    function testGetETag(): void {
 
         $filename = SABRE_TEMPDIR . '/file.txt';
         $file = new File($filename);
@@ -95,14 +95,14 @@ class FileTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    function testGetContentType() {
+    function testGetContentType(): void {
 
         $file = new File(SABRE_TEMPDIR . '/file.txt');
         $this->assertNull($file->getContentType());
 
     }
 
-    function testGetSize() {
+    function testGetSize(): void {
 
         $file = new File(SABRE_TEMPDIR . '/file.txt');
         $this->assertEquals(8,$file->getSize());

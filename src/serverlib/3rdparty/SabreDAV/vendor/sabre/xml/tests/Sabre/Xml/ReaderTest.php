@@ -4,7 +4,7 @@ namespace Sabre\Xml;
 
 class ReaderTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetClark() {
+    function testGetClark(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -19,7 +19,7 @@ BLA;
 
     }
 
-    function testGetClarkNoNS() {
+    function testGetClarkNoNS(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -34,7 +34,7 @@ BLA;
 
     }
 
-    function testGetClarkNotOnAnElement() {
+    function testGetClarkNotOnAnElement(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -46,7 +46,7 @@ BLA;
         $this->assertNull($reader->getClark());
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -94,7 +94,7 @@ BLA;
 
     }
 
-    function testCDATA() {
+    function testCDATA(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -126,7 +126,7 @@ BLA;
 
     }
 
-    function testSimpleNamespacedAttribute() {
+    function testSimpleNamespacedAttribute(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -158,7 +158,7 @@ BLA;
 
     }
 
-    function testMappedElement() {
+    function testMappedElement(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -195,7 +195,7 @@ BLA;
     /**
      * @expectedException \LogicException
      */
-    function testMappedElementBadClass() {
+    function testMappedElementBadClass(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -216,7 +216,7 @@ BLA;
     /**
      * @depends testMappedElement
      */
-    function testMappedElementCallBack() {
+    function testMappedElementCallBack(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -256,7 +256,7 @@ BLA;
     /**
      * @depends testMappedElementCallBack
      */
-    function testReadText() {
+    function testReadText(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -295,7 +295,7 @@ BLA;
 
     }
 
-    function testParseProblem() {
+    function testParseProblem(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -322,7 +322,7 @@ BLA;
     /**
      * @expectedException \Sabre\Xml\ParseException
      */
-    function testBrokenParserClass() {
+    function testBrokenParserClass(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -346,7 +346,7 @@ BLA;
      *
      * @expectedException Sabre\Xml\LibXMLException
      */
-    function testBrokenXml() {
+    function testBrokenXml(): void {
 
         $input = <<<BLA
 <test>
@@ -366,7 +366,7 @@ BLA;
      *
      * @expectedException Sabre\Xml\LibXMLException
      */
-    function testBrokenXml2() {
+    function testBrokenXml2(): void {
 
         $input = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -391,7 +391,7 @@ XML;
     /**
      * @depends testMappedElement
      */
-    function testParseInnerTree() {
+    function testParseInnerTree(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -444,7 +444,7 @@ BLA;
     /**
      * @depends testParseInnerTree
      */
-    function testParseGetElements() {
+    function testParseGetElements(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -497,7 +497,7 @@ BLA;
     /**
      * @depends testParseInnerTree
      */
-    function testParseGetElementsNoElements() {
+    function testParseGetElementsNoElements(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>

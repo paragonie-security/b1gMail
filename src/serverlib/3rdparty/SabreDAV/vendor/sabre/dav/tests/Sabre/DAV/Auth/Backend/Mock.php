@@ -15,7 +15,7 @@ class Mock implements BackendInterface {
 
     public $principal = 'principals/admin';
 
-    function setPrincipal($principal) {
+    function setPrincipal($principal): void {
 
         $this->principal = $principal;
 

@@ -6,7 +6,7 @@ use Sabre\VObject\Component\VCalendar;
 
 class RecurTest extends \PHPUnit_Framework_TestCase {
 
-    function testParts() {
+    function testParts(): void {
 
         $vcal = new VCalendar();
         $recur = $vcal->add('RRULE', 'FREQ=Daily');
@@ -23,7 +23,7 @@ class RecurTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testSetValueBadVal() {
+    function testSetValueBadVal(): void {
 
         $vcal = new VCalendar();
         $recur = $vcal->add('RRULE', 'FREQ=Daily');
@@ -31,7 +31,7 @@ class RecurTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetSubParts() {
+    function testSetSubParts(): void {
 
         $vcal = new VCalendar();
         $recur = $vcal->add('RRULE', array('FREQ'=>'DAILY', 'BYDAY'=>'mo,tu', 'BYMONTH' => array(0,1)));

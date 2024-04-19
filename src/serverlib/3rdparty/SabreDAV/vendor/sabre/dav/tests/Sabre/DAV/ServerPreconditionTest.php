@@ -11,7 +11,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\PreconditionFailed
      */
-    function testIfMatchNoNode() {
+    function testIfMatchNoNode(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -23,7 +23,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    function testIfMatchHasNode() {
+    function testIfMatchHasNode(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -36,7 +36,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\PreconditionFailed
      */
-    function testIfMatchWrongEtag() {
+    function testIfMatchWrongEtag(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -48,7 +48,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    function testIfMatchCorrectEtag() {
+    function testIfMatchCorrectEtag(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -63,7 +63,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
      *
      * @depends testIfMatchCorrectEtag
      */
-    function testIfMatchEvolutionEtag() {
+    function testIfMatchEvolutionEtag(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -75,7 +75,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    function testIfMatchMultiple() {
+    function testIfMatchMultiple(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -87,7 +87,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    function testIfNoneMatchNoNode() {
+    function testIfNoneMatchNoNode(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -100,7 +100,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\PreconditionFailed
      */
-    function testIfNoneMatchHasNode() {
+    function testIfNoneMatchHasNode(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -112,7 +112,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    function testIfNoneMatchWrongEtag() {
+    function testIfNoneMatchWrongEtag(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -124,7 +124,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    function testIfNoneMatchWrongEtagMultiple() {
+    function testIfNoneMatchWrongEtagMultiple(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -137,7 +137,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\PreconditionFailed
      */
-    public function testIfNoneMatchCorrectEtag() {
+    public function testIfNoneMatchCorrectEtag(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -150,7 +150,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\PreconditionFailed
      */
-    public function testIfNoneMatchCorrectEtagMultiple() {
+    public function testIfNoneMatchCorrectEtagMultiple(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -162,7 +162,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    public function testIfNoneMatchCorrectEtagAsGet() {
+    public function testIfNoneMatchCorrectEtagAsGet(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -178,7 +178,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * This was a test written for issue #515.
      */
-    public function testNoneMatchCorrectEtagEnsureSapiSent() {
+    public function testNoneMatchCorrectEtagEnsureSapiSent(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -202,7 +202,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    public function testIfModifiedSinceUnModified() {
+    public function testIfModifiedSinceUnModified(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -223,7 +223,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    public function testIfModifiedSinceModified() {
+    public function testIfModifiedSinceModified(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -240,7 +240,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    public function testIfModifiedSinceInvalidDate() {
+    public function testIfModifiedSinceInvalidDate(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -258,7 +258,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    public function testIfModifiedSinceInvalidDate2() {
+    public function testIfModifiedSinceInvalidDate2(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -274,7 +274,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    public function testIfUnmodifiedSinceUnModified() {
+    public function testIfUnmodifiedSinceUnModified(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -291,7 +291,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\PreconditionFailed
      */
-    public function testIfUnmodifiedSinceModified() {
+    public function testIfUnmodifiedSinceModified(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);
@@ -306,7 +306,7 @@ class ServerPreconditionsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      */
-    public function testIfUnmodifiedSinceInvalidDate() {
+    public function testIfUnmodifiedSinceInvalidDate(): void {
 
         $root = new SimpleCollection('root',array(new ServerPreconditionsNode()));
         $server = new Server($root);

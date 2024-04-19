@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class NeedPrivilegesTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $uri = 'foo';
         $privileges = array(

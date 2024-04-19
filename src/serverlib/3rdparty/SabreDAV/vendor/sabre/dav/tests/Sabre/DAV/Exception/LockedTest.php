@@ -8,7 +8,7 @@ use
 
 class LockedTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $dom = new DOMDocument('1.0');
         $dom->formatOutput = true;
@@ -37,7 +37,7 @@ class LockedTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeAmpersand() {
+    function testSerializeAmpersand(): void {
 
         $dom = new DOMDocument('1.0');
         $dom->formatOutput = true;

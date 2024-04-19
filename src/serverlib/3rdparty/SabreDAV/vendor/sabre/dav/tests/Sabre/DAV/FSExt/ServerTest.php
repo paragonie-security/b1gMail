@@ -15,7 +15,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testGet() {
+    function testGet(): void {
 
         $request = new HTTP\Request('GET', '/test.txt');
         $filename = $this->tempDir . '/test.txt';
@@ -38,7 +38,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testHEAD() {
+    function testHEAD(): void {
 
         $request = new HTTP\Request('HEAD', '/test.txt');
         $filename = $this->tempDir . '/test.txt';
@@ -60,7 +60,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testPut() {
+    function testPut(): void {
 
         $request = new HTTP\Request('PUT', '/testput.txt');
         $filename = $this->tempDir . '/testput.txt';
@@ -80,7 +80,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testPutAlreadyExists() {
+    function testPutAlreadyExists(): void {
 
         $request = new HTTP\Request('PUT', '/test.txt', ['If-None-Match' => '*']);
         $request->setBody('Testing new file');
@@ -97,7 +97,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testMkcol() {
+    function testMkcol(): void {
 
         $request = new HTTP\Request('MKCOL', '/testcol');
         $this->server->httpRequest = ($request);
@@ -114,7 +114,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testPutUpdate() {
+    function testPutUpdate(): void {
 
         $request = new HTTP\Request('PUT', '/test.txt');
         $request->setBody('Testing updated file');
@@ -129,7 +129,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testDelete() {
+    function testDelete(): void {
 
         $request = new HTTP\Request('DELETE', '/test.txt');
         $this->server->httpRequest = ($request);
@@ -146,7 +146,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testDeleteDirectory() {
+    function testDeleteDirectory(): void {
 
         mkdir($this->tempDir.'/testcol');
         file_put_contents($this->tempDir.'/testcol/test.txt','Hi! I\'m a file with a short lifespan');
@@ -165,7 +165,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testOptions() {
+    function testOptions(): void {
 
         $request = new HTTP\Request('OPTIONS', '/');
         $this->server->httpRequest = ($request);
@@ -185,7 +185,7 @@ class ServerTest extends DAV\AbstractServer{
 
     }
 
-    function testMove() {
+    function testMove(): void {
 
         mkdir($this->tempDir.'/testcol');
 
@@ -215,7 +215,7 @@ class ServerTest extends DAV\AbstractServer{
      * The moveInto function *should* ignore the object and let sabredav itself
      * execute the slow move.
      */
-    function testMoveOtherObject() {
+    function testMoveOtherObject(): void {
 
         mkdir($this->tempDir.'/tree1');
         mkdir($this->tempDir.'/tree2');

@@ -67,7 +67,7 @@ class ResourceType extends Element\Elements implements HtmlOutput {
      * @param string $type
      * @return void
      */
-    function add($type) {
+    function add($type): void {
 
         $this->value[] = $type;
         $this->value = array_unique($this->value);

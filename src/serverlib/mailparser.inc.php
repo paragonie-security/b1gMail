@@ -64,7 +64,7 @@ class BMMailParser_PartBody
 	 *
 	 * @return void
 	 */
-	function Init()
+	function Init(): void
 	{
 		fseek($this->_fp, $this->offsetStart, SEEK_SET);
 		while(in_array($c = fgetc($this->_fp), array(' ', "\n", "\r")))
@@ -80,7 +80,7 @@ class BMMailParser_PartBody
 	 *
 	 * @return void
 	 */
-	function Finish()
+	function Finish(): void
 	{
 		fseek($this->_fp, $this->oldOffset, SEEK_SET);
 	}
@@ -207,7 +207,7 @@ class BMMailParser_Header
 	 * @param string $line
 	 * @return void
 	 */
-	function ParseLine($line)
+	function ParseLine($line): void
 	{
 		$line = rtrim($line, "\r\n");
 		$dotPos = strpos($line, ':');
@@ -311,7 +311,7 @@ class BMMailParser_Header
 	 *
 	 * @return void
 	 */
-	function DecodeHeaderEntries()
+	function DecodeHeaderEntries(): void
 	{
 		foreach($this->items as $key=>$val)
 		{
@@ -324,7 +324,7 @@ class BMMailParser_Header
 	 *
 	 * @return void
 	 */
-	function SplitParamsForEntries()
+	function SplitParamsForEntries(): void
 	{
 		foreach($this->items as $key=>$val)
 			if(!in_array(strtolower($key), array('to', 'cc', 'bcc', 'reply-to', 'received', 'subject')))
@@ -336,7 +336,7 @@ class BMMailParser_Header
 	 *
 	 * @return void
 	 */
-	function Finish()
+	function Finish(): void
 	{
 		$this->DecodeHeaderEntries();
 		$this->SplitParamsForEntries();
@@ -382,7 +382,7 @@ class BMMailParser_Part
 	 *
 	 * @return void
 	 */
-	function Parse()
+	function Parse(): void
 	{
 		$this->ParseHeader();
 		$this->ParseInfo();
@@ -394,7 +394,7 @@ class BMMailParser_Part
 	 *
 	 * @return void
 	 */
-	function ParseInfo()
+	function ParseInfo(): void
 	{
 		$contentType = strtolower($this->header->GetValueOnly('content-type'));
 
@@ -410,7 +410,7 @@ class BMMailParser_Part
 	 *
 	 * @return void
 	 */
-	function ParseBody()
+	function ParseBody(): void
 	{
 		// store body starting offset
 		$this->bodyOffset = ftell($this->_fp);
@@ -473,7 +473,7 @@ class BMMailParser_Part
 	 *
 	 * @return void
 	 */
-	function ParseHeader()
+	function ParseHeader(): void
 	{
 		while(!$this->EmptyLine($line = fgets2($this->_fp, PARSER_LINE_MAX)) && is_resource($this->_fp) && !feof($this->_fp))
 				$this->header->ParseLine($line);
@@ -496,7 +496,7 @@ class BMMailParser_Part
 	 *
 	 * @param resource $fp
 	 */
-	function InheritFP($fp)
+	function InheritFP($fp): void
 	{
 		$this->_fp = $fp;
 
@@ -534,7 +534,7 @@ class BMMailParser
 	 *
 	 * @return void
 	 */
-	function Parse()
+	function Parse(): void
 	{
 		if(is_resource($this->_fp))
 		{
@@ -578,7 +578,7 @@ class BMMailParser
 	 *
 	 * @param resource $fp
 	 */
-	function InheritFP($fp)
+	function InheritFP($fp): void
 	{
 		$this->_fp = $fp;
 
@@ -602,7 +602,7 @@ class BMMailParser
 	 * @param string $part Part descriptor
 	 * @param array $a Part array
 	 */
-	function _generatePartListPart($part, &$a)
+	function _generatePartListPart($part, &$a): void
 	{
 		$filename = $a->header->GetValueParam('content-disposition', 'filename');
 		if($filename == '')

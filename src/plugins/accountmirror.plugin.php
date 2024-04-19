@@ -42,7 +42,7 @@ class AccountMirror extends BMPlugin
 		$this->admin_page_icon		= 'accountmirror_logo.png';
 	}
 
-	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
 	{
 		if($lang == 'deutsch')
 		{
@@ -126,7 +126,7 @@ class AccountMirror extends BMPlugin
 	}
 
 
-	function AdminHandler()
+	function AdminHandler(): void
 	{
 		global $tpl, $db, $lang_admin;
 
@@ -233,7 +233,7 @@ class AccountMirror extends BMPlugin
 		$tpl->assign('page', $this->_templatePath('accountmirror.main.tpl'));
 	}
 
-	function AfterStoreMail($mailID, &$mail, &$mailbox)
+	function AfterStoreMail($mailID, &$mail, &$mailbox): void
 	{
 		global $db;
 

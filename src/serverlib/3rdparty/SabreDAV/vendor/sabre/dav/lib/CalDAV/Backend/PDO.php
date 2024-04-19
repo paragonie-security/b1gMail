@@ -256,7 +256,7 @@ class PDO extends AbstractBackend implements SyncSupport, SubscriptionSupport, S
      * @param \Sabre\DAV\PropPatch $propPatch
      * @return void
      */
-    function updateCalendar($calendarId, \Sabre\DAV\PropPatch $propPatch) {
+    function updateCalendar($calendarId, \Sabre\DAV\PropPatch $propPatch): void {
 
         $supportedProperties = array_keys($this->propertyMap);
         $supportedProperties[] = '{' . CalDAV\Plugin::NS_CALDAV . '}schedule-calendar-transp';
@@ -300,7 +300,7 @@ class PDO extends AbstractBackend implements SyncSupport, SubscriptionSupport, S
      * @param string $calendarId
      * @return void
      */
-    function deleteCalendar($calendarId) {
+    function deleteCalendar($calendarId): void {
 
         $stmt = $this->pdo->prepare('DELETE FROM ' . $this->calendarObjectTableName . ' WHERE calendarid = ?');
         $stmt->execute([$calendarId]);
@@ -605,7 +605,7 @@ class PDO extends AbstractBackend implements SyncSupport, SubscriptionSupport, S
      * @param string $objectUri
      * @return void
      */
-    function deleteCalendarObject($calendarId, $objectUri) {
+    function deleteCalendarObject($calendarId, $objectUri): void {
 
         $stmt = $this->pdo->prepare('DELETE FROM ' . $this->calendarObjectTableName . ' WHERE calendarid = ? AND uri = ?');
         $stmt->execute([$calendarId, $objectUri]);
@@ -1060,7 +1060,7 @@ SQL;
      * @param \Sabre\DAV\PropPatch $propPatch
      * @return void
      */
-    function updateSubscription($subscriptionId, DAV\PropPatch $propPatch) {
+    function updateSubscription($subscriptionId, DAV\PropPatch $propPatch): void {
 
         $supportedProperties = array_keys($this->subscriptionPropertyMap);
         $supportedProperties[] = '{http://calendarserver.org/ns/}source';
@@ -1103,7 +1103,7 @@ SQL;
      * @param mixed $subscriptionId
      * @return void
      */
-    function deleteSubscription($subscriptionId) {
+    function deleteSubscription($subscriptionId): void {
 
         $stmt = $this->pdo->prepare('DELETE FROM ' . $this->calendarSubscriptionsTableName . ' WHERE id = ?');
         $stmt->execute([$subscriptionId]);
@@ -1182,7 +1182,7 @@ SQL;
      * @param string $objectUri
      * @return void
      */
-    function deleteSchedulingObject($principalUri, $objectUri) {
+    function deleteSchedulingObject($principalUri, $objectUri): void {
 
         $stmt = $this->pdo->prepare('DELETE FROM ' . $this->schedulingObjectTableName . ' WHERE principaluri = ? AND uri = ?');
         $stmt->execute([$principalUri, $objectUri]);
@@ -1197,7 +1197,7 @@ SQL;
      * @param string $objectData
      * @return void
      */
-    function createSchedulingObject($principalUri, $objectUri, $objectData) {
+    function createSchedulingObject($principalUri, $objectUri, $objectData): void {
 
         $stmt = $this->pdo->prepare('INSERT INTO ' . $this->schedulingObjectTableName . ' (principaluri, calendardata, uri, lastmodified, etag, size) VALUES (?, ?, ?, ?, ?, ?)');
         $stmt->execute([$principalUri, $objectData, $objectUri, time(), md5($objectData), strlen($objectData) ]);

@@ -13,7 +13,7 @@ use Sabre\VObject\Component\VAvailability;
  */
 class VAvailabilityTest extends \PHPUnit_Framework_TestCase {
 
-    function testVAvailabilityComponent() {
+    function testVAvailabilityComponent(): void {
 
         $vcal = <<<VCAL
 BEGIN:VCALENDAR
@@ -27,7 +27,7 @@ VCAL;
 
     }
 
-    function testRFCxxxSection3_1_availabilityprop_required() {
+    function testRFCxxxSection3_1_availabilityprop_required(): void {
 
         // UID and DTSTAMP are present.
         $this->assertIsValid(Reader::read(
@@ -83,7 +83,7 @@ VCAL
 
     }
 
-    function testRFCxxxSection3_1_availabilityprop_optional_once() {
+    function testRFCxxxSection3_1_availabilityprop_optional_once(): void {
 
         $properties = array(
             'BUSYTYPE:BUSY',
@@ -112,7 +112,7 @@ VCAL
 
     }
 
-    function testRFCxxxSection3_1_availabilityprop_dtend_duration() {
+    function testRFCxxxSection3_1_availabilityprop_dtend_duration(): void {
 
         // Only DTEND.
         $this->assertIsValid(Reader::read($this->template(array(
@@ -131,7 +131,7 @@ VCAL
         ))));
     }
 
-    function testAvailableSubComponent() {
+    function testAvailableSubComponent(): void {
 
         $vcal = <<<VCAL
 BEGIN:VCALENDAR
@@ -147,7 +147,7 @@ VCAL;
 
     }
 
-    function testRFCxxxSection3_1_availableprop_required() {
+    function testRFCxxxSection3_1_availableprop_required(): void {
 
         // UID, DTSTAMP and DTSTART are present.
         $this->assertIsValid(Reader::read(
@@ -240,7 +240,7 @@ VCAL
 
     }
 
-    function testRFCxxxSection3_1_available_dtend_duration() {
+    function testRFCxxxSection3_1_available_dtend_duration(): void {
 
         // Only DTEND.
         $this->assertIsValid(Reader::read($this->templateAvailable(array(
@@ -259,7 +259,7 @@ VCAL
         ))));
     }
 
-    function testRFCxxxSection3_1_available_optional_once() {
+    function testRFCxxxSection3_1_available_optional_once(): void {
 
         $properties = array(
             'CREATED:20111005T135125Z',
@@ -282,7 +282,7 @@ VCAL
         }
 
     }
-    function testRFCxxxSection3_2() {
+    function testRFCxxxSection3_2(): void {
 
         $this->assertEquals(
             'BUSY',

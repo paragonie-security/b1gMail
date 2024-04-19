@@ -23,7 +23,7 @@ class Mock implements BackendInterface {
      * @param PropFind $propFind
      * @return void
      */
-    public function propFind($path, PropFind $propFind) {
+    public function propFind($path, PropFind $propFind): void {
 
         if (!isset($this->data[$path])) {
             return;
@@ -48,7 +48,7 @@ class Mock implements BackendInterface {
      * @param PropPatch $propPatch
      * @return void
      */
-    public function propPatch($path, PropPatch $propPatch) {
+    public function propPatch($path, PropPatch $propPatch): void {
 
         if (!isset($this->data[$path])) {
             $this->data[$path] = [];
@@ -75,7 +75,7 @@ class Mock implements BackendInterface {
      *
      * This allows a backend to clean up all associated properties.
      */
-    public function delete($path) {
+    public function delete($path): void {
 
         unset($this->data[$path]);
 
@@ -92,7 +92,7 @@ class Mock implements BackendInterface {
      * @param string $destination
      * @return void
      */
-    public function move($source, $destination) {
+    public function move($source, $destination): void {
 
         foreach($this->data as $path => $props) {
 

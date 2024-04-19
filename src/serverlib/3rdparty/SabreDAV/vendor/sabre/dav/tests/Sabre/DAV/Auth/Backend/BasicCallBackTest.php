@@ -9,7 +9,7 @@ use
 
 class BasicCallBackTest extends \PHPUnit_Framework_TestCase {
 
-    function testCallBack() {
+    function testCallBack(): void {
 
         $args = [];
         $callBack = function($user, $pass) use (&$args) {

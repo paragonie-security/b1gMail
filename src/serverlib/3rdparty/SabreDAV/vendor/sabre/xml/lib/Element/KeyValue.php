@@ -72,7 +72,7 @@ class KeyValue implements Xml\Element {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Xml\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer): void {
 
         $writer->write($this->value);
 

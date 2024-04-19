@@ -23,7 +23,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
      */
     protected $calendars;
 
-    function setup() {
+    function setup(): void {
 
         if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
 
@@ -36,13 +36,13 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function teardown() {
+    function teardown(): void {
 
         unset($this->backend);
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $this->assertEquals($this->calendars[0]['uri'], $this->calendar->getName());
 
@@ -51,7 +51,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testUpdateProperties() {
+    function testUpdateProperties(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}displayname' => 'NewName',
@@ -70,7 +70,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testGetProperties() {
+    function testGetProperties(): void {
 
         $question = array(
             '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set',
@@ -88,7 +88,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception\NotFound
      * @depends testSimple
      */
-    function testGetChildNotFound() {
+    function testGetChildNotFound(): void {
 
         $this->calendar->getChild('randomname');
 
@@ -97,7 +97,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $children = $this->calendar->getChildren();
         $this->assertEquals(1,count($children));
@@ -109,7 +109,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetChildren
      */
-    function testChildExists() {
+    function testChildExists(): void {
 
         $this->assertFalse($this->calendar->childExists('foo'));
 
@@ -122,7 +122,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testCreateDirectory() {
+    function testCreateDirectory(): void {
 
         $this->calendar->createDirectory('hello');
 
@@ -131,19 +131,19 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetName() {
+    function testSetName(): void {
 
         $this->calendar->setName('hello');
 
     }
 
-    function testGetLastModified() {
+    function testGetLastModified(): void {
 
         $this->assertNull($this->calendar->getLastModified());
 
     }
 
-    function testCreateFile() {
+    function testCreateFile(): void {
 
         $file = fopen('php://memory','r+');
         fwrite($file,TestUtil::getTestCalendarData());
@@ -156,7 +156,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileNoSupportedComponents() {
+    function testCreateFileNoSupportedComponents(): void {
 
         $file = fopen('php://memory','r+');
         fwrite($file,TestUtil::getTestCalendarData());
@@ -170,7 +170,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDelete() {
+    function testDelete(): void {
 
         $this->calendar->delete();
 
@@ -178,19 +178,19 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(1, count($calendars));
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
 
         $this->assertEquals('principals/user1',$this->calendar->getOwner());
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $this->assertNull($this->calendar->getGroup());
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $expected = array(
             array(
@@ -231,13 +231,13 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
         $this->calendar->setACL(array());
 
     }
 
-    function testGetSupportedPrivilegesSet() {
+    function testGetSupportedPrivilegesSet(): void {
 
         $result = $this->calendar->getSupportedPrivilegeSet();
 
@@ -248,12 +248,12 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetSyncToken() {
+    function testGetSyncToken(): void {
 
         $this->assertEquals(2, $this->calendar->getSyncToken());
 
     }
-    function testGetSyncToken2() {
+    function testGetSyncToken2(): void {
 
         $calendar = new Calendar(new Backend\Mock([],[]), [
             '{DAV:}sync-token' => 2
@@ -262,14 +262,14 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetSyncTokenNoSyncSupport() {
+    function testGetSyncTokenNoSyncSupport(): void {
 
         $calendar = new Calendar(new Backend\Mock([],[]), []);
         $this->assertNull($calendar->getSyncToken());
 
     }
 
-    function testGetChanges() {
+    function testGetChanges(): void {
 
         $this->assertEquals([
             'syncToken' => 2,
@@ -280,7 +280,7 @@ class CalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChangesNoSyncSupport() {
+    function testGetChangesNoSyncSupport(): void {
 
         $calendar = new Calendar(new Backend\Mock([],[]), []);
         $this->assertNull($calendar->getChanges(1,null));

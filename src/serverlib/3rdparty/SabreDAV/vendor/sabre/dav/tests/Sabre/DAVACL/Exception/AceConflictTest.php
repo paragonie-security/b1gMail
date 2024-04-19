@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class AceConflictTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $ex = new AceConflict('message');
 

@@ -8,7 +8,7 @@ class ObjectTreeTest extends \PHPUnit_Framework_TestCase {
 
     protected $tree;
 
-    function setup() {
+    function setup(): void {
 
         \Sabre\TestUtil::clearTempDir();
         mkdir(SABRE_TEMPDIR . '/root');
@@ -20,27 +20,27 @@ class ObjectTreeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function teardown() {
+    function teardown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
     }
 
-    function testGetRootNode() {
+    function testGetRootNode(): void {
 
         $root = $this->tree->getNodeForPath('');
         $this->assertInstanceOf('Sabre\\DAV\\FSExt\\Directory',$root);
 
     }
 
-    function testGetSubDir() {
+    function testGetSubDir(): void {
 
         $root = $this->tree->getNodeForPath('subdir');
         $this->assertInstanceOf('Sabre\\DAV\\FSExt\\Directory',$root);
 
     }
 
-    function testCopyFile() {
+    function testCopyFile(): void {
 
        $this->tree->copy('file.txt','file2.txt');
        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/file2.txt'));
@@ -51,7 +51,7 @@ class ObjectTreeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCopyFile
      */
-    function testCopyDirectory() {
+    function testCopyDirectory(): void {
 
        $this->tree->copy('subdir','subdir2');
        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir2'));
@@ -63,7 +63,7 @@ class ObjectTreeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCopyFile
      */
-    function testMoveFile() {
+    function testMoveFile(): void {
 
        $this->tree->move('file.txt','file2.txt');
        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/file2.txt'));
@@ -75,7 +75,7 @@ class ObjectTreeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testMoveFile
      */
-    function testMoveFileNewParent() {
+    function testMoveFileNewParent(): void {
 
        $this->tree->move('file.txt','subdir/file2.txt');
        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir/file2.txt'));
@@ -87,7 +87,7 @@ class ObjectTreeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCopyDirectory
      */
-    function testMoveDirectory() {
+    function testMoveDirectory(): void {
 
        $this->tree->move('subdir','subdir2');
        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir2'));

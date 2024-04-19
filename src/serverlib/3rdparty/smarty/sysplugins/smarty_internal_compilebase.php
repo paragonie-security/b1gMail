@@ -163,7 +163,7 @@ abstract class Smarty_Internal_CompileBase
      * @param string $openTag  the opening tag's name
      * @param mixed  $data     optional data saved
      */
-    public function openTag($compiler, $openTag, $data = null)
+    public function openTag($compiler, $openTag, $data = null): void
     {
         array_push($compiler->_tag_stack, array($openTag, $data));
     }

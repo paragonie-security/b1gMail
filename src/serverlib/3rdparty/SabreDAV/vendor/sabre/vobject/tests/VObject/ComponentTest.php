@@ -8,7 +8,7 @@ use
 
 class ComponentTest extends \PHPUnit_Framework_TestCase {
 
-    function testIterate() {
+    function testIterate(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -30,7 +30,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicGet() {
+    function testMagicGet(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -48,7 +48,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicGetGroups() {
+    function testMagicGetGroups(): void {
 
         $comp = new VCard();
 
@@ -74,7 +74,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicIsset() {
+    function testMagicIsset(): void {
 
         $comp = new VCalendar();
 
@@ -90,7 +90,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicSetScalar() {
+    function testMagicSetScalar(): void {
 
         $comp = new VCalendar();
         $comp->myProp = 'myValue';
@@ -101,7 +101,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicSetScalarTwice() {
+    function testMagicSetScalarTwice(): void {
 
         $comp = new VCalendar(array(), false);
         $comp->myProp = 'myValue';
@@ -113,7 +113,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicSetArray() {
+    function testMagicSetArray(): void {
 
         $comp = new VCalendar();
         $comp->ORG = array('Acme Inc', 'Section 9');
@@ -123,7 +123,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicSetComponent() {
+    function testMagicSetComponent(): void {
 
         $comp = new VCalendar();
 
@@ -136,7 +136,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMagicSetTwice() {
+    function testMagicSetTwice(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -149,7 +149,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testArrayAccessGet() {
+    function testArrayAccessGet(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -169,7 +169,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testArrayAccessExists() {
+    function testArrayAccessExists(): void {
 
         $comp = new VCalendar();
 
@@ -191,7 +191,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException LogicException
      */
-    function testArrayAccessSet() {
+    function testArrayAccessSet(): void {
 
         $comp = new VCalendar();
         $comp['hey'] = 'hi there';
@@ -200,14 +200,14 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException LogicException
      */
-    function testArrayAccessUnset() {
+    function testArrayAccessUnset(): void {
 
         $comp = new VCalendar();
         unset($comp[0]);
 
     }
 
-    function testAddScalar() {
+    function testAddScalar(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -223,7 +223,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAddScalarParams() {
+    function testAddScalarParams(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -245,7 +245,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testAddComponent() {
+    function testAddComponent(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -257,7 +257,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAddComponentTwice() {
+    function testAddComponentTwice(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -273,7 +273,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testAddArgFail() {
+    function testAddArgFail(): void {
 
         $comp = new VCalendar();
         $comp->add($comp->createComponent('VEVENT'),'hello');
@@ -283,14 +283,14 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testAddArgFail2() {
+    function testAddArgFail2(): void {
 
         $comp = new VCalendar();
         $comp->add(array());
 
     }
 
-    function testMagicUnset() {
+    function testMagicUnset(): void {
 
         $comp = new VCalendar(array(), false);
         $comp->add($comp->createComponent('VEVENT'));
@@ -302,14 +302,14 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testCount() {
+    function testCount(): void {
 
         $comp = new VCalendar();
         $this->assertEquals(1,$comp->count());
 
     }
 
-    function testChildren() {
+    function testChildren(): void {
 
         $comp = new VCalendar(array(), false);
 
@@ -322,7 +322,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(2,count($r));
     }
 
-    function testGetComponents() {
+    function testGetComponents(): void {
 
         $comp = new VCalendar();
 
@@ -335,14 +335,14 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('VTODO', $r[0]->name);
     }
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $comp = new VCalendar(array(), false);
         $this->assertEquals("BEGIN:VCALENDAR\r\nEND:VCALENDAR\r\n", $comp->serialize());
 
     }
 
-    function testSerializeChildren() {
+    function testSerializeChildren(): void {
 
         $comp = new VCalendar(array(), false);
         $event = $comp->add($comp->createComponent('VEVENT'));
@@ -355,7 +355,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeOrderCompAndProp() {
+    function testSerializeOrderCompAndProp(): void {
 
         $comp = new VCalendar(array(), false);
         $comp->add($event = $comp->createComponent('VEVENT'));
@@ -370,7 +370,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAnotherSerializeOrderProp() {
+    function testAnotherSerializeOrderProp(): void {
 
         $prop4s=array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
 
@@ -397,7 +397,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testInstantiateWithChildren() {
+    function testInstantiateWithChildren(): void {
 
         $comp = new VCard(array(
             'ORG' => array('Acme Inc.', 'Section 9'),
@@ -409,7 +409,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testInstantiateSubComponent() {
+    function testInstantiateSubComponent(): void {
 
         $comp = new VCalendar();
         $event = $comp->createComponent('VEVENT', array(
@@ -421,7 +421,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRemoveByName() {
+    function testRemoveByName(): void {
 
         $comp = new VCalendar(array(), false);
         $comp->add('prop1','val1');
@@ -434,7 +434,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRemoveByObj() {
+    function testRemoveByObj(): void {
 
         $comp = new VCalendar(array(), false);
         $comp->add('prop1','val1');
@@ -449,7 +449,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testRemoveNotFound() {
+    function testRemoveNotFound(): void {
 
         $comp = new VCalendar(array(), false);
         $prop = $comp->createProperty('A','B');
@@ -460,7 +460,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider ruleData
      */
-    function testValidateRules($componentList, $errorCount) {
+    function testValidateRules($componentList, $errorCount): void {
 
         $vcard = new Component\VCard();
 
@@ -473,7 +473,7 @@ class ComponentTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateRepair() {
+    function testValidateRepair(): void {
 
         $vcard = new Component\VCard();
 

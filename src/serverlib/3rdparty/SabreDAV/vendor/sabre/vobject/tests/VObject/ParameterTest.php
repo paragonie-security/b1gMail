@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class ParameterTest extends \PHPUnit_Framework_TestCase {
 
-    function testSetup() {
+    function testSetup(): void {
 
         $cal = new Component\VCalendar();
 
@@ -14,7 +14,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetupNameLess() {
+    function testSetupNameLess(): void {
 
         $card = new Component\VCard();
 
@@ -25,7 +25,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testModify() {
+    function testModify(): void {
 
         $cal = new Component\VCalendar();
 
@@ -45,7 +45,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCastToString() {
+    function testCastToString(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'name', 'value');
@@ -54,7 +54,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCastNullToString() {
+    function testCastNullToString(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'name', null);
@@ -63,7 +63,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'name', 'value');
@@ -71,7 +71,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeEmpty() {
+    function testSerializeEmpty(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'name', null);
@@ -79,7 +79,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeComplex() {
+    function testSerializeComplex(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'name',array("val1", "val2;", "val3^", "val4\n", "val5\""));
@@ -93,7 +93,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
      *
      * So we specifically added support for that.
      */
-    function testSerializePlusSign() {
+    function testSerializePlusSign(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'EMAIL',"user+something@example.org");
@@ -101,7 +101,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testIterate() {
+    function testIterate(): void {
 
         $cal = new Component\VCalendar();
 
@@ -116,7 +116,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeColon() {
+    function testSerializeColon(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'name','va:lue');
@@ -124,7 +124,7 @@ class ParameterTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeSemiColon() {
+    function testSerializeSemiColon(): void {
 
         $cal = new Component\VCalendar();
         $param = new Parameter($cal, 'name','va;lue');

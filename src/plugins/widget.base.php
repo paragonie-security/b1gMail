@@ -453,7 +453,7 @@ class BMPlugin_Widget_EMail extends BMPlugin
 		return(true);
 	}
 
-	function renderWidgetPrefs()
+	function renderWidgetPrefs(): void
 	{
 		global $tpl, $thisUser;
 

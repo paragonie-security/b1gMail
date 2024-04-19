@@ -262,7 +262,7 @@ class Client extends HTTP\Client {
      * @param array $properties
      * @return void
      */
-    function propPatch($url, array $properties) {
+    function propPatch($url, array $properties): void {
 
         $propPatch = new Xml\Request\PropPatch();
         $propPatch->properties = $properties;

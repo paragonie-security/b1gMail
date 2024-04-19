@@ -205,7 +205,7 @@ class Calendar implements ICalendar, DAV\IProperties, DAV\Sync\ISyncCollection, 
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->caldavBackend->deleteCalendar($this->calendarInfo['id']);
 

@@ -4,7 +4,7 @@ namespace Sabre\HTTP;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $response = new Response(200, ['Content-Type' => 'text/xml']);
         $this->assertEquals(200, $response->getStatus());
@@ -12,7 +12,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetStatus() {
+    function testSetStatus(): void {
 
         $response = new Response();
         $response->setStatus('402 Where\'s my money?');
@@ -24,13 +24,13 @@ class ResponseTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testInvalidStatus() {
+    function testInvalidStatus(): void {
 
         $response = new Response(1000);
 
     }
 
-    function testToString() {
+    function testToString(): void {
 
         $response = new Response(200, ['Content-Type' => 'text/xml']);
         $response->setBody('foo');

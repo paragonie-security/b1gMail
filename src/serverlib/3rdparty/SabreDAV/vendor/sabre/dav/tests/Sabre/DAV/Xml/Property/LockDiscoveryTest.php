@@ -7,7 +7,7 @@ use Sabre\DAV\Locks\LockInfo;
 
 class LockDiscoveryTest extends XmlTest {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $lock = new LockInfo();
         $lock->owner = 'hello';
@@ -45,7 +45,7 @@ class LockDiscoveryTest extends XmlTest {
 
     }
     
-    function testSerializeShared() {
+    function testSerializeShared(): void {
 
         $lock = new LockInfo();
         $lock->owner = 'hello';

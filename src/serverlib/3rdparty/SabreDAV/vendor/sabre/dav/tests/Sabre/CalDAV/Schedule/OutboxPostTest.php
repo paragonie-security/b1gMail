@@ -13,7 +13,7 @@ class OutboxPostTest extends \Sabre\DAVServerTest {
     protected $autoLogin = 'user1';
     protected $setupCalDAVScheduling = true;
 
-    function testPostPassThruNotFound() {
+    function testPostPassThruNotFound(): void {
 
         $req = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -25,7 +25,7 @@ class OutboxPostTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testPostPassThruNotTextCalendar() {
+    function testPostPassThruNotTextCalendar(): void {
 
         $req = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -36,7 +36,7 @@ class OutboxPostTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testPostPassThruNoOutBox() {
+    function testPostPassThruNoOutBox(): void {
 
         $req = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'POST',
@@ -48,7 +48,7 @@ class OutboxPostTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testInvalidIcalBody() {
+    function testInvalidIcalBody(): void {
 
         $req = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD'  => 'POST',
@@ -63,7 +63,7 @@ class OutboxPostTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testNoVEVENT() {
+    function testNoVEVENT(): void {
 
         $req = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD'  => 'POST',
@@ -86,7 +86,7 @@ class OutboxPostTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testNoMETHOD() {
+    function testNoMETHOD(): void {
 
         $req = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD'  => 'POST',
@@ -109,7 +109,7 @@ class OutboxPostTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testUnsupportedMethod() {
+    function testUnsupportedMethod(): void {
 
         $req = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD'  => 'POST',

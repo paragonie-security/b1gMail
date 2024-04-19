@@ -53,7 +53,7 @@ class Mock extends AbstractBackend {
 
     }
 
-    function addPrincipal(array $principal) {
+    function addPrincipal(array $principal): void {
 
         $this->principals[] = $principal;
 
@@ -112,7 +112,7 @@ class Mock extends AbstractBackend {
 
     }
 
-    function setGroupMemberSet($path, array $members) {
+    function setGroupMemberSet($path, array $members): void {
 
         $this->groupMembers[$path] = $members;
 
@@ -133,7 +133,7 @@ class Mock extends AbstractBackend {
      * @param string $path
      * @param \Sabre\DAV\PropPatch $propPatch
      */
-    function updatePrincipal($path, \Sabre\DAV\PropPatch $propPatch) {
+    function updatePrincipal($path, \Sabre\DAV\PropPatch $propPatch): void {
 
         $value = null;
         foreach ($this->principals as $principalIndex => $value) {

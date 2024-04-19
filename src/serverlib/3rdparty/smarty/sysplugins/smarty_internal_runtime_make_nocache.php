@@ -18,7 +18,7 @@ class Smarty_Internal_Runtime_Make_Nocache
      *
      * @throws \SmartyException
      */
-    public function save(Smarty_Internal_Template $tpl, $var)
+    public function save(Smarty_Internal_Template $tpl, $var): void
     {
         if (isset($tpl->tpl_vars[ $var ])) {
             $export =
@@ -39,7 +39,7 @@ class Smarty_Internal_Runtime_Make_Nocache
      * @param string                    $var variable name
      * @param array                     $properties
      */
-    public function store(Smarty_Internal_Template $tpl, $var, $properties)
+    public function store(Smarty_Internal_Template $tpl, $var, $properties): void
     {
         // do not overwrite existing nocache variables
         if (!isset($tpl->tpl_vars[ $var ]) || !$tpl->tpl_vars[ $var ]->nocache) {

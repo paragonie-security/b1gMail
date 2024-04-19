@@ -19,7 +19,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
      */
     protected $calBackend;
 
-    function setUp() {
+    function setUp(): void {
 
         $calendars = array(
             array(
@@ -64,7 +64,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFile() {
+    function testCreateFile(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -77,7 +77,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileValid() {
+    function testCreateFileValid(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -105,7 +105,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileNoComponents() {
+    function testCreateFileNoComponents(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -119,7 +119,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileNoUID() {
+    function testCreateFileNoUID(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -133,7 +133,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileVCard() {
+    function testCreateFileVCard(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -147,7 +147,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFile2Components() {
+    function testCreateFile2Components(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -161,7 +161,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFile2UIDS() {
+    function testCreateFile2UIDS(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -175,7 +175,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileWrongComponent() {
+    function testCreateFileWrongComponent(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -189,7 +189,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateFile() {
+    function testUpdateFile(): void {
 
         $this->calBackend->createCalendarObject('calendar1','blabla.ics','foo');
         $request = HTTP\Sapi::createFromServerArray(array(
@@ -203,7 +203,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateFileParsableBody() {
+    function testUpdateFileParsableBody(): void {
 
         $this->calBackend->createCalendarObject('calendar1','blabla.ics','foo');
         $request = HTTP\Sapi::createFromServerArray(array(
@@ -228,7 +228,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileInvalidComponent() {
+    function testCreateFileInvalidComponent(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -242,7 +242,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateFileInvalidComponent() {
+    function testUpdateFileInvalidComponent(): void {
 
         $this->calBackend->createCalendarObject('calendar2','blabla.ics','foo');
         $request = HTTP\Sapi::createFromServerArray(array(
@@ -264,7 +264,7 @@ class ValidateICalTest extends \PHPUnit_Framework_TestCase {
      * More importantly. If any transformation happens, the etag must no longer
      * be returned by the server.
      */
-    function testCreateFileModified() {
+    function testCreateFileModified(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',

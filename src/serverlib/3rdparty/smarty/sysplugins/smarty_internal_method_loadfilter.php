@@ -68,7 +68,7 @@ class Smarty_Internal_Method_LoadFilter
      *
      * @throws \SmartyException
      */
-    public function _checkFilterType($type)
+    public function _checkFilterType($type): void
     {
         if (!isset($this->filterTypes[ $type ])) {
             throw new SmartyException("Illegal filter type '{$type}'");

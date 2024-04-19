@@ -12,13 +12,13 @@ require_once 'Sabre/HTTP/ResponseMock.php';
 
 class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
-    function setUp() {
+    function setUp(): void {
 
         if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
 
     }
 
-    function testInit() {
+    function testInit(): void {
 
         $p = new ICSExportPlugin();
         $s = new DAV\Server();
@@ -27,7 +27,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testBeforeMethod() {
+    function testBeforeMethod(): void {
 
         $cbackend = TestUtil::getBackend();
 
@@ -76,7 +76,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals("#AA0000FF", $obj->{"X-APPLE-CALENDAR-COLOR"});
 
     }
-    function testBeforeMethodNoVersion() {
+    function testBeforeMethodNoVersion(): void {
 
         if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
         $cbackend = TestUtil::getBackend();
@@ -126,7 +126,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testBeforeMethodNoExport() {
+    function testBeforeMethodNoExport(): void {
 
         $p = new ICSExportPlugin();
 
@@ -141,7 +141,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testACLIntegrationBlocked() {
+    function testACLIntegrationBlocked(): void {
 
         $cbackend = TestUtil::getBackend();
 
@@ -177,7 +177,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testACLIntegrationNotBlocked() {
+    function testACLIntegrationNotBlocked(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -232,7 +232,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testBadStartParam() {
+    function testBadStartParam(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -268,7 +268,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testBadEndParam() {
+    function testBadEndParam(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -304,7 +304,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFilterStartEnd() {
+    function testFilterStartEnd(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -344,7 +344,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testExpandNoStart() {
+    function testExpandNoStart(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -380,7 +380,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testExpand() {
+    function testExpand(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -420,7 +420,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testJCal() {
+    function testJCal(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -458,7 +458,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testJCalInUrl() {
+    function testJCalInUrl(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -495,7 +495,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testNegotiateDefault() {
+    function testNegotiateDefault(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -533,7 +533,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFilterComponentVEVENT() {
+    function testFilterComponentVEVENT(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -577,7 +577,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFilterComponentVTODO() {
+    function testFilterComponentVTODO(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();
@@ -621,7 +621,7 @@ class ICSExportPluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFilterComponentBadComponent() {
+    function testFilterComponentBadComponent(): void {
 
         $cbackend = TestUtil::getBackend();
         $pbackend = new DAVACL\PrincipalBackend\Mock();

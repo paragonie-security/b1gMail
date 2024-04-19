@@ -29,7 +29,7 @@ class CorePlugin extends ServerPlugin {
      * @param Server $server
      * @return void
      */
-    function initialize(Server $server) {
+    function initialize(Server $server): void {
 
         $this->server = $server;
         $server->on('method:GET',       [$this, 'httpGet']);
@@ -736,7 +736,7 @@ class CorePlugin extends ServerPlugin {
      * @param PropPatch $propPatch
      * @return void
      */
-    function propPatchProtectedPropertyCheck($path, PropPatch $propPatch) {
+    function propPatchProtectedPropertyCheck($path, PropPatch $propPatch): void {
 
         // Comparing the mutation list to the list of propetected properties.
         $mutations = $propPatch->getMutations();
@@ -762,7 +762,7 @@ class CorePlugin extends ServerPlugin {
      * @param PropPatch $propPatch
      * @return void
      */
-    function propPatchNodeUpdate($path, PropPatch $propPatch) {
+    function propPatchNodeUpdate($path, PropPatch $propPatch): void {
 
         // This should trigger a 404 if the node doesn't exist.
         $node = $this->server->tree->getNodeForPath($path);
@@ -782,7 +782,7 @@ class CorePlugin extends ServerPlugin {
      * @param INode $node
      * @return void
      */
-    function propFind(PropFind $propFind, INode $node) {
+    function propFind(PropFind $propFind, INode $node): void {
 
         $propFind->handle('{DAV:}getlastmodified', function() use ($node) {
             $lm = $node->getLastModified();
@@ -839,7 +839,7 @@ class CorePlugin extends ServerPlugin {
      * @param INode $node
      * @return void
      */
-    function propFindNode(PropFind $propFind, INode $node) {
+    function propFindNode(PropFind $propFind, INode $node): void {
 
         if ($node instanceof IProperties && $propertyNames = $propFind->get404Properties()) {
 
@@ -864,7 +864,7 @@ class CorePlugin extends ServerPlugin {
      * @param INode $node
      * @return void
      */
-    function propFindLate(PropFind $propFind, INode $node) {
+    function propFindLate(PropFind $propFind, INode $node): void {
 
         $propFind->handle('{http://calendarserver.org/ns/}getctag', function() use ($propFind) {
 

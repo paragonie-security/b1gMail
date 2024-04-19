@@ -4,7 +4,7 @@ namespace Sabre\DAV;
 
 class TreeTest extends \PHPUnit_Framework_TestCase {
 
-    function testNodeExists() {
+    function testNodeExists(): void {
 
         $tree = new TreeMock();
 
@@ -13,7 +13,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCopy() {
+    function testCopy(): void {
 
         $tree = new TreeMock();
         $tree->copy('hi','hi2');
@@ -24,7 +24,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMove() {
+    function testMove(): void {
 
         $tree = new TreeMock();
         $tree->move('hi','hi2');
@@ -34,7 +34,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDeepMove() {
+    function testDeepMove(): void {
 
         $tree = new TreeMock();
         $tree->move('hi/sub','hi2');
@@ -44,7 +44,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDelete() {
+    function testDelete(): void {
 
         $tree = new TreeMock();
         $tree->delete('hi');
@@ -52,7 +52,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $tree = new TreeMock();
         $children = $tree->getChildren('');
@@ -61,7 +61,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetMultipleNodes() {
+    function testGetMultipleNodes(): void {
 
         $tree = new TreeMock();
         $result = $tree->getMultipleNodes(['hi/sub', 'hi/file']);
@@ -72,7 +72,7 @@ class TreeTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('file', $result['hi/file']->getName());
 
     }
-    function testGetMultipleNodes2() {
+    function testGetMultipleNodes2(): void {
 
         $tree = new TreeMock();
         $result = $tree->getMultipleNodes(['multi/1', 'multi/2']);
@@ -118,13 +118,13 @@ class TreeDirectoryTester extends SimpleCollection {
     public $isDeleted = false;
     public $isRenamed = false;
 
-    function createDirectory($name) {
+    function createDirectory($name): void {
 
         $this->newDirectories[$name] = true;
 
     }
 
-    function createFile($name,$data = null) {
+    function createFile($name,$data = null): void {
 
         $this->newFiles[$name] = $data;
 
@@ -144,13 +144,13 @@ class TreeDirectoryTester extends SimpleCollection {
 
     }
 
-    function delete() {
+    function delete(): void {
 
         $this->isDeleted = true;
 
     }
 
-    function setName($name) {
+    function setName($name): void {
 
         $this->isRenamed = true;
         $this->name = $name;
@@ -203,7 +203,7 @@ class TreeFileTester extends File implements IProperties {
      * @param array $mutations
      * @return bool|array
      */
-    function propPatch(PropPatch $propPatch) {
+    function propPatch(PropPatch $propPatch): void {
 
         $this->properties = $propPatch->getMutations();
         $propPatch->setRemainingResultCode(200);

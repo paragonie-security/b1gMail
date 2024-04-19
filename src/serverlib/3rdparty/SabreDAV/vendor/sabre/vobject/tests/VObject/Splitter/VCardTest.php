@@ -15,7 +15,7 @@ class VCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testVCardImportValidVCard() {
+    function testVCardImportValidVCard(): void {
         $data = <<<EOT
 BEGIN:VCARD
 UID:foo
@@ -36,7 +36,7 @@ EOT;
     /**
      * @expectedException Sabre\VObject\ParseException
      */
-    function testVCardImportWrongType() {
+    function testVCardImportWrongType(): void {
         $event[] = <<<EOT
 BEGIN:VEVENT
 UID:foo1
@@ -69,7 +69,7 @@ EOT;
 
     }
 
-    function testVCardImportValidVCardsWithCategories() {
+    function testVCardImportValidVCardsWithCategories(): void {
         $data = <<<EOT
 BEGIN:VCARD
 UID:card-in-foo1-and-foo2
@@ -100,7 +100,7 @@ EOT;
 
     }
 
-    function testVCardImportEndOfData() {
+    function testVCardImportEndOfData(): void {
         $data = <<<EOT
 BEGIN:VCARD
 UID:foo
@@ -119,7 +119,7 @@ EOT;
     /**
      * @expectedException \Sabre\VObject\ParseException
      */
-    function testVCardImportCheckInvalidArgumentException() {
+    function testVCardImportCheckInvalidArgumentException(): void {
         $data = <<<EOT
 BEGIN:FOO
 END:FOO
@@ -131,7 +131,7 @@ EOT;
 
     }
 
-    function testVCardImportMultipleValidVCards() {
+    function testVCardImportMultipleValidVCards(): void {
         $data = <<<EOT
 BEGIN:VCARD
 UID:foo
@@ -152,7 +152,7 @@ EOT;
 
     }
 
-    function testImportMultipleSeparatedWithNewLines() {
+    function testImportMultipleSeparatedWithNewLines(): void {
         $data = <<<EOT
 BEGIN:VCARD
 UID:foo
@@ -175,7 +175,7 @@ EOT;
         $this->assertEquals(2, $count);
     }
 
-    function testVCardImportVCardWithoutUID() {
+    function testVCardImportVCardWithoutUID(): void {
         $data = <<<EOT
 BEGIN:VCARD
 END:VCARD

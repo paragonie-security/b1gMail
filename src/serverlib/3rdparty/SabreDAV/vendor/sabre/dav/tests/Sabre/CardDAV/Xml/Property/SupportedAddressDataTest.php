@@ -7,7 +7,7 @@ use Sabre\DAV;
 
 class SupportedAddressDataDataTest extends DAV\Xml\XmlTest {
 
-    function testSimple() {
+    function testSimple(): void {
 
         $property = new SupportedAddressData();
         $this->assertInstanceOf('Sabre\CardDAV\Xml\Property\SupportedAddressData', $property);
@@ -17,7 +17,7 @@ class SupportedAddressDataDataTest extends DAV\Xml\XmlTest {
     /**
      * @depends testSimple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $property = new SupportedAddressData();
 

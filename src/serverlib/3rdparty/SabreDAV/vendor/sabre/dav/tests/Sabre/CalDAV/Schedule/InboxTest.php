@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class InboxTest extends \PHPUnit_Framework_TestCase {
 
-    function testSetup() {
+    function testSetup(): void {
 
         $inbox = new Inbox(
             new CalDAV\Backend\MockScheduling(),
@@ -72,7 +72,7 @@ class InboxTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $inbox = new Inbox(
             new CalDAV\Backend\MockScheduling(),
@@ -103,7 +103,7 @@ class InboxTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $backend = new CalDAV\Backend\MockScheduling();
         $inbox = new Inbox(
@@ -131,7 +131,7 @@ class InboxTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetChildren
      */
-    function testCreateFile() {
+    function testCreateFile(): void {
 
         $backend = new CalDAV\Backend\MockScheduling();
         $inbox = new Inbox(
@@ -159,7 +159,7 @@ class InboxTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSetup
      */
-    function testCalendarQuery() {
+    function testCalendarQuery(): void {
 
         $backend = new CalDAV\Backend\MockScheduling();
         $inbox = new Inbox(

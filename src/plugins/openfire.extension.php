@@ -89,7 +89,7 @@ class modopenfire extends BMPlugin
     /*
     *  Link  und Tabs im Adminbereich
     */
-    public function AdminHandler()
+    public function AdminHandler(): void
     {
         global $db, $tpl, $lang_admin;
 
@@ -126,7 +126,7 @@ class modopenfire extends BMPlugin
     /*
     *  Sprach variablen
     */
-    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
     {
         if ($lang == 'deutsch') {
             $lang_admin['openfire_domain'] = 'Openfire-Domain';
@@ -147,7 +147,7 @@ class modopenfire extends BMPlugin
     /*
      * OnSignup
      */
-    public function OnSignup($userid, $usermail)
+    public function OnSignup($userid, $usermail): void
     {
         global $suEMailLocal, $suPass1, $suEMail, $suFirstname, $suSurname;
 
@@ -164,7 +164,7 @@ class modopenfire extends BMPlugin
     /*
      * OnDeleteUser
      */
-    public function OnDeleteUser($id)
+    public function OnDeleteUser($id): void
     {
         global $db;
 
@@ -181,7 +181,7 @@ class modopenfire extends BMPlugin
         }
     }
 
-    public function OnUserPasswordChange($userID, $oldPasswordMD5, $newPasswordMD5, $newPasswordPlain)
+    public function OnUserPasswordChange($userID, $oldPasswordMD5, $newPasswordMD5, $newPasswordPlain): void
     {
         global $userRow;
 
@@ -226,7 +226,7 @@ class modopenfire extends BMPlugin
         return false;
     }
 
-    private function _sendhttp($url)
+    private function _sendhttp($url): void
     {
         if (!class_exists('BMHTTP')) {
             include B1GMAIL_DIR.'serverlib/http.class.php';

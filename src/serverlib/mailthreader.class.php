@@ -59,7 +59,7 @@ class BMMailThreader
      * @param int    $level Base level
      * @param string $base  Base message ID
      */
-    private function _processReferences($refs, $level, $base)
+    private function _processReferences($refs, $level, $base): void
     {
         global $db;
 
@@ -94,7 +94,7 @@ class BMMailThreader
     /**
      * normalize levels.
      */
-    private function _normalizeLevels()
+    private function _normalizeLevels(): void
     {
         $smallestLevel = 0;
         foreach ($this->_messages as $val) {
@@ -111,7 +111,7 @@ class BMMailThreader
     /**
      * fetch messages.
      */
-    private function _fetchMessages()
+    private function _fetchMessages(): void
     {
         global $db;
 

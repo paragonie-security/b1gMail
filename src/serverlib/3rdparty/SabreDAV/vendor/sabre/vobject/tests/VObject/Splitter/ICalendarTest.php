@@ -8,7 +8,7 @@ class ICalendarTest extends \PHPUnit_Framework_TestCase {
 
     protected $version;
 
-    function setUp() {
+    function setUp(): void {
         $this->version = VObject\Version::VERSION;
     }
 
@@ -21,7 +21,7 @@ class ICalendarTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testICalendarImportValidEvent() {
+    function testICalendarImportValidEvent(): void {
 
         $data = <<<EOT
 BEGIN:VCALENDAR
@@ -46,7 +46,7 @@ EOT;
     /**
      * @expectedException Sabre\VObject\ParseException
      */
-    function testICalendarImportWrongType() {
+    function testICalendarImportWrongType(): void {
 
         $data = <<<EOT
 BEGIN:VCARD
@@ -62,7 +62,7 @@ EOT;
 
     }
 
-    function testICalendarImportEndOfData() {
+    function testICalendarImportEndOfData(): void {
         $data = <<<EOT
 BEGIN:VCALENDAR
 BEGIN:VEVENT
@@ -85,7 +85,7 @@ EOT;
     /**
      * @expectedException Sabre\VObject\ParseException
      */
-    function testICalendarImportInvalidEvent() {
+    function testICalendarImportInvalidEvent(): void {
         $data = <<<EOT
 EOT;
         $tempFile = $this->createStream($data);
@@ -93,7 +93,7 @@ EOT;
 
     }
 
-    function testICalendarImportMultipleValidEvents() {
+    function testICalendarImportMultipleValidEvents(): void {
 
         $event[] = <<<EOT
 BEGIN:VEVENT
@@ -144,7 +144,7 @@ EOT;
         $this->assertEquals(array(), VObject\Reader::read($return)->validate());
     }
 
-    function testICalendarImportEventWithoutUID() {
+    function testICalendarImportEventWithoutUID(): void {
 
         $data = <<<EOT
 BEGIN:VCALENDAR
@@ -180,7 +180,7 @@ EOT;
         }
     }
 
-    function testICalendarImportMultipleVTIMEZONESAndMultipleValidEvents() {
+    function testICalendarImportMultipleVTIMEZONESAndMultipleValidEvents(): void {
 
         $timezones = <<<EOT
 BEGIN:VTIMEZONE
@@ -281,7 +281,7 @@ EOT;
         $this->assertEquals(array(), VObject\Reader::read($return)->validate());
     }
 
-    function testICalendarImportWithOutVTIMEZONES() {
+    function testICalendarImportWithOutVTIMEZONES(): void {
 
         $data = <<<EOT
 BEGIN:VCALENDAR

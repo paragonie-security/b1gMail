@@ -18,20 +18,20 @@ class ProxyReadTest extends \PHPUnit_Framework_TestCase {
 
    }
 
-    function testGetName() {
+    function testGetName(): void {
 
         $i = $this->getInstance();
         $this->assertEquals('calendar-proxy-read', $i->getName());
 
     }
-    function testGetDisplayName() {
+    function testGetDisplayName(): void {
 
         $i = $this->getInstance();
         $this->assertEquals('calendar-proxy-read', $i->getDisplayName());
 
     }
 
-    function testGetLastModified() {
+    function testGetLastModified(): void {
 
         $i = $this->getInstance();
         $this->assertNull($i->getLastModified());
@@ -41,7 +41,7 @@ class ProxyReadTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    function testDelete() {
+    function testDelete(): void {
 
         $i = $this->getInstance();
         $i->delete();
@@ -51,42 +51,42 @@ class ProxyReadTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    function testSetName() {
+    function testSetName(): void {
 
         $i = $this->getInstance();
         $i->setName('foo');
 
     }
 
-    function testGetAlternateUriSet() {
+    function testGetAlternateUriSet(): void {
 
         $i = $this->getInstance();
         $this->assertEquals(array(), $i->getAlternateUriSet());
 
     }
 
-    function testGetPrincipalUri() {
+    function testGetPrincipalUri(): void {
 
         $i = $this->getInstance();
         $this->assertEquals('principal/user/calendar-proxy-read', $i->getPrincipalUrl());
 
     }
 
-    function testGetGroupMemberSet() {
+    function testGetGroupMemberSet(): void {
 
         $i = $this->getInstance();
         $this->assertEquals(array(), $i->getGroupMemberSet());
 
     }
 
-    function testGetGroupMembership() {
+    function testGetGroupMembership(): void {
 
         $i = $this->getInstance();
         $this->assertEquals(array(), $i->getGroupMembership());
 
     }
 
-    function testSetGroupMemberSet() {
+    function testSetGroupMemberSet(): void {
 
         $i = $this->getInstance();
         $i->setGroupMemberSet(array('principals/foo'));

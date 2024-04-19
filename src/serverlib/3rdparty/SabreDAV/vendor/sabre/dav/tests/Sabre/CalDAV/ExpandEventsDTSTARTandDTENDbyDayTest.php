@@ -42,7 +42,7 @@ END:VCALENDAR
         ),
     );
 
-    function testExpandRecurringByDayEvent() {
+    function testExpandRecurringByDayEvent(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'REPORT',

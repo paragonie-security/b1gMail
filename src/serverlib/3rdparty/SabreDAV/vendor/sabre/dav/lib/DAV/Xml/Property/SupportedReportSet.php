@@ -56,7 +56,7 @@ class SupportedReportSet implements XmlSerializable, HtmlOutput {
      * @param mixed $report
      * @return void
      */
-    function addReport($report) {
+    function addReport($report): void {
 
         $report = (array)$report;
 
@@ -116,7 +116,7 @@ class SupportedReportSet implements XmlSerializable, HtmlOutput {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->getValue() as $val) {
             $writer->startElement('{DAV:}supported-report');

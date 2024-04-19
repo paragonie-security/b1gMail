@@ -7,7 +7,7 @@ use DateTimeZone;
 
 class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
-    function testHourly() {
+    function testHourly(): void {
 
         $this->parse(
             'FREQ=HOURLY;INTERVAL=3;COUNT=12',
@@ -30,7 +30,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDaily() {
+    function testDaily(): void {
 
         $this->parse(
             'FREQ=DAILY;INTERVAL=3;UNTIL=20111025T000000Z',
@@ -48,7 +48,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDailyByDayByHour() {
+    function testDailyByDayByHour(): void {
 
         $this->parse(
             'FREQ=DAILY;BYDAY=SA,SU;BYHOUR=6,7',
@@ -71,7 +71,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDailyByHour() {
+    function testDailyByHour(): void {
 
         $this->parse(
             'FREQ=DAILY;INTERVAL=2;BYHOUR=10,11,12,13,14,15',
@@ -94,7 +94,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDailyByDay() {
+    function testDailyByDay(): void {
 
         $this->parse(
             'FREQ=DAILY;INTERVAL=2;BYDAY=TU,WE,FR',
@@ -117,7 +117,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDailyCount() {
+    function testDailyCount(): void {
 
         $this->parse(
             'FREQ=DAILY;COUNT=5',
@@ -133,7 +133,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDailyByMonth() {
+    function testDailyByMonth(): void {
 
         $this->parse(
             'FREQ=DAILY;BYMONTH=9,10;BYDAY=SU',
@@ -151,7 +151,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testWeekly() {
+    function testWeekly(): void {
 
         $this->parse(
             'FREQ=WEEKLY;INTERVAL=2;COUNT=10',
@@ -172,7 +172,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testWeeklyByDay() {
+    function testWeeklyByDay(): void {
 
         $this->parse(
             'FREQ=WEEKLY;INTERVAL=1;COUNT=4;BYDAY=MO;WKST=SA',
@@ -187,7 +187,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testWeeklyByDay2() {
+    function testWeeklyByDay2(): void {
 
         $this->parse(
             'FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,WE,FR;WKST=SU',
@@ -210,7 +210,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testWeeklyByDayByHour() {
+    function testWeeklyByDayByHour(): void {
 
         $this->parse(
             'FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,WE,FR;WKST=MO;BYHOUR=8,9,10',
@@ -236,7 +236,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testWeeklyByDaySpecificHour() {
+    function testWeeklyByDaySpecificHour(): void {
 
         $this->parse(
             'FREQ=WEEKLY;INTERVAL=2;BYDAY=TU,WE,FR;WKST=SU',
@@ -259,7 +259,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMonthly() {
+    function testMonthly(): void {
 
         $this->parse(
             'FREQ=MONTHLY;INTERVAL=3;COUNT=5',
@@ -275,7 +275,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMonlthyEndOfMonth() {
+    function testMonlthyEndOfMonth(): void {
 
         $this->parse(
             'FREQ=MONTHLY;INTERVAL=2;COUNT=12',
@@ -298,7 +298,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMonthlyByMonthDay() {
+    function testMonthlyByMonthDay(): void {
 
         $this->parse(
             'FREQ=MONTHLY;INTERVAL=5;COUNT=9;BYMONTHDAY=1,31,-7',
@@ -318,7 +318,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMonthlyByDay() {
+    function testMonthlyByDay(): void {
 
         $this->parse(
             'FREQ=MONTHLY;INTERVAL=2;COUNT=16;BYDAY=MO,-2TU,+1WE,3TH',
@@ -345,7 +345,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMonthlyByDayByMonthDay() {
+    function testMonthlyByDayByMonthDay(): void {
 
         $this->parse(
             'FREQ=MONTHLY;COUNT=10;BYDAY=MO;BYMONTHDAY=1',
@@ -366,7 +366,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMonthlyByDayBySetPos() {
+    function testMonthlyByDayBySetPos(): void {
 
         $this->parse(
             'FREQ=MONTHLY;COUNT=10;BYDAY=MO,TU,WE,TH,FR;BYSETPOS=1,-1',
@@ -387,7 +387,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testYearly() {
+    function testYearly(): void {
 
         $this->parse(
             'FREQ=YEARLY;COUNT=10;INTERVAL=3',
@@ -407,7 +407,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    function testYearlyLeapYear() {
+    function testYearlyLeapYear(): void {
 
         $this->parse(
             'FREQ=YEARLY;COUNT=3',
@@ -420,7 +420,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    function testYearlyByMonth() {
+    function testYearlyByMonth(): void {
 
         $this->parse(
             'FREQ=YEARLY;COUNT=8;INTERVAL=4;BYMONTH=4,10',
@@ -439,7 +439,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testYearlyByMonthByDay() {
+    function testYearlyByMonthByDay(): void {
 
         $this->parse(
             'FREQ=YEARLY;COUNT=8;INTERVAL=5;BYMONTH=4,10;BYDAY=1MO,-1SU',
@@ -458,7 +458,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFastForward() {
+    function testFastForward(): void {
 
         // The idea is that we're fast-forwarding too far in the future, so
         // there will be no results left.
@@ -481,7 +481,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
      *
      * @medium
      */
-    function testFifthTuesdayProblem() {
+    function testFifthTuesdayProblem(): void {
 
         $this->parse(
             'FREQ=MONTHLY;INTERVAL=1;UNTIL=20071030T035959Z;BYDAY=5TU',
@@ -497,7 +497,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
      * This bug came from a Fruux customer. This would result in a never-ending
      * request.
      */
-    function testFastFowardTooFar() {
+    function testFastFowardTooFar(): void {
 
         $this->parse(
             'FREQ=WEEKLY;BYDAY=MO;UNTIL=20090704T205959Z;INTERVAL=1',
@@ -522,7 +522,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
     /**
      * This also at one point caused an infinite loop. We're keeping the test.
      */
-    function testYearlyByMonthLoop() {
+    function testYearlyByMonthLoop(): void {
 
         $this->parse(
             'FREQ=YEARLY;INTERVAL=1;UNTIL=20120203T225959Z;BYMONTH=2;BYSETPOS=1;BYDAY=SU,MO,TU,WE,TH,FR,SA',
@@ -543,7 +543,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
      *
      * @expectedException InvalidArgumentException
      */
-    function testZeroInterval() {
+    function testZeroInterval(): void {
 
         $this->parse(
             'FREQ=YEARLY;INTERVAL=0',
@@ -557,7 +557,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testInvalidFreq() {
+    function testInvalidFreq(): void {
 
         $this->parse(
             'FREQ=SMONTHLY;INTERVAL=3;UNTIL=20111025T000000Z',
@@ -570,7 +570,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testByDayBadOffset() {
+    function testByDayBadOffset(): void {
 
         $this->parse(
             'FREQ=WEEKLY;INTERVAL=1;COUNT=4;BYDAY=0MO;WKST=SA',
@@ -580,7 +580,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUntilBeginHAsTimezone() {
+    function testUntilBeginHAsTimezone(): void {
 
         $this->parse(
             'FREQ=WEEKLY;UNTIL=20131118T183000',
@@ -602,7 +602,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUntilBeforeDtStart() {
+    function testUntilBeforeDtStart(): void {
 
         $this->parse(
             'FREQ=DAILY;UNTIL=20140101T000000Z',
@@ -614,7 +614,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testIgnoredStuff() {
+    function testIgnoredStuff(): void {
 
         $this->parse(
             'FREQ=DAILY;BYSECOND=1;BYMINUTE=1;BYYEARDAY=1;BYWEEKNO=1;COUNT=2',
@@ -627,7 +627,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMinusFifthThursday() {
+    function testMinusFifthThursday(): void {
 
         $this->parse(
             'FREQ=MONTHLY;BYDAY=-4TH,-5TH;COUNT=4',
@@ -645,7 +645,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testUnsupportedPart() {
+    function testUnsupportedPart(): void {
 
         $this->parse(
             'FREQ=DAILY;BYWODAN=1',
@@ -655,7 +655,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testIteratorFunctions() {
+    function testIteratorFunctions(): void {
 
         $parser = new RRuleIterator('FREQ=DAILY', new DateTime('2014-08-02 00:00:13'));
         $parser->next();
@@ -681,7 +681,7 @@ class RRuleIteratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function parse($rule, $start, $expected, $fastForward = null, $tz = 'UTC') {
+    function parse($rule, $start, $expected, $fastForward = null, $tz = 'UTC'): void {
 
         $dt = new DateTime($start, new DateTimeZone($tz));
         $parser = new RRuleIterator($rule, $dt);

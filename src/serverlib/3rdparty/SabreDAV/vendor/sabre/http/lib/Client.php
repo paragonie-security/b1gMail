@@ -178,7 +178,7 @@ class Client extends EventEmitter {
      * @param callable $error
      * @return void
      */
-    function sendAsync(RequestInterface $request, callable $success = null, callable $error = null) {
+    function sendAsync(RequestInterface $request, callable $success = null, callable $error = null): void {
 
         $this->emit('beforeRequest', [$request]);
         $this->sendAsyncInternal($request, $success, $error);
@@ -291,7 +291,7 @@ class Client extends EventEmitter {
      *
      * @return void
      */
-    function wait() {
+    function wait(): void {
 
         do {
             curl_multi_select($this->curlMultiHandle);
@@ -313,7 +313,7 @@ class Client extends EventEmitter {
      * @param bool $throwExceptions
      * @return void
      */
-    function setThrowExceptions($throwExceptions) {
+    function setThrowExceptions($throwExceptions): void {
 
         $this->throwExceptions = $throwExceptions;
 
@@ -328,7 +328,7 @@ class Client extends EventEmitter {
      * @param mixed $value
      * @return void
      */
-    function addCurlSetting($name, $value) {
+    function addCurlSetting($name, $value): void {
 
         $this->curlSettings[$name] = $value;
 

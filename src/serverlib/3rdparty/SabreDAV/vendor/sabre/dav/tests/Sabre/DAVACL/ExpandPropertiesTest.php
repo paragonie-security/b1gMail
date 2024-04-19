@@ -43,7 +43,7 @@ class ExpandPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:expand-property xmlns:d="DAV:">
@@ -107,7 +107,7 @@ class ExpandPropertiesTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testExpand() {
+    function testExpand(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:expand-property xmlns:d="DAV:">
@@ -172,7 +172,7 @@ class ExpandPropertiesTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testExpandHrefList() {
+    function testExpandHrefList(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:expand-property xmlns:d="DAV:">
@@ -237,7 +237,7 @@ class ExpandPropertiesTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testExpand
      */
-    function testExpandDeep() {
+    function testExpandDeep(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:expand-property xmlns:d="DAV:">

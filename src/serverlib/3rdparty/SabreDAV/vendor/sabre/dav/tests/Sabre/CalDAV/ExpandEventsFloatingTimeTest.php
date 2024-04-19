@@ -66,7 +66,7 @@ END:VCALENDAR
         ),
     );
 
-    function testExpandCalendarQuery() {
+    function testExpandCalendarQuery(): void {
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/calendar1', [
             'Depth' => 1,
@@ -119,7 +119,7 @@ END:VCALENDAR
         }
     }
 
-    function testExpandMultiGet() {
+    function testExpandMultiGet(): void {
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/calendar1', [
             'Depth' => 1,
@@ -168,7 +168,7 @@ END:VCALENDAR
         }
     }
 
-    function testExpandExport() {
+    function testExpandExport(): void {
 
         $request = new HTTP\Request('GET', '/calendars/user1/calendar1?export&start=1&end=2000000000&expand=1', [
             'Depth' => 1,

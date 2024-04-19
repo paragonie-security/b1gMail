@@ -26,28 +26,28 @@ class NodeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetId() {
+    function testGetId(): void {
 
         $node = $this->getInstance();
         $this->assertEquals($this->systemStatus->getId() . '.xml', $node->getName());
 
     }
 
-    function testGetEtag() {
+    function testGetEtag(): void {
 
         $node = $this->getInstance();
         $this->assertEquals('"1"', $node->getETag());
 
     }
 
-    function testGetNotificationType() {
+    function testGetNotificationType(): void {
 
         $node = $this->getInstance();
         $this->assertEquals($this->systemStatus, $node->getNotificationType());
 
     }
 
-    function testDelete() {
+    function testDelete(): void {
 
         $node = $this->getInstance();
         $node->delete();
@@ -55,14 +55,14 @@ class NodeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $node = $this->getInstance();
         $this->assertNull($node->getGroup());
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $node = $this->getInstance();
         $expected = array(
@@ -85,14 +85,14 @@ class NodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotImplemented
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
         $node = $this->getInstance();
         $node->setACL(array());
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $node = $this->getInstance();
         $this->assertNull($node->getSupportedPrivilegeSet());

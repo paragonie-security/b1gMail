@@ -51,7 +51,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         $this->server = $server;
         $server->xml->elementMap['{DAV:}sync-collection'] = 'Sabre\\DAV\\Xml\\Request\\SyncCollectionReport';
@@ -104,7 +104,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param SyncCollectionReport $report
      * @return void
      */
-    function syncCollection($uri, SyncCollectionReport $report) {
+    function syncCollection($uri, SyncCollectionReport $report): void {
 
         // Getting the data
         $node = $this->server->tree->getNodeForPath($uri);
@@ -205,7 +205,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param DAV\INode $node
      * @return void
      */
-    function propFind(DAV\PropFind $propFind, DAV\INode $node) {
+    function propFind(DAV\PropFind $propFind, DAV\INode $node): void {
 
         $propFind->handle('{DAV:}sync-token', function() use ($node) {
             if (!$node instanceof ISyncCollection || !$token = $node->getSyncToken()) {
@@ -226,7 +226,7 @@ class Plugin extends DAV\ServerPlugin {
      * @param array $conditions
      * @return void
      */
-    function validateTokens(RequestInterface $request, &$conditions) {
+    function validateTokens(RequestInterface $request, &$conditions): void {
 
         foreach ($conditions as $kk => $condition) {
 

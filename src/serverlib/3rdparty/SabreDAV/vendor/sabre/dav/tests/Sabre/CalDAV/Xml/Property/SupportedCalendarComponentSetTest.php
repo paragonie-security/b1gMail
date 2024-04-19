@@ -7,14 +7,14 @@ use Sabre\DAV;
 
 class SupportedCalendarComponentSetTest extends DAV\Xml\XmlTest {
 
-    function setUp() {
+    function setUp(): void {
 
         $this->namespaceMap[CalDAV\Plugin::NS_CALDAV] = 'cal';
         $this->namespaceMap[CalDAV\Plugin::NS_CALENDARSERVER] = 'cs';
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $prop = new SupportedCalendarComponentSet(['VEVENT']);
         $this->assertEquals(
@@ -24,7 +24,7 @@ class SupportedCalendarComponentSetTest extends DAV\Xml\XmlTest {
 
     }
 
-    function testMultiple() {
+    function testMultiple(): void {
 
         $prop = new SupportedCalendarComponentSet(['VEVENT', 'VTODO']);
         $this->assertEquals(
@@ -38,7 +38,7 @@ class SupportedCalendarComponentSetTest extends DAV\Xml\XmlTest {
      * @depends testSimple
      * @depends testMultiple
      */
-    function testSerialize() {
+    function testSerialize(): void {
 
         $property = new SupportedCalendarComponentSet(['VEVENT', 'VTODO']);
         $xml = $this->write(['{DAV:}root' => $property]);
@@ -53,7 +53,7 @@ class SupportedCalendarComponentSetTest extends DAV\Xml\XmlTest {
 
     }
 
-    function testUnserialize() {
+    function testUnserialize(): void {
 
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;
@@ -81,7 +81,7 @@ XML;
     /**
      * @expectedException \Sabre\Xml\ParseException
      */
-    function testUnserializeEmpty() {
+    function testUnserializeEmpty(): void {
 
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;

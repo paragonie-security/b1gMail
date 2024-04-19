@@ -19,7 +19,7 @@ class HttpGetTest extends DAVServerTest {
      *
      * @return void
      */
-    function setUpTree() {
+    function setUpTree(): void {
 
         $this->tree = new Mock\Collection('root', [
             'file1' => 'foo',
@@ -29,7 +29,7 @@ class HttpGetTest extends DAVServerTest {
 
     }
 
-    function testGet() {
+    function testGet(): void {
 
         $request = new HTTP\Request('GET', '/file1');
         $response = $this->request($request);
@@ -53,7 +53,7 @@ class HttpGetTest extends DAVServerTest {
 
     }
 
-    function testGetHttp10() {
+    function testGetHttp10(): void {
 
         $request = new HTTP\Request('GET', '/file1');
         $request->setHttpVersion('1.0');
@@ -80,7 +80,7 @@ class HttpGetTest extends DAVServerTest {
 
     }
 
-    function testGet404() {
+    function testGet404(): void {
 
         $request = new HTTP\Request('GET', '/notfound');
         $response = $this->request($request);
@@ -89,7 +89,7 @@ class HttpGetTest extends DAVServerTest {
 
     }
 
-    function testGet404_aswell() {
+    function testGet404_aswell(): void {
 
         $request = new HTTP\Request('GET', '/file1/subfile');
         $response = $this->request($request);
@@ -101,7 +101,7 @@ class HttpGetTest extends DAVServerTest {
     /**
      * We automatically normalize double slashes.
      */
-    function testGetDoubleSlash() {
+    function testGetDoubleSlash(): void {
 
         $request = new HTTP\Request('GET', '//file1');
         $response = $this->request($request);
@@ -125,7 +125,7 @@ class HttpGetTest extends DAVServerTest {
 
     }
 
-    function testGetCollection() {
+    function testGetCollection(): void {
 
         $request = new HTTP\Request('GET', '/dir');
         $response = $this->request($request);
@@ -134,7 +134,7 @@ class HttpGetTest extends DAVServerTest {
 
     }
 
-    function testGetStreaming() {
+    function testGetStreaming(): void {
 
         $request = new HTTP\Request('GET', '/streaming');
         $response = $this->request($request);

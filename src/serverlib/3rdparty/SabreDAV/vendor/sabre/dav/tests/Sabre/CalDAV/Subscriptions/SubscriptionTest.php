@@ -31,7 +31,7 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValues() {
+    function testValues(): void {
 
         $sub = $this->getSub();
 
@@ -83,7 +83,7 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValues2() {
+    function testValues2(): void {
 
         $sub = $this->getSub([
             'lastmodified' => null, 
@@ -96,14 +96,14 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
         $sub = $this->getSub();
         $sub->setACL([]);
 
     }
 
-    function testDelete() {
+    function testDelete(): void {
 
         $sub = $this->getSub();
         $sub->delete();
@@ -112,7 +112,7 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateProperties() {
+    function testUpdateProperties(): void {
 
         $sub = $this->getSub();
         $propPatch = new PropPatch([
@@ -131,7 +131,7 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testBadConstruct() {
+    function testBadConstruct(): void {
 
         $caldavBackend = new \Sabre\CalDAV\Backend\MockSubscriptionSupport([],[]);
         new Subscription($caldavBackend, []);

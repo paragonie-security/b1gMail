@@ -6,7 +6,7 @@ use Sabre\DAV\PropFind;
 
 class PluginTest extends \PHPUnit_Framework_TestCase {
 
-    function testInit() {
+    function testInit(): void {
 
         $server = new \Sabre\DAV\Server();
         $plugin = new Plugin();
@@ -34,7 +34,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPropFind() {
+    function testPropFind(): void {
 
         $propName = '{http://calendarserver.org/ns/}subscribed-strip-alarms';
         $propFind = new PropFind('foo', [$propName]);

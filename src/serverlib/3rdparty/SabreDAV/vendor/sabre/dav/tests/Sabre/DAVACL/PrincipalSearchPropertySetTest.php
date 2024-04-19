@@ -29,7 +29,7 @@ class PrincipalSearchPropertySetTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDepth1() {
+    function testDepth1(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-search-property-set xmlns:d="DAV:" />';
@@ -56,7 +56,7 @@ class PrincipalSearchPropertySetTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDepthIncorrectXML() {
+    function testDepthIncorrectXML(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-search-property-set xmlns:d="DAV:"><d:ohell /></d:principal-search-property-set>';
@@ -83,7 +83,7 @@ class PrincipalSearchPropertySetTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCorrect() {
+    function testCorrect(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-search-property-set xmlns:d="DAV:"/>';

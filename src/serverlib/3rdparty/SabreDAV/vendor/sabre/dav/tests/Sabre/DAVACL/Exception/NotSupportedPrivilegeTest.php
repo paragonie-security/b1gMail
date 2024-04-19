@@ -6,7 +6,7 @@ use Sabre\DAV;
 
 class NotSupportedPrivilegeTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $ex = new NotSupportedPrivilege('message');
 

@@ -57,7 +57,7 @@ class Plugin extends ServerPlugin {
      * @param Backend\BackendInterface $authBackend
      * @return void
      */
-    function addBackend(Backend\BackendInterface $authBackend) {
+    function addBackend(Backend\BackendInterface $authBackend): void {
 
         $this->backends[] = $authBackend;
 
@@ -69,7 +69,7 @@ class Plugin extends ServerPlugin {
      * @param Server $server
      * @return void
      */
-    function initialize(Server $server) {
+    function initialize(Server $server): void {
 
         $server->on('beforeMethod', [$this, 'beforeMethod'], 10);
 
@@ -135,7 +135,7 @@ class Plugin extends ServerPlugin {
      * @param ResponseInterface $response
      * @return bool
      */
-    function beforeMethod(RequestInterface $request, ResponseInterface $response) {
+    function beforeMethod(RequestInterface $request, ResponseInterface $response): void {
 
         if ($this->currentPrincipal) {
 

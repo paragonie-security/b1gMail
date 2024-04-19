@@ -21,7 +21,7 @@ abstract class AbstractPluginTest extends \PHPUnit_Framework_TestCase {
      */
     protected $backend;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->backend = new Backend\Mock();
         $principalBackend = new DAVACL\PrincipalBackend\Mock();

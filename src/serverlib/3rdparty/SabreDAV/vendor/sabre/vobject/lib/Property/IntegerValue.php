@@ -26,7 +26,7 @@ class IntegerValue extends Property {
      * @param string $val
      * @return void
      */
-    public function setRawMimeDirValue($val) {
+    public function setRawMimeDirValue($val): void {
 
         $this->setValue((int)$val);
 

@@ -26,7 +26,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChildren() {
+    function testGetChildren(): void {
 
         $col = $this->getInstance();
         $this->assertEquals('notifications', $col->getName());
@@ -37,21 +37,21 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
 
         $col = $this->getInstance();
         $this->assertEquals('principals/user1', $col->getOwner());
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $col = $this->getInstance();
         $this->assertNull($col->getGroup());
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $col = $this->getInstance();
         $expected = array(
@@ -74,14 +74,14 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotImplemented
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
         $col = $this->getInstance();
         $col->setACL(array());
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $col = $this->getInstance();
         $this->assertNull($col->getSupportedPrivilegeSet());

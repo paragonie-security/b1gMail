@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class TimezoneUtilTest extends \PHPUnit_Framework_TestCase {
 
-    function setUp() {
+    function setUp(): void {
 
         // clearning the tz cache
         TimezoneUtil::$map = null;
@@ -14,7 +14,7 @@ class TimezoneUtilTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider getMapping
      */
-    function testCorrectTZ($timezoneName) {
+    function testCorrectTZ($timezoneName): void {
 
         try {
             $tz = new \DateTimeZone($timezoneName);
@@ -44,7 +44,7 @@ class TimezoneUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testExchangeMap() {
+    function testExchangeMap(): void {
 
         $vobj = <<<HI
 BEGIN:VCALENDAR
@@ -85,7 +85,7 @@ HI;
 
     }
 
-    function testWetherMicrosoftIsStillInsane() {
+    function testWetherMicrosoftIsStillInsane(): void {
 
         $vobj = <<<HI
 BEGIN:VCALENDAR
@@ -111,7 +111,7 @@ HI;
 
     }
 
-    function testUnknownExchangeId() {
+    function testUnknownExchangeId(): void {
 
         $vobj = <<<HI
 BEGIN:VCALENDAR
@@ -152,7 +152,7 @@ HI;
 
     }
 
-    function testWindowsTimeZone() {
+    function testWindowsTimeZone(): void {
 
         $tz = TimeZoneUtil::getTimeZone('Eastern Standard Time');
         $ex = new \DateTimeZone('America/New_York');
@@ -163,7 +163,7 @@ HI;
     /**
      * @dataProvider getPHPTimeZoneIdentifiers
      */
-    function testTimeZoneIdentifiers($tzid) {
+    function testTimeZoneIdentifiers($tzid): void {
 
         $tz = TimeZoneUtil::getTimeZone($tzid);
         $ex = new \DateTimeZone($tzid);
@@ -175,7 +175,7 @@ HI;
     /**
      * @dataProvider getPHPTimeZoneBCIdentifiers
      */
-    function testTimeZoneBCIdentifiers($tzid) {
+    function testTimeZoneBCIdentifiers($tzid): void {
 
         $tz = TimeZoneUtil::getTimeZone($tzid);
         $ex = new \DateTimeZone($tzid);
@@ -208,7 +208,7 @@ HI;
 
     }
 
-    function testTimezoneOffset() {
+    function testTimezoneOffset(): void {
 
         $tz = TimeZoneUtil::getTimeZone('GMT-0400', null, true);
 
@@ -224,13 +224,13 @@ HI;
     /**
      * @expectedException InvalidArgumentException
      */
-    function testTimezoneFail() {
+    function testTimezoneFail(): void {
 
         $tz = TimeZoneUtil::getTimeZone('FooBar', null, true);
 
     }
 
-    function testFallBack() {
+    function testFallBack(): void {
 
         $vobj = <<<HI
 BEGIN:VCALENDAR
@@ -269,7 +269,7 @@ HI;
 
     }
 
-    function testLjubljanaBug() {
+    function testLjubljanaBug(): void {
 
         $vobj = <<<HI
 BEGIN:VCALENDAR
@@ -317,7 +317,7 @@ HI;
 
     }
 
-    function testWeirdSystemVLICs() {
+    function testWeirdSystemVLICs(): void {
 
 $vobj = <<<HI
 BEGIN:VCALENDAR

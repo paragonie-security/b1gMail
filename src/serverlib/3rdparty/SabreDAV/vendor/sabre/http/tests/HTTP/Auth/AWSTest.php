@@ -24,7 +24,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     const REALM = 'SabreDAV unittest';
 
-    function setUp() {
+    function setUp(): void {
 
         $this->response = new Response();
         $this->request = new Request();
@@ -32,7 +32,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testNoHeader() {
+    function testNoHeader(): void {
 
         $this->request->setMethod('GET');
         $result = $this->auth->init();
@@ -42,7 +42,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testIncorrectContentMD5() {
+    function testIncorrectContentMD5(): void {
 
         $accessKey = 'accessKey';
         $secretKey = 'secretKey';
@@ -62,7 +62,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testNoDate() {
+    function testNoDate(): void {
 
         $accessKey = 'accessKey';
         $secretKey = 'secretKey';
@@ -85,7 +85,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testFutureDate() {
+    function testFutureDate(): void {
 
         $accessKey = 'accessKey';
         $secretKey = 'secretKey';
@@ -113,7 +113,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPastDate() {
+    function testPastDate(): void {
 
         $accessKey = 'accessKey';
         $secretKey = 'secretKey';
@@ -141,7 +141,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testIncorrectSignature() {
+    function testIncorrectSignature(): void {
 
         $accessKey = 'accessKey';
         $secretKey = 'secretKey';
@@ -170,7 +170,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidRequest() {
+    function testValidRequest(): void {
 
         $accessKey = 'accessKey';
         $secretKey = 'secretKey';
@@ -204,7 +204,7 @@ class AWSTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function test401() {
+    function test401(): void {
 
         $this->auth->requireLogin();
         $test = preg_match('/^AWS$/', $this->response->getHeader('WWW-Authenticate'), $matches);

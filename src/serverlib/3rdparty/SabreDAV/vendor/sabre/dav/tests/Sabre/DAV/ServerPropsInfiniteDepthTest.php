@@ -13,7 +13,7 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
 
     }
 
-    function setUp() {
+    function setUp(): void {
 
         if (file_exists(SABRE_TEMPDIR.'../.sabredav')) unlink(SABRE_TEMPDIR.'../.sabredav');
         parent::setUp();
@@ -26,14 +26,14 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         parent::tearDown();
         if (file_exists(SABRE_TEMPDIR.'../.locksdb')) unlink(SABRE_TEMPDIR.'../.locksdb');
 
     }
 
-    private function sendRequest($body) {
+    private function sendRequest($body): void {
 
         $request = new HTTP\Request('PROPFIND', '/', ['Depth' => 'infinity']);
         $request->setBody($body);
@@ -43,7 +43,7 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
 
     }
 
-    public function testPropFindEmptyBody() {
+    public function testPropFindEmptyBody(): void {
 
         $hasFired = false;
 
@@ -75,7 +75,7 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
 
     }
 
-    function testSupportedLocks() {
+    function testSupportedLocks(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">
@@ -112,7 +112,7 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
         $this->assertEquals(16,count($data),'We expected sixteen \'d:write\' tags');
     }
 
-    function testLockDiscovery() {
+    function testLockDiscovery(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">
@@ -132,7 +132,7 @@ class ServerPropsInfiniteDepthTest extends AbstractServer {
 
     }
 
-    function testUnknownProperty() {
+    function testUnknownProperty(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:propfind xmlns:d="DAV:">

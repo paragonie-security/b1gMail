@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class IssueEmptyParameterTest extends \PHPUnit_Framework_TestCase {
 
-    function testRead() {
+    function testRead(): void {
 
         $input = <<<VCF
 BEGIN:VCARD
@@ -45,7 +45,7 @@ VCF;
 
     }
 
-    function testVCard21Parameter() {
+    function testVCard21Parameter(): void {
 
         $vcard = new Component\VCard(array(), false);
         $vcard->VERSION = '2.1';

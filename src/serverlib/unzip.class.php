@@ -179,7 +179,7 @@ class BMUnZIP
     /**
      * read central dir struct from ZIP file.
      */
-    private function _readCentralDirStruct()
+    private function _readCentralDirStruct(): void
     {
         $this->_centralDirStruct = [];
 

@@ -14,7 +14,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
      */
     private $server;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->response = new HTTP\ResponseMock();
         $dir = new FS\Directory(SABRE_TEMPDIR);
@@ -30,7 +30,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         $cleanUp = array('test.txt','testput.txt','testcol','test2.txt','test3.txt','col/test.txt','col','col2/test.txt','col2');
         foreach($cleanUp as $file) {
@@ -49,7 +49,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testCopyOverWrite() {
+    function testCopyOverWrite(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
@@ -73,7 +73,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCopyToSelf() {
+    function testCopyToSelf(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
@@ -90,7 +90,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testNonExistantParent() {
+    function testNonExistantParent(): void {
 
         $serverVars = array(
             'REQUEST_URI'      => '/test.txt',
@@ -114,7 +114,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRandomOverwriteHeader() {
+    function testRandomOverwriteHeader(): void {
 
         $serverVars = array(
             'REQUEST_URI'      => '/test.txt',
@@ -131,7 +131,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCopyDirectory() {
+    function testCopyDirectory(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/col',
@@ -156,7 +156,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimpleCopyFile() {
+    function testSimpleCopyFile(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
@@ -180,7 +180,7 @@ class ServerCopyMoveTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSimpleCopyCollection() {
+    function testSimpleCopyCollection(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/col',

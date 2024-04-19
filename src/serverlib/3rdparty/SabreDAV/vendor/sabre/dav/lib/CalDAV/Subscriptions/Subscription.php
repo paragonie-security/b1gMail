@@ -91,7 +91,7 @@ class Subscription extends Collection implements ISubscription, IACL {
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->caldavBackend->deleteSubscription(
             $this->subscriptionInfo['id']

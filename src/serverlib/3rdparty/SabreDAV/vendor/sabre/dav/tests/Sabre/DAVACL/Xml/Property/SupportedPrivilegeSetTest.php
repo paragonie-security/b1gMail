@@ -8,7 +8,7 @@ use Sabre\DAV\Browser\HtmlOutputHelper;
 
 class SupportedPrivilegeSetTest extends \PHPUnit_Framework_TestCase {
 
-    function testSimple() {
+    function testSimple(): void {
 
         $prop = new SupportedPrivilegeSet([
             'privilege' => '{DAV:}all',
@@ -21,7 +21,7 @@ class SupportedPrivilegeSetTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testSerializeSimple() {
+    function testSerializeSimple(): void {
 
         $prop = new SupportedPrivilegeSet([
             'privilege' => '{DAV:}all',
@@ -43,7 +43,7 @@ class SupportedPrivilegeSetTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimple
      */
-    function testSerializeAggregate() {
+    function testSerializeAggregate(): void {
 
         $prop = new SupportedPrivilegeSet([
             'privilege'  => '{DAV:}all',
@@ -84,7 +84,7 @@ class SupportedPrivilegeSetTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testToHtml() {
+    function testToHtml(): void {
 
         $prop = new SupportedPrivilegeSet([
             'privilege'  => '{DAV:}all',

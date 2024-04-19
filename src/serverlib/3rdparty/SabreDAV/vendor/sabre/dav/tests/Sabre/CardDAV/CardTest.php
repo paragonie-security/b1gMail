@@ -13,7 +13,7 @@ class CardTest extends \PHPUnit_Framework_TestCase {
      */
     protected $backend;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->backend = new Backend\Mock();
         $this->card = new Card(
@@ -32,13 +32,13 @@ class CardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGet() {
+    function testGet(): void {
 
         $result = $this->card->get();
         $this->assertEquals('card', $result);
 
     }
-    function testGet2() {
+    function testGet2(): void {
 
         $this->card = new Card(
             $this->backend,
@@ -61,7 +61,7 @@ class CardTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGet
      */
-    function testPut() {
+    function testPut(): void {
 
         $file = fopen('php://memory','r+');
         fwrite($file, 'newdata');
@@ -73,26 +73,26 @@ class CardTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testDelete() {
+    function testDelete(): void {
 
         $this->card->delete();
         $this->assertEquals(1, count($this->backend->cards['foo']));
 
     }
 
-    function testGetContentType() {
+    function testGetContentType(): void {
 
         $this->assertEquals('text/vcard; charset=utf-8', $this->card->getContentType());
 
     }
 
-    function testGetETag() {
+    function testGetETag(): void {
 
         $this->assertEquals('"' . md5('card') . '"' , $this->card->getETag());
 
     }
 
-    function testGetETag2() {
+    function testGetETag2(): void {
 
         $card = new Card(
             $this->backend,
@@ -112,20 +112,20 @@ class CardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetLastModified() {
+    function testGetLastModified(): void {
 
         $this->assertEquals(null, $this->card->getLastModified());
 
     }
 
-    function testGetSize() {
+    function testGetSize(): void {
 
         $this->assertEquals(4, $this->card->getSize());
         $this->assertEquals(4, $this->card->getSize());
 
     }
 
-    function testGetSize2() {
+    function testGetSize2(): void {
 
         $card = new Card(
             $this->backend,
@@ -145,7 +145,7 @@ class CardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testACLMethods() {
+    function testACLMethods(): void {
 
         $this->assertEquals('principals/user1', $this->card->getOwner());
         $this->assertNull($this->card->getGroup());
@@ -163,7 +163,7 @@ class CardTest extends \PHPUnit_Framework_TestCase {
         ), $this->card->getACL());
 
     }
-    function testOverrideACL() {
+    function testOverrideACL(): void {
 
         $card = new Card(
             $this->backend,
@@ -198,13 +198,13 @@ class CardTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testSetACL() {
+    function testSetACL(): void {
 
        $this->card->setACL(array());
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $this->assertNull(
             $this->card->getSupportedPrivilegeSet()

@@ -165,7 +165,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->PDFVersion = '1.3';
 }
 
-function SetMargins($left, $top, $right=null)
+function SetMargins($left, $top, $right=null): void
 {
 	// Set left, top and right margins
 	$this->lMargin = $left;
@@ -175,7 +175,7 @@ function SetMargins($left, $top, $right=null)
 	$this->rMargin = $right;
 }
 
-function SetLeftMargin($margin)
+function SetLeftMargin($margin): void
 {
 	// Set left margin
 	$this->lMargin = $margin;
@@ -183,19 +183,19 @@ function SetLeftMargin($margin)
 		$this->x = $margin;
 }
 
-function SetTopMargin($margin)
+function SetTopMargin($margin): void
 {
 	// Set top margin
 	$this->tMargin = $margin;
 }
 
-function SetRightMargin($margin)
+function SetRightMargin($margin): void
 {
 	// Set right margin
 	$this->rMargin = $margin;
 }
 
-function SetAutoPageBreak($auto, $margin=0)
+function SetAutoPageBreak($auto, $margin=0): void
 {
 	// Set auto page break mode and triggering margin
 	$this->AutoPageBreak = $auto;
@@ -203,7 +203,7 @@ function SetAutoPageBreak($auto, $margin=0)
 	$this->PageBreakTrigger = $this->h-$margin;
 }
 
-function SetDisplayMode($zoom, $layout='default')
+function SetDisplayMode($zoom, $layout='default'): void
 {
 	// Set display mode in viewer
 	if($zoom=='fullpage' || $zoom=='fullwidth' || $zoom=='real' || $zoom=='default' || !is_string($zoom))
@@ -216,7 +216,7 @@ function SetDisplayMode($zoom, $layout='default')
 		$this->Error('Incorrect layout display mode: '.$layout);
 }
 
-function SetCompression($compress)
+function SetCompression($compress): void
 {
 	// Set page compression
 	if(function_exists('gzcompress'))
@@ -225,37 +225,37 @@ function SetCompression($compress)
 		$this->compress = false;
 }
 
-function SetTitle($title, $isUTF8=false)
+function SetTitle($title, $isUTF8=false): void
 {
 	// Title of document
 	$this->metadata['Title'] = $isUTF8 ? $title : $this->_UTF8encode($title);
 }
 
-function SetAuthor($author, $isUTF8=false)
+function SetAuthor($author, $isUTF8=false): void
 {
 	// Author of document
 	$this->metadata['Author'] = $isUTF8 ? $author : $this->_UTF8encode($author);
 }
 
-function SetSubject($subject, $isUTF8=false)
+function SetSubject($subject, $isUTF8=false): void
 {
 	// Subject of document
 	$this->metadata['Subject'] = $isUTF8 ? $subject : $this->_UTF8encode($subject);
 }
 
-function SetKeywords($keywords, $isUTF8=false)
+function SetKeywords($keywords, $isUTF8=false): void
 {
 	// Keywords of document
 	$this->metadata['Keywords'] = $isUTF8 ? $keywords : $this->_UTF8encode($keywords);
 }
 
-function SetCreator($creator, $isUTF8=false)
+function SetCreator($creator, $isUTF8=false): void
 {
 	// Creator of document
 	$this->metadata['Creator'] = $isUTF8 ? $creator : $this->_UTF8encode($creator);
 }
 
-function AliasNbPages($alias='{nb}')
+function AliasNbPages($alias='{nb}'): void
 {
 	// Define an alias for total number of pages
 	$this->AliasNbPages = $alias;
@@ -267,7 +267,7 @@ function Error($msg)
 	throw new Exception('FPDF error: '.$msg);
 }
 
-function Close()
+function Close(): void
 {
 	// Terminate document
 	if($this->state==3)
@@ -284,7 +284,7 @@ function Close()
 	$this->_enddoc();
 }
 
-function AddPage($orientation='', $size='', $rotation=0)
+function AddPage($orientation='', $size='', $rotation=0): void
 {
 	// Start a new page
 	if($this->state==3)
@@ -353,12 +353,12 @@ function AddPage($orientation='', $size='', $rotation=0)
 	$this->ColorFlag = $cf;
 }
 
-function Header()
+function Header(): void
 {
 	// To be implemented in your own inherited class
 }
 
-function Footer()
+function Footer(): void
 {
 	// To be implemented in your own inherited class
 }
@@ -369,7 +369,7 @@ function PageNo()
 	return $this->page;
 }
 
-function SetDrawColor($r, $g=null, $b=null)
+function SetDrawColor($r, $g=null, $b=null): void
 {
 	// Set color for all stroking operations
 	if(($r==0 && $g==0 && $b==0) || $g===null)
@@ -380,7 +380,7 @@ function SetDrawColor($r, $g=null, $b=null)
 		$this->_out($this->DrawColor);
 }
 
-function SetFillColor($r, $g=null, $b=null)
+function SetFillColor($r, $g=null, $b=null): void
 {
 	// Set color for all filling operations
 	if(($r==0 && $g==0 && $b==0) || $g===null)
@@ -392,7 +392,7 @@ function SetFillColor($r, $g=null, $b=null)
 		$this->_out($this->FillColor);
 }
 
-function SetTextColor($r, $g=null, $b=null)
+function SetTextColor($r, $g=null, $b=null): void
 {
 	// Set color for text
 	if(($r==0 && $g==0 && $b==0) || $g===null)
@@ -414,7 +414,7 @@ function GetStringWidth($s)
 	return $w*$this->FontSize/1000;
 }
 
-function SetLineWidth($width)
+function SetLineWidth($width): void
 {
 	// Set line width
 	$this->LineWidth = $width;
@@ -422,13 +422,13 @@ function SetLineWidth($width)
 		$this->_out(sprintf('%.2F w',$width*$this->k));
 }
 
-function Line($x1, $y1, $x2, $y2)
+function Line($x1, $y1, $x2, $y2): void
 {
 	// Draw a line
 	$this->_out(sprintf('%.2F %.2F m %.2F %.2F l S',$x1*$this->k,($this->h-$y1)*$this->k,$x2*$this->k,($this->h-$y2)*$this->k));
 }
 
-function Rect($x, $y, $w, $h, $style='')
+function Rect($x, $y, $w, $h, $style=''): void
 {
 	// Draw a rectangle
 	if($style=='F')
@@ -440,7 +440,7 @@ function Rect($x, $y, $w, $h, $style='')
 	$this->_out(sprintf('%.2F %.2F %.2F %.2F re %s',$x*$this->k,($this->h-$y)*$this->k,$w*$this->k,-$h*$this->k,$op));
 }
 
-function AddFont($family, $style='', $file='', $dir='')
+function AddFont($family, $style='', $file='', $dir=''): void
 {
 	// Add a TrueType, OpenType or Type1 font
 	$family = strtolower($family);
@@ -472,7 +472,7 @@ function AddFont($family, $style='', $file='', $dir='')
 	$this->fonts[$fontkey] = $info;
 }
 
-function SetFont($family, $style='', $size=0)
+function SetFont($family, $style='', $size=0): void
 {
 	// Select a font; size given in points
 	if($family=='')
@@ -522,7 +522,7 @@ function SetFont($family, $style='', $size=0)
 		$this->_out(sprintf('BT /F%d %.2F Tf ET',$this->CurrentFont['i'],$this->FontSizePt));
 }
 
-function SetFontSize($size)
+function SetFontSize($size): void
 {
 	// Set font size in points
 	if($this->FontSizePt==$size)
@@ -541,7 +541,7 @@ function AddLink()
 	return $n;
 }
 
-function SetLink($link, $y=0, $page=-1)
+function SetLink($link, $y=0, $page=-1): void
 {
 	// Set destination of internal link
 	if($y==-1)
@@ -551,13 +551,13 @@ function SetLink($link, $y=0, $page=-1)
 	$this->links[$link] = array($page, $y);
 }
 
-function Link($x, $y, $w, $h, $link)
+function Link($x, $y, $w, $h, $link): void
 {
 	// Put a link on the page
 	$this->PageLinks[$this->page][] = array($x*$this->k, $this->hPt-$y*$this->k, $w*$this->k, $h*$this->k, $link);
 }
 
-function Text($x, $y, $txt)
+function Text($x, $y, $txt): void
 {
 	// Output a string
 	if(!isset($this->CurrentFont))
@@ -577,7 +577,7 @@ function AcceptPageBreak()
 	return $this->AutoPageBreak;
 }
 
-function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
+function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link=''): void
 {
 	// Output a cell
 	$k = $this->k;
@@ -658,7 +658,7 @@ function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link
 		$this->x += $w;
 }
 
-function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
+function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false): void
 {
 	// Output text with automatic or explicit line breaks
 	if(!isset($this->CurrentFont))
@@ -773,7 +773,7 @@ function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
 	$this->x = $this->lMargin;
 }
 
-function Write($h, $txt, $link='')
+function Write($h, $txt, $link=''): void
 {
 	// Output text in flowing mode
 	if(!isset($this->CurrentFont))
@@ -856,7 +856,7 @@ function Write($h, $txt, $link='')
 		$this->Cell($l/1000*$this->FontSize,$h,substr($s,$j),0,0,'',false,$link);
 }
 
-function Ln($h=null)
+function Ln($h=null): void
 {
 	// Line feed; default value is the last cell height
 	$this->x = $this->lMargin;
@@ -866,7 +866,7 @@ function Ln($h=null)
 		$this->y += $h;
 }
 
-function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
+function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link=''): void
 {
 	// Put an image on the page
 	if($file=='')
@@ -949,7 +949,7 @@ function GetX()
 	return $this->x;
 }
 
-function SetX($x)
+function SetX($x): void
 {
 	// Set x position
 	if($x>=0)
@@ -964,7 +964,7 @@ function GetY()
 	return $this->y;
 }
 
-function SetY($y, $resetX=true)
+function SetY($y, $resetX=true): void
 {
 	// Set y position and optionally reset x
 	if($y>=0)
@@ -975,7 +975,7 @@ function SetY($y, $resetX=true)
 		$this->x = $this->lMargin;
 }
 
-function SetXY($x, $y)
+function SetXY($x, $y): void
 {
 	// Set x and y positions
 	$this->SetX($x);

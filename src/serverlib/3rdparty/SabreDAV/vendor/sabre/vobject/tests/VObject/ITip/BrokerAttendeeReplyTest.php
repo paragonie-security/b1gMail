@@ -4,7 +4,7 @@ namespace Sabre\VObject\ITip;
 
 class BrokerAttendeeReplyTest extends BrokerTester {
 
-    function testAccepted() {
+    function testAccepted(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -71,7 +71,7 @@ ICS
 
     }
 
-    function testRecurringReply() {
+    function testRecurringReply(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -216,7 +216,7 @@ ICS
 
     }
 
-    function testRecurringAllDay() {
+    function testRecurringAllDay(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -354,7 +354,7 @@ ICS
 
     }
 
-    function testNoChange() {
+    function testNoChange(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -389,7 +389,7 @@ ICS;
 
     }
 
-    function testNoChangeForceSend() {
+    function testNoChangeForceSend(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -450,7 +450,7 @@ ICS
 
     }
 
-    function testNoRelevantAttendee() {
+    function testNoRelevantAttendee(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -492,7 +492,7 @@ ICS;
      * This should automatically generate a DECLINED message for that
      * specific instance.
      */
-    function testCreateReplyByException() {
+    function testCreateReplyByException(): void {
 
 
         $oldMessage = <<<ICS
@@ -563,7 +563,7 @@ ICS
      *
      * @depends testCreateReplyByException
      */
-    function testCreateReplyByExceptionTz() {
+    function testCreateReplyByExceptionTz(): void {
 
 
         $oldMessage = <<<ICS
@@ -631,7 +631,7 @@ ICS
     /**
      * @depends testCreateReplyByException
      */
-    function testCreateReplyByExceptionAllDay() {
+    function testCreateReplyByExceptionAllDay(): void {
 
 
         $oldMessage = <<<ICS
@@ -699,7 +699,7 @@ ICS
 
     }
 
-    function testDeclined() {
+    function testDeclined(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -763,7 +763,7 @@ ICS
 
     }
 
-    function testDeclinedCancelledEvent() {
+    function testDeclinedCancelledEvent(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -811,7 +811,7 @@ ICS;
      * For any other attendence status, the new status would have been
      * declined, but for this, no message should we sent.
      */
-    function testDontCreateReplyWhenEventWasDeclined() {
+    function testDontCreateReplyWhenEventWasDeclined(): void {
 
 
         $oldMessage = <<<ICS
@@ -859,7 +859,7 @@ ICS;
 
     }
 
-    function testScheduleAgentOnOrganizer() {
+    function testScheduleAgentOnOrganizer(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -895,7 +895,7 @@ ICS;
 
     }
 
-    function testAcceptedAllDay() {
+    function testAcceptedAllDay(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -966,7 +966,7 @@ ICS
      * This is possible in cases an organizer created a recurring event, and
      * invited an attendee for one instance of the event.
      */
-    function testReplyNoMasterEvent() {
+    function testReplyNoMasterEvent(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -1041,7 +1041,7 @@ ICS
      *
      * @depends testAccepted
      */
-    function testPartyCrasher() {
+    function testPartyCrasher(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR

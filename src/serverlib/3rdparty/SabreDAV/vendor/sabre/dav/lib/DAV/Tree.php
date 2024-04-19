@@ -119,7 +119,7 @@ class Tree {
      * @param string $destinationPath The full destination path
      * @return void
      */
-    function copy($sourcePath, $destinationPath) {
+    function copy($sourcePath, $destinationPath): void {
 
         $sourceNode = $this->getNodeForPath($sourcePath);
 
@@ -140,7 +140,7 @@ class Tree {
      * @param string $destinationPath The full destination path, so not just the destination parent node
      * @return int
      */
-    function move($sourcePath, $destinationPath) {
+    function move($sourcePath, $destinationPath): void {
 
         list($sourceDir) = URLUtil::splitPath($sourcePath);
         list($destinationDir, $destinationName) = URLUtil::splitPath($destinationPath);
@@ -173,7 +173,7 @@ class Tree {
      * @param string $path
      * @return void
      */
-    function delete($path) {
+    function delete($path): void {
 
         $node = $this->getNodeForPath($path);
         $node->delete();
@@ -223,7 +223,7 @@ class Tree {
      * @param string $path
      * @return void
      */
-    function markDirty($path) {
+    function markDirty($path): void {
 
         // We don't care enough about sub-paths
         // flushing the entire cache

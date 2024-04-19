@@ -29,7 +29,7 @@ class Eater implements Xml\Element {
      * @param Xml\Writer $writer
      * @return void
      */
-    function xmlSerialize(Xml\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer): void {
 
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');
@@ -58,7 +58,7 @@ class Eater implements Xml\Element {
      * @param Xml\Reader $reader
      * @return mixed
      */
-    static function xmlDeserialize(Xml\Reader $reader) {
+    static function xmlDeserialize(Xml\Reader $reader): void {
 
         $reader->next();
 

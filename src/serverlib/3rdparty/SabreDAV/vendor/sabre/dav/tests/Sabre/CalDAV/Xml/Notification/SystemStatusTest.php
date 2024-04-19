@@ -11,7 +11,7 @@ class SystemStatusTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider dataProvider
      */
-    function testSerializers($notification, $expected1, $expected2) {
+    function testSerializers($notification, $expected1, $expected2): void {
 
         $this->assertEquals('foo', $notification->getId());
         $this->assertEquals('"1"', $notification->getETag());

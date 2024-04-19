@@ -237,7 +237,7 @@ class MyBBAuthPlugin extends BMPlugin
 	 * admin handler
 	 *
 	 */
-	public function AdminHandler()
+	public function AdminHandler(): void
 	{
 		global $tpl, $plugins, $lang_admin;
 
@@ -262,7 +262,7 @@ class MyBBAuthPlugin extends BMPlugin
 	 * admin prefs page
 	 *
 	 */
-	private function _prefsPage()
+	private function _prefsPage(): void
 	{
 		global $tpl, $db, $bm_prefs;
 

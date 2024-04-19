@@ -7,7 +7,7 @@ use Sabre\HTTP;
 
 class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
 
-    function testCheckNoHeaders() {
+    function testCheckNoHeaders(): void {
 
         $request = new HTTP\Request();
         $response = new HTTP\Response();
@@ -19,7 +19,7 @@ class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCheckBadGetUserInfoResponse() {
+    function testCheckBadGetUserInfoResponse(): void {
 
         $header = 'username=null, realm=myRealm, nonce=12345, uri=/, response=HASH, opaque=1, qop=auth, nc=1, cnonce=1';
         $request = HTTP\Sapi::createFromServerArray([
@@ -37,7 +37,7 @@ class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception
      */
-    function testCheckBadGetUserInfoResponse2() {
+    function testCheckBadGetUserInfoResponse2(): void {
 
         $header = 'username=array, realm=myRealm, nonce=12345, uri=/, response=HASH, opaque=1, qop=auth, nc=1, cnonce=1';
         $request = HTTP\Sapi::createFromServerArray([
@@ -56,7 +56,7 @@ class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCheckUnknownUser() {
+    function testCheckUnknownUser(): void {
 
         $header = 'username=false, realm=myRealm, nonce=12345, uri=/, response=HASH, opaque=1, qop=auth, nc=1, cnonce=1';
         $request = HTTP\Sapi::createFromServerArray([
@@ -72,7 +72,7 @@ class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCheckBadPassword() {
+    function testCheckBadPassword(): void {
 
         $header = 'username=user, realm=myRealm, nonce=12345, uri=/, response=HASH, opaque=1, qop=auth, nc=1, cnonce=1';
         $request = HTTP\Sapi::createFromServerArray([
@@ -89,7 +89,7 @@ class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCheck() {
+    function testCheck(): void {
 
         $digestHash = md5('HELLO:12345:1:1:auth:' . md5('GET:/'));
         $header = 'username=user, realm=myRealm, nonce=12345, uri=/, response='.$digestHash.', opaque=1, qop=auth, nc=1, cnonce=1';
@@ -109,7 +109,7 @@ class AbstractDigestTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRequireAuth() {
+    function testRequireAuth(): void {
 
         $request = new HTTP\Request();
         $response = new HTTP\Response();

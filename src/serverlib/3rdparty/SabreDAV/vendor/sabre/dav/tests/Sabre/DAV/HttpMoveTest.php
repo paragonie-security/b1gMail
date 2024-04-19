@@ -19,7 +19,7 @@ class HttpMoveTest extends DAVServerTest {
      *
      * @return void
      */
-    function setUpTree() {
+    function setUpTree(): void {
 
         $this->tree = new Mock\Collection('root', [
             'file1' => 'content1',
@@ -28,7 +28,7 @@ class HttpMoveTest extends DAVServerTest {
 
     }
 
-    function testMoveToSelf() {
+    function testMoveToSelf(): void {
 
         $request = new HTTP\Request('MOVE', '/file1', [
             'Destination' => '/file1'
@@ -39,7 +39,7 @@ class HttpMoveTest extends DAVServerTest {
 
     }
 
-    function testMove() {
+    function testMove(): void {
 
         $request = new HTTP\Request('MOVE', '/file1', [
             'Destination' => '/file3'
@@ -51,7 +51,7 @@ class HttpMoveTest extends DAVServerTest {
 
     }
 
-    function testMoveToExisting() {
+    function testMoveToExisting(): void {
 
         $request = new HTTP\Request('MOVE', '/file1', [
             'Destination' => '/file2'
@@ -63,7 +63,7 @@ class HttpMoveTest extends DAVServerTest {
 
     }
 
-    function testMoveToExistingOverwriteT() {
+    function testMoveToExistingOverwriteT(): void {
 
         $request = new HTTP\Request('MOVE', '/file1', [
             'Destination' => '/file2',
@@ -76,7 +76,7 @@ class HttpMoveTest extends DAVServerTest {
 
     }
 
-    function testMoveToExistingOverwriteF() {
+    function testMoveToExistingOverwriteF(): void {
 
         $request = new HTTP\Request('MOVE', '/file1', [
             'Destination' => '/file2',
@@ -96,7 +96,7 @@ class HttpMoveTest extends DAVServerTest {
      * being deleted, we need to make sure that the server does not delete
      * the destination.
      */
-    function testMoveToExistingBlockedDeleteSource() {
+    function testMoveToExistingBlockedDeleteSource(): void {
 
         $this->server->on('beforeUnbind', function($path) {
 

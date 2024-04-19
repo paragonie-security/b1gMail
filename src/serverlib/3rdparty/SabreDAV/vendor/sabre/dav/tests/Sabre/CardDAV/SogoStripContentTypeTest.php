@@ -21,7 +21,7 @@ class SogoStripContentType extends \Sabre\DAVServerTest {
         ),
     );
 
-    function testDontStrip() {
+    function testDontStrip(): void {
 
         $result = $this->server->getProperties('addressbooks/user1/book1/card1.vcf',array('{DAV:}getcontenttype'));
         $this->assertEquals(array(
@@ -29,7 +29,7 @@ class SogoStripContentType extends \Sabre\DAVServerTest {
         ), $result);
 
     }
-    function testStrip() {
+    function testStrip(): void {
 
         $this->server->httpRequest = HTTP\Sapi::createFromServerArray(array(
             'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2 Lightning/1.2.1',
@@ -40,7 +40,7 @@ class SogoStripContentType extends \Sabre\DAVServerTest {
         ), $result);
 
     }
-    function testDontTouchOtherMimeTypes() {
+    function testDontTouchOtherMimeTypes(): void {
 
         $this->server->httpRequest = new HTTP\Request('GET','/addressbooks/user1/book1/card1.vcf', [
             'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:10.0.2) Gecko/20120216 Thunderbird/10.0.2 Lightning/1.2.1',

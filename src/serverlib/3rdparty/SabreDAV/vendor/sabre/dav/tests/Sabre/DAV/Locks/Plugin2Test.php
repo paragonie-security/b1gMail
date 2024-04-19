@@ -8,13 +8,13 @@ class Plugin2Test extends \Sabre\DAVServerTest {
 
     public $setupLocks = true;
 
-    function setUpTree() {
+    function setUpTree(): void {
 
         $this->tree = new \Sabre\DAV\FS\Directory(SABRE_TEMPDIR);
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 
@@ -28,7 +28,7 @@ class Plugin2Test extends \Sabre\DAVServerTest {
      *
      * Reported in ticket #487
      */
-    function testUnlockAfterDelete() {
+    function testUnlockAfterDelete(): void {
 
         $body = '<?xml version="1.0"?>
 <D:lockinfo xmlns:D="DAV:">

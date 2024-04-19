@@ -7,7 +7,7 @@ use Sabre\DAV;
 class Issue172Test extends \PHPUnit_Framework_TestCase {
 
     // DateTimeZone() native name: America/Los_Angeles (GMT-8 in January)
-    function testBuiltInTimezoneName() {
+    function testBuiltInTimezoneName(): void {
         $input = <<<HI
 BEGIN:VCALENDAR
 VERSION:2.0
@@ -39,7 +39,7 @@ HI;
     }
 
     // Pacific Standard Time, translates to America/Los_Angeles (GMT-8 in January)
-    function testOutlookTimezoneName() {
+    function testOutlookTimezoneName(): void {
         $input = <<<HI
 BEGIN:VCALENDAR
 VERSION:2.0
@@ -86,7 +86,7 @@ HI;
     }
 
     // X-LIC-LOCATION, translates to America/Los_Angeles (GMT-8 in January)
-    function testLibICalLocationName() {
+    function testLibICalLocationName(): void {
         $input = <<<HI
 BEGIN:VCALENDAR
 VERSION:2.0

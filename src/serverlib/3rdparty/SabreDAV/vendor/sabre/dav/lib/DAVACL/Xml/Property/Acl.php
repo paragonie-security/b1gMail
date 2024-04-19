@@ -96,7 +96,7 @@ class Acl implements Element, HtmlOutput {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->privileges as $ace) {
 
@@ -238,7 +238,7 @@ class Acl implements Element, HtmlOutput {
      * @param array $ace
      * @return void
      */
-    private function serializeAce(Writer $writer, array $ace) {
+    private function serializeAce(Writer $writer, array $ace): void {
 
         $writer->startElement('{DAV:}ace');
 

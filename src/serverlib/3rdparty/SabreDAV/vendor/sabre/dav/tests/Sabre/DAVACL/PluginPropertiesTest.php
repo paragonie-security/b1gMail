@@ -7,7 +7,7 @@ use Sabre\HTTP;
 
 class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
-    function testPrincipalCollectionSet() {
+    function testPrincipalCollectionSet(): void {
 
         $plugin = new Plugin();
         $plugin->principalCollectionSet = [
@@ -40,7 +40,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCurrentUserPrincipal() {
+    function testCurrentUserPrincipal(): void {
 
         $fakeServer = new DAV\Server();
         $plugin = new DAV\Auth\Plugin(new DAV\Auth\Backend\Mock(),'realm');
@@ -75,7 +75,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSupportedPrivilegeSet() {
+    function testSupportedPrivilegeSet(): void {
 
         $plugin = new Plugin();
         $server = new DAV\Server();
@@ -135,7 +135,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testACL() {
+    function testACL(): void {
 
         $plugin = new Plugin();
 
@@ -173,7 +173,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testACLRestrictions() {
+    function testACLRestrictions(): void {
 
         $plugin = new Plugin();
 
@@ -211,7 +211,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAlternateUriSet() {
+    function testAlternateUriSet(): void {
 
         $tree = [
             new DAV\SimpleCollection('principals', [
@@ -239,7 +239,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPrincipalURL() {
+    function testPrincipalURL(): void {
 
         $tree = [
             new DAV\SimpleCollection('principals', [
@@ -268,7 +268,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGroupMemberSet() {
+    function testGroupMemberSet(): void {
 
         $tree = [
             new DAV\SimpleCollection('principals', [
@@ -297,7 +297,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGroupMemberShip() {
+    function testGroupMemberShip(): void {
 
         $tree = [
             new DAV\SimpleCollection('principals', [
@@ -324,7 +324,7 @@ class PluginPropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDisplayName() {
+    function testGetDisplayName(): void {
 
         $tree = [
             new DAV\SimpleCollection('principals', [

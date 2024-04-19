@@ -158,7 +158,7 @@ class ProxyWrite implements IProxyWrite {
      * @param array $principals
      * @return void
      */
-    function setGroupMemberSet(array $principals) {
+    function setGroupMemberSet(array $principals): void {
 
         $this->principalBackend->setGroupMemberSet($this->getPrincipalUrl(), $principals);
 

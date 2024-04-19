@@ -11,7 +11,7 @@ class VAlarmTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider timeRangeTestData
      */
-    public function testInTimeRange(VAlarm $valarm,$start,$end,$outcome) {
+    public function testInTimeRange(VAlarm $valarm,$start,$end,$outcome): void {
 
         $this->assertEquals($outcome, $valarm->isInTimeRange($start, $end));
 
@@ -132,7 +132,7 @@ class VAlarmTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException LogicException
      */
-    public function testInTimeRangeInvalidComponent() {
+    public function testInTimeRangeInvalidComponent(): void {
 
         $calendar = new VCalendar();
         $valarm = $calendar->createComponent('VALARM');
@@ -149,7 +149,7 @@ class VAlarmTest extends \PHPUnit_Framework_TestCase {
     /**
      * This bug was found and reported on the mailing list.
      */
-    public function testInTimeRangeBuggy() {
+    public function testInTimeRangeBuggy(): void {
 
 $input = <<<BLA
 BEGIN:VCALENDAR

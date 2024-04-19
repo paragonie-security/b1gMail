@@ -47,7 +47,7 @@ class PropFindAll extends PropFind {
      * @param mixed $valueOrCallBack
      * @return void
      */
-    function handle($propertyName, $valueOrCallBack) {
+    function handle($propertyName, $valueOrCallBack): void {
 
         if (is_callable($valueOrCallBack)) {
             $value = $valueOrCallBack();
@@ -71,7 +71,7 @@ class PropFindAll extends PropFind {
      * @param int $status
      * @return void
      */
-    function set($propertyName, $value, $status = null) {
+    function set($propertyName, $value, $status = null): void {
 
         if (is_null($status)) {
             $status = is_null($value) ? 404 : 200;

@@ -20,7 +20,7 @@ class FreeBusyReportTest extends \PHPUnit_Framework_TestCase {
      */
     protected $server;
 
-    function setUp() {
+    function setUp(): void {
 
         $obj1 = <<<ics
 BEGIN:VCALENDAR
@@ -95,7 +95,7 @@ ics;
 
     }
 
-    function testFreeBusyReport() {
+    function testFreeBusyReport(): void {
 
         $reportXML = <<<XML
 <?xml version="1.0"?>
@@ -118,7 +118,7 @@ XML;
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testFreeBusyReportNoTimeRange() {
+    function testFreeBusyReportNoTimeRange(): void {
 
         $reportXML = <<<XML
 <?xml version="1.0"?>
@@ -134,7 +134,7 @@ XML;
     /**
      * @expectedException Sabre\DAV\Exception\NotImplemented
      */
-    function testFreeBusyReportWrongNode() {
+    function testFreeBusyReportWrongNode(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_URI' => '/',
@@ -156,7 +156,7 @@ XML;
     /**
      * @expectedException Sabre\DAV\Exception
      */
-    function testFreeBusyReportNoACLPlugin() {
+    function testFreeBusyReportNoACLPlugin(): void {
 
         $this->server = new DAV\Server();
         $this->plugin = new Plugin();

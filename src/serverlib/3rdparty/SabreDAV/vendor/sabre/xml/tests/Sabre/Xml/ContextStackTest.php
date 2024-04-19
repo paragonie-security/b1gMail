@@ -11,13 +11,13 @@ namespace Sabre\Xml;
  */
 class ContextStackTest extends \PHPUnit_Framework_TestCase {
 
-    function setUp() {
+    function setUp(): void {
 
         $this->stack = $this->getMockForTrait('Sabre\\Xml\\ContextStackTrait');
 
     }
 
-    function testPushAndPull() {
+    function testPushAndPull(): void {
 
         $this->stack->contextUri = '/foo/bar';
         $this->stack->elementMap['{DAV:}foo'] = 'Bar';

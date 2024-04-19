@@ -10,7 +10,7 @@ class VCalendarTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider expandData
      */
-    public function testExpand($input, $output, $timeZone = 'UTC', $start = '2011-12-01', $end = '2011-12-31') {
+    public function testExpand($input, $output, $timeZone = 'UTC', $start = '2011-12-01', $end = '2011-12-31'): void {
 
         $vcal = VObject\Reader::read($input);
 
@@ -298,7 +298,7 @@ END:VCALENDAR
     /**
      * @expectedException LogicException
      */
-    public function testBrokenEventExpand() {
+    public function testBrokenEventExpand(): void {
 
         $input = 'BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
@@ -317,7 +317,7 @@ END:VCALENDAR
 
     }
 
-    function testGetDocumentType() {
+    function testGetDocumentType(): void {
 
         $vcard = new VCalendar();
         $vcard->VERSION = '2.0';
@@ -325,7 +325,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateCorrect() {
+    function testValidateCorrect(): void {
 
         $input = 'BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
@@ -344,7 +344,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateNoVersion() {
+    function testValidateNoVersion(): void {
 
         $input = 'BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
@@ -362,7 +362,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateWrongVersion() {
+    function testValidateWrongVersion(): void {
 
         $input = 'BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
@@ -381,7 +381,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateNoProdId() {
+    function testValidateNoProdId(): void {
 
         $input = 'BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
@@ -399,7 +399,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateDoubleCalScale() {
+    function testValidateDoubleCalScale(): void {
 
         $input = 'BEGIN:VCALENDAR
 VERSION:2.0
@@ -419,7 +419,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateDoubleMethod() {
+    function testValidateDoubleMethod(): void {
 
         $input = 'BEGIN:VCALENDAR
 VERSION:2.0
@@ -439,7 +439,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateTwoMasterEvents() {
+    function testValidateTwoMasterEvents(): void {
 
         $input = 'BEGIN:VCALENDAR
 VERSION:2.0
@@ -463,7 +463,7 @@ END:VCALENDAR
 
     }
 
-    function testValidateOneMasterEvent() {
+    function testValidateOneMasterEvent(): void {
 
         $input = 'BEGIN:VCALENDAR
 VERSION:2.0
@@ -488,7 +488,7 @@ END:VCALENDAR
 
     }
 
-    function testGetBaseComponent() {
+    function testGetBaseComponent(): void {
 
         $input = 'BEGIN:VCALENDAR
 VERSION:2.0
@@ -516,7 +516,7 @@ END:VCALENDAR
 
     }
 
-    function testGetBaseComponentNoResult() {
+    function testGetBaseComponentNoResult(): void {
 
         $input = 'BEGIN:VCALENDAR
 VERSION:2.0
@@ -545,7 +545,7 @@ END:VCALENDAR
 
     }
 
-    function testNoComponents() {
+    function testNoComponents(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR
@@ -563,7 +563,7 @@ ICS;
 
     }
 
-    function testCalDAVNoComponents() {
+    function testCalDAVNoComponents(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR
@@ -584,7 +584,7 @@ ICS;
 
     }
 
-    function testCalDAVMultiUID() {
+    function testCalDAVMultiUID(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR
@@ -612,7 +612,7 @@ ICS;
 
     }
 
-    function testCalDAVMultiComponent() {
+    function testCalDAVMultiComponent(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR
@@ -641,7 +641,7 @@ ICS;
 
     }
 
-    function testCalDAVMETHOD() {
+    function testCalDAVMETHOD(): void {
 
         $input = <<<ICS
 BEGIN:VCALENDAR
@@ -666,7 +666,7 @@ ICS;
 
     }
 
-    function assertValidate($ics, $options, $expectedLevel, $expectedMessage = null) {
+    function assertValidate($ics, $options, $expectedLevel, $expectedMessage = null): void {
 
         $vcal = VObject\Reader::read($ics);
         $result = $vcal->validate($options);
@@ -675,7 +675,7 @@ ICS;
 
     }
 
-    function assertValidateResult($input, $expectedLevel, $expectedMessage = null) {
+    function assertValidateResult($input, $expectedLevel, $expectedMessage = null): void {
 
         $messages = array();
         foreach($input as $warning) {

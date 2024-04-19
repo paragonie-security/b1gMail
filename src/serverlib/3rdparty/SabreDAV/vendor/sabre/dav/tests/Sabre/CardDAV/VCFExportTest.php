@@ -26,7 +26,7 @@ class VCFExportTest extends \Sabre\DAVServerTest {
         )
     );
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->server->addPlugin(
@@ -35,13 +35,13 @@ class VCFExportTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testSimple() {
+    function testSimple(): void {
 
         $this->assertInstanceOf('Sabre\\CardDAV\\VCFExportPlugin', $this->server->getPlugin('vcf-export'));
 
     }
 
-    function testExport() {
+    function testExport(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_URI' => '/addressbooks/user1/book1?export',

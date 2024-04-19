@@ -10,7 +10,7 @@ class CDataTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \LogicException
      */
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $input = <<<BLA
 <?xml version="1.0"?>
@@ -29,7 +29,7 @@ BLA;
 
     }
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $writer = new Writer();
         $writer->namespaceMap = [

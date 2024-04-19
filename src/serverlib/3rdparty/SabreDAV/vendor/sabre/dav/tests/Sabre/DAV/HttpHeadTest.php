@@ -19,7 +19,7 @@ class HttpHeadTest extends DAVServerTest {
      *
      * @return void
      */
-    function setUpTree() {
+    function setUpTree(): void {
 
         $this->tree = new Mock\Collection('root', [
             'file1' => 'foo',
@@ -29,7 +29,7 @@ class HttpHeadTest extends DAVServerTest {
 
     }
 
-    function testHEAD() {
+    function testHEAD(): void {
 
         $request = new HTTP\Request('HEAD', '//file1');
         $response = $this->request($request);
@@ -58,7 +58,7 @@ class HttpHeadTest extends DAVServerTest {
      * clients needs HEAD requests on collections to respond with a 200, so
      * that's what we do.
      */
-    function testHEADCollection() {
+    function testHEADCollection(): void {
 
         $request = new HTTP\Request('HEAD', '/dir');
         $response = $this->request($request);
@@ -72,7 +72,7 @@ class HttpHeadTest extends DAVServerTest {
      * The Auth plugin must not be triggered twice for these, so we'll
      * test for that.
      */
-    function testDoubleAuth() {
+    function testDoubleAuth(): void {
 
         $count = 0;
 

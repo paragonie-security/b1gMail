@@ -351,7 +351,7 @@ class BMToolInterface
 	 * @param string $passwordHash
 	 * @param int $fileID
 	 */
-	function GetWebdiskFile($userName, $passwordHash, $fileID)
+	function GetWebdiskFile($userName, $passwordHash, $fileID): void
 	{
 		global $db;
 
@@ -666,7 +666,7 @@ class BMToolInterface
 	 * @param string $passwordHash Password hash
 	 * @param string $os Operating system (win/mac)
 	 */
-	function DownloadCurrentVersion($userName, $passwordHash, $os)
+	function DownloadCurrentVersion($userName, $passwordHash, $os): void
 	{
 		global $db;
 
@@ -809,7 +809,7 @@ class BMToolInterface
 		return(array('loginOK' => 0));
 	}
 
-	function HandleNonexistentMethod($method, $params, &$result)
+	function HandleNonexistentMethod($method, $params, &$result): void
 	{
 		ModuleFunction('ToolInterfaceHandler', array($method, $params, &$result, &$this));
 	}

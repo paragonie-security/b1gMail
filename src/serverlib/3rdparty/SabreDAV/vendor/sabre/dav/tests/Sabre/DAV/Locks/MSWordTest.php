@@ -10,7 +10,7 @@ require_once 'Sabre/TestUtil.php';
 
 class MSWordTest extends \PHPUnit_Framework_TestCase {
 
-    function testLockEtc() {
+    function testLockEtc(): void {
 
         mkdir(SABRE_TEMPDIR . '/mstest');
         $tree = new DAV\FS\Directory(SABRE_TEMPDIR . '/mstest');
@@ -54,7 +54,7 @@ class MSWordTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 

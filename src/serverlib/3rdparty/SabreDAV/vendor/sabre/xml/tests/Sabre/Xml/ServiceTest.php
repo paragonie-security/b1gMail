@@ -4,7 +4,7 @@ namespace Sabre\Xml;
 
 class ServiceTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetReader() {
+    function testGetReader(): void {
 
         $elems = [
             '{http://sabre.io/ns}test' => 'Test!',
@@ -19,7 +19,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetWriter() {
+    function testGetWriter(): void {
 
         $ns = [
             'http://sabre.io/ns' => 's',
@@ -37,7 +37,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetReader
      */
-    function testParse() {
+    function testParse(): void {
 
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -66,7 +66,7 @@ XML;
     /**
      * @depends testGetReader
      */
-    function testParseStream() {
+    function testParseStream(): void {
 
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -99,7 +99,7 @@ XML;
     /**
      * @depends testGetReader
      */
-    function testExpect() {
+    function testExpect(): void {
 
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -126,7 +126,7 @@ XML;
     /**
      * @depends testGetReader
      */
-    function testExpectStream() {
+    function testExpectStream(): void {
 
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -159,7 +159,7 @@ XML;
      * @depends testGetReader
      * @expectedException \Sabre\Xml\ParseException
      */
-    function testExpectWrong() {
+    function testExpectWrong(): void {
 
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
@@ -174,7 +174,7 @@ XML;
     /**
      * @depends testGetWriter
      */
-    function testWrite() {
+    function testWrite(): void {
 
         $util = new Service();
         $util->namespaceMap = [
@@ -198,7 +198,7 @@ XML;
 
     }
 
-    function testMapValueObject() {
+    function testMapValueObject(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -235,7 +235,7 @@ XML;
         $this->assertEquals($input, $writtenXml);
     }
 
-    function testMapValueObjectArrayProperty() {
+    function testMapValueObjectArrayProperty(): void {
 
         $input = <<<XML
 <?xml version="1.0"?>
@@ -278,14 +278,14 @@ XML;
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testWriteVoNotFound() {
+    function testWriteVoNotFound(): void {
 
         $service = new Service();
         $service->writeValueObject(new \StdClass());
 
     }
 
-    function testParseClarkNotation() {
+    function testParseClarkNotation(): void {
 
         $this->assertEquals([
             'http://sabredav.org/ns',
@@ -297,7 +297,7 @@ XML;
     /**
      * @expectedException \InvalidArgumentException
      */
-    function testParseClarkNotationFail() {
+    function testParseClarkNotationFail(): void {
 
         Service::parseClarkNotation('http://sabredav.org/ns}elem');
 

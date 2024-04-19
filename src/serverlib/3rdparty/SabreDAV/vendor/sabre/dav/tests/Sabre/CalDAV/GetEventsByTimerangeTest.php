@@ -45,7 +45,7 @@ END:VCALENDAR
         ),
     );
 
-    function testQueryTimerange() {
+    function testQueryTimerange(): void {
 
         $request = new HTTP\Request(
             'REPORT',

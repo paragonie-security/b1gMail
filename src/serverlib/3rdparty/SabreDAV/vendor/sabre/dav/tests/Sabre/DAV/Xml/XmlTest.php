@@ -32,7 +32,7 @@ abstract class XmlTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function cleanUp() {
+    function cleanUp(): void {
 
         libxml_clear_errors();
 

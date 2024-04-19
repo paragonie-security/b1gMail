@@ -51,7 +51,7 @@ class BMHTTP
 	 * parse URL
 	 *
 	 */
-	function _scan_url()
+	function _scan_url(): void
 	{
 		$req = $this->_url;
 
@@ -83,7 +83,7 @@ class BMHTTP
 	 * create the socket in self::$_fp (for SSL with enabled peer verification)
 	 *
 	 */
-	private function createSocket()
+	private function createSocket(): void
 	{
 		if($this->_protocol === 'https')
 		{

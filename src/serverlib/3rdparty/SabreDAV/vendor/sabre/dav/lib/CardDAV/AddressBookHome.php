@@ -162,7 +162,7 @@ class AddressBookHome extends DAV\Collection implements DAV\IExtendedCollection,
      * @throws DAV\Exception\InvalidResourceType
      * @return void
      */
-    function createExtendedCollection($name, MkCol $mkCol) {
+    function createExtendedCollection($name, MkCol $mkCol): void {
 
         if (!$mkCol->hasResourceType('{' . Plugin::NS_CARDDAV . '}addressbook')) {
             throw new DAV\Exception\InvalidResourceType('Unknown resourceType for this collection');

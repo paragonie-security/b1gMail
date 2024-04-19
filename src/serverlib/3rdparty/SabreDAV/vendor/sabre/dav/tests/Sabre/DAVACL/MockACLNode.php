@@ -41,7 +41,7 @@ class MockACLNode extends DAV\Node implements IACL {
 
     }
 
-    function setACL(array $acl) {
+    function setACL(array $acl): void {
 
         $this->acl = $acl;
 

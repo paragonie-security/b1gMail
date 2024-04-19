@@ -67,7 +67,7 @@ class EmailAddressSet implements XmlSerializable {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->emails as $email) {
 

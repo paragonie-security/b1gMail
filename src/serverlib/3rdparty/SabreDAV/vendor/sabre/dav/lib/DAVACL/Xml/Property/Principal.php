@@ -103,7 +103,7 @@ class Principal extends DAV\Xml\Property\Href {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         switch ($this->type) {
 

@@ -7,14 +7,14 @@ class ResponseDecoratorTest extends \PHPUnit_Framework_TestCase {
     protected $inner;
     protected $outer;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->inner = new Response();
         $this->outer = new ResponseDecorator($this->inner);
 
     }
 
-    function testStatus() {
+    function testStatus(): void {
 
         $this->outer->setStatus(201);
         $this->assertEquals(201, $this->inner->getStatus());
@@ -24,7 +24,7 @@ class ResponseDecoratorTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testToString() {
+    function testToString(): void {
 
         $this->inner->setStatus(201);
         $this->inner->setBody('foo');

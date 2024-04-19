@@ -33,7 +33,7 @@ class OneCallBack extends BenchMark {
     protected $emitter;
     protected $iterations = 100000;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->emitter = new EventEmitter();
         $this->emitter->on('foo', function() {
@@ -42,7 +42,7 @@ class OneCallBack extends BenchMark {
 
     }
 
-    function test() {
+    function test(): void {
 
         for ($i = 0;$i < $this->iterations;$i++) {
             $this->emitter->emit('foo', []);
@@ -56,7 +56,7 @@ class ManyCallBacks extends BenchMark {
 
     protected $emitter;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->emitter = new EventEmitter();
         for ($i = 0;$i < 100;$i++) {
@@ -67,7 +67,7 @@ class ManyCallBacks extends BenchMark {
 
     }
 
-    function test() {
+    function test(): void {
 
         for ($i = 0;$i < $this->iterations;$i++) {
             $this->emitter->emit('foo', []);
@@ -81,7 +81,7 @@ class ManyPrioritizedCallBacks extends BenchMark {
 
     protected $emitter;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->emitter = new EventEmitter();
         for ($i = 0;$i < 100;$i++) {
@@ -91,7 +91,7 @@ class ManyPrioritizedCallBacks extends BenchMark {
 
     }
 
-    function test() {
+    function test(): void {
 
         for ($i = 0;$i < $this->iterations;$i++) {
             $this->emitter->emit('foo', []);

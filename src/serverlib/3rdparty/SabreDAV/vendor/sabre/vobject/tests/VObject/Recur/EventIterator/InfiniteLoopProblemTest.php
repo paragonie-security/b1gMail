@@ -10,7 +10,7 @@ use
 
 class EventIteratorInfiniteLoopProblemTest extends \PHPUnit_Framework_TestCase {
 
-    public function setUp() {
+    public function setUp(): void {
 
         $this->vcal = new VCalendar();
 
@@ -20,7 +20,7 @@ class EventIteratorInfiniteLoopProblemTest extends \PHPUnit_Framework_TestCase {
      * This bug came from a Fruux customer. This would result in a never-ending
      * request.
      */
-    function testFastForwardTooFar() {
+    function testFastForwardTooFar(): void {
 
         $ev = $this->vcal->createComponent('VEVENT');
         $ev->UID = 'foobar';
@@ -34,7 +34,7 @@ class EventIteratorInfiniteLoopProblemTest extends \PHPUnit_Framework_TestCase {
     /**
      * Different bug, also likely an infinite loop.
      */
-    function testYearlyByMonthLoop() {
+    function testYearlyByMonthLoop(): void {
 
         $ev = $this->vcal->createComponent('VEVENT');
         $ev->UID = 'uuid';
@@ -81,7 +81,7 @@ class EventIteratorInfiniteLoopProblemTest extends \PHPUnit_Framework_TestCase {
      * @expectedException InvalidArgumentException
      * @return void
      */
-    function testZeroInterval() {
+    function testZeroInterval(): void {
 
         $ev = $this->vcal->createComponent('VEVENT');
         $ev->UID = 'uuid';

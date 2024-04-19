@@ -923,7 +923,7 @@ class BMAddressbook
      *
      * @param array $contactIDs List of contacts (identified by ID)
      */
-    public function ExportContacts($contactIDs)
+    public function ExportContacts($contactIDs): void
     {
         global $db;
 
@@ -939,7 +939,7 @@ class BMAddressbook
      *
      * @param array $groupIDs List of groups (identified by ID)
      */
-    public function ExportGroupContacts($groupIDs)
+    public function ExportGroupContacts($groupIDs): void
     {
         global $db;
 
@@ -1012,7 +1012,7 @@ class BMAddressbook
      * @param string $quoteChar     Quote char
      * @param string $sepChar       Seperator char
      */
-    public function ExportAddressbook($lineBreakChar, $quoteChar, $sepChar)
+    public function ExportAddressbook($lineBreakChar, $quoteChar, $sepChar): void
     {
         global $db;
 

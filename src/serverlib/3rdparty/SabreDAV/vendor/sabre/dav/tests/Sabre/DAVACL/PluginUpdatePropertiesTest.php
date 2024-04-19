@@ -10,7 +10,7 @@ require_once 'Sabre/DAVACL/MockPrincipal.php';
 
 class PluginUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
-    function testUpdatePropertiesPassthrough() {
+    function testUpdatePropertiesPassthrough(): void {
 
         $tree = array(
             new DAV\SimpleCollection('foo'),
@@ -30,7 +30,7 @@ class PluginUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testRemoveGroupMembers() {
+    function testRemoveGroupMembers(): void {
 
         $tree = array(
             new MockPrincipal('foo','foo'),
@@ -51,7 +51,7 @@ class PluginUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetGroupMembers() {
+    function testSetGroupMembers(): void {
 
         $tree = [
             new MockPrincipal('foo','foo'),
@@ -75,7 +75,7 @@ class PluginUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception
      */
-    function testSetBadValue() {
+    function testSetBadValue(): void {
 
         $tree = array(
             new MockPrincipal('foo','foo'),
@@ -89,7 +89,7 @@ class PluginUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetBadNode() {
+    function testSetBadNode(): void {
 
         $tree = [
             new DAV\SimpleCollection('foo'),

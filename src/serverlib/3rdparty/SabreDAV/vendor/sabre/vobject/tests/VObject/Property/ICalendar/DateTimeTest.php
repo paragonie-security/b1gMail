@@ -10,13 +10,13 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     protected $vcal;
 
-    function setUp() {
+    function setUp(): void {
 
         $this->vcal = new VCalendar();
 
     }
 
-    function testSetDateTime() {
+    function testSetDateTime(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -33,7 +33,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetDateTimeLOCAL() {
+    function testSetDateTimeLOCAL(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -48,7 +48,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($elem->hasTime());
     }
 
-    function testSetDateTimeUTC() {
+    function testSetDateTimeUTC(): void {
 
         $tz = new \DateTimeZone('GMT');
         $dt = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -63,7 +63,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($elem->hasTime());
     }
 
-    function testSetDateTimeLOCALTZ() {
+    function testSetDateTimeLOCALTZ(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -78,7 +78,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($elem->hasTime());
     }
 
-    function testSetDateTimeDATE() {
+    function testSetDateTimeDATE(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -95,7 +95,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($elem->hasTime());
     }
 
-    function testSetValue() {
+    function testSetValue(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -112,7 +112,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetValueArray() {
+    function testSetValueArray(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt1 = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -131,7 +131,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetParts() {
+    function testSetParts(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt1 = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -149,7 +149,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($elem->hasTime());
 
     }
-    function testSetPartsStrings() {
+    function testSetPartsStrings(): void {
 
         $dt1 = '19850704T013000Z';
         $dt2 = '19850704T023000Z';
@@ -165,7 +165,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testGetDateTimeCached() {
+    function testGetDateTimeCached(): void {
 
         $tz = new \DateTimeZone('Europe/Amsterdam');
         $dt = new \DateTime('1985-07-04 01:30:00', $tz);
@@ -178,7 +178,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeDateNULL() {
+    function testGetDateTimeDateNULL(): void {
 
         $elem = $this->vcal->createProperty('DTSTART');
         $dt = $elem->getDateTime();
@@ -187,7 +187,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeDateDATE() {
+    function testGetDateTimeDateDATE(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','19850704');
         $dt = $elem->getDateTime();
@@ -197,7 +197,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeDateDATEReferenceTimeZone() {
+    function testGetDateTimeDateDATEReferenceTimeZone(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','19850704');
 
@@ -210,7 +210,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeDateFloating() {
+    function testGetDateTimeDateFloating(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','19850704T013000');
         $dt = $elem->getDateTime();
@@ -220,7 +220,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeDateFloatingReferenceTimeZone() {
+    function testGetDateTimeDateFloatingReferenceTimeZone(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','19850704T013000');
 
@@ -233,7 +233,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeDateUTC() {
+    function testGetDateTimeDateUTC(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','19850704T013000Z');
         $dt = $elem->getDateTime();
@@ -244,7 +244,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeDateLOCALTZ() {
+    function testGetDateTimeDateLOCALTZ(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','19850704T013000');
         $elem['TZID'] = 'Europe/Amsterdam';
@@ -260,14 +260,14 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException LogicException
      */
-    function testGetDateTimeDateInvalid() {
+    function testGetDateTimeDateInvalid(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','bla');
         $dt = $elem->getDateTime();
 
     }
 
-    function testGetDateTimeWeirdTZ() {
+    function testGetDateTimeWeirdTZ(): void {
 
         $elem = $this->vcal->createProperty('DTSTART','19850704T013000');
         $elem['TZID'] = '/freeassociation.sourceforge.net/Tzfile/Europe/Amsterdam';
@@ -291,7 +291,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDateTimeBadTimeZone() {
+    function testGetDateTimeBadTimeZone(): void {
 
         $default = date_default_timezone_get();
         date_default_timezone_set('Canada/Eastern');
@@ -320,7 +320,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateValueParameter() {
+    function testUpdateValueParameter(): void {
 
         $dtStart = $this->vcal->createProperty('DTSTART', new \DateTime('2013-06-07 15:05:00'));
         $dtStart['VALUE'] = 'DATE';
@@ -329,7 +329,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidate() {
+    function testValidate(): void {
 
         $exDate = $this->vcal->createProperty('EXDATE', '-00011130T143000Z');
         $messages = $exDate->validate();
@@ -341,7 +341,7 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase {
     /**
      * This issue was discovered on the sabredav mailing list.
      */
-    function testCreateDatePropertyThroughAdd() {
+    function testCreateDatePropertyThroughAdd(): void {
 
         $vcal = new VCalendar();
         $vevent = $vcal->add('VEVENT');

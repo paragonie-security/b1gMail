@@ -40,7 +40,7 @@ class NewsPlugin extends BMPlugin
         $this->admin_page_icon = 'news_icon.png';
     }
 
-    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+    public function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
     {
         if ($lang == 'deutsch') {
             $lang_admin['news_news'] = 'News';
@@ -94,7 +94,7 @@ class NewsPlugin extends BMPlugin
         return true;
     }
 
-    public function AdminHandler()
+    public function AdminHandler(): void
     {
         global $tpl, $bm_prefs, $lang_admin, $db;
 
@@ -200,7 +200,7 @@ class NewsPlugin extends BMPlugin
         }
     }
 
-    public function FileHandler($file, $action)
+    public function FileHandler($file, $action): void
     {
         global $tpl, $groupRow;
 

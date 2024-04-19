@@ -11,7 +11,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider dates
      */
-    function testGetJsonValue($input, $output) {
+    function testGetJsonValue($input, $output): void {
 
         $vcard = new VObject\Component\VCard();
         $prop = $vcard->createProperty('BDAY', $input);
@@ -83,7 +83,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testSetParts() {
+    public function testSetParts(): void {
 
         $vcard = new VObject\Component\VCard();
 
@@ -99,7 +99,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testSetPartsTooMany() {
+    public function testSetPartsTooMany(): void {
 
         $vcard = new VObject\Component\VCard();
 
@@ -111,7 +111,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testSetPartsString() {
+    public function testSetPartsString(): void {
 
         $vcard = new VObject\Component\VCard();
 
@@ -124,7 +124,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testSetValueDateTime() {
+    public function testSetValueDateTime(): void {
 
         $vcard = new VObject\Component\VCard();
 
@@ -137,7 +137,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testSetDateTimeOffset() {
+    public function testSetDateTimeOffset(): void {
 
         $vcard = new VObject\Component\VCard();
 
@@ -150,7 +150,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetDateTime() {
+    public function testGetDateTime(): void {
 
         $datetime = new \DateTime('2014-04-02 18:37:00', new \DateTimeZone('America/Toronto'));
 
@@ -162,7 +162,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetDate() {
+    public function testGetDate(): void {
 
         $datetime = new \DateTime('2014-04-02');
 
@@ -174,7 +174,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetDateIncomplete() {
+    public function testGetDateIncomplete(): void {
 
         $datetime = '--0407';
 
@@ -193,7 +193,7 @@ class DateAndOrTimeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetDateIncompleteFromVCard() {
+    public function testGetDateIncompleteFromVCard(): void {
 
         $vcard = <<<VCF
 BEGIN:VCARD
@@ -216,7 +216,7 @@ VCF;
 
     }
 
-    public function testValidate() {
+    public function testValidate(): void {
 
         $datetime = '--0407';
 
@@ -227,7 +227,7 @@ VCF;
 
     }
 
-    public function testValidateBroken() {
+    public function testValidateBroken(): void {
 
         $datetime = '123';
 

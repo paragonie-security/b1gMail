@@ -6,7 +6,7 @@ use Sabre\HTTP;
 
 class HTTPPreferParsingTest extends \Sabre\DAVServerTest {
 
-    function testParseSimple() {
+    function testParseSimple(): void {
 
         $httpRequest = HTTP\Sapi::createFromServerArray([
             'HTTP_PREFER' => 'return-asynch',
@@ -24,7 +24,7 @@ class HTTPPreferParsingTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testParseValue() {
+    function testParseValue(): void {
 
         $httpRequest = HTTP\Sapi::createFromServerArray([
             'HTTP_PREFER' => 'wait=10',
@@ -42,7 +42,7 @@ class HTTPPreferParsingTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testParseMultiple() {
+    function testParseMultiple(): void {
 
         $httpRequest = HTTP\Sapi::createFromServerArray([
             'HTTP_PREFER' => 'return-minimal, strict,lenient',
@@ -60,7 +60,7 @@ class HTTPPreferParsingTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testParseWeirdValue() {
+    function testParseWeirdValue(): void {
 
         $httpRequest = HTTP\Sapi::createFromServerArray([
             'HTTP_PREFER' => 'BOOOH',
@@ -79,7 +79,7 @@ class HTTPPreferParsingTest extends \Sabre\DAVServerTest {
 
     }
 
-    function testBrief() {
+    function testBrief(): void {
 
         $httpRequest = HTTP\Sapi::createFromServerArray([
             'HTTP_BRIEF' => 't',
@@ -102,7 +102,7 @@ class HTTPPreferParsingTest extends \Sabre\DAVServerTest {
      *
      * @return void
      */
-    function testpropfindMinimal() {
+    function testpropfindMinimal(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'PROPFIND',
@@ -131,7 +131,7 @@ BLA
 
     }
 
-    function testproppatchMinimal() {
+    function testproppatchMinimal(): void {
 
         $request = new HTTP\Request('PROPPATCH', '/', ['Prefer' => 'return-minimal']);
         $request->setBody(<<<BLA
@@ -161,7 +161,7 @@ BLA
 
     }
 
-    function testproppatchMinimalError() {
+    function testproppatchMinimalError(): void {
 
         $request = new HTTP\Request('PROPPATCH', '/', ['Prefer' => 'return-minimal']);
         $request->setBody(<<<BLA

@@ -32,7 +32,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testDepth1() {
+    function testDepth1(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-property-search xmlns:d="DAV:">
@@ -71,7 +71,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    function testUnknownSearchField() {
+    function testUnknownSearchField(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-property-search xmlns:d="DAV:">
@@ -110,7 +110,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCorrect() {
+    function testCorrect(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-property-search xmlns:d="DAV:">
@@ -177,7 +177,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAND() {
+    function testAND(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-property-search xmlns:d="DAV:">
@@ -249,7 +249,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
         }
 
     }
-    function testOR() {
+    function testOR(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-property-search xmlns:d="DAV:" test="anyof">
@@ -321,7 +321,7 @@ class PrincipalPropertySearchTest extends \PHPUnit_Framework_TestCase {
         }
 
     }
-    function testWrongUri() {
+    function testWrongUri(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:principal-property-search xmlns:d="DAV:">

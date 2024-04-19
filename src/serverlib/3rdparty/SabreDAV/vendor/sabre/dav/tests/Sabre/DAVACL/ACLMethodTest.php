@@ -10,7 +10,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testCallback() {
+    function testCallback(): void {
 
         $acl = new Plugin();
         $server = new DAV\Server();
@@ -25,7 +25,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    function testNotSupportedByNode() {
+    function testNotSupportedByNode(): void {
 
         $tree = array(
             new DAV\SimpleCollection('test'),
@@ -43,7 +43,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSuccessSimple() {
+    function testSuccessSimple(): void {
 
         $tree = array(
             new MockACLNode('test',array()),
@@ -66,7 +66,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NotRecognizedPrincipal
      */
-    function testUnrecognizedPrincipal() {
+    function testUnrecognizedPrincipal(): void {
 
         $tree = array(
             new MockACLNode('test',array()),
@@ -91,7 +91,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NotRecognizedPrincipal
      */
-    function testUnrecognizedPrincipal2() {
+    function testUnrecognizedPrincipal2(): void {
 
         $tree = array(
             new MockACLNode('test',array()),
@@ -119,7 +119,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NotSupportedPrivilege
      */
-    function testUnknownPrivilege() {
+    function testUnknownPrivilege(): void {
 
         $tree = array(
             new MockACLNode('test',array()),
@@ -144,7 +144,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\NoAbstract
      */
-    function testAbstractPrivilege() {
+    function testAbstractPrivilege(): void {
 
         $tree = array(
             new MockACLNode('test',array()),
@@ -169,7 +169,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\AceConflict
      */
-    function testUpdateProtectedPrivilege() {
+    function testUpdateProtectedPrivilege(): void {
 
         $oldACL = array(
             array(
@@ -202,7 +202,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\AceConflict
      */
-    function testUpdateProtectedPrivilege2() {
+    function testUpdateProtectedPrivilege2(): void {
 
         $oldACL = array(
             array(
@@ -235,7 +235,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAVACL\Exception\AceConflict
      */
-    function testUpdateProtectedPrivilege3() {
+    function testUpdateProtectedPrivilege3(): void {
 
         $oldACL = array(
             array(
@@ -265,7 +265,7 @@ class ACLMethodTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSuccessComplex() {
+    function testSuccessComplex(): void {
 
         $oldACL = array(
             array(

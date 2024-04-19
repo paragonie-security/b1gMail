@@ -5,7 +5,7 @@ use Sabre\DAVACL;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetChildForPrincipal() {
+    function testGetChildForPrincipal(): void {
 
         $back = new DAVACL\PrincipalBackend\Mock();
         $col = new Collection($back);

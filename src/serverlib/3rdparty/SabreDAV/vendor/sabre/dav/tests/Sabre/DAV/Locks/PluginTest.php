@@ -14,7 +14,7 @@ class PluginTest extends DAV\AbstractServer {
      */
     protected $locksPlugin;
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $locksBackend = new Backend\File(SABRE_TEMPDIR . '/locksdb');
@@ -24,19 +24,19 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testGetFeatures() {
+    function testGetFeatures(): void {
 
         $this->assertEquals(array(2),$this->locksPlugin->getFeatures());
 
     }
 
-    function testGetHTTPMethods() {
+    function testGetHTTPMethods(): void {
 
         $this->assertEquals(array('LOCK','UNLOCK'),$this->locksPlugin->getHTTPMethods(''));
 
     }
 
-    function testLockNoBody() {
+    function testLockNoBody(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $this->server->httpRequest = $request;
@@ -53,7 +53,7 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testLock() {
+    function testLock(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $request->setBody('<?xml version="1.0"?>
@@ -110,7 +110,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testDoubleLock() {
+    function testDoubleLock(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $request->setBody('<?xml version="1.0"?>
@@ -139,7 +139,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockRefresh() {
+    function testLockRefresh(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $request->setBody('<?xml version="1.0"?>
@@ -174,7 +174,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockRefreshBadToken() {
+    function testLockRefreshBadToken(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $request->setBody('<?xml version="1.0"?>
@@ -209,7 +209,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockNoFile() {
+    function testLockNoFile(): void {
 
         $request = new HTTP\Request('LOCK', '/notfound.txt');
         $request->setBody('<?xml version="1.0"?>
@@ -234,7 +234,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testUnlockNoToken() {
+    function testUnlockNoToken(): void {
 
         $request = new HTTP\Request('UNLOCK', '/test.txt');
         $this->server->httpRequest = $request;
@@ -254,7 +254,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testUnlockBadToken() {
+    function testUnlockBadToken(): void {
 
         $request = new HTTP\Request('UNLOCK', '/test.txt', ['Lock-Token' => '<opaquelocktoken:blablabla>']);
         $this->server->httpRequest = $request;
@@ -274,7 +274,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockPutNoToken() {
+    function testLockPutNoToken(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $request->setBody('<?xml version="1.0"?>
@@ -309,7 +309,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testUnlock() {
+    function testUnlock(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $this->server->httpRequest = $request;
@@ -345,7 +345,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testUnlockWindowsBug() {
+    function testUnlockWindowsBug(): void {
 
         $request = new HTTP\Request('LOCK', '/test.txt');
         $this->server->httpRequest = $request;
@@ -384,7 +384,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockRetainOwner() {
+    function testLockRetainOwner(): void {
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_URI' => '/test.txt',
@@ -412,7 +412,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockPutBadToken() {
+    function testLockPutBadToken(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
@@ -459,7 +459,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockDeleteParent() {
+    function testLockDeleteParent(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir/child.txt',
@@ -500,7 +500,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockDeleteSucceed() {
+    function testLockDeleteSucceed(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir/child.txt',
@@ -543,7 +543,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockCopyLockSource() {
+    function testLockCopyLockSource(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir/child.txt',
@@ -585,7 +585,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockCopyLockDestination() {
+    function testLockCopyLockDestination(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir/child2.txt',
@@ -628,7 +628,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockMoveLockSourceLocked() {
+    function testLockMoveLockSourceLocked(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir/child.txt',
@@ -671,7 +671,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockMoveLockSourceSucceed() {
+    function testLockMoveLockSourceSucceed(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir/child.txt',
@@ -714,7 +714,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockMoveLockDestination() {
+    function testLockMoveLockDestination(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir/child2.txt',
@@ -756,7 +756,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockMoveLockParent() {
+    function testLockMoveLockParent(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir',
@@ -801,7 +801,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockPutGoodToken() {
+    function testLockPutGoodToken(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
@@ -847,7 +847,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testLock
      */
-    function testLockPutUnrelatedToken() {
+    function testLockPutUnrelatedToken(): void {
 
         $request = new HTTP\Request('LOCK', '/unrelated.txt');
         $request->setBody('<?xml version="1.0"?>
@@ -883,7 +883,7 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testPutWithIncorrectETag() {
+    function testPutWithIncorrectETag(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/test.txt',
@@ -902,7 +902,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @depends testPutWithIncorrectETag
      */
-    function testPutWithCorrectETag() {
+    function testPutWithCorrectETag(): void {
 
         // We need an ETag-enabled file node.
         $tree = new DAV\Tree(new DAV\FSExt\Directory(SABRE_TEMPDIR));
@@ -928,7 +928,7 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testDeleteWithETagOnCollection() {
+    function testDeleteWithETagOnCollection(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/dir',
@@ -943,7 +943,7 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testGetTimeoutHeader() {
+    function testGetTimeoutHeader(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'HTTP_TIMEOUT' => 'second-100',
@@ -954,7 +954,7 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testGetTimeoutHeaderTwoItems() {
+    function testGetTimeoutHeaderTwoItems(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'HTTP_TIMEOUT' => 'second-5, infinite',
@@ -965,7 +965,7 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testGetTimeoutHeaderInfinite() {
+    function testGetTimeoutHeaderInfinite(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'HTTP_TIMEOUT' => 'infinite, second-5',
@@ -979,7 +979,7 @@ class PluginTest extends DAV\AbstractServer {
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testGetTimeoutHeaderInvalid() {
+    function testGetTimeoutHeaderInvalid(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'HTTP_TIMEOUT' => 'yourmom',

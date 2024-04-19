@@ -9,7 +9,7 @@ namespace Sabre\VObject;
  */
 class Issue40Test extends \PHPUnit_Framework_TestCase {
 
-    function testEncode() {
+    function testEncode(): void {
 
         $card = new Component\VCard();
         $card->add('N', array('van der Harten', array('Rene','J.'), "", 'Sir','R.D.O.N.'), array('SORT-AS' => array('Harten','Rene')));

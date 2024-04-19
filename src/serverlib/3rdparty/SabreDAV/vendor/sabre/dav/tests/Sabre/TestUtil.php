@@ -9,14 +9,14 @@ class TestUtil {
      *
      * @return void
      */
-    static function clearTempDir() {
+    static function clearTempDir(): void {
 
         self::deleteTree(SABRE_TEMPDIR,false);
 
     }
 
 
-    static private function deleteTree($path,$deleteRoot = true) {
+    static private function deleteTree($path,$deleteRoot = true): void {
 
         foreach(scandir($path) as $node) {
 

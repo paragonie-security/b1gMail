@@ -58,7 +58,7 @@ class Uri implements Xml\Element {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Xml\Writer $writer) {
+    function xmlSerialize(Xml\Writer $writer): void {
 
         $writer->text(
             \Sabre\Uri\resolve(

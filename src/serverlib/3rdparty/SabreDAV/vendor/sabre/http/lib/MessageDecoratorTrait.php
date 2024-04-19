@@ -71,7 +71,7 @@ trait MessageDecoratorTrait {
      * @param resource $body
      * @return void
      */
-    function setBody($body) {
+    function setBody($body): void {
 
         $this->inner->setBody($body);
 
@@ -152,7 +152,7 @@ trait MessageDecoratorTrait {
      * @param string|string[] $value
      * @return void
      */
-    function setHeader($name, $value) {
+    function setHeader($name, $value): void {
 
         $this->inner->setHeader($name, $value);
 
@@ -169,7 +169,7 @@ trait MessageDecoratorTrait {
      * @param array $headers
      * @return void
      */
-    function setHeaders(array $headers) {
+    function setHeaders(array $headers): void {
 
         $this->inner->setHeaders($headers);
 
@@ -186,7 +186,7 @@ trait MessageDecoratorTrait {
      * @param string $value
      * @return void
      */
-    function addHeader($name, $value) {
+    function addHeader($name, $value): void {
 
         $this->inner->addHeader($name, $value);
 
@@ -200,7 +200,7 @@ trait MessageDecoratorTrait {
      * @param array $headers
      * @return void
      */
-    function addHeaders(array $headers) {
+    function addHeaders(array $headers): void {
 
         $this->inner->addHeaders($headers);
 
@@ -216,7 +216,7 @@ trait MessageDecoratorTrait {
      *
      * @return bool
      */
-    function removeHeader($name) {
+    function removeHeader($name): void {
 
         $this->inner->removeHeader($name);
 
@@ -230,7 +230,7 @@ trait MessageDecoratorTrait {
      * @param string $version
      * @return void
      */
-    function setHttpVersion($version) {
+    function setHttpVersion($version): void {
 
         $this->inner->setHttpVersion($version);
 

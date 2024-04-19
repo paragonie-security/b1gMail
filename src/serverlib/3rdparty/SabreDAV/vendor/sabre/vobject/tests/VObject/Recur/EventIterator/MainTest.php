@@ -9,7 +9,7 @@ use Sabre\VObject\Component\VCalendar;
 
 class MainTest extends \PHPUnit_Framework_TestCase {
 
-    function testValues() {
+    function testValues(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -32,7 +32,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
      * @expectedException InvalidArgumentException
      * @depends testValues
      */
-    function testInvalidFreq() {
+    function testInvalidFreq(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -51,7 +51,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testVCalendarNoUID() {
+    function testVCalendarNoUID(): void {
 
         $vcal = new VCalendar();
         $it = new EventIterator($vcal);
@@ -61,7 +61,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    function testVCalendarInvalidUID() {
+    function testVCalendarInvalidUID(): void {
 
         $vcal = new VCalendar();
         $it = new EventIterator($vcal,'foo');
@@ -71,7 +71,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testHourly() {
+    function testHourly(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -123,7 +123,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testDaily() {
+    function testDaily(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -171,7 +171,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testNoRRULE() {
+    function testNoRRULE(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -212,7 +212,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testDailyByDayByHour() {
+    function testDailyByDayByHour(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -265,7 +265,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testDailyByHour() {
+    function testDailyByHour(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -318,7 +318,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testDailyByDay() {
+    function testDailyByDay(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -371,7 +371,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testWeekly() {
+    function testWeekly(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -422,7 +422,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testWeeklyByDayByHour() {
+    function testWeeklyByDayByHour(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -478,7 +478,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testWeeklyByDaySpecificHour() {
+    function testWeeklyByDaySpecificHour(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -531,7 +531,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testWeeklyByDay() {
+    function testWeeklyByDay(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -584,7 +584,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testMonthly() {
+    function testMonthly(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -630,7 +630,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testMonthlyEndOfMonth() {
+    function testMonthlyEndOfMonth(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -683,7 +683,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testMonthlyByMonthDay() {
+    function testMonthlyByMonthDay(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -736,7 +736,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
      * @depends testValues
      * @medium
      */
-    function testMonthlyByDay() {
+    function testMonthlyByDay(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -792,7 +792,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testMonthlyByDayByMonthDay() {
+    function testMonthlyByDayByMonthDay(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -842,7 +842,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testMonthlyByDayBySetPos() {
+    function testMonthlyByDayBySetPos(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -892,7 +892,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testYearly() {
+    function testYearly(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -942,7 +942,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testYearlyLeapYear() {
+    function testYearlyLeapYear(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -985,7 +985,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testYearlyByMonth() {
+    function testYearlyByMonth(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -1033,7 +1033,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testYearlyByMonthByDay() {
+    function testYearlyByMonthByDay(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -1081,7 +1081,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testFastForward() {
+    function testFastForward(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -1121,7 +1121,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testComplexExclusions() {
+    function testComplexExclusions(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -1175,7 +1175,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testOverridenEvent() {
+    function testOverridenEvent(): void {
 
         $vcal = new VCalendar();
 
@@ -1249,7 +1249,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testOverridenEvent2() {
+    function testOverridenEvent2(): void {
 
         $vcal = new VCalendar();
 
@@ -1301,7 +1301,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testOverridenEventNoValuesExpected() {
+    function testOverridenEventNoValuesExpected(): void {
 
         $vcal = new VCalendar();
         $ev1 = $vcal->createComponent('VEVENT');
@@ -1351,7 +1351,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testValues
      */
-    function testRDATE() {
+    function testRDATE(): void {
 
         $vcal = new VCalendar();
         $ev = $vcal->createComponent('VEVENT');
@@ -1399,7 +1399,7 @@ class MainTest extends \PHPUnit_Framework_TestCase {
      * @depends testValues
      * @expectedException \InvalidArgumentException
      */
-    function testNoMasterBadUID() {
+    function testNoMasterBadUID(): void {
 
         $vcal = new VCalendar();
         // ev2 overrides an event, and puts it on 2pm instead.

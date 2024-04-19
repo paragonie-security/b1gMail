@@ -65,7 +65,7 @@ class LockDiscovery implements XmlSerializable {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->locks as $lock) {
 

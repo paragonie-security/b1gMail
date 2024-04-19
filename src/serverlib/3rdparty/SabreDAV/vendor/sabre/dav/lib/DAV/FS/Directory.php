@@ -37,7 +37,7 @@ class Directory extends Node implements DAV\ICollection, DAV\IQuota {
      * @param resource|string $data Initial payload
      * @return null|string
      */
-    function createFile($name, $data = null) {
+    function createFile($name, $data = null): void {
 
         $newPath = $this->path . '/' . $name;
         file_put_contents($newPath, $data);
@@ -51,7 +51,7 @@ class Directory extends Node implements DAV\ICollection, DAV\IQuota {
      * @param string $name
      * @return void
      */
-    function createDirectory($name) {
+    function createDirectory($name): void {
 
         $newPath = $this->path . '/' . $name;
         mkdir($newPath);
@@ -127,7 +127,7 @@ class Directory extends Node implements DAV\ICollection, DAV\IQuota {
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         foreach ($this->getChildren() as $child) $child->delete();
         rmdir($this->path);

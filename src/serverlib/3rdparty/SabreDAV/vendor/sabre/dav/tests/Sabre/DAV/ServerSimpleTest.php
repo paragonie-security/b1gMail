@@ -6,7 +6,7 @@ use Sabre\HTTP;
 
 class ServerSimpleTest extends AbstractServer{
 
-    function testConstructArray() {
+    function testConstructArray(): void {
 
         $nodes = [
             new SimpleCollection('hello')
@@ -20,7 +20,7 @@ class ServerSimpleTest extends AbstractServer{
     /**
      * @expectedException Sabre\DAV\Exception
      */
-    function testConstructIncorrectObj() {
+    function testConstructIncorrectObj(): void {
 
         $nodes = [
             new SimpleCollection('hello'),
@@ -34,13 +34,13 @@ class ServerSimpleTest extends AbstractServer{
     /**
      * @expectedException Sabre\DAV\Exception
      */
-    function testConstructInvalidArg() {
+    function testConstructInvalidArg(): void {
 
         $server = new Server(1);
 
     }
 
-    function testOptions() {
+    function testOptions(): void {
 
         $request = new HTTP\Request('OPTIONS', '/');
         $this->server->httpRequest = $request;
@@ -60,7 +60,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testOptionsUnmapped() {
+    function testOptionsUnmapped(): void {
 
         $request = new HTTP\Request('OPTIONS', '/unmapped');
         $this->server->httpRequest = $request;
@@ -81,7 +81,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testNonExistantMethod() {
+    function testNonExistantMethod(): void {
 
         $serverVars = [
             'REQUEST_URI'    => '/',
@@ -102,7 +102,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testBaseUri() {
+    function testBaseUri(): void {
 
         $serverVars = [
             'REQUEST_URI'    => '/blabla/test.txt',
@@ -131,7 +131,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testBaseUriAddSlash() {
+    function testBaseUriAddSlash(): void {
 
         $tests = [
             '/'         => '/',
@@ -150,7 +150,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testCalculateUri() {
+    function testCalculateUri(): void {
 
         $uris = [
             'http://www.example.org/root/somepath',
@@ -178,7 +178,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testCalculateUriSpecialChars() {
+    function testCalculateUriSpecialChars(): void {
 
         $uris = [
             'http://www.example.org/root/%C3%A0fo%C3%B3',
@@ -215,7 +215,7 @@ class ServerSimpleTest extends AbstractServer{
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    function testCalculateUriBreakout() {
+    function testCalculateUriBreakout(): void {
 
         $uri = '/path1/';
 
@@ -226,7 +226,7 @@ class ServerSimpleTest extends AbstractServer{
 
     /**
      */
-    function testGuessBaseUri() {
+    function testGuessBaseUri(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/index.php/root',
@@ -244,7 +244,7 @@ class ServerSimpleTest extends AbstractServer{
     /**
      * @depends testGuessBaseUri
      */
-    function testGuessBaseUriPercentEncoding() {
+    function testGuessBaseUriPercentEncoding(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/index.php/dir/path2/path%20with%20spaces',
@@ -279,7 +279,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }*/
 
-    function testGuessBaseUri2() {
+    function testGuessBaseUri2(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/index.php/root/',
@@ -294,7 +294,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testGuessBaseUriNoPathInfo() {
+    function testGuessBaseUriNoPathInfo(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/index.php/root',
@@ -308,7 +308,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testGuessBaseUriNoPathInfo2() {
+    function testGuessBaseUriNoPathInfo2(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/a/b/c/test.php',
@@ -326,7 +326,7 @@ class ServerSimpleTest extends AbstractServer{
     /**
      * @depends testGuessBaseUri
      */
-    function testGuessBaseUriQueryString() {
+    function testGuessBaseUriQueryString(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/index.php/root?query_string=blabla',
@@ -345,7 +345,7 @@ class ServerSimpleTest extends AbstractServer{
      * @depends testGuessBaseUri
      * @expectedException \Sabre\DAV\Exception
      */
-    function testGuessBaseUriBadConfig() {
+    function testGuessBaseUriBadConfig(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/index.php/root/heyyy',
@@ -360,7 +360,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testTriggerException() {
+    function testTriggerException(): void {
 
         $serverVars = [
             'REQUEST_URI' => '/',
@@ -386,7 +386,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testReportNotFound() {
+    function testReportNotFound(): void {
 
         $serverVars = [
             'REQUEST_URI'    => '/',
@@ -409,7 +409,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testReportIntercepted() {
+    function testReportIntercepted(): void {
 
         $serverVars = [
             'REQUEST_URI'    => '/',
@@ -444,7 +444,7 @@ class ServerSimpleTest extends AbstractServer{
 
     }
 
-    function testGetPropertiesForChildren() {
+    function testGetPropertiesForChildren(): void {
 
         $result = $this->server->getPropertiesForChildren('',[
             '{DAV:}getcontentlength',

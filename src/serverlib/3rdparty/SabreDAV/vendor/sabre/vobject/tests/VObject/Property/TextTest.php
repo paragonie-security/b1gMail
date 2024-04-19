@@ -6,7 +6,7 @@ use Sabre\VObject\Component\VCard;
 
 class TextTest extends \PHPUnit_Framework_TestCase {
 
-    function assertVCard21serialization($propValue, $expected) {
+    function assertVCard21serialization($propValue, $expected): void {
 
         $doc = new VCard(array(
             'VERSION'=>'2.1',
@@ -26,7 +26,7 @@ class TextTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeVCard21() {
+    function testSerializeVCard21(): void {
 
         $this->assertVCard21Serialization(
             'f;oo',
@@ -35,7 +35,7 @@ class TextTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeVCard21Array() {
+    function testSerializeVCard21Array(): void {
 
         $this->assertVCard21Serialization(
             array('f;oo','bar'),
@@ -43,7 +43,7 @@ class TextTest extends \PHPUnit_Framework_TestCase {
         );
 
     }
-    function testSerializeVCard21Fold() {
+    function testSerializeVCard21Fold(): void {
 
         $this->assertVCard21Serialization(
             str_repeat('x',80),
@@ -54,7 +54,7 @@ class TextTest extends \PHPUnit_Framework_TestCase {
 
 
 
-    function testSerializeQuotedPrintable() {
+    function testSerializeQuotedPrintable(): void {
 
         $this->assertVCard21Serialization(
             "foo\r\nbar",
@@ -62,7 +62,7 @@ class TextTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    function testSerializeQuotedPrintableFold() {
+    function testSerializeQuotedPrintableFold(): void {
 
         $this->assertVCard21Serialization(
             "foo\r\nbarxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -71,7 +71,7 @@ class TextTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testValidateMinimumPropValue() {
+    function testValidateMinimumPropValue(): void {
 
         $vcard = <<<IN
 BEGIN:VCARD

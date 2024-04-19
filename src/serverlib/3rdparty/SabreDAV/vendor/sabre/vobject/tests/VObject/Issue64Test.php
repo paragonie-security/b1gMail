@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class Issue64Test extends \PHPUnit_Framework_TestCase {
 
-    function testRead() {
+    function testRead(): void {
 
         $vcard = Reader::read(file_get_contents(dirname(__FILE__) . '/issue64.vcf'));
         $vcard = $vcard->convert(\Sabre\VObject\Document::VCARD30);

@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
-    function testNonUTF8() {
+    function testNonUTF8(): void {
 
         $string = StringUtil::isUTF8(chr(0xbf));
 
@@ -12,7 +12,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testIsUTF8() {
+    function testIsUTF8(): void {
 
         $string = StringUtil::isUTF8('I 💚 SabreDAV');
 
@@ -20,7 +20,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUTF8ControlChar() {
+    function testUTF8ControlChar(): void {
 
         $string = StringUtil::isUTF8(chr(0x00));
 
@@ -28,7 +28,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testConvertToUTF8nonUTF8() {
+    function testConvertToUTF8nonUTF8(): void {
 
         $string = StringUtil::convertToUTF8(chr(0xbf));
 
@@ -36,7 +36,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testConvertToUTF8IsUTF8() {
+    function testConvertToUTF8IsUTF8(): void {
 
         $string = StringUtil::convertToUTF8('I 💚 SabreDAV');
 
@@ -44,7 +44,7 @@ class StringUtilTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testConvertToUTF8ControlChar() {
+    function testConvertToUTF8ControlChar(): void {
 
         $string = StringUtil::convertToUTF8(chr(0x00));
 

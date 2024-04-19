@@ -11,7 +11,7 @@ require_once 'Sabre/HTTP/ResponseMock.php';
 
 class PluginAdminTest extends \PHPUnit_Framework_TestCase {
 
-    function testNoAdminAccess() {
+    function testNoAdminAccess(): void {
 
         $principalBackend = new PrincipalBackend\Mock();
 
@@ -47,7 +47,7 @@ class PluginAdminTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testNoAdminAccess
      */
-    function testAdminAccess() {
+    function testAdminAccess(): void {
 
         $principalBackend = new PrincipalBackend\Mock();
 

@@ -4,7 +4,7 @@ namespace Sabre\VObject;
 
 class Issue36WorkAroundTest extends \PHPUnit_Framework_TestCase {
 
-    function testWorkaround() {
+    function testWorkaround(): void {
 
         // See https://github.com/fruux/sabre-vobject/issues/36
         $event = <<<ICS

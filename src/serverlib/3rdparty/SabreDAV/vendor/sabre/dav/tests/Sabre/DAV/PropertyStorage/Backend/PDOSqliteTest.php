@@ -27,7 +27,7 @@ class PDOSqliteTest extends AbstractPDOTest {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 

@@ -104,7 +104,7 @@ class Card extends DAV\File implements ICard, DAVACL\IACL {
      *
      * @return void
      */
-    function delete() {
+    function delete(): void {
 
         $this->carddavBackend->deleteCard($this->addressBookInfo['id'], $this->cardData['uri']);
 

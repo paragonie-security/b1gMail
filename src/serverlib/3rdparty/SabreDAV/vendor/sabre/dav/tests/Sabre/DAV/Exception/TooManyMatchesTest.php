@@ -8,7 +8,7 @@ use
 
 class TooManyMatchesTest extends \PHPUnit_Framework_TestCase {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $dom = new DOMDocument('1.0');
         $dom->formatOutput = true;

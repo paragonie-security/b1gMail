@@ -1019,7 +1019,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *
      * @param string $varName
      */
-    public function setNocacheInVariable($varName)
+    public function setNocacheInVariable($varName): void
     {
         // create nocache var to make it know for further compiling
         if ($_var = $this->getId($varName)) {
@@ -1086,7 +1086,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *
      * @throws \SmartyCompilerException when an unexpected token is found
      */
-    public function trigger_template_error($args = null, $line = null, $tagline = null)
+    public function trigger_template_error($args = null, $line = null, $tagline = null): void
     {
         $lex = $this->parser->lex;
         if ($tagline === true) {
@@ -1174,7 +1174,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *  enter double quoted string
      *  - save tag stack count
      */
-    public function enterDoubleQuote()
+    public function enterDoubleQuote(): void
     {
         array_push($this->_tag_stack_count, $this->getTagStackCount());
     }
@@ -1210,7 +1210,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
     /**
      * Build lexer regular expressions for left and right delimiter and user defined literals
      */
-    public function initDelimiterPreg()
+    public function initDelimiterPreg(): void
     {
         $ldel = $this->smarty->getLeftDelimiter();
         $this->ldelLength = strlen($ldel);
@@ -1245,7 +1245,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *
      * @throws \SmartyCompilerException
      */
-    public function leaveDoubleQuote()
+    public function leaveDoubleQuote(): void
     {
         if (array_pop($this->_tag_stack_count) !== $this->getTagStackCount()) {
             $tag = $this->getOpenBlockTag();
@@ -1364,7 +1364,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *
      * @param string $code
      */
-    public function appendPrefixCode($code)
+    public function appendPrefixCode($code): void
     {
         $this->prefix_code[] = $code;
     }
@@ -1391,7 +1391,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
      *
      * @param bool $init if true init required plugins
      */
-    public function saveRequiredPlugins($init = false)
+    public function saveRequiredPlugins($init = false): void
     {
         $this->required_plugins_stack[] = $this->required_plugins;
         if ($init) {
@@ -1402,7 +1402,7 @@ abstract class Smarty_Internal_TemplateCompilerBase
     /**
      * Restore required plugins
      */
-    public function restoreRequiredPlugins()
+    public function restoreRequiredPlugins(): void
     {
         $this->required_plugins = array_pop($this->required_plugins_stack);
     }

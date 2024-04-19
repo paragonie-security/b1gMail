@@ -63,7 +63,7 @@ class ResponseDecorator implements ResponseInterface {
      * @param string|int $status
      * @return void
      */
-    function setStatus($status) {
+    function setStatus($status): void {
 
         $this->inner->setStatus($status);
 

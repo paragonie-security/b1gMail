@@ -12,7 +12,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
      */
     protected $server;
 
-    function setUp() {
+    function setUp(): void {
 
         $nodes = array(
             new DAV\SimpleCollection('testdir'),
@@ -25,7 +25,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGet() {
+    function testGet(): void {
 
         $this->server->httpRequest->setMethod('GET');
         $this->server->httpRequest->setUrl('/testdir');
@@ -34,7 +34,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetDoesntExist() {
+    function testGetDoesntExist(): void {
 
         $this->server->httpRequest->setMethod('GET');
         $this->server->httpRequest->setUrl('/foo');
@@ -43,7 +43,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testHEAD() {
+    function testHEAD(): void {
 
         $this->server->httpRequest->setMethod('HEAD');
         $this->server->httpRequest->setUrl('/testdir');
@@ -52,7 +52,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testOPTIONS() {
+    function testOPTIONS(): void {
 
         $this->server->httpRequest->setMethod('OPTIONS');
         $this->server->httpRequest->setUrl('/testdir');
@@ -61,7 +61,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPUT() {
+    function testPUT(): void {
 
         $this->server->httpRequest->setMethod('PUT');
         $this->server->httpRequest->setUrl('/testdir');
@@ -70,7 +70,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testACL() {
+    function testACL(): void {
 
         $this->server->httpRequest->setMethod('ACL');
         $this->server->httpRequest->setUrl('/testdir');
@@ -79,7 +79,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testPROPPATCH() {
+    function testPROPPATCH(): void {
 
         $this->server->httpRequest->setMethod('PROPPATCH');
         $this->server->httpRequest->setUrl('/testdir');
@@ -88,7 +88,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCOPY() {
+    function testCOPY(): void {
 
         $this->server->httpRequest->setMethod('COPY');
         $this->server->httpRequest->setUrl('/testdir');
@@ -97,7 +97,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testMOVE() {
+    function testMOVE(): void {
 
         $this->server->httpRequest->setMethod('MOVE');
         $this->server->httpRequest->setUrl('/testdir');
@@ -106,7 +106,7 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testLOCK() {
+    function testLOCK(): void {
 
         $this->server->httpRequest->setMethod('LOCK');
         $this->server->httpRequest->setUrl('/testdir');
@@ -115,14 +115,14 @@ class AllowAccessTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testBeforeBind() {
+    function testBeforeBind(): void {
 
         $this->assertTrue($this->server->emit('beforeBind', ['testdir/file']));
 
     }
 
 
-    function testBeforeUnbind() {
+    function testBeforeUnbind(): void {
 
         $this->assertTrue($this->server->emit('beforeUnbind', ['testdir']));
 

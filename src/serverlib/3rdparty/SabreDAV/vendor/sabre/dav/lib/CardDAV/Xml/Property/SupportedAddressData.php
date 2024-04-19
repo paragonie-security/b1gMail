@@ -67,7 +67,7 @@ class SupportedAddressData implements XmlSerializable {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->supportedData as $supported) {
             $writer->startElement('{' . Plugin::NS_CARDDAV . '}address-data-type');

@@ -4,7 +4,7 @@ namespace Sabre\VObject\ITip;
 
 class BrokerDeleteEventTest extends BrokerTester {
 
-    function testOrganizerDeleteWithDtend() {
+    function testOrganizerDeleteWithDtend(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -88,7 +88,7 @@ ICS
 
     }
 
-    function testOrganizerDeleteWithDuration() {
+    function testOrganizerDeleteWithDuration(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -172,7 +172,7 @@ ICS
 
     }
 
-    function testAttendeeDeleteWithDtend() {
+    function testAttendeeDeleteWithDtend(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -229,7 +229,7 @@ ICS
 
     }
 
-    function testAttendeeDeleteWithDuration() {
+    function testAttendeeDeleteWithDuration(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -286,7 +286,7 @@ ICS
 
     }
 
-    function testAttendeeDeleteCancelledEvent() {
+    function testAttendeeDeleteCancelledEvent(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -316,13 +316,13 @@ ICS;
 
     }
 
-    function testNoCalendar() {
+    function testNoCalendar(): void {
 
         $this->parse(null, null, array(), 'mailto:one@example.org');
 
     }
 
-    function testVTodo() {
+    function testVTodo(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR

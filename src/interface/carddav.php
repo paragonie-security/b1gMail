@@ -242,7 +242,7 @@ class BMCardDAVBackend extends Sabre\CardDAV\Backend\AbstractBackend
 		return(null);
 	}
 
-	private function updateGroupMembers($groupID, $cardData)
+	private function updateGroupMembers($groupID, $cardData): void
 	{
 		global $os;
 
@@ -584,7 +584,7 @@ class BMCardDAVAuthBackend extends BMAuthBackend
 		return($this->groupRow['organizerdav'] == 'yes');
 	}
 
-	function setupState()
+	function setupState(): void
 	{
 		global $os;
 

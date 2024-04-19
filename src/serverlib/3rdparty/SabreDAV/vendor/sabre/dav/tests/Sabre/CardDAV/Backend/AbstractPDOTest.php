@@ -18,7 +18,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
      */
     abstract function getPDO();
 
-    public function setUp() {
+    public function setUp(): void {
 
         $pdo = $this->getPDO();
         $this->backend = new PDO($pdo);
@@ -27,7 +27,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetAddressBooksForUser() {
+    public function testGetAddressBooksForUser(): void {
 
         $result = $this->backend->getAddressBooksForUser('principals/user1');
 
@@ -47,7 +47,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testUpdateAddressBookInvalidProp() {
+    public function testUpdateAddressBookInvalidProp(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}displayname' => 'updated',
@@ -78,7 +78,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testUpdateAddressBookNoProps() {
+    public function testUpdateAddressBookNoProps(): void {
 
         $propPatch = new PropPatch([
         ]);
@@ -106,7 +106,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testUpdateAddressBookSuccess() {
+    public function testUpdateAddressBookSuccess(): void {
 
         $propPatch = new PropPatch([
             '{DAV:}displayname' => 'updated',
@@ -137,7 +137,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testDeleteAddressBook() {
+    public function testDeleteAddressBook(): void {
 
         $this->backend->deleteAddressBook(1);
 
@@ -148,7 +148,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    public function testCreateAddressBookUnsupportedProp() {
+    public function testCreateAddressBookUnsupportedProp(): void {
 
         $this->backend->createAddressBook('principals/user1','book2', array(
             '{DAV:}foo' => 'bar',
@@ -156,7 +156,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testCreateAddressBookSuccess() {
+    public function testCreateAddressBookSuccess(): void {
 
         $this->backend->createAddressBook('principals/user1','book2', array(
             '{DAV:}displayname' => 'book2',
@@ -188,7 +188,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetCards() {
+    public function testGetCards(): void {
 
         $result = $this->backend->getCards(1);
 
@@ -206,7 +206,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetCard() {
+    public function testGetCard(): void {
 
         $result = $this->backend->getCard(1,'card1');
 
@@ -226,7 +226,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetCard
      */
-    public function testCreateCard() {
+    public function testCreateCard(): void {
 
         $result = $this->backend->createCard(1, 'card2', 'data2');
         $this->assertEquals('"' . md5('data2') . '"', $result);
@@ -240,7 +240,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testCreateCard
      */
-    public function testGetMultiple() {
+    public function testGetMultiple(): void {
 
         $result = $this->backend->createCard(1, 'card2', 'data2');
         $result = $this->backend->createCard(1, 'card3', 'data3');
@@ -287,7 +287,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetCard
      */
-    public function testUpdateCard() {
+    public function testUpdateCard(): void {
 
         $result = $this->backend->updateCard(1, 'card1', 'newdata');
         $this->assertEquals('"' . md5('newdata') . '"', $result);
@@ -301,7 +301,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testGetCard
      */
-    public function testDeleteCard() {
+    public function testDeleteCard(): void {
 
         $this->backend->deleteCard(1, 'card1');
         $result = $this->backend->getCard(1,'card1');
@@ -309,7 +309,7 @@ abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetChanges() {
+    function testGetChanges(): void {
 
         $backend = $this->backend;
         $id = $backend->createAddressBook(

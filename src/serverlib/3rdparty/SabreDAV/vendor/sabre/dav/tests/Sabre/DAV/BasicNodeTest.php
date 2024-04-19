@@ -7,7 +7,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    public function testPut() {
+    public function testPut(): void {
 
         $file = new FileMock();
         $file->put('hi');
@@ -17,14 +17,14 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    public function testGet() {
+    public function testGet(): void {
 
         $file = new FileMock();
         $file->get();
 
     }
 
-    public function testGetSize() {
+    public function testGetSize(): void {
 
         $file = new FileMock();
         $this->assertEquals(0,$file->getSize());
@@ -32,14 +32,14 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     }
 
 
-    public function testGetETag() {
+    public function testGetETag(): void {
 
         $file = new FileMock();
         $this->assertNull($file->getETag());
 
     }
 
-    public function testGetContentType() {
+    public function testGetContentType(): void {
 
         $file = new FileMock();
         $this->assertNull($file->getContentType());
@@ -49,7 +49,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    public function testDelete() {
+    public function testDelete(): void {
 
         $file = new FileMock();
         $file->delete();
@@ -59,14 +59,14 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    public function testSetName() {
+    public function testSetName(): void {
 
         $file = new FileMock();
         $file->setName('hi');
 
     }
 
-    public function testGetLastModified() {
+    public function testGetLastModified(): void {
 
         $file = new FileMock();
         // checking if lastmod is within the range of a few seconds
@@ -76,7 +76,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testGetChild() {
+    public function testGetChild(): void {
 
         $dir = new DirectoryMock();
         $file = $dir->getChild('mockfile');
@@ -84,14 +84,14 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    public function testChildExists() {
+    public function testChildExists(): void {
 
         $dir = new DirectoryMock();
         $this->assertTrue($dir->childExists('mockfile'));
 
     }
 
-    public function testChildExistsFalse() {
+    public function testChildExistsFalse(): void {
 
         $dir = new DirectoryMock();
         $this->assertFalse($dir->childExists('mockfile2'));
@@ -101,7 +101,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotFound
      */
-    public function testGetChild404() {
+    public function testGetChild404(): void {
 
         $dir = new DirectoryMock();
         $file = $dir->getChild('blabla');
@@ -111,7 +111,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    public function testCreateFile() {
+    public function testCreateFile(): void {
 
         $dir = new DirectoryMock();
         $dir->createFile('hello','data');
@@ -121,14 +121,14 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    public function testCreateDirectory() {
+    public function testCreateDirectory(): void {
 
         $dir = new DirectoryMock();
         $dir->createDirectory('hello');
 
     }
 
-    public function testSimpleDirectoryConstruct() {
+    public function testSimpleDirectoryConstruct(): void {
 
         $dir = new SimpleCollection('simpledir',array());
         $this->assertInstanceOf('Sabre\DAV\SimpleCollection', $dir);
@@ -138,7 +138,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimpleDirectoryConstruct
      */
-    public function testSimpleDirectoryConstructChild() {
+    public function testSimpleDirectoryConstructChild(): void {
 
         $file = new FileMock();
         $dir = new SimpleCollection('simpledir',array($file));
@@ -152,7 +152,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
      * @expectedException Sabre\DAV\Exception
      * @depends testSimpleDirectoryConstruct
      */
-    public function testSimpleDirectoryBadParam() {
+    public function testSimpleDirectoryBadParam(): void {
 
         $dir = new SimpleCollection('simpledir',array('string shouldn\'t be here'));
 
@@ -161,7 +161,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testSimpleDirectoryConstruct
      */
-    public function testSimpleDirectoryAddChild() {
+    public function testSimpleDirectoryAddChild(): void {
 
         $file = new FileMock();
         $dir = new SimpleCollection('simpledir');
@@ -176,7 +176,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
      * @depends testSimpleDirectoryConstruct
      * @depends testSimpleDirectoryAddChild
      */
-    public function testSimpleDirectoryGetChildren() {
+    public function testSimpleDirectoryGetChildren(): void {
 
         $file = new FileMock();
         $dir = new SimpleCollection('simpledir');
@@ -189,7 +189,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
     /*
      * @depends testSimpleDirectoryConstruct
      */
-    public function testSimpleDirectoryGetName() {
+    public function testSimpleDirectoryGetName(): void {
 
         $dir = new SimpleCollection('simpledir');
         $this->assertEquals('simpledir',$dir->getName());
@@ -200,7 +200,7 @@ class BasicNodeTest extends \PHPUnit_Framework_TestCase {
      * @depends testSimpleDirectoryConstruct
      * @expectedException Sabre\DAV\Exception\NotFound
      */
-    public function testSimpleDirectoryGetChild404() {
+    public function testSimpleDirectoryGetChild404(): void {
 
         $dir = new SimpleCollection('simpledir');
         $dir->getChild('blabla');

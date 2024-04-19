@@ -97,7 +97,7 @@ abstract class Node implements \IteratorAggregate, \ArrayAccess, \Countable {
      * @param ElementList $iterator
      * @return void
      */
-    public function setIterator(ElementList $iterator) {
+    public function setIterator(ElementList $iterator): void {
 
         $this->iterator = $iterator;
 
@@ -190,7 +190,7 @@ abstract class Node implements \IteratorAggregate, \ArrayAccess, \Countable {
      * @param mixed $value
      * @return void
      */
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value): void {
 
         $iterator = $this->getIterator();
         $iterator->offsetSet($offset,$value);
@@ -210,7 +210,7 @@ abstract class Node implements \IteratorAggregate, \ArrayAccess, \Countable {
      * @param int $offset
      * @return void
      */
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset): void {
 
         $iterator = $this->getIterator();
         $iterator->offsetUnset($offset);

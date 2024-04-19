@@ -10,7 +10,7 @@ class CalendarQueryVAlarmTest extends \PHPUnit_Framework_TestCase {
      * This test is specifically for a time-range query on a VALARM, contained
      * in a VEVENT that's recurring
      */
-    function testValarm() {
+    function testValarm(): void {
 
         $vcalendar = new VObject\Component\VCalendar();
 
@@ -73,7 +73,7 @@ class CalendarQueryVAlarmTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($validator->validate($vcalendar, $filter));
     }
 
-    function testAlarmWayBefore() {
+    function testAlarmWayBefore(): void {
 
         $vcalendar = new VObject\Component\VCalendar();
 

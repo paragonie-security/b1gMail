@@ -28,7 +28,7 @@ class RemoveIPPlugin extends BMPlugin
 		$this->version			= '1.0.1';
 	}
 	
-	public function AfterInit()
+	public function AfterInit(): void
 	{
 		global $bm_prefs;
 		

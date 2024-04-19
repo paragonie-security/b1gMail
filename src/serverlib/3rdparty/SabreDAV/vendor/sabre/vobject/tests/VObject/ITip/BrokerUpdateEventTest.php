@@ -4,7 +4,7 @@ namespace Sabre\VObject\ITip;
 
 class BrokerUpdateTest extends BrokerTester {
 
-    function testInviteChange() {
+    function testInviteChange(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -138,7 +138,7 @@ ICS
 
     }
 
-    function testInviteChangeFromNonSchedulingToSchedulingObject() {
+    function testInviteChangeFromNonSchedulingToSchedulingObject(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -203,7 +203,7 @@ ICS
 
     }
 
-    function testInviteChangeFromSchedulingToNonSchedulingObject() {
+    function testInviteChangeFromSchedulingToNonSchedulingObject(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -264,7 +264,7 @@ ICS
 
     }
 
-    function testNoAttendees() {
+    function testNoAttendees(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -298,7 +298,7 @@ ICS;
 
     }
 
-    function testRemoveInstance() {
+    function testRemoveInstance(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -375,7 +375,7 @@ ICS
      *
      * This should ensure that the message is significant for every attendee,
      */
-    function testInviteChangeSignificantChange() {
+    function testInviteChangeSignificantChange(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -508,7 +508,7 @@ ICS
 
     }
 
-    function testInviteNoChange() {
+    function testInviteNoChange(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -579,7 +579,7 @@ ICS
 
     }
 
-    function testInviteNoChangeForceSend() {
+    function testInviteNoChangeForceSend(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -650,7 +650,7 @@ ICS
 
     }
 
-    function testInviteRemoveAttendees() {
+    function testInviteRemoveAttendees(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR
@@ -748,7 +748,7 @@ ICS
 
     }
 
-    function testInviteChangeExdateOrder() {
+    function testInviteChangeExdateOrder(): void {
 
         $oldMessage = <<<ICS
 BEGIN:VCALENDAR

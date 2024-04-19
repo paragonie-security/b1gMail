@@ -7,7 +7,7 @@ use Sabre\DAV;
 require_once 'Sabre/DAV/AbstractServer.php';
 class GuessContentTypeTest extends DAV\AbstractServer {
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         \Sabre\TestUtil::clearTempDir();
@@ -16,13 +16,13 @@ class GuessContentTypeTest extends DAV\AbstractServer {
 
     }
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
         parent::tearDown();
     }
 
-    function testGetProperties() {
+    function testGetProperties(): void {
 
         $properties = array(
             '{DAV:}getcontenttype',
@@ -37,7 +37,7 @@ class GuessContentTypeTest extends DAV\AbstractServer {
     /**
      * @depends testGetProperties
      */
-    function testGetPropertiesPluginEnabled() {
+    function testGetPropertiesPluginEnabled(): void {
 
         $this->server->addPlugin(new GuessContentType());
         $properties = array(
@@ -54,7 +54,7 @@ class GuessContentTypeTest extends DAV\AbstractServer {
     /**
      * @depends testGetPropertiesPluginEnabled
      */
-    function testGetPropertiesUnknown() {
+    function testGetPropertiesUnknown(): void {
 
         $this->server->addPlugin(new GuessContentType());
         $properties = array(

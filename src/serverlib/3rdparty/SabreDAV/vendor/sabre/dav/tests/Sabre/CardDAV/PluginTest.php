@@ -7,7 +7,7 @@ use Sabre\DAV\Xml\Property\Href;
 
 class PluginTest extends AbstractPluginTest {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $this->assertEquals('{' . Plugin::NS_CARDDAV . '}addressbook', $this->server->resourceTypeMapping['Sabre\\CardDAV\\IAddressBook']);
 
@@ -16,7 +16,7 @@ class PluginTest extends AbstractPluginTest {
 
     }
 
-    function testSupportedReportSet() {
+    function testSupportedReportSet(): void {
 
         $this->assertEquals(array(
             '{' . Plugin::NS_CARDDAV . '}addressbook-multiget',
@@ -25,14 +25,14 @@ class PluginTest extends AbstractPluginTest {
 
     }
 
-    function testSupportedReportSetEmpty() {
+    function testSupportedReportSetEmpty(): void {
 
         $this->assertEquals(array(
         ), $this->plugin->getSupportedReportSet(''));
 
     }
 
-    function testAddressBookHomeSet() {
+    function testAddressBookHomeSet(): void {
 
         $result = $this->server->getProperties('principals/user1', array('{' . Plugin::NS_CARDDAV . '}addressbook-home-set'));
 
@@ -42,7 +42,7 @@ class PluginTest extends AbstractPluginTest {
 
     }
 
-    function testDirectoryGateway() {
+    function testDirectoryGateway(): void {
 
         $result = $this->server->getProperties('principals/user1', array('{' . Plugin::NS_CARDDAV . '}directory-gateway'));
 
@@ -52,13 +52,13 @@ class PluginTest extends AbstractPluginTest {
 
     }
 
-    function testReportPassThrough() {
+    function testReportPassThrough(): void {
 
         $this->assertNull($this->plugin->report('{DAV:}foo', new \DomDocument()));
 
     }
 
-    function testHTMLActionsPanel() {
+    function testHTMLActionsPanel(): void {
 
         $output = '';
         $r = $this->server->emit('onHTMLActionsPanel', [$this->server->tree->getNodeForPath('addressbooks/user1'), &$output]);
@@ -68,7 +68,7 @@ class PluginTest extends AbstractPluginTest {
 
     }
 
-    function testAddressbookPluginProperties() {
+    function testAddressbookPluginProperties(): void {
 
         $ns = '{' . Plugin::NS_CARDDAV . '}';
         $propFind = new DAV\PropFind('addressbooks/user1/book1', [
@@ -90,7 +90,7 @@ class PluginTest extends AbstractPluginTest {
 
     }
 
-    function testGetTransform() {
+    function testGetTransform(): void {
 
         $request = new \Sabre\HTTP\Request('GET', '/addressbooks/user1/book1/card1', ['Accept: application/vcard+json']);
         $response = new \Sabre\HTTP\ResponseMock();

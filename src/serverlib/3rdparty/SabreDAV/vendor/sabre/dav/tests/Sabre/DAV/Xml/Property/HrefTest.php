@@ -8,14 +8,14 @@ use Sabre\DAV\Xml\XmlTest;
 
 class HrefTest extends XmlTest {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $href = new Href('path');
         $this->assertEquals('path', $href->getHref());
 
     }
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $href = new Href('path');
         $this->assertEquals('path', $href->getHref());
@@ -30,7 +30,7 @@ class HrefTest extends XmlTest {
 ', $xml);
 
     }
-    function testSerializeSpace() {
+    function testSerializeSpace(): void {
 
         $href = new Href('path alsopath');
         $this->assertEquals('path alsopath', $href->getHref());
@@ -46,7 +46,7 @@ class HrefTest extends XmlTest {
 
     }
 
-    function testSerializeNoPrefix() {
+    function testSerializeNoPrefix(): void {
 
         $href = new Href('path', false);
         $this->assertEquals('path', $href->getHref());
@@ -60,7 +60,7 @@ class HrefTest extends XmlTest {
 
     }
 
-    function testUnserialize() {
+    function testUnserialize(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"><d:href>/bla/path</d:href></d:anything>
@@ -76,7 +76,7 @@ class HrefTest extends XmlTest {
 
     }
 
-    function testUnserializeIncompatible() {
+    function testUnserializeIncompatible(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"><d:href2>/bla/path</d:href2></d:anything>
@@ -86,7 +86,7 @@ class HrefTest extends XmlTest {
         $this->assertNull($href);
 
     }
-    function testUnserializeEmpty() {
+    function testUnserializeEmpty(): void {
 
         $xml = '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"></d:anything>
@@ -100,7 +100,7 @@ class HrefTest extends XmlTest {
     /**
      * This method tests if hrefs containing & are correctly encoded.
      */
-    function testSerializeEntity() {
+    function testSerializeEntity(): void {
 
         $href = new Href('http://example.org/?a&b', false);
         $this->assertEquals('http://example.org/?a&b', $href->getHref());
@@ -114,7 +114,7 @@ class HrefTest extends XmlTest {
 
     }
 
-    function testToHtml() {
+    function testToHtml(): void {
 
         $href = new Href([
             '/foo/bar',

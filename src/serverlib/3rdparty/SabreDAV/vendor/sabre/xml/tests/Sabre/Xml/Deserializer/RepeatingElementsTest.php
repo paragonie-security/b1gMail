@@ -6,7 +6,7 @@ use Sabre\Xml\Service;
 
 class RepeatingElementsTest extends \PHPUnit_Framework_TestCase {
 
-    function testRead() {
+    function testRead(): void {
 
         $service = new Service();
         $service->elementMap['{urn:test}collection'] = function($reader) {

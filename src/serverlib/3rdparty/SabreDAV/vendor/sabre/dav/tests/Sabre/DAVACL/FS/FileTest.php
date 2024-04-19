@@ -21,13 +21,13 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     protected $owner = 'principals/evert';
 
-    function setUp() {
+    function setUp(): void {
 
         $this->sut = new File($this->path, $this->acl, $this->owner);
 
     }
 
-    function testGetOwner() {
+    function testGetOwner(): void {
 
         $this->assertEquals(
             $this->owner,
@@ -36,7 +36,7 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetGroup() {
+    function testGetGroup(): void {
 
         $this->assertNull(
             $this->sut->getGroup()
@@ -44,7 +44,7 @@ class FileTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $this->assertEquals(
             $this->acl,
@@ -56,13 +56,13 @@ class FileTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    function testSetAcl() {
+    function testSetAcl(): void {
 
         $this->sut->setACL([]);
 
     }
 
-    function testGetSupportedPrivilegeSet() {
+    function testGetSupportedPrivilegeSet(): void {
 
         $this->assertNull(
             $this->sut->getSupportedPrivilegeSet()

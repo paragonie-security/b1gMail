@@ -6,7 +6,7 @@ require_once 'Sabre/TestUtil.php';
 
 class PDOSqliteTest extends AbstractPDOTest {
 
-    function tearDown() {
+    function tearDown(): void {
 
         if (file_exists(SABRE_TEMPDIR . '/pdobackend')) unlink(SABRE_TEMPDIR . '/pdobackend');
         if (file_exists(SABRE_TEMPDIR . '/pdobackend2')) unlink(SABRE_TEMPDIR . '/pdobackend2');

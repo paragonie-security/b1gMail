@@ -9,7 +9,7 @@ class VEventTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider timeRangeTestData
      */
-    public function testInTimeRange(VEvent $vevent,$start,$end,$outcome) {
+    public function testInTimeRange(VEvent $vevent,$start,$end,$outcome): void {
 
         $this->assertEquals($outcome, $vevent->isInTimeRange($start, $end));
 

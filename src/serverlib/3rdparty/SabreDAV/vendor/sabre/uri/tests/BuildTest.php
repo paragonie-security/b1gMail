@@ -7,7 +7,7 @@ class BuildTest extends \PHPUnit_Framework_TestCase{
     /**
      * @dataProvider buildUriData
      */
-    function testBuild($value) {
+    function testBuild($value): void {
 
         $this->assertEquals(
             $value,

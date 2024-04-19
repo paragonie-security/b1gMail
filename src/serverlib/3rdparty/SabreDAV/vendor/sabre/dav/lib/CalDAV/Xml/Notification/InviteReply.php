@@ -134,7 +134,7 @@ class InviteReply implements NotificationInterface {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         $writer->writeElement('{' . CalDAV\Plugin::NS_CALENDARSERVER . '}invite-reply');
 
@@ -147,7 +147,7 @@ class InviteReply implements NotificationInterface {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerializeFull(Writer $writer) {
+    function xmlSerializeFull(Writer $writer): void {
 
         $cs = '{' . CalDAV\Plugin::NS_CALENDARSERVER . '}';
 

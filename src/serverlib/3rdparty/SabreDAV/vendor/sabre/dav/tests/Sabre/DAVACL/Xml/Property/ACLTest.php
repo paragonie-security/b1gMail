@@ -8,14 +8,14 @@ use Sabre\DAV\Browser\HtmlOutputHelper;
 
 class ACLTest extends \PHPUnit_Framework_TestCase {
 
-    function testConstruct() {
+    function testConstruct(): void {
 
         $acl = new Acl([]);
         $this->assertInstanceOf('Sabre\DAVACL\Xml\Property\ACL', $acl);
 
     }
 
-    function testSerializeEmpty() {
+    function testSerializeEmpty(): void {
 
         $acl = new Acl([]);
         $xml = (new DAV\Server())->xml->write('{DAV:}root', $acl);
@@ -27,7 +27,7 @@ class ACLTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $privileges = [
             [
@@ -73,7 +73,7 @@ class ACLTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSerializeSpecialPrincipals() {
+    function testSerializeSpecialPrincipals(): void {
 
         $privileges = [
             [
@@ -132,7 +132,7 @@ class ACLTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUnserialize() {
+    function testUnserialize(): void {
 
         $source = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -190,7 +190,7 @@ class ACLTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    function testUnserializeNoPrincipal() {
+    function testUnserializeNoPrincipal(): void {
 
         $source = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -213,7 +213,7 @@ class ACLTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUnserializeOtherPrincipal() {
+    function testUnserializeOtherPrincipal(): void {
 
         $source = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -279,7 +279,7 @@ class ACLTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException Sabre\DAV\Exception\NotImplemented
      */
-    function testUnserializeDeny() {
+    function testUnserializeDeny(): void {
 
         $source = '<?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -303,7 +303,7 @@ class ACLTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testToHtml() {
+    function testToHtml(): void {
 
         $privileges = [
             [

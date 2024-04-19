@@ -10,7 +10,7 @@ class ShareTest extends XmlTest {
         '{http://calendarserver.org/ns/}share' => 'Sabre\\CalDAV\\Xml\\Request\\Share',
     ];
 
-    function testDeserialize() {
+    function testDeserialize(): void {
 
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" ?>
@@ -50,7 +50,7 @@ XML;
 
     }
 
-    function testDeserializeMininal() {
+    function testDeserializeMininal(): void {
 
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" ?>

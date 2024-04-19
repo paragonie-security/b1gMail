@@ -59,7 +59,7 @@ class CurrentUserPrivilegeSet implements Element, HtmlOutput {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         foreach ($this->privileges as $privName) {
 

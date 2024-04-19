@@ -15,7 +15,7 @@ class FileTest extends AbstractTest {
     }
 
 
-    function tearDown() {
+    function tearDown(): void {
 
         \Sabre\TestUtil::clearTempDir();
 

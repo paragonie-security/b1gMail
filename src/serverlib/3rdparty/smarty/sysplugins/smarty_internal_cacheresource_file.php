@@ -25,7 +25,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
      *
      * @return void
      */
-    public function populate(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template)
+    public function populate(Smarty_Template_Cached $cached, Smarty_Internal_Template $_template): void
     {
         $source = &$_template->source;
         $smarty = &$_template->smarty;
@@ -77,7 +77,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
      *
      * @return void
      */
-    public function populateTimestamp(Smarty_Template_Cached $cached)
+    public function populateTimestamp(Smarty_Template_Cached $cached): void
     {
         $cached->timestamp = $cached->exists = is_file($cached->filepath);
         if ($cached->exists) {
@@ -217,7 +217,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
      *
      * @return bool|void
      */
-    public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached)
+    public function acquireLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {
         $cached->is_locked = true;
         touch($cached->lock_id);
@@ -231,7 +231,7 @@ class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
      *
      * @return bool|void
      */
-    public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached)
+    public function releaseLock(Smarty $smarty, Smarty_Template_Cached $cached): void
     {
         $cached->is_locked = false;
         @unlink($cached->lock_id);

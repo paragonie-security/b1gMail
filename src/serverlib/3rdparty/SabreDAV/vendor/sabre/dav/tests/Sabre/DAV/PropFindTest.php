@@ -4,7 +4,7 @@ namespace Sabre\DAV;
 
 class PropFindTest extends \PHPUnit_Framework_TestCase {
 
-    function testHandle() {
+    function testHandle(): void {
 
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
         $propFind->handle('{DAV:}displayname', 'foobar');
@@ -16,7 +16,7 @@ class PropFindTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testHandleCallBack() {
+    function testHandleCallBack(): void {
 
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
         $propFind->handle('{DAV:}displayname', function() { return 'foobar'; });
@@ -28,7 +28,7 @@ class PropFindTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testAllPropDefaults() {
+    function testAllPropDefaults(): void {
 
         $propFind = new PropFind('foo', ['{DAV:}displayname'], 0, PropFind::ALLPROPS);
 
@@ -38,7 +38,7 @@ class PropFindTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSet() {
+    function testSet(): void {
 
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
         $propFind->set('{DAV:}displayname', 'bar');
@@ -50,7 +50,7 @@ class PropFindTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetAllpropCustom() {
+    function testSetAllpropCustom(): void {
 
         $propFind = new PropFind('foo', ['{DAV:}displayname'], 0, PropFind::ALLPROPS);
         $propFind->set('{DAV:}customproperty', 'bar');
@@ -61,7 +61,7 @@ class PropFindTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testSetUnset() {
+    function testSetUnset(): void {
 
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
         $propFind->set('{DAV:}displayname', 'bar');

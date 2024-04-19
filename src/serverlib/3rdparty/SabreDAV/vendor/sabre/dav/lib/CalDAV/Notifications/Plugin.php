@@ -63,7 +63,7 @@ class Plugin extends ServerPlugin {
      * @param Server $server
      * @return void
      */
-    function initialize(Server $server) {
+    function initialize(Server $server): void {
 
         $this->server = $server;
         $server->on('method:GET', [$this, 'httpGet'], 90);
@@ -86,7 +86,7 @@ class Plugin extends ServerPlugin {
      * @param BaseINode $node
      * @return void
      */
-    function propFind(PropFind $propFind, BaseINode $node) {
+    function propFind(PropFind $propFind, BaseINode $node): void {
 
         $caldavPlugin = $this->server->getPlugin('caldav');
 

@@ -64,7 +64,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * onload
 	 *
 	 */
-	function OnLoad()
+	function OnLoad(): void
 	{
 		$this->prefs = $this->_getPrefs();
 	}
@@ -73,7 +73,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * initialize language-dependent phrases
 	 *
 	 */
-	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang)
+	function OnReadLang(&$lang_user, &$lang_client, &$lang_custom, &$lang_admin, $lang): void
 	{
 		$_lang_custom = $_lang_user = $_lang_client = $_lang_admin = array();
 
@@ -700,7 +700,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * admin handler
 	 *
 	 */
-	function AdminHandler()
+	function AdminHandler(): void
 	{
 		global $tpl, $plugins, $lang_admin, $bm_prefs;
 
@@ -754,7 +754,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * cron tasks
 	 *
 	 */
-	function OnCron()
+	function OnCron(): void
 	{
 		global $db, $lang_custom, $lang_admin, $bm_prefs;
 
@@ -919,7 +919,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 *
 	 * @param array $tabs Tabs (not needed here)
 	 */
-	function BeforePageTabsAssign(&$tabs)
+	function BeforePageTabsAssign(&$tabs): void
 	{
 		global $userRow, $tpl;
 
@@ -972,7 +972,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * packages page for NLI area
 	 *
 	 */
-	function _paccNLIPackages($signupMode = false)
+	function _paccNLIPackages($signupMode = false): void
 	{
 		global $tpl, $bm_prefs, $lang_user;
 
@@ -1063,7 +1063,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * @param string $file
 	 * @param string $action
 	 */
-	function FileHandler($file, $action)
+	function FileHandler($file, $action): void
 	{
 		global $tpl, $userRow, $lang_user;
 
@@ -1211,7 +1211,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * @param int $userID
 	 * @param string $userMail
 	 */
-	function AfterSuccessfulSignup($userID, $userMail)
+	function AfterSuccessfulSignup($userID, $userMail): void
 	{
 		global $db, $lang_admin;
 
@@ -1257,7 +1257,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * @param string $password
 	 * @param int $reason
 	 */
-	function OnLoginFailed($userMail, $password, $reason)
+	function OnLoginFailed($userMail, $password, $reason): void
 	{
 		if($this->prefs['signup_order_force'] == 'yes'
 			&& $this->prefs['signup_order_page'] == 'yes'
@@ -1529,7 +1529,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 *
 	 * @param int $id Package ID
 	 */
-	function _showPackageDetails($id)
+	function _showPackageDetails($id): void
 	{
 		global $tpl, $db, $userRow, $bm_prefs;
 
@@ -1684,7 +1684,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * @param bool $nli Not logged in?
 	 * @param array $userRow User row
 	 */
-	function _prepareOrderPage($userID, $packageID, $userRow, $nli=false)
+	function _prepareOrderPage($userID, $packageID, $userRow, $nli=false): void
 	{
 		global $lang_user, $db, $tpl, $bm_prefs;
 
@@ -2005,7 +2005,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * check user auth token
 	 *
 	 */
-	function _checkUserToken()
+	function _checkUserToken(): void
 	{
 		global $db;
 
@@ -2032,7 +2032,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * place order
 	 *
 	 */
-	function _paccPlaceOrder()
+	function _paccPlaceOrder(): void
 	{
 		global $db, $tpl;
 
@@ -2088,7 +2088,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * @param int $userID User ID
 	 * @param array $userRow User row
 	 */
-	function _abortNLIOrder($userID, $userRow)
+	function _abortNLIOrder($userID, $userRow): void
 	{
 		global $db, $lang_user, $tpl, $bm_prefs;
 
@@ -2130,7 +2130,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * show not logged in order page
 	 *
 	 */
-	function _paccOrder()
+	function _paccOrder(): void
 	{
 		global $db, $tpl, $lang_user, $bm_prefs;
 
@@ -2196,7 +2196,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * @param int $userID User ID
 	 * @param bool $signUp Called from signup?
 	 */
-	function _nliPackagesPage($userID, $signUp=false)
+	function _nliPackagesPage($userID, $signUp=false): void
 	{
 		global $tpl, $db, $lang_user;
 
@@ -2226,7 +2226,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * subscriptions
 	 *
 	 */
-	function _subscriptionsPage()
+	function _subscriptionsPage(): void
 	{
 		global $db, $tpl, $lang_admin, $bm_prefs;
 
@@ -2432,7 +2432,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * prefs
 	 *
 	 */
-	function _prefsPage()
+	function _prefsPage(): void
 	{
 		global $db, $tpl, $bm_prefs, $lang_admin, $plugins;
 
@@ -2542,7 +2542,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * packages page
 	 *
 	 */
-	function _packagesPage()
+	function _packagesPage(): void
 	{
 		global $db, $tpl, $lang_admin, $bm_prefs;
 
@@ -2851,7 +2851,7 @@ class PremiumAccountPlugin extends BMPlugin
 	 * overview page
 	 *
 	 */
-	function _overviewPage()
+	function _overviewPage(): void
 	{
 		global $db, $tpl, $lang_admin, $currentLanguage, $bm_prefs;
 

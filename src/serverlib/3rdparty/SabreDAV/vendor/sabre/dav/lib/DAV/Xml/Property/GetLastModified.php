@@ -72,7 +72,7 @@ class GetLastModified implements Element {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         $writer->write(
             HTTP\Util::toHTTPDate($this->time)

@@ -7,7 +7,7 @@ namespace Sabre\VObject;
  */
 class VCard21Test extends \PHPUnit_Framework_TestCase {
 
-    function testPropertyWithNoName() {
+    function testPropertyWithNoName(): void {
 
         $input = <<<VCF
 BEGIN:VCARD\r
@@ -24,7 +24,7 @@ VCF;
 
     }
 
-    function testPropertyPadValueCount() {
+    function testPropertyPadValueCount(): void {
 
         $input = <<<VCF
 BEGIN:VCARD

@@ -11,7 +11,7 @@ require_once 'Sabre/DAVACL/MockACLNode.php';
 
 class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
-    function testValues() {
+    function testValues(): void {
 
         $aclPlugin = new Plugin();
         $this->assertEquals('acl',$aclPlugin->getPluginName());
@@ -37,7 +37,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    function testGetFlatPrivilegeSet() {
+    function testGetFlatPrivilegeSet(): void {
 
         $expected = array(
             '{DAV:}all' => array(
@@ -129,7 +129,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCurrentUserPrincipalsNotLoggedIn() {
+    function testCurrentUserPrincipalsNotLoggedIn(): void {
 
         $acl = new Plugin();
         $server = new DAV\Server();
@@ -139,7 +139,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCurrentUserPrincipalsSimple() {
+    function testCurrentUserPrincipalsSimple(): void {
 
         $tree = array(
 
@@ -163,7 +163,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCurrentUserPrincipalsGroups() {
+    function testCurrentUserPrincipalsGroups(): void {
 
         $tree = array(
 
@@ -200,7 +200,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetACL() {
+    function testGetACL(): void {
 
         $acl = array(
             array(
@@ -226,7 +226,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testGetCurrentUserPrivilegeSet() {
+    function testGetCurrentUserPrivilegeSet(): void {
 
         $acl = array(
             array(
@@ -280,7 +280,7 @@ class SimplePluginTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCheckPrivileges() {
+    function testCheckPrivileges(): void {
 
         $acl = array(
             array(

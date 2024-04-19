@@ -108,7 +108,7 @@ class MockSubscriptionSupport extends Mock implements SubscriptionSupport {
      * @param \Sabre\DAV\PropPatch $propPatch
      * @return void
      */
-    public function updateSubscription($subscriptionId, DAV\PropPatch $propPatch) {
+    public function updateSubscription($subscriptionId, DAV\PropPatch $propPatch): void {
 
         $found = null;
         foreach($this->subs[$subscriptionId[0]] as &$sub) {

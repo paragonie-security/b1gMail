@@ -26,7 +26,7 @@ class Smarty_Internal_ErrorHandler
      * Enable error handler to mute expected messages
      *
      */
-    public static function muteExpectedErrors()
+    public static function muteExpectedErrors(): void
     {
         /*
             error muting is done because some people implemented custom error_handlers using

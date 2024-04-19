@@ -39,7 +39,7 @@ class SupportedLock implements XmlSerializable {
      * @param Writer $writer
      * @return void
      */
-    function xmlSerialize(Writer $writer) {
+    function xmlSerialize(Writer $writer): void {
 
         $writer->writeElement('{DAV:}lockentry', [
             '{DAV:}lockscope' => ['{DAV:}exclusive' => null],

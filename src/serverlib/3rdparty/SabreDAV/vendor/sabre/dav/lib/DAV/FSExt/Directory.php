@@ -60,7 +60,7 @@ class Directory extends Node implements DAV\ICollection, DAV\IQuota, DAV\IMoveTa
      * @param string $name
      * @return void
      */
-    function createDirectory($name) {
+    function createDirectory($name): void {
 
         // We're not allowing dots
         if ($name == '.' || $name == '..') throw new DAV\Exception\Forbidden('Permission denied to . and ..');

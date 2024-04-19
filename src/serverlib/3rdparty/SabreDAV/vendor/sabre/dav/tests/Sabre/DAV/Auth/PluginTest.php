@@ -9,7 +9,7 @@ require_once 'Sabre/HTTP/ResponseMock.php';
 
 class PluginTest extends \PHPUnit_Framework_TestCase {
 
-    function testInit() {
+    function testInit(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
         $plugin = new Plugin(new Backend\Mock(),'realm');
@@ -23,7 +23,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testInit
      */
-    function testAuthenticate() {
+    function testAuthenticate(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
         $plugin = new Plugin(new Backend\Mock());
@@ -38,7 +38,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
      * @depends testInit
      * @expectedException Sabre\DAV\Exception\NotAuthenticated
      */
-    function testAuthenticateFail() {
+    function testAuthenticateFail(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
         $backend = new Backend\Mock();
@@ -53,7 +53,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testAuthenticate
      */
-    function testMultipleBackend() {
+    function testMultipleBackend(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
         $backend1 = new Backend\Mock();
@@ -75,7 +75,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
      * @depends testInit
      * @expectedException Sabre\DAV\Exception
      */
-    function testNoAuthBackend() {
+    function testNoAuthBackend(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
 
@@ -88,7 +88,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
      * @depends testInit
      * @expectedException Sabre\DAV\Exception
      */
-    function testInvalidCheckResponse() {
+    function testInvalidCheckResponse(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
         $backend = new Backend\Mock();
@@ -103,7 +103,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testAuthenticate
      */
-    function testGetCurrentPrincipal() {
+    function testGetCurrentPrincipal(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
         $plugin = new Plugin(new Backend\Mock());
@@ -116,7 +116,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase {
     /**
      * @depends testAuthenticate
      */
-    function testGetCurrentUser() {
+    function testGetCurrentUser(): void {
 
         $fakeServer = new DAV\Server( new DAV\SimpleCollection('bla'));
         $plugin = new Plugin(new Backend\Mock());

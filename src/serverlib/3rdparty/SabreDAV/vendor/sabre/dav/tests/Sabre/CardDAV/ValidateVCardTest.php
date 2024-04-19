@@ -13,7 +13,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
     protected $server;
     protected $cardBackend;
 
-    function setUp() {
+    function setUp(): void {
 
         $addressbooks = array(
             array(
@@ -51,7 +51,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFile() {
+    function testCreateFile(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -64,7 +64,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileValid() {
+    function testCreateFileValid(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -84,7 +84,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileNoUID() {
+    function testCreateFileNoUID(): void {
 
         $request = new HTTP\Request(
             'PUT',
@@ -100,7 +100,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue(strpos($foo['carddata'],'UID')!==false);
     }
 
-    function testCreateFileJson() {
+    function testCreateFileJson(): void {
 
         $request = new HTTP\Request(
             'PUT',
@@ -117,7 +117,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testCreateFileVCalendar() {
+    function testCreateFileVCalendar(): void {
 
         $request = HTTP\Sapi::createFromServerArray(array(
             'REQUEST_METHOD' => 'PUT',
@@ -131,7 +131,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateFile() {
+    function testUpdateFile(): void {
 
         $this->cardBackend->createCard('addressbook1','blabla.vcf','foo');
         $request = HTTP\Sapi::createFromServerArray(array(
@@ -145,7 +145,7 @@ class ValidateVCardTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    function testUpdateFileParsableBody() {
+    function testUpdateFileParsableBody(): void {
 
         $this->cardBackend->createCard('addressbook1','blabla.vcf','foo');
         $request = HTTP\Sapi::createFromServerArray(array(

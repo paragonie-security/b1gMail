@@ -57,7 +57,7 @@ class MockPrincipal extends DAV\Node implements IPrincipal {
 
     }
 
-    function setGroupMemberSet(array $groupMemberSet) {
+    function setGroupMemberSet(array $groupMemberSet): void {
 
         $this->groupMemberSet = $groupMemberSet;
 

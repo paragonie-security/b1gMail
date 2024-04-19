@@ -140,7 +140,7 @@ class Smarty_Internal_Runtime_Foreach
      * @param \Smarty_Internal_Template $tpl
      * @param int                       $levels number of levels
      */
-    public function restore(Smarty_Internal_Template $tpl, $levels = 1)
+    public function restore(Smarty_Internal_Template $tpl, $levels = 1): void
     {
         while ($levels) {
             $saveVars = array_pop($this->stack);

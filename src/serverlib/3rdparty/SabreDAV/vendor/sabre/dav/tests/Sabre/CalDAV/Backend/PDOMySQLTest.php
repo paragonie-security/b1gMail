@@ -8,7 +8,7 @@ require_once 'Sabre/CalDAV/Backend/AbstractPDOTest.php';
 
 class PDOMySQLTest extends AbstractPDOTest {
 
-    function setup() {
+    function setup(): void {
 
         if (!SABRE_HASMYSQL) $this->markTestSkipped('MySQL driver is not available, or not properly configured');
         $pdo = \Sabre\TestUtil::getMySQLDB();
@@ -30,7 +30,7 @@ class PDOMySQLTest extends AbstractPDOTest {
 
     }
 
-    function teardown() {
+    function teardown(): void {
 
         $this->pdo = null;
 

@@ -7,7 +7,7 @@ use Sabre\DAV\Xml\Property\Href;
 
 class PropPatchTest extends XmlTest {
 
-    function testSerialize() {
+    function testSerialize(): void {
 
         $propPatch = new PropPatch();
         $propPatch->properties = [

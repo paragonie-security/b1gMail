@@ -78,7 +78,7 @@ class Smarty_Internal_Compile_Private_ForeachSection extends Smarty_Internal_Com
      *
      * @throws \SmartyException
      */
-    public function scanForProperties($attributes, Smarty_Internal_TemplateCompilerBase $compiler)
+    public function scanForProperties($attributes, Smarty_Internal_TemplateCompilerBase $compiler): void
     {
         $this->propertyPreg = '~(';
         $this->startOffset = 1;
@@ -108,7 +108,7 @@ class Smarty_Internal_Compile_Private_ForeachSection extends Smarty_Internal_Com
      * @param bool  $named
      * @param array $attributes
      */
-    public function buildPropertyPreg($named, $attributes)
+    public function buildPropertyPreg($named, $attributes): void
     {
         if ($named) {
             $this->resultOffsets[ 'named' ] = $this->startOffset = $this->startOffset + 3;
@@ -137,7 +137,7 @@ class Smarty_Internal_Compile_Private_ForeachSection extends Smarty_Internal_Com
      *
      * @param string $source
      */
-    public function matchProperty($source)
+    public function matchProperty($source): void
     {
         preg_match_all($this->propertyPreg, $source, $match);
         foreach ($this->resultOffsets as $key => $offset) {
@@ -154,7 +154,7 @@ class Smarty_Internal_Compile_Private_ForeachSection extends Smarty_Internal_Com
      *
      * @param \Smarty_Internal_TemplateCompilerBase $compiler
      */
-    public function matchTemplateSource(Smarty_Internal_TemplateCompilerBase $compiler)
+    public function matchTemplateSource(Smarty_Internal_TemplateCompilerBase $compiler): void
     {
         $this->matchProperty($compiler->parser->lex->data);
     }
@@ -166,7 +166,7 @@ class Smarty_Internal_Compile_Private_ForeachSection extends Smarty_Internal_Com
      *
      * @throws \SmartyException
      */
-    public function matchParentTemplateSource(Smarty_Internal_TemplateCompilerBase $compiler)
+    public function matchParentTemplateSource(Smarty_Internal_TemplateCompilerBase $compiler): void
     {
         // search parent compiler template source
         $nextCompiler = $compiler;

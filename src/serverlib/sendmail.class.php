@@ -56,7 +56,7 @@ class BMSendMail
      *
      * @param int $userID
      */
-    public function SetUserID($userID)
+    public function SetUserID($userID): void
     {
         $this->_userID = $userID;
     }
@@ -66,7 +66,7 @@ class BMSendMail
      *
      * @param mixed $recipients Recipient(s) (array or string)
      */
-    public function SetRecipients($recipients)
+    public function SetRecipients($recipients): void
     {
         if (!is_array($recipients)) {
             if (($recipient = ExtractMailAddress($recipients)) != '') {
@@ -87,7 +87,7 @@ class BMSendMail
      *
      * @param string $sender
      */
-    public function SetSender($sender)
+    public function SetSender($sender): void
     {
         $this->_sender = ExtractMailAddress($sender);
     }
@@ -97,7 +97,7 @@ class BMSendMail
      *
      * @param string $sender
      */
-    public function SetMailFrom($sender)
+    public function SetMailFrom($sender): void
     {
         PutLog(sprintf('Differing mail from address set: <%s>', ExtractMailAddress($sender)),
             PRIO_DEBUG,
@@ -111,7 +111,7 @@ class BMSendMail
      *
      * @param string $subject
      */
-    public function SetSubject($subject)
+    public function SetSubject($subject): void
     {
         $this->_subject = $subject;
     }
@@ -121,7 +121,7 @@ class BMSendMail
      *
      * @param resource $fp
      */
-    public function SetBodyStream($fp)
+    public function SetBodyStream($fp): void
     {
         $this->_fp = $fp;
     }
@@ -279,7 +279,7 @@ class BMSendMail
     /**
      * associate sent mail with an outbox mail ID.
      */
-    public function SetDeliveryStatusOutboxID($outboxID)
+    public function SetDeliveryStatusOutboxID($outboxID): void
     {
         if ($this->_smtp !== false) {
             $this->_smtp->SetDeliveryStatusOutboxID($outboxID);

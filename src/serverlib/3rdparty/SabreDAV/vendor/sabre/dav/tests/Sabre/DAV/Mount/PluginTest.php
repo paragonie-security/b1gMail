@@ -9,14 +9,14 @@ require_once 'Sabre/DAV/AbstractServer.php';
 
 class PluginTest extends DAV\AbstractServer {
 
-    function setUp() {
+    function setUp(): void {
 
         parent::setUp();
         $this->server->addPlugin(new Plugin());
 
     }
 
-    function testPassThrough() {
+    function testPassThrough(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/',
@@ -31,7 +31,7 @@ class PluginTest extends DAV\AbstractServer {
 
     }
 
-    function testMountResponse() {
+    function testMountResponse(): void {
 
         $serverVars = array(
             'REQUEST_URI'    => '/?mount',

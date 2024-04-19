@@ -7,7 +7,7 @@ class CalAddressTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider values
      */
-    function testGetNormalizedValue($expected, $input) {
+    function testGetNormalizedValue($expected, $input): void {
 
         $vobj = new \Sabre\VObject\Component\VCalendar();
         $property = $vobj->add('ATTENDEE', $input);

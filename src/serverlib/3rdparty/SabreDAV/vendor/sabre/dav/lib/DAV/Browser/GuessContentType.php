@@ -53,7 +53,7 @@ class GuessContentType extends DAV\ServerPlugin {
      * @param DAV\Server $server
      * @return void
      */
-    function initialize(DAV\Server $server) {
+    function initialize(DAV\Server $server): void {
 
         // Using a relatively low priority (200) to allow other extensions
         // to set the content-type first.
@@ -70,7 +70,7 @@ class GuessContentType extends DAV\ServerPlugin {
      * @param INode $node
      * @return void
      */
-    function propFind(PropFind $propFind, INode $node) {
+    function propFind(PropFind $propFind, INode $node): void {
 
         $propFind->handle('{DAV:}getcontenttype', function() use ($propFind) {
 
